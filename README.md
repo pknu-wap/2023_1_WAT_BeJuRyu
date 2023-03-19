@@ -16,7 +16,7 @@
 
 <p align="center">
 	<h3 align="center">
-		 사용자 기호에 따라 주류 추천 서비스<br>BeJuRyu
+		 사용자 기호 맞춤 주류 추천 서비스<br>BeJuRyu
 	</h3>	
 </p>
 
