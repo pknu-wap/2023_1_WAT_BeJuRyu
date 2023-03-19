@@ -1,13 +1,4 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
-title: ''
-labels: ''
-assignees: ''
-
----
-
----
 name: Feature Template
 about: 기능 추가 템플릿
 title: ''
