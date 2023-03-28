@@ -46,10 +46,10 @@
   </tr>
     <tr>
     <td align="center">코젤다크</td>
-    <td align="center">블랑</td>
+    <td align="center">얼그레이 하이볼</td>
     <td align="center">데낄라</td>
     <td align="center">참이슬</td>
-    <td align="center">대선</td>
+    <td align="center">간바레 오또상</td>
   </tr>
 </table>
 
