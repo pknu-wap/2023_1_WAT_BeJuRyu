@@ -45,7 +45,7 @@
   </tr>
   </tr>
     <tr>
-    <td align="center">코젤다크</td>
+    <td align="center">코젤다크 시나몬</td>
     <td align="center">얼그레이 하이볼</td>
     <td align="center">데낄라</td>
     <td align="center">참이슬</td>
