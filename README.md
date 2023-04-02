@@ -55,13 +55,14 @@
 - Local 
     - Datastore
 - Remote
-    - Retrofit
-    - Moshi
-    - OkHttp3
+    - Retrofit2 & OkHttp3
+    - Moshi Converter
 - Third Party
     - Glide
     - Material Components
     - Timber
+- [verison_catalog]("./android/gradle/libs.version.toml)
+</br>
 
 ## 🍷 Contributors 🍷
 
