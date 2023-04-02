@@ -20,6 +20,48 @@
 	</h3>	
 </p>
 
+## Android Modules 📁 
+
+```
+ 📁android
+ ┣ 📂app
+ ┣ 📂core
+ ┃ ┣ 📂data
+ ┃ ┣ 📂domain
+ ┃ ┣ 📂model
+ ┃ ┣ 📂network
+ ┃ ┗ 📂datastore
+ ┣ 📂build-logic
+ ┃ ┗ 📂convention
+ ┣ 📂feature
+ ┃ ┣ 📂auth
+ ┃ ┣ 📂test
+ ┗ ┗ 📂dictionary
+```
+
+
+## Android Tech Stack
+
+- Minumum SDK 26 & Target SDK 33
+- Kotlin
+    - Kotlin 1.8.10v
+    - Coroutines & Flow 
+- Dependency Injection
+    - Dagger Hilt
+- Android Jetpack
+    - LiveData & ViewModel
+    - Navigation Component
+    - DataBinding & ViewBinding
+- Local 
+    - Datastore
+- Remote
+    - Retrofit
+    - Moshi
+    - OkHttp3
+- Third Party
+    - Glide
+    - Material Components
+    - Timber
 
 ## 🍷 Contributors 🍷
 
