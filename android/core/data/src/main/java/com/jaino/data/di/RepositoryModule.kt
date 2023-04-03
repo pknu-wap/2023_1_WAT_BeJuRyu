@@ -13,10 +13,10 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(ActivityComponent::class)
-class RepositoryModule {
+object RepositoryModule {
 
+    // activity Scope not use singleton
     @Provides
-    @Singleton
     fun provideSocialAuthRepository(
         repositoryImpl : SocialAuthRepositoryImpl
     ) : SocialAuthRepository = repositoryImpl
