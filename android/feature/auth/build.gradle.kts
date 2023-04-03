@@ -16,6 +16,7 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.fragment)
+    implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.livedata)
 }
