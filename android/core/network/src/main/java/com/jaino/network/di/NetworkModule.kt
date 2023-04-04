@@ -1,7 +1,7 @@
 package com.jaino.network.di
 
-import com.jaino.network.datasource.auth.SignInDataSource
-import com.jaino.network.datasource.auth.SignInDataSourceImpl
+import com.jaino.network.datasource.auth.AuthDataSource
+import com.jaino.network.datasource.auth.AuthDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,8 +14,8 @@ abstract class NetworkModule {
 
     @Binds
     @Singleton
-    abstract fun provideSignInDataSource(
-        signInDataSourceImpl : SignInDataSourceImpl
-    ): SignInDataSource
+    abstract fun provideAuthDataSource(
+        authDataSourceImpl : AuthDataSourceImpl
+    ): AuthDataSource
 
 }
