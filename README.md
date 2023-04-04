@@ -56,7 +56,7 @@
     - Encrypted SharedPreference
 - Remote
     - Retrofit2 & OkHttp3
-    - Moshi Converter
+    - Kotlinx Serialization
 - Third Party
     - Glide
     - Material Components
