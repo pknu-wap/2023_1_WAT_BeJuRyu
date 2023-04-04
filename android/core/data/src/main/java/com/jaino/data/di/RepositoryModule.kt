@@ -2,28 +2,23 @@ package com.jaino.data.di
 
 import com.jaino.data.repository.auth.AuthRepository
 import com.jaino.data.repository.auth.AuthRepositoryImpl
-import com.jaino.data.repository.auth.SocialAuthRepository
-import com.jaino.data.repository.auth.SocialAuthRepositoryImpl
 import com.jaino.datastore.BeJuRyuDatastore
+import com.jaino.network.datasource.auth.SignInDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
-import dagger.hilt.android.components.ActivityComponent
+import dagger.hilt.components.SingletonComponent
 import javax.inject.Singleton
 
 @Module
-@InstallIn(ActivityComponent::class)
+@InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-    // activity Scope not use singleton
+    @Singleton
     @Provides
     fun provideSocialAuthRepository(
-        repositoryImpl : SocialAuthRepositoryImpl
-    ) : SocialAuthRepository = repositoryImpl
+        dataSource: SignInDataSource,
+        dataStore : BeJuRyuDatastore
+    ) : AuthRepository = AuthRepositoryImpl(dataSource, dataStore)
 
-    @Provides
-    @Singleton
-    fun provideAuthRepository(
-        dataStore: BeJuRyuDatastore
-    ) : AuthRepository = AuthRepositoryImpl(dataStore)
 }
