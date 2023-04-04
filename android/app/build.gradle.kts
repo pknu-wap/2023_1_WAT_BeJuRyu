@@ -1,3 +1,4 @@
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import java.util.Properties
 
 plugins {
@@ -6,20 +7,19 @@ plugins {
 }
 
 android {
-    val properties = Properties().apply {
-        load(file("../local.properties").inputStream())
-    }
-    namespace = "com.jaino.BeJuRyu"
-    compileSdk = 33
+
+    namespace = "com.jaino.app"
 
     defaultConfig {
-        applicationId = "com.jaino.BeJuRyu"
-        minSdk = 26
-        targetSdk =  33
-        versionCode = 1
-        versionName = "1.0"
+        val libs = extensions.getByType<VersionCatalogsExtension>().named("libs")
+        versionName = libs.findVersion("appVersion").get().requiredVersion
+        versionCode = checkNotNull(libs.findVersion("versionCode").get().requiredVersion).toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+
+        buildConfigField("String", "KAKAO_NATIVE_APP_KEY", getLocalProperty("KAKAO_NATIVE_APP_KEY"))
+        resValue("string", "KAKAO_NATIVE_APP_KEY", "kakao${getLocalProperty("KAKAO_NATIVE_APP_KEY")}")
+
     }
 
     buildTypes {
@@ -30,11 +30,18 @@ android {
     }
 }
 
+fun getLocalProperty(property: String): String {
+    return gradleLocalProperties(rootDir).getProperty(property)
+}
+
 dependencies {
 
     implementation(project(":feature:auth"))
     implementation(project(":core:model"))
     implementation(project(":core:data"))
+    implementation(project(":core:domain"))
+    implementation(project(":core:datastore"))
+    implementation(project(":core:network"))
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.startup)
@@ -45,11 +52,18 @@ dependencies {
     kapt(libs.androidx.hilt.work.compiler)
 
     // Third-Party
-    /*implementation(platform(libs.okhttp.bom))
-    implementation(libs.bundles.okhttp)
-    implementation(libs.retrofit)
-    implementation(libs.retrofit.kotlin.serialization.converter)
-    implementation(libs.bundles.retrofit)*/
+    implementation(libs.kakao.login)
     implementation(libs.timber)
     implementation(libs.material)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
+}
+
+kapt {
+    correctErrorTypes = true
+}
+
+hilt {
+    enableAggregatingTask = true
 }

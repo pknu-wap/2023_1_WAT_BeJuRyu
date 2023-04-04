@@ -14,8 +14,11 @@ android {
 
 dependencies {
     implementation(project(":core:network"))
+    implementation(project(":core:datastore"))
     implementation(project(":core:model"))
     implementation(libs.bundles.kotlin)
+    implementation(libs.kakao.login)
+    implementation(libs.timber)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)

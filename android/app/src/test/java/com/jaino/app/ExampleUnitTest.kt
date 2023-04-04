@@ -1,4 +1,4 @@
-package com.jaino.bejuryu
+package com.jaino.app
 
 import org.junit.Test
 

@@ -21,4 +21,8 @@ dependencies {
 
     implementation(project(":core:model"))
     implementation(libs.bundles.kotlin)
+    implementation(libs.androidx.security)
+    testImplementation(libs.junit)
+    androidTestImplementation(libs.androidx.test.junit)
+    androidTestImplementation(libs.androidx.test.espresso)
 }
