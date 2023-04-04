@@ -1,7 +1,7 @@
 package com.jaino.data.repository.auth
 
 import android.content.Context
-import com.jaino.data.model.auth.KakaoToken
+import com.jaino.model.social_auth.KakaoToken
 import com.kakao.sdk.user.UserApiClient
 import dagger.hilt.android.qualifiers.ActivityContext
 import kotlinx.coroutines.suspendCancellableCoroutine
