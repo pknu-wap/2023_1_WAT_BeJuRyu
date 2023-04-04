@@ -36,6 +36,10 @@ class BeJuRyuDatastoreImpl @Inject constructor(
         set(value) = storeDelegate.edit { putInt("USER_ID", value) }
         get() = storeDelegate.getInt("USER_ID", -1)
 
+    override var nickName: String
+        set(value) = storeDelegate.edit{ putString("NICK_NAME", value) }
+        get() = storeDelegate.getString("NICK_NAME", "") ?: ""
+
     override fun clear() {
         storeDelegate.edit { clear() }
     }
