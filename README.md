@@ -53,7 +53,7 @@
     - Navigation Component
     - DataBinding & ViewBinding
 - Local 
-    - Datastore
+    - Encrypted SharedPreference
 - Remote
     - Retrofit2 & OkHttp3
     - Moshi Converter
