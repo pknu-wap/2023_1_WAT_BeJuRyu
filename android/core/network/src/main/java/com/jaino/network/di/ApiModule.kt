@@ -2,12 +2,14 @@ package com.jaino.network.di
 
 import com.jaino.network.BuildConfig
 import com.jaino.network.remote.AuthService
+import com.jaino.network.remote.interceptor.AuthInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
+import okhttp3.Interceptor
 import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.OkHttpClient
 import okhttp3.logging.HttpLoggingInterceptor
@@ -33,16 +35,22 @@ object ApiModule {
 
     @Singleton
     @Provides
-    fun provideOkHttpInterceptor(): OkHttpClient {
+    fun provideAuthInterceptor(authInterceptor: AuthInterceptor): Interceptor = authInterceptor
+
+    @Singleton
+    @Provides
+    fun provideOkHttpInterceptor(
+        authInterceptor: AuthInterceptor
+    ): OkHttpClient {
         return OkHttpClient.Builder()
             .addNetworkInterceptor(
                 HttpLoggingInterceptor().apply {
                     level = HttpLoggingInterceptor.Level.BODY
                 }
             )
+            .addInterceptor(authInterceptor)
             .build()
     }
-
 
     @Provides
     @Singleton
