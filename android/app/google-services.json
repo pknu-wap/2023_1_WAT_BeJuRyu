@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "253577652264",
+    "project_id": "bejuryu-a435e",
+    "storage_bucket": "bejuryu-a435e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:253577652264:android:41cef8bf061bf16f6aed1d",
+        "android_client_info": {
+          "package_name": "com.jaino.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "253577652264-qncdl8hta12rkpr47kdss9pp16skvs7t.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.jaino.app",
+            "certificate_hash": "bd20aa69d65c307c64c94600984ca19d869f40d0"
+          }
+        },
+        {
+          "client_id": "253577652264-89nk80hviqpnrme88if59gbh0t8mp90a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyA--hrhASQUUwHrHFr_aJXwEr0_klQiPqQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "253577652264-89nk80hviqpnrme88if59gbh0t8mp90a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
