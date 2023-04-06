@@ -1,7 +1,9 @@
 package com.jaino.network.model.auth
 
 import com.jaino.model.auth.SignIn
+import kotlinx.serialization.Serializable
 
+@Serializable
 data class SignInResponse (
     val accessToken: String,
     val refreshToken : String,

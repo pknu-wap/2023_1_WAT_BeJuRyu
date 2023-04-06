@@ -1,9 +1,10 @@
 import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
-import java.util.Properties
 
 plugins {
     id("com.jaino.application")
     id("com.jaino.hilt")
+    alias(libs.plugins.google.services)
+    alias(libs.plugins.google.firebase.crashlytics)
 }
 
 android {
@@ -55,6 +56,8 @@ dependencies {
     implementation(libs.kakao.login)
     implementation(libs.timber)
     implementation(libs.material)
+    implementation(platform(libs.firebase))
+    implementation(libs.bundles.firebase)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)

@@ -1,6 +1,6 @@
 package com.jaino.data.repository.auth
 
-import com.jaino.model.social_auth.KakaoToken
+import com.jaino.data.model.auth.KakaoToken
 
 interface SocialAuthRepository {
 

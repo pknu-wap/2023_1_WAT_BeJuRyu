@@ -20,12 +20,15 @@ fun getLocalProperty(property: String): String {
 
 dependencies {
     implementation(project(":core:model"))
+    implementation(project(":core:datastore"))
     implementation(platform(libs.okhttp.bom))
     implementation(libs.bundles.okhttp)
     implementation(libs.retrofit)
     implementation(libs.retrofit.kotlin.serialization.converter)
     implementation(libs.bundles.retrofit)
     implementation(libs.bundles.kotlin)
+    implementation(libs.timber)
+    implementation(libs.processphoenix)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)
