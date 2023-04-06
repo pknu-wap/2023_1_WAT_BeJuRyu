@@ -17,8 +17,8 @@ plugins {
     alias(libs.plugins.kotlin.android) apply false
     alias(libs.plugins.kotlin.kapt) apply false
     alias(libs.plugins.dagger.hilt) apply false
+    alias(libs.plugins.google.firebase.crashlytics) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
-    id("org.jetbrains.kotlin.jvm") version "1.8.10" apply false
 }
 
 tasks.register("clean", Delete::class) {
