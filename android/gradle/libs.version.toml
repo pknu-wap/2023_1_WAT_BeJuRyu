@@ -30,6 +30,8 @@ androidx-hilt-work = "1.0.0"
 androidx-test-junit = "1.1.5"
 androidx-test-espresso = "3.5.1"
 
+android-navigation = "2.5.3"
+
 google-services-plugin = "4.3.15"
 google-crashlytics-plguin = "2.9.4"
 google-firebase = "31.4.0"
@@ -74,6 +76,9 @@ androidx-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "androi
 androidx-hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "androidx-hilt-work" }
 desugarLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdk" }
 
+nav_fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "android-navigation"}
+nav_ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "android-navigation"}
+nav_feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="android-navigation"}
 material = { module = "com.google.android.material:material", version.ref = "google-material" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -117,7 +122,7 @@ androidx = [
     "androidx-lifecycle-runtime",
     "androidx-lifecycle-livedata"
 ]
-
+navigation = ["nav_ui", "nav_fragment"]
 okhttp = ["okhttp", "okhttp-logging-interceptor"]
 retrofit = ["retrofit", "retrofit-kotlin-serialization-converter"]
 firebase = ["firebase", "firebase", "firebase-crashlytics", "firebase-analytics"]
