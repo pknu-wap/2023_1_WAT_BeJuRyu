@@ -53,4 +53,10 @@ class SocialAuthRepositoryImpl @Inject constructor(
             Timber.e(it)
         }
     }
+
+    override fun unlink() {
+        kakaoClient.unlink {
+            Timber.e(it)
+        }
+    }
 }

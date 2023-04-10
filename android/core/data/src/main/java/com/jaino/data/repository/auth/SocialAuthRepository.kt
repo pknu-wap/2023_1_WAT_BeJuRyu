@@ -12,4 +12,5 @@ interface SocialAuthRepository {
 
     fun signOut()
 
+    fun unlink()
 }
