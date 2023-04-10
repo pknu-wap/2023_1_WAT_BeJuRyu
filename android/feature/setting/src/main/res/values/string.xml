@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="account_title">계정 관리</string>
+    <string name="profile_title">프로필 관리</string>
+    <string name="setting_title">설정</string>
+    <string name="userOfTerm_title">이용 약관</string>
+    <string name="policy_title">약관 및 정책</string>
+    <string name="nickName_title">닉네임</string>
+    <string name="signOut_title">로그아웃</string>
+    <string name="deleteAccount_title">회원 탈퇴</string>
+    <string name="deleteAccount_content">개인 정보와 기록이 모두 삭제됩니다.</string>
+
+</resources>
