@@ -1,6 +1,8 @@
 package com.jaino.app.di
 
 import android.app.Application
+import com.jaino.app.navigator.AppNavigatorImpl
+import com.jaino.navigation.AppNavigator
 import com.kakao.sdk.user.UserApiClient
 import dagger.Module
 import dagger.Provides
@@ -22,4 +24,7 @@ object AppModule {
     @Singleton
     fun provideKakaoClient(): UserApiClient = UserApiClient.instance
 
+    @Provides
+    @Singleton
+    fun provideAppNavigator(appNavigator: AppNavigatorImpl): AppNavigator = appNavigator
 }
