@@ -38,11 +38,13 @@ fun getLocalProperty(property: String): String {
 dependencies {
 
     implementation(project(":feature:auth"))
+    implementation(project(":feature:setting"))
     implementation(project(":core:model"))
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
     implementation(project(":core:datastore"))
     implementation(project(":core:network"))
+    implementation(project(":core:navigation"))
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.startup)

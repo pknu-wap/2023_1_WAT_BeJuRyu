@@ -5,15 +5,22 @@ import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.jaino.auth.databinding.ActivityAuthBinding
 import com.jaino.data.repository.auth.SocialAuthRepository
+import com.jaino.navigation.AppNavigator
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @AndroidEntryPoint
 class AuthActivity : AppCompatActivity() {
+
+    @Inject
+    lateinit var appNavigator: AppNavigator
 
     private val viewModel : AuthViewModel by viewModels()
 
@@ -28,6 +35,7 @@ class AuthActivity : AppCompatActivity() {
         _binding = DataBindingUtil.setContentView(this, R.layout.activity_auth)
         binding.lifecycleOwner = this
         initButtons()
+        observeData()
     }
 
     private fun initButtons(){
@@ -36,7 +44,8 @@ class AuthActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     socialAuthRepository.signInByKakaoTalk()
                         .onSuccess {
-                            viewModel.executeServiceSignIn(it.token)
+                            // viewModel.executeServiceSignIn(it.token)
+                            startActivity(appNavigator.navigateToSetting())
                         }
                         .onFailure {
                             Toast.makeText(this@AuthActivity,
@@ -57,5 +66,19 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
         }
+    }
+
+    private fun observeData(){
+        viewModel.authUiState.flowWithLifecycle(lifecycle).onEach{
+            when(it){
+                is AuthViewModel.UiState.Init -> {}
+                is AuthViewModel.UiState.Success -> {
+                    startActivity(appNavigator.navigateToSetting())
+                }
+                is AuthViewModel.UiState.Failure -> {
+                    Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        }.launchIn(lifecycleScope)
     }
 }
