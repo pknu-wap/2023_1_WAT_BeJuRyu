@@ -1,7 +1,7 @@
 package com.jaino.data.repository.auth
 
 interface AuthRepository {
-    suspend fun signInService(token: String)
+    suspend fun signInService(token: String) : Result<Unit>
 
     fun setAccessToken(token: String)
 
@@ -10,4 +10,6 @@ interface AuthRepository {
     fun setNickName(nickName: String)
 
     fun setUserId(userId: Int)
+
+    fun clear()
 }

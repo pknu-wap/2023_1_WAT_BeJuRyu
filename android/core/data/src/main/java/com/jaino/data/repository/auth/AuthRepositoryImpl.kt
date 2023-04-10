@@ -9,14 +9,19 @@ class AuthRepositoryImpl @Inject constructor(
     private val source: SignInDataSource,
     private val datastore: BeJuRyuDatastore
 ) : AuthRepository {
-    override suspend fun signInService(token: String) {
+    override suspend fun signInService(token: String) : Result<Unit> {
         runCatching { source.signIn(token).toSignIn() }
             .onSuccess {
                 setAccessToken(it.accessToken)
                 setRefreshToken(it.refreshToken)
                 setUserId(it.useId)
                 setNickName(it.nickName)
-            }.onFailure(Timber::e)
+                return Result.success(Unit)
+            }
+            .onFailure{
+                return Result.failure(it)
+            }
+        return Result.failure(Throwable("AuthRepositoryImpl UnKnown error"))
     }
 
     override fun setAccessToken(token: String) {
@@ -33,5 +38,9 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun setNickName(nickName: String) {
         datastore.nickName = nickName
+    }
+
+    override fun clear() {
+        datastore.clear()
     }
 }
