@@ -22,6 +22,8 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.livedata)
     implementation(libs.nav.feature)
+    implementation(libs.material)
+    implementation(libs.processphoenix)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
     androidTestImplementation(libs.androidx.test.espresso)
