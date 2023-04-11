@@ -39,8 +39,4 @@ class AuthRepositoryImpl @Inject constructor(
     override fun setNickName(nickName: String) {
         datastore.nickName = nickName
     }
-
-    override fun clear() {
-        datastore.clear()
-    }
 }

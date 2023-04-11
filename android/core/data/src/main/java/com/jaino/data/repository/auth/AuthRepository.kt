@@ -11,5 +11,4 @@ interface AuthRepository {
 
     fun setUserId(userId: Int)
 
-    fun clear()
 }
