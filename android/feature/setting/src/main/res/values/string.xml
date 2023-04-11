@@ -9,5 +9,9 @@
     <string name="signOut_title">로그아웃</string>
     <string name="deleteAccount_title">회원 탈퇴</string>
     <string name="deleteAccount_content">개인 정보와 기록이 모두 삭제됩니다.</string>
-
+    <string name="dialog_edit_nickname">변경할 닉네임을 입력하세요.</string>
+    <string name="done">완료</string>
+    <string name="yes">확인</string>
+    <string name="no">아니요</string>
+    <string name="profile_userAnalyze_title">이용 기록</string>
 </resources>
