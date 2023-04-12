@@ -5,7 +5,7 @@ const FooterDiv = styled.footer`
   background-color: #9a208c;
   font-size: 1.6rem;
   line-height: 3rem;
-  height: 3rem;
+  height: 3rem; //calc(var(--vh, 1vh) * 100 + 66px);
   color: white;
   display: flex;
   justify-content: space-between;

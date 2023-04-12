@@ -1,6 +1,9 @@
 import styled from "styled-components";
 import logo from "../image/bejuryu.png";
 import { Link } from "react-router-dom";
+import KakaoLogin from "./Login/Login";
+// 사용자 닉네임 불러올 떄
+// import { useSelector } from "react-redux";
 
 const Navbar = styled.nav`
   display: flex;
@@ -39,10 +42,10 @@ const Navbarmenu = styled.ul`
     padding: 8px 12px;
   }
   li:hover {
-    background-color: #a5c9ca;
+    background-color: #e11299;
   }
 
-  @media only screen and (max-width: 768px) {
+  @media only screen and (max-width: 576px) {
     //width: 100%;
     flex-direction: column;
     align-items: center;
@@ -65,14 +68,26 @@ const Navbarlink = styled.div`
 `;
 
 export default function Header() {
+  // const userName = useSelector((state) => state.name.name);
   return (
     <>
       <Navbar>
         <Navbarlogo>
-          <img src={logo} alt="Logo" width="50" height="50" />
-          BeJuRyu
+          <Link to="/" style={{ textDecoration: "none" }}>
+            <img src={logo} alt="Logo" width="50" height="50" />
+            BeJuRyu
+          </Link>
         </Navbarlogo>
-        <Navbarmenu></Navbarmenu>
+        <Navbarmenu>
+          <li>주류추천메뉴에용</li>
+          <li>주류사전메뉴에용</li>
+          <li>메뉴에용</li>
+          <li>
+            <Link to="/MyPage" style={{ textDecoration: "none" }}>
+              마이페이지에용
+            </Link>
+          </li>
+        </Navbarmenu>
       </Navbar>
     </>
   );

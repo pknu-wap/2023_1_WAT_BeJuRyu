@@ -8,6 +8,10 @@ const GlobalStyle = createGlobalStyle`
   body {
     font-family: SCDream5;
   }
+  :root {
+  --vh: 100%;
+}
+
 `;
 
 export default GlobalStyle;
