@@ -2,6 +2,7 @@ package com.jaino.network.di
 
 import com.jaino.network.BuildConfig
 import com.jaino.network.remote.AuthService
+import com.jaino.network.remote.UserService
 import com.jaino.network.remote.interceptor.AuthInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -70,4 +71,10 @@ object ApiModule {
     fun provideAuthService(
         retrofit: Retrofit
     ): AuthService = retrofit.create(AuthService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideUserService(
+        retrofit: Retrofit
+    ): UserService = retrofit.create(UserService::class.java)
 }

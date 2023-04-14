@@ -8,6 +8,7 @@ buildscript {
         classpath(libs.android.build)
         classpath(libs.kotlin.gradle)
         classpath(libs.hilt.gradle)
+        classpath(libs.nav.safeargs)
     }
 }
 
@@ -19,6 +20,7 @@ plugins {
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.google.firebase.crashlytics) apply false
     alias(libs.plugins.kotlinx.serialization) apply false
+    alias(libs.plugins.androidx.navigation.safeargs) apply false
 }
 
 tasks.register("clean", Delete::class) {

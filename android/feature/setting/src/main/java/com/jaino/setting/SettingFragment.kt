@@ -1,5 +1,6 @@
 package com.jaino.setting
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,6 +9,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.jaino.navigation.AppNavigator
+import com.jaino.setting.account.AccountActivity
 import com.jaino.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -49,6 +51,10 @@ class SettingFragment : Fragment() {
         binding.settingProfileCardView.setOnClickListener {
             navigateToProfile()
         }
+
+        binding.historyCardView.setOnClickListener {
+            navigateToHistory()
+        }
     }
 
     private fun navigateToHome(){
@@ -56,14 +62,18 @@ class SettingFragment : Fragment() {
     }
 
     private fun navigateToAccount(){
-        findNavController().navigate(
-            R.id.action_settingFragment_to_accountFragment
-        )
+        startActivity(Intent(requireContext(), AccountActivity::class.java))
     }
 
     private fun navigateToProfile(){
         findNavController().navigate(
             R.id.action_settingFragment_to_profileFragment
+        )
+    }
+
+    private fun navigateToHistory(){
+        findNavController().navigate(
+            R.id.action_settingFragment_to_historyFragment
         )
     }
 
