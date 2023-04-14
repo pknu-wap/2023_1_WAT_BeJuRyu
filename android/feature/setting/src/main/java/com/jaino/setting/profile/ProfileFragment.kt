@@ -42,7 +42,12 @@ class ProfileFragment  : Fragment(){
             navigateToSetting()
         }
         binding.profileNickNameCardView.setOnClickListener {
-            // show dialog
+            EditNicknameDialog(
+                requireContext(),
+                onDoneButtonClick = {
+                    viewModel.updateNickname(it)
+                }
+            ).show()
         }
     }
 
