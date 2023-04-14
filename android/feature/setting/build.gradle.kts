@@ -1,6 +1,7 @@
 plugins {
     id("com.jaino.feature")
     id("com.jaino.hilt")
+    alias(libs.plugins.androidx.navigation.safeargs)
 }
 
 android {
@@ -10,6 +11,7 @@ android {
         consumerProguardFiles("consumer-rules.pro")
     }
 }
+
 dependencies {
     implementation(project(":core:data"))
     implementation(project(":core:domain"))
