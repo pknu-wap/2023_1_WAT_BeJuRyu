@@ -53,6 +53,7 @@ android-build = { module = "com.android.tools.build:gradle", version.ref = "grad
 kotlin-gradle = { group = "org.jetbrains.kotlin", name = "kotlin-gradle-plugin", version.ref = "kotlin" }
 hilt-gradle = { group = "com.google.dagger", name = "hilt-android-gradle-plugin", version.ref = "hilt" }
 square-javapoet = { group = "com.squareup", name = "javapoet", version.ref = "square-javapoet" }
+nav-safeargs = { module = "androidx.navigation:navigation-safe-args-gradle-plugin", version.ref="android-navigation"}
 
 kotlin = { group = "org.jetbrains.kotlin", name = "kotlin-stdlib", version.ref = "kotlin" }
 kotlin-serialization-json = { group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization" }
@@ -76,9 +77,9 @@ androidx-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "androi
 androidx-hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "androidx-hilt-work" }
 desugarLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdk" }
 
-nav_fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "android-navigation"}
-nav_ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "android-navigation"}
-nav_feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="android-navigation"}
+nav-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "android-navigation"}
+nav-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "android-navigation"}
+nav-feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="android-navigation"}
 material = { module = "com.google.android.material:material", version.ref = "google-material" }
 
 junit = { module = "junit:junit", version.ref = "junit" }
@@ -130,6 +131,7 @@ firebase = ["firebase", "firebase", "firebase-crashlytics", "firebase-analytics"
 [plugins]
 android-application = { id = "com.android.application", version.ref = "gradleplugin" }
 android-library = { id = "com.android.library", version.ref = "gradleplugin" }
+androidx-navigation-safeargs= { id = "androidx.navigation.safeargs", version.ref = "android-navigation"}
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services-plugin" }
