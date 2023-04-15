@@ -35,8 +35,8 @@
  ┃ ┗ 📂convention
  ┣ 📂feature
  ┃ ┣ 📂auth
- ┃ ┣ 📂test
- ┗ ┗ 📂dictionary
+ ┃ ┣ 📂setting
+ ┗ ┗ 📂analyze
 ```
 
 
@@ -49,7 +49,7 @@
 - Dependency Injection
     - Dagger Hilt
 - Android Jetpack
-    - LiveData & ViewModel
+    - CameraX & PhotoPicker
     - Navigation Component
     - DataBinding & ViewBinding
 - Local 
