@@ -23,7 +23,7 @@ dependencies {
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.livedata)
-    implementation(libs.nav.feature)
+    implementation(libs.bundles.navigation)
     implementation(libs.material)
     implementation(libs.processphoenix)
     testImplementation(libs.junit)

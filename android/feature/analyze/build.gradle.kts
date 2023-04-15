@@ -21,6 +21,8 @@ dependencies {
     implementation(libs.timber)
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.fragment)
+    implementation(libs.bundles.navigation)
+    implementation(libs.material)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.livedata)
