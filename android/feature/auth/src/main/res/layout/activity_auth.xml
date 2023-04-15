@@ -39,8 +39,8 @@
             android:fontFamily="@font/cookierun_bold"
             android:gravity="center"
             android:textSize="18sp"
+            android:text="@string/auth_title"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/auth_image"
             tools:text="비주류에서 당신의 하루에 어울리는\n주류를 추천 받아보세요." />
