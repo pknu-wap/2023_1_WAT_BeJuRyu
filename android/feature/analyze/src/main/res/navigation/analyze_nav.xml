@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/analyze"
+    app:startDestination="@id/analyzeHomeFragment">
+
+    <fragment
+        android:id="@+id/analyzeHomeFragment"
+        android:name="com.jaino.analyze.home.AnalyzeHomeFragment"
+        android:label="AnalyzeHomeFragment">
+        <action
+            android:id="@+id/action_analyzeHomeFragment_to_analyzeTextFragment"
+            app:destination="@id/analyzeTextFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/analyzeResultFragment"
+        android:name="com.jaino.analyze.result.AnalyzeResultFragment"
+        android:label="AnalyzeResultFragment" />
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.jaino.analyze.input.CameraFragment"
+        android:label="CameraFragment" >
+        <action
+            android:id="@+id/action_cameraFragment_to_analyzeResultFragment"
+            app:destination="@id/analyzeResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/analyzeTextFragment"
+        android:name="com.jaino.analyze.input.AnalyzeTextFragment"
+        android:label="AnalyzeTextFragment" >
+        <action
+            android:id="@+id/action_analyzeTextFragment_to_permissionsFragment"
+            app:destination="@id/permissionsFragment" />
+        <action
+            android:id="@+id/action_analyzeTextFragment_to_analyzeHomeFragment"
+            app:destination="@id/analyzeHomeFragment" />
+        <action
+            android:id="@+id/action_analyzeTextFragment_to_analyzeResultFragment"
+            app:destination="@id/analyzeResultFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.jaino.analyze.input.PermissionsFragment"
+        android:label="PermissionsFragment" >
+        <action
+            android:id="@+id/action_permissionsFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
+</navigation>
