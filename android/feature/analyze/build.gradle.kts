@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jaino.setting"
+    namespace = "com.jaino.analyze"
 
     defaultConfig {
         consumerProguardFiles("consumer-rules.pro")
@@ -17,16 +17,13 @@ dependencies {
     implementation(project(":core:domain"))
     implementation(project(":core:model"))
     implementation(project(":core:navigation"))
+    implementation(libs.bundles.camerax)
     implementation(libs.timber)
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.fragment)
+    implementation(libs.bundles.navigation)
+    implementation(libs.material)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.livedata)
-    implementation(libs.bundles.navigation)
-    implementation(libs.material)
-    implementation(libs.processphoenix)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.androidx.test.junit)
-    androidTestImplementation(libs.androidx.test.espresso)
 }

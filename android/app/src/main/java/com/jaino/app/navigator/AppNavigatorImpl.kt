@@ -2,6 +2,7 @@ package com.jaino.app.navigator
 
 import android.content.Context
 import android.content.Intent
+import com.jaino.analyze.AnalyzeActivity
 import com.jaino.auth.AuthActivity
 import com.jaino.navigation.AppNavigator
 import com.jaino.setting.SettingActivity
@@ -14,4 +15,6 @@ class AppNavigatorImpl @Inject constructor(
     override fun navigateToAuth(): Intent = Intent(context, AuthActivity::class.java)
 
     override fun navigateToSetting(): Intent = Intent(context, SettingActivity::class.java)
+
+    override fun navigateToAnalyze(): Intent = Intent(context, AnalyzeActivity::class.java)
 }

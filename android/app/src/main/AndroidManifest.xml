@@ -3,6 +3,10 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.jaino.app">
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission
+        android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:usesCleartextTraffic="true"
@@ -32,6 +36,11 @@
 
         <activity
             android:name="com.jaino.setting.account.AccountActivity"
+            android:exported="true">
+        </activity>
+
+        <activity
+            android:name="com.jaino.analyze.AnalyzeActivity"
             android:exported="true">
         </activity>
 
