@@ -83,6 +83,7 @@ nav-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "andr
 nav-feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="androidx-navigation"}
 camerax-view = { module = "androidx.camera:camera-view", version.ref="androidx-camerax"}
 camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref="androidx-camerax"}
+camerax-extensions = { module = "androidx.camera:camera-extensions", version.ref="androidx-camerax"}
 
 material = { module = "com.google.android.material:material", version.ref = "google-material" }
 
@@ -128,7 +129,7 @@ androidx = [
     "androidx-lifecycle-livedata"
 ]
 navigation = ["nav_ui", "nav_fragment"]
-camerax = ["camerax-view", "camerax-lifecycle"]
+camerax = ["camerax-view", "camerax-lifecycle", "camerax-extensions"]
 okhttp = ["okhttp", "okhttp-logging-interceptor"]
 retrofit = ["retrofit", "retrofit-kotlin-serialization-converter"]
 firebase = ["firebase", "firebase", "firebase-crashlytics", "firebase-analytics"]
