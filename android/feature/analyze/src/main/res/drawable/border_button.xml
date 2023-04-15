@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle">
+
+    <!-- 배경 색상은 하얀색으로 지정합니다. -->
+    <solid android:color="@color/white" />
+
+    <!-- 테두리 색상과 두께를 지정합니다. -->
+    <stroke
+        android:width="2dp"
+        android:color="@color/purple" />
+
+</shape>
