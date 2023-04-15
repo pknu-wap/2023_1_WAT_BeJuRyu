@@ -1,8 +1,8 @@
 package com.WAT.BEJURYU.entity;
 
-import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
+import java.util.List;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -10,11 +10,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Getter
 @NoArgsConstructor
-public final class User {
-
+public class Sentiment {
     @Id
     private Long id;
-
-    private String nickname;
+    private SentimentType sentimentType;
+    private int degree;
+    private List<Drink> drinks;
 
 }
