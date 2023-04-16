@@ -1,14 +1,4 @@
 import styled from "styled-components";
-import logo from "../../image/bejuryu.png";
-
-const Logo = styled.div`
-  .logo {
-    width: 30px;
-    height: 30px;
-    background-image: url(${logo});
-    background-size: cover;
-  }
-`;
 
 const LoginButton = styled.button`
   height: 4rem;
@@ -37,6 +27,15 @@ const Container = styled.div`
   border: 5px solid #e11299;
 `;
 
+const explainBox = styled.div`
+  width: 28rem;
+  //background-color: white;
+  color: black;
+  text-align: center;
+  justify-content: center;
+  margin-left: 1rem;
+`;
+
 const Wrapper = styled.div`
   margin: 2rem 0;
 `;
@@ -49,12 +48,18 @@ const Title = styled.div`
   color: #262626;
 `;
 
-const Form = styled.form`
-  width: 36rem;
+const Form = styled.div`
+  width: 25rem;
+  //height: 20rem;
   margin: 0 auto;
   text-align: center;
+  background-color: #f5c6ec;
 `;
 
+const bejuryuImg = styled.img`
+  width: 10rem;
+  height: 10rem;
+`;
 const RegisterButton = styled(LoginButton)``;
 
 const BtnList = styled.div`
@@ -81,8 +86,9 @@ const S = {
   Wrapper,
   BtnList,
   snsTitle,
-  Logo,
   KakaoButton,
+  bejuryuImg,
+  explainBox,
 };
 
 export default S;
