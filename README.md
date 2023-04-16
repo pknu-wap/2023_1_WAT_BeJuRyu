@@ -28,6 +28,7 @@
  ┣ 📂core
  ┃ ┣ 📂data
  ┃ ┣ 📂domain
+ ┃ ┣ 📂designsystem
  ┃ ┣ 📂model
  ┃ ┣ 📂network
  ┃ ┗ 📂datastore
