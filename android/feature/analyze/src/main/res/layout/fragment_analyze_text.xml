@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="24dp">
+        android:padding="24dp"
+        android:theme="@style/Theme.BeJuRyu">
 
         <ImageButton
             android:id="@+id/analyze_back_button"
