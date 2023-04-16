@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-
+import axios from "axios";
 import S from "./styled";
+import logo from "../../image/bejuryu.png";
 import { connect } from "react-redux";
 
 function Login() {
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
+  const [jwtToken, setJwtToken] = useState("");
 
-  const loginWithKakao = () => {
+  // 카카오 로그인
+  const loginWithKakao = async () => {
     try {
       return new Promise((resolve, reject) => {
         if (!window.Kakao) {
@@ -16,13 +19,12 @@ function Login() {
         }
         window.Kakao.Auth.login({
           success: (auth) => {
-            console.log("정상적으로 로그인 되었습니다.", auth);
+            console.log("로그인 성공", auth);
             setIsLogin(true);
           },
           fail: (err) => {
             console.error(err);
           },
-          //redirectUri: "https://localhost:3000",
         });
       });
     } catch (err) {
@@ -61,7 +63,13 @@ function Login() {
     <S.Container>
       <S.Wrapper>
         <S.Title>BeJuRyu</S.Title>
-        <S.Logo className="logo"></S.Logo>
+        <S.Form>
+          <S.bejuryuImg src={logo} alt="logo"></S.bejuryuImg>
+        </S.Form>
+        <S.explainBox>
+          많이 마시면 해롭지만, 즐겁게 마시면 활력소가 되어 줍니다. 오늘,
+          비주류와 함께 술 한잔 어떤가요?
+        </S.explainBox>
         <S.BtnList>
           <div>
             <div
@@ -77,19 +85,12 @@ function Login() {
             </div>
           </div>
         </S.BtnList>
-        <S.BtnList>
-          <S.LoginButton type="submit">Login</S.LoginButton>
-          <S.RegisterButton type="button" onClick={() => navigate("/register")}>
-            Register
-          </S.RegisterButton>
-        </S.BtnList>
       </S.Wrapper>
     </S.Container>
   );
 
   const mainView = (
     <div>
-      <p>메인 화면</p>
       <button onClick={logoutWithKakao}>카카오 로그아웃</button>
     </div>
   );
