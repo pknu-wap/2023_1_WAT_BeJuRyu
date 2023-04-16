@@ -31,6 +31,7 @@
  ┃ ┣ 📂designsystem
  ┃ ┣ 📂model
  ┃ ┣ 📂network
+ ┃ ┣ 📂navigation
  ┃ ┗ 📂datastore
  ┣ 📂build-logic
  ┃ ┗ 📂convention
