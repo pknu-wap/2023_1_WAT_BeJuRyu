@@ -5,9 +5,10 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="16dp">
+        android:padding="16dp"
+        android:theme="@style/Theme.BeJuRyu">
 
-        <androidx.appcompat.widget.AppCompatButton
+    <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/goToAnalyzeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
