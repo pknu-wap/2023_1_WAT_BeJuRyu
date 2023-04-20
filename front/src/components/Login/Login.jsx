@@ -51,7 +51,7 @@ function Login() {
     script.src = "https://developers.kakao.com/sdk/js/kakao.min.js";
     document.head.appendChild(script);
     script.onload = () => {
-      window.Kakao.init("d19046b7f49f6376e5f701a2a57167e3");
+      window.Kakao.init(process.env.REACT_APP_KAKAO_KEY);
       if (window.Kakao.Auth.getAccessToken()) {
         console.log("액세스 토큰이 존재합니다. 세션을 유지합니다.");
         setIsLogin(true);
