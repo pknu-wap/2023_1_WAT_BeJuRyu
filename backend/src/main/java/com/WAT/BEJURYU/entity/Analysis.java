@@ -7,6 +7,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToOne;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,4 +30,8 @@ public class Analysis {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="drink_id")
     private Drink recommendDrink;
+
+    @ManyToOne
+    @JoinColumn(name = "user_id")
+    private User user;
 }

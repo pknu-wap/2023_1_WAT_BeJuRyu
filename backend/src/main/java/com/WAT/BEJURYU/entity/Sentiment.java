@@ -19,7 +19,4 @@ public class Sentiment {
     @Column(name="type")
     private SentimentType sentimentType;
 
-    @OneToMany(mappedBy = "sentiment")
-    @JoinColumn(name="drink_id")
-    private List<Drink> drinks;
 }

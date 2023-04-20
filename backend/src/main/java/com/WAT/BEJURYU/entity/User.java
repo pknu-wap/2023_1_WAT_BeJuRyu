@@ -6,6 +6,7 @@ import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,11 +26,4 @@ public class User {
     private Long id;
     @Column(name="nickname")
     private String nickname;
-    @OneToMany(mappedBy = "user")
-    private List<Review> reviews;
-    @OneToMany(mappedBy = "user")
-    private List<Analysis> analyses;
-
-
-
 }

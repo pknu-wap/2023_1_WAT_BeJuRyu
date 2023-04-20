@@ -1,9 +1,8 @@
 package com.WAT.BEJURYU;
 
 import org.junit.jupiter.api.Test;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.mockito.Mock;
 
-@SpringBootTest
 class BejuryuApplicationTests {
 
 	@Test
