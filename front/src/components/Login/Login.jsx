@@ -102,7 +102,7 @@ export default Login;
 
 /*
 const Login = () => {
-  const JavaScript_Key = "d19046b7f49f6376e5f701a2a57167e3";
+  const JavaScript_Key = "";
   const REDIRECT_URI = "http://localhost:3000/oauth";
   //const KAKAO_AUTH_URL = `https://kauth.kakao.com/oauth/authorize?client_id=${JavaScript_Key}&redirect_uri=${REDIRECT_URI}&response_type=code`;
 
