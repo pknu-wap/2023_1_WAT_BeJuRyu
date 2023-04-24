@@ -1,4 +1,4 @@
-package com.jaino.navigation
+package com.jaino.common
 
 import android.content.Intent
 

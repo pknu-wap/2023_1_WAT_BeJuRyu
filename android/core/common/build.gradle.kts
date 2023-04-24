@@ -3,7 +3,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jaino.navigation"
+    namespace = "com.jaino.common"
 }
 
 dependencies {

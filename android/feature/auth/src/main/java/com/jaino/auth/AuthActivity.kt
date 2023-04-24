@@ -9,7 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.jaino.auth.databinding.ActivityAuthBinding
 import com.jaino.data.repository.auth.SocialAuthRepository
-import com.jaino.navigation.AppNavigator
+import com.jaino.common.AppNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -45,7 +45,7 @@ class AuthActivity : AppCompatActivity() {
                     socialAuthRepository.signInByKakaoTalk()
                         .onSuccess {
                             // viewModel.executeServiceSignIn(it.token)
-                            startActivity(appNavigator.navigateToSetting())
+                            startActivity(appNavigator.navigateToAnalyze())
                         }
                         .onFailure {
                             Toast.makeText(this@AuthActivity,
@@ -57,7 +57,8 @@ class AuthActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     socialAuthRepository.signInByKakaoAccount()
                         .onSuccess {
-                            viewModel.executeServiceSignIn(it.token)
+                            // viewModel.executeServiceSignIn(it.token)
+                            startActivity(appNavigator.navigateToSetting())
                         }
                         .onFailure {
                             Toast.makeText(this@AuthActivity,

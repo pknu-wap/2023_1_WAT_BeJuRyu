@@ -40,7 +40,7 @@ dependencies {
     implementation(project(":feature:auth"))
     implementation(project(":feature:setting"))
     implementation(project(":feature:analyze"))
-    implementation(project(":core:navigation"))
+    implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(libs.bundles.kotlin)
     implementation(libs.bundles.androidx)

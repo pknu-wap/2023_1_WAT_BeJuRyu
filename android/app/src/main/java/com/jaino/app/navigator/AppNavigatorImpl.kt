@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.Intent
 import com.jaino.analyze.AnalyzeActivity
 import com.jaino.auth.AuthActivity
-import com.jaino.navigation.AppNavigator
+import com.jaino.common.AppNavigator
 import com.jaino.setting.SettingActivity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
