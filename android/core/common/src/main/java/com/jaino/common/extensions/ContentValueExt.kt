@@ -1,4 +1,4 @@
-package com.jaino.analyze.utils
+package com.jaino.common.extensions
 
 import android.content.ContentValues
 import android.os.Build
