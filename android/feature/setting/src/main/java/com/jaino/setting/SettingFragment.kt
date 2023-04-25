@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.jaino.common.AppNavigator
+import com.jaino.common.navigation.AppNavigator
 import com.jaino.setting.account.AccountActivity
 import com.jaino.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint

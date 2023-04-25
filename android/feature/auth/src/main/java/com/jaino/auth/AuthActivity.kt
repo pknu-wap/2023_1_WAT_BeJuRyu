@@ -9,7 +9,7 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import com.jaino.auth.databinding.ActivityAuthBinding
 import com.jaino.data.repository.auth.SocialAuthRepository
-import com.jaino.common.AppNavigator
+import com.jaino.common.navigation.AppNavigator
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
