@@ -23,7 +23,7 @@ import androidx.navigation.fragment.findNavController
 import com.google.common.util.concurrent.ListenableFuture
 import com.jaino.analyze.R
 import com.jaino.analyze.databinding.FragmentCameraBinding
-import com.jaino.analyze.utils.getCurrentFileName
+import com.jaino.common.extensions.getCurrentFileName
 import kotlinx.coroutines.launch
 import timber.log.Timber
 import java.util.concurrent.ExecutorService

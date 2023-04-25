@@ -16,7 +16,7 @@ import androidx.navigation.fragment.findNavController
 import com.jaino.analyze.AnalyzeViewModel
 import com.jaino.analyze.R
 import com.jaino.analyze.databinding.FragmentAnalyzeTextBinding
-import com.jaino.analyze.utils.PickSinglePhotoContract
+import com.jaino.common.utils.PickPhotoContract
 import usecase.validate.ValidateTextExpression
 
 class AnalyzeTextFragment : Fragment() {
@@ -32,7 +32,7 @@ class AnalyzeTextFragment : Fragment() {
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        singlePhotoPickerLauncher =  registerForActivityResult(PickSinglePhotoContract())
+        singlePhotoPickerLauncher =  registerForActivityResult(PickPhotoContract())
         { imageUri: Uri? ->
             if (imageUri != null) {
                 // navigateToResult(imageUri.toString())
