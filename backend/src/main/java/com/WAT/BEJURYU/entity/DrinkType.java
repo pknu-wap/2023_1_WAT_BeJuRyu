@@ -1,0 +1,5 @@
+package com.WAT.BEJURYU.entity;
+
+public enum DrinkType {
+    BEER,WINE,LIQUEUR,WHISKEY,RICE_WINE,BRANDY,SAKE,SOJU,MAKGEOLLI
+}
