@@ -31,14 +31,15 @@
  ┃ ┣ 📂designsystem
  ┃ ┣ 📂model
  ┃ ┣ 📂network
- ┃ ┣ 📂navigation
+ ┃ ┣ 📂common
  ┃ ┗ 📂datastore
  ┣ 📂build-logic
  ┃ ┗ 📂convention
  ┣ 📂feature
  ┃ ┣ 📂auth
  ┃ ┣ 📂setting
- ┗ ┗ 📂analyze
+ ┃ ┣ 📂analyze
+ ┗ ┗ 📂dictionary
 ```
 
 
