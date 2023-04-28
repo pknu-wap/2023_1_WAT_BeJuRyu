@@ -8,7 +8,6 @@ android {
 }
 
 dependencies {
-    implementation(libs.bundles.navigation)
     implementation(libs.kotlin.datetime)
     implementation(libs.timber)
     testImplementation(libs.junit)
