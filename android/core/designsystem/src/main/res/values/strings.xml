@@ -22,4 +22,16 @@
     <string name="yes">확인</string>
     <string name="no">아니요</string>
     <string name="profile_userAnalyze_title">이용 기록</string>
+    <string name="dict_search">원하는 주류를 입력하세요!</string>
+    <string name="beer">맥주</string>
+    <string name="soju">소주</string>
+    <string name="wine">와인</string>
+    <string name="rice_wine">청주</string>
+    <string name="whisky">위스키</string>
+    <string name="fruit_drink">과실주</string>
+    <string name="yakju">약주</string>
+    <string name="makgeolli">막걸리</string>
+    <string name="cognac">꼬냑</string>
+    <string name="sake">사케</string>
+    <string name="liquor">리큐르</string>
 </resources>
