@@ -2,6 +2,8 @@ package com.jaino.network.di
 
 import com.jaino.network.datasource.auth.SignInDataSource
 import com.jaino.network.datasource.auth.SignInDataSourceImpl
+import com.jaino.network.datasource.dictionary.GetDrinkListDataSource
+import com.jaino.network.datasource.dictionary.GetDrinkListDataSourceImpl
 import com.jaino.network.datasource.user.UserDataSource
 import com.jaino.network.datasource.user.UserDataSourceImpl
 import dagger.Binds
@@ -26,4 +28,9 @@ abstract class NetworkModule {
         userDataSourceImpl : UserDataSourceImpl
     ): UserDataSource
 
+    @Binds
+    @Singleton
+    abstract fun provideDrinkListDataSource(
+        drinkListDataSourceImpl: GetDrinkListDataSourceImpl
+    ): GetDrinkListDataSource
 }
