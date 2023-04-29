@@ -3,7 +3,7 @@ import styled from "styled-components";
 import Footer from "./pages/Footer/Footer";
 import GlobalStyle from "./GlobalStyles";
 import LoginPage from "./pages/LoginPage";
-import HomePage from "./pages/HomePage";
+import RecommendPage from "./pages/RecommendPage";
 import RegisterPage from "./pages/RegisterPage";
 import MyPage from "./pages/MyPage";
 //import axios from "axios";
@@ -39,8 +39,9 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<LoginPage />} />
-          <Route path="/oauth" element={<MyPage />} />
+          <Route path="/mypage" element={<MyPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          <Route path="/recommend" element={<RecommendPage />} />
         </Routes>
       </ContentWrapper>
       <Footer />
