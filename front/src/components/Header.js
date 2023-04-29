@@ -74,12 +74,15 @@ export default function Header() {
       <Navbar>
         <Navbarlogo>
           <Link to="/" style={{ textDecoration: "none" }}>
-            <img src={logo} alt="Logo" width="50" height="50" />
             BeJuRyu
           </Link>
         </Navbarlogo>
         <Navbarmenu>
-          <li>주류추천메뉴에용</li>
+          <li>
+            <Link to="/Recommend" styled={{ textDecoration: "none" }}>
+              주류추천메뉴에용
+            </Link>
+          </li>
           <li>주류사전메뉴에용</li>
           <li>메뉴에용</li>
           <li>

@@ -1,5 +1,5 @@
 import React from "react";
-import MyAccount from "../components/MyPage/MyPage";
+import Recommend from "../components/Recommend/Recommend";
 import styled from "styled-components";
 
 const Main = styled.div`
@@ -11,14 +11,15 @@ const Main = styled.div`
 `;
 
 const Content = styled.div``;
-const MyPage = () => {
+
+const RecommendPage = () => {
   return (
     <Main>
       <Content>
-        <MyAccount />
+        <Recommend />
       </Content>
     </Main>
   );
 };
 
-export default MyPage;
+export default RecommendPage;

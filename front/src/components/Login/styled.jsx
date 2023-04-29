@@ -60,6 +60,7 @@ const bejuryuImg = styled.img`
   width: 10rem;
   height: 10rem;
 `;
+
 const RegisterButton = styled(LoginButton)``;
 
 const BtnList = styled.div`
