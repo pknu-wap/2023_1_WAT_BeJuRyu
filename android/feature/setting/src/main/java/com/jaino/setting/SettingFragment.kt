@@ -41,7 +41,7 @@ class SettingFragment : Fragment() {
 
     private fun initButtons(){
         binding.settingBackButton.setOnClickListener {
-            navigateToHome()
+            navigateToAnalyze()
         }
 
         binding.settingAccountCardView.setOnClickListener {
@@ -57,8 +57,8 @@ class SettingFragment : Fragment() {
         }
     }
 
-    private fun navigateToHome(){
-        startActivity(appNavigator.navigateToAuth())
+    private fun navigateToAnalyze(){
+        startActivity(appNavigator.navigateToAnalyze())
     }
 
     private fun navigateToAccount(){
