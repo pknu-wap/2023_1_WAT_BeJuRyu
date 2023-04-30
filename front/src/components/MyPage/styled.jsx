@@ -25,10 +25,45 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
+const logoutButton = styled.button`
+  width: 100px;
+  height: 48px;
+  border: none;
+  font-weight: 700;
+  float: right;
+  font-family: SCDream5;
+  background-color: #e11299;
+  border-radius: 64px;
+  color: white;
+  margin-bottom: 16px;
+  text-align: center;
+
+  cursor: pointer;
+`;
+
+const Info = styled.div`
+  height: 4.8rem;
+  margin-top: 1rem;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  column-gap: 0.5rem;
+`;
+
+const Main = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100% - 135px);
+`;
+
 const S = {
   Wrapper,
   Container,
   SubmitButton,
+  logoutButton,
+  Info,
+  Main,
 };
 
 export default S;
