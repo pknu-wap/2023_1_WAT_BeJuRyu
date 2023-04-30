@@ -12,7 +12,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:background="@color/purple"
+        android:background="@drawable/rounded_button_background"
         android:text="@string/dialog_camera_text"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
