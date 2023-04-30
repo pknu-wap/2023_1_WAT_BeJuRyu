@@ -53,6 +53,24 @@ const WhiteBox = styled.div`
 const MyState = styled.div`
   font-weight: 300;
   font-size: 1.2rem;
+  opacity: 1;
+  transition: opacity 0.2s ease-in-out;
+
+  &:hover {
+    opacity: 0;
+  }
+`;
+
+const textInput = styled.textarea`
+  width: 100%;
+  height: 80%;
+  font-size: 1.2rem;
+  resize: none;
+  border: none;
+  color: #e11299;
+  &:focus {
+    outline: none;
+  }
 `;
 
 const S = {
@@ -62,6 +80,7 @@ const S = {
   WhiteBox,
   Title,
   MyState,
+  textInput,
 };
 
 export default S;
