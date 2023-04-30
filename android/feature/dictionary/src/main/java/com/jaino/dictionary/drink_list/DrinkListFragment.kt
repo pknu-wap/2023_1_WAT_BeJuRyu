@@ -11,12 +11,14 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jaino.common.extensions.showToast
+import com.jaino.common.navigation.AppNavigator
 import com.jaino.dictionary.R
 import com.jaino.dictionary.databinding.FragmentDrinkListBinding
 import com.jaino.dictionary.drink_list.adapter.DrinkDataAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import javax.inject.Inject
 
 @AndroidEntryPoint
 class DrinkListFragment : Fragment() {
@@ -26,6 +28,9 @@ class DrinkListFragment : Fragment() {
 
     private val viewModel : DrinkListViewModel by viewModels()
     private lateinit var adapter : DrinkDataAdapter
+
+    @Inject
+    lateinit var navigator: AppNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -39,8 +44,21 @@ class DrinkListFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        observeData()
         initAdapter()
+        initView()
+        observeData()
+    }
+
+    private fun initView(){
+        binding.backToAnalyzeButton.setOnClickListener{
+            startActivity(navigator.navigateToAnalyze())
+        }
+    }
+
+    private fun initAdapter(){
+        adapter = DrinkDataAdapter()
+        binding.drinkListRecyclerView.adapter = adapter
+        binding.drinkListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     private fun observeData(){
@@ -60,12 +78,6 @@ class DrinkListFragment : Fragment() {
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
-    }
-
-    private fun initAdapter(){
-        adapter = DrinkDataAdapter()
-        binding.drinkListRecyclerView.adapter = adapter
-        binding.drinkListRecyclerView.layoutManager = LinearLayoutManager(requireContext())
     }
 
     override fun onDestroy() {

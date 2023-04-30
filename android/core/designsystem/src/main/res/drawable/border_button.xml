@@ -4,6 +4,7 @@
 
     <!-- 배경 색상은 하얀색으로 지정합니다. -->
     <solid android:color="@color/white" />
+    <corners android:radius="10dp"/>
 
     <!-- 테두리 색상과 두께를 지정합니다. -->
     <stroke

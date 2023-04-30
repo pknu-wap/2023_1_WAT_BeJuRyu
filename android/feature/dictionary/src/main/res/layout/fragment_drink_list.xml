@@ -20,7 +20,7 @@
                 android:padding="16dp">
 
                 <ImageButton
-                    android:id="@+id/back_to_camera_button"
+                    android:id="@+id/backToAnalyzeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -42,7 +42,7 @@
                     android:imeOptions="actionSearch"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/back_to_camera_button"
+                    app:layout_constraintStart_toEndOf="@+id/backToAnalyzeButton"
                     app:layout_constraintTop_toTopOf="parent" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>

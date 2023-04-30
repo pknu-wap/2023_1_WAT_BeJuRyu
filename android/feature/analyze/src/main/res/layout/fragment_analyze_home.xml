@@ -8,16 +8,49 @@
         android:padding="16dp"
         android:theme="@style/Theme.BeJuRyu">
 
-    <androidx.appcompat.widget.AppCompatButton
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/goToAnalyzeButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/rounded_button_background"
             android:text="@string/goToAnalyze_text"
-            android:background="@color/purple"
             android:textColor="@color/white"
+            android:layout_marginBottom="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/analyze_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/cookierun_bold"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:text="@string/analyze_title"
+            app:layout_constraintBottom_toTopOf="@+id/goToAnalyzeButton"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/goToSettingButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_person_24" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/goToSearchButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            android:layout_marginEnd="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/goToSettingButton"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_search_24" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
