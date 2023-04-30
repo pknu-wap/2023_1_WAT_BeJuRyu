@@ -21,6 +21,7 @@ function Login() {
           success: (auth) => {
             console.log("로그인 성공", auth);
             setIsLogin(true);
+            navigate("/recommend");
           },
           fail: (err) => {
             console.error(err);
@@ -32,26 +33,13 @@ function Login() {
     }
   };
 
-  const logoutWithKakao = () => {
-    if (window.Kakao.Auth.getAccessToken()) {
-      console.log(
-        "카카오 인증 액세스 토큰이 존재합니다.",
-        window.Kakao.Auth.getAccessToken()
-      );
-      window.Kakao.Auth.logout(() => {
-        console.log("로그아웃 되었습니다", window.Kakao.Auth.getAccessToken());
-        setIsLogin(false);
-      });
-    }
-  };
-
   useEffect(() => {
     const script = document.createElement("script");
     script.async = true;
     script.src = "https://developers.kakao.com/sdk/js/kakao.min.js";
     document.head.appendChild(script);
     script.onload = () => {
-      window.Kakao.init("process.env.REACT_APP_KAKAO_KEY");
+      window.Kakao.init(process.env.REACT_APP_KAKAO_KEY);
       if (window.Kakao.Auth.getAccessToken()) {
         console.log("액세스 토큰이 존재합니다. 세션을 유지합니다.");
         setIsLogin(true);
@@ -89,13 +77,7 @@ function Login() {
     </S.Container>
   );
 
-  const mainView = (
-    <div>
-      <button onClick={logoutWithKakao}>카카오 로그아웃</button>
-    </div>
-  );
-
-  return <div className="Login">{isLogin ? mainView : loginView}</div>;
+  return <div className="Login">{loginView}</div>;
 }
 
 export default Login;
