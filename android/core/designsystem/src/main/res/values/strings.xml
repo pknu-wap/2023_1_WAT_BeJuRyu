@@ -34,4 +34,6 @@
     <string name="cognac">꼬냑</string>
     <string name="sake">사케</string>
     <string name="liquor">리큐르</string>
+    <string name="analyze_title">오늘 하루는 어떠셨나요? \n 오늘 기분에 맞는 주류를 추천해드릴게요.</string>
+    <string name="app_name">Be주류</string>
 </resources>
