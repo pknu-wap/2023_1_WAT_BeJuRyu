@@ -18,11 +18,9 @@ class DrinkListViewModel @Inject constructor(
     private val _dictUiState : MutableStateFlow<UiState> = MutableStateFlow(UiState.Init)
     val dictUiState : StateFlow<UiState> get() = _dictUiState
 
-    init{
-        getDrinksList()
-    }
+    val searchWord : MutableStateFlow<String> = MutableStateFlow("")
 
-    private fun getDrinksList(){
+    private fun getAllDrinksList(){
         viewModelScope.launch {
             repository.getDrinkList()
                 .onSuccess {
@@ -31,6 +29,10 @@ class DrinkListViewModel @Inject constructor(
                 .onFailure {
                     _dictUiState.value = UiState.Failure(it.message)
                 }
+        }
+    }
+    private fun searchDrinks(word: String){
+        viewModelScope.launch {
         }
     }
 

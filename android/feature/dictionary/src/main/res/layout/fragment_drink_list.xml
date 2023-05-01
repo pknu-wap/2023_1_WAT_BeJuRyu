@@ -1,188 +1,53 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
-
+<layout xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jaino.dictionary.drink_list.DrinkListViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/Theme.BeJuRyu">
+        android:padding="16dp">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
-            android:layout_width="match_parent"
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/backToListButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/transparent"
+            android:src="@drawable/back_button"
+            app:layout_constraintBottom_toBottomOf="@+id/searchEditTextView"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="@+id/searchEditTextView" />
 
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-
-                <ImageButton
-                    android:id="@+id/backToAnalyzeButton"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:background="@color/transparent"
-                    android:src="@drawable/back_button"
-                    app:layout_constraintBottom_toBottomOf="@+id/searchEditTextView"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="@+id/searchEditTextView" />
-
-                <EditText
-                    android:id="@+id/searchEditTextView"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:background="@drawable/rounded_edittext_background"
-                    android:hint="@string/dict_search"
-                    android:imeOptions="actionSearch"
-                    android:inputType="text"
-                    android:padding="8dp"
-                    android:singleLine="true"
-                    android:drawableRight="@drawable/baseline_search_24"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/backToAnalyzeButton"
-                    app:layout_constraintTop_toTopOf="parent" />
-
-                <com.google.android.material.chip.ChipGroup
-                    android:id="@+id/food_allergy_chip_group"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/searchEditTextView"
-                    app:singleSelection="true">
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/beer_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/beer"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/soju_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/soju"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/sake_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/sake"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/rice_wine_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/rice_wine"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/wine_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/wine"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/liquor_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/liquor"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/cognac_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/cognac"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/whisky_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/whisky"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/fruit_drink_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/fruit_drink"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/yakju_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/yakju"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/makgeolli_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/makgeolli"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                </com.google.android.material.chip.ChipGroup>
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/searchEditTextView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="16dp"
+            android:background="@drawable/rounded_edit_text_background"
+            android:hint="@string/dict_search"
+            android:imeOptions="actionSearch"
+            android:inputType="text"
+            android:padding="8dp"
+            android:singleLine="true"
+            android:drawableRight="@drawable/baseline_search_24"
+            android:text="@={viewModel.searchWord}"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/backToListButton"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recent_drink_recyclerView"
+            android:id="@+id/drink_data_recyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="15dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drink_recent_title" />
-
-        <TextView
-            android:id="@+id/drink_recent_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/drink_recent_title"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            tools:text="최근 검색어" />
-
+            app:layout_constraintTop_toBottomOf="@+id/searchEditTextView" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
