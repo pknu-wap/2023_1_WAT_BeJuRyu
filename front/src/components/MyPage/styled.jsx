@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
-  height: 38rem;
+  height: 30rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
@@ -15,13 +15,15 @@ const Wrapper = styled.div`
 `;
 
 const SubmitButton = styled.button`
-  height: 4rem;
-  width: 6rem;
+  height: 3rem;
+  width: 10rem;
   font-family: SCDream5;
   border-radius: 1rem;
   border: none;
   background-color: #e11299;
   color: #f7f7f7;
+  margin: 20px auto 0;
+  display: block;
   cursor: pointer;
 `;
 
@@ -32,12 +34,12 @@ const logoutButton = styled.button`
   font-weight: 700;
   float: right;
   font-family: SCDream5;
-  background-color: #e11299;
+  background-color: #9a208c;
   border-radius: 64px;
   color: white;
   margin-bottom: 16px;
   text-align: center;
-
+  margin-right: 20px;
   cursor: pointer;
 `;
 
@@ -57,6 +59,19 @@ const Main = styled.div`
   height: calc(100% - 135px);
 `;
 
+const Form = styled.div`
+  width: 80%;
+  height: 8rem;
+
+  margin: 0 auto;
+  padding: 2rem;
+  text-align: center;
+  background-color: white;
+  color: #9a208c;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -64,6 +79,7 @@ const S = {
   logoutButton,
   Info,
   Main,
+  Form,
 };
 
 export default S;

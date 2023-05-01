@@ -38,11 +38,11 @@ const Title = styled.div`
 
 const WhiteBox = styled.div`
   width: 25rem;
-  height: 15rem;
+  height: 25rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 1rem;
-
+  color: #9a208c;
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
@@ -94,6 +94,15 @@ const textInput = styled.textarea`
   }
 `;
 
+const BtnList = styled.div`
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  column-gap: 1rem;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -103,6 +112,7 @@ const S = {
   MyState,
   textInput,
   ImageBox,
+  BtnList,
 };
 
 export default S;

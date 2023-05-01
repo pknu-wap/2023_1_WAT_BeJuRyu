@@ -50,13 +50,13 @@ function Login() {
   const loginView = (
     <S.Container>
       <S.Wrapper>
-        <S.Title>BeJuRyu</S.Title>
+        <S.Title>BeJuRyu 서비스에 오신것을 환영합니다.</S.Title>
         <S.Form>
           <S.bejuryuImg src={logo} alt="logo"></S.bejuryuImg>
         </S.Form>
         <S.explainBox>
           많이 마시면 해롭지만, 즐겁게 마시면 활력소가 되어 줍니다. 오늘,
-          비주류와 함께 술 한잔 어떤가요?
+          BeJuRyu와 함께 술 한잔 어떤가요?
         </S.explainBox>
         <S.BtnList>
           <div>

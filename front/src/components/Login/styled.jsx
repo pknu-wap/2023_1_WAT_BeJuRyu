@@ -1,17 +1,6 @@
 import styled from "styled-components";
 
-const LoginButton = styled.button`
-  height: 4rem;
-  width: 8rem;
-  font-family: SCDream5;
-  border-radius: 1rem;
-  border: none;
-  background-color: #e11299;
-  color: #f7f7f7;
-  cursor: pointer;
-`;
-
-const KakaoButton = styled(LoginButton)`
+const KakaoButton = styled.button`
   background-image: url("/image/auth/kakao.png");
   background-size: 4rem;
   background-color: white;
@@ -29,8 +18,9 @@ const Container = styled.div`
 
 const explainBox = styled.div`
   width: 28rem;
+  font-weight: 500;
   //background-color: white;
-  color: black;
+  color: #9a208c;
   text-align: center;
   justify-content: center;
   margin-left: 1rem;
@@ -42,10 +32,11 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   margin: 2rem 0;
+  font-weight: 600;
   text-align: center;
-  font-size: 3.5rem;
+  font-size: 1.5rem;
   font-family: SCDream5;
-  color: #262626;
+  color: black;
 `;
 
 const Form = styled.div`
@@ -61,7 +52,7 @@ const bejuryuImg = styled.img`
   height: 10rem;
 `;
 
-const RegisterButton = styled(LoginButton)``;
+const RegisterButton = styled.button``;
 
 const BtnList = styled.div`
   text-align: center;
@@ -82,7 +73,7 @@ const S = {
   Container,
   Form,
   Title,
-  LoginButton,
+
   RegisterButton,
   Wrapper,
   BtnList,

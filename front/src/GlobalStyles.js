@@ -11,7 +11,6 @@ const GlobalStyle = createGlobalStyle`
   :root {
   --vh: 100%;
 }
-
 `;
 
 export default GlobalStyle;
