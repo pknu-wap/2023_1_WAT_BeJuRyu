@@ -25,23 +25,23 @@ function Recommend() {
       setInputValue(e.target.value);
     };
 
+    const handleButtonClick = () => {
+      navigate("/recommend");
+    };
+
     return (
       <S.Container>
         <S.Wrapper>
-          <S.Title>주류 추천을 받기 위해서 필요한 정보를 알려주세요!</S.Title>
-          <S.WhiteBox>
-            <S.textInput value={inputValue} onChange={handleInputChange} />
-            {inputValue === "" && (
-              <S.MyState>
-                현재 기분이 어떠신가요? 간단하게 적어주세요 !
-              </S.MyState>
-            )}
-          </S.WhiteBox>
-          <S.ImageBox>사진 업로드 기능이 들어갈 공간입니다.</S.ImageBox>
-
-          <S.SubmitButton onClick={handleFormSubmit}>
-            <strong>분석 시작</strong>
-          </S.SubmitButton>
+          <S.Title>현재 당신에게 어울리는 주류는 바로!</S.Title>
+          <S.WhiteBox>주류 추천 결과가 들어올 공간입니다.</S.WhiteBox>
+          <S.BtnList>
+            <S.SubmitButton onClick={handleFormSubmit}>
+              <strong>결과 공유하기</strong>
+            </S.SubmitButton>
+            <S.SubmitButton onClick={handleButtonClick}>
+              <strong>다시 추천받기</strong>
+            </S.SubmitButton>
+          </S.BtnList>
         </S.Wrapper>
       </S.Container>
     );

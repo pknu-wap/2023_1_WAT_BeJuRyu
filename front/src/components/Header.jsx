@@ -10,7 +10,7 @@ const Navbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #9a208c;
-  padding: 1rem;
+  padding: 0.5rem;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
     align-items: flex-start;
@@ -20,9 +20,11 @@ const Navbar = styled.nav`
 `;
 
 const Navbarlogo = styled.div`
-  font-size: 24px;
+  font-size: 36px;
   justify-content: space-between;
   color: white;
+  display: flex;
+  align-items: center;
   i {
     color: orange;
   }
@@ -32,14 +34,20 @@ const Navbarlogo = styled.div`
   }
 `;
 
+const NavbarlogoImage = styled.img`
+  height: 50px;
+  margin-right: 10px;
+`;
+
 const Navbarmenu = styled.ul`
   display: flex;
   list-style: none;
   padding-left: 0;
   font-size: 16px;
+  justify-content: center;
 
   li {
-    padding: 8px 12px;
+    padding: 12px 24px;
   }
   li:hover {
     background-color: #e11299;
@@ -73,21 +81,21 @@ export default function Header() {
     <>
       <Navbar>
         <Navbarlogo>
+          <NavbarlogoImage src={logo} alt="BeJuRyu Logo" />
           <Link to="/" style={{ textDecoration: "none" }}>
             BeJuRyu
           </Link>
         </Navbarlogo>
         <Navbarmenu>
+          <li>주류사전메뉴</li>
           <li>
-            <Link to="/Recommend" styled={{ textDecoration: "none" }}>
-              주류추천메뉴에용
+            <Link to="/Recommend" style={{ textDecoration: "none" }}>
+              주류추천메뉴
             </Link>
           </li>
-          <li>주류사전메뉴에용</li>
-          <li>메뉴에용</li>
           <li>
             <Link to="/MyPage" style={{ textDecoration: "none" }}>
-              마이페이지에용
+              마이페이지
             </Link>
           </li>
         </Navbarmenu>
