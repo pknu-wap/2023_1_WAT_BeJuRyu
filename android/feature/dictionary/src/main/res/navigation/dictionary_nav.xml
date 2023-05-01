@@ -2,10 +2,28 @@
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/dictionary_nav"
-    app:startDestination="@id/drinkListFragment">
-
+    app:startDestination="@id/drinkSearchFragment">
     <fragment
         android:id="@+id/drinkListFragment"
         android:name="com.jaino.dictionary.drink_list.DrinkListFragment"
-        android:label="DrinkListFragment" />
+        android:label="DrinkListFragment" >
+        <action
+            android:id="@+id/action_drinkListFragment_to_drinkSearchFragment"
+            app:destination="@id/drinkSearchFragment" />
+        <argument
+            android:name="word"
+            app:argType="string"/>
+    </fragment>
+    <fragment
+        android:id="@+id/drinkSearchFragment"
+        android:name="com.jaino.dictionary.drink_search.DrinkSearchFragment"
+        android:label="DrinkSearchFragment" >
+        <action
+            android:id="@+id/action_drinkSearchFragment_to_drinkListFragment"
+            app:destination="@id/drinkListFragment" >
+            <argument
+                android:name="word"
+                app:argType="string"/>
+        </action>
+    </fragment>
 </navigation>
