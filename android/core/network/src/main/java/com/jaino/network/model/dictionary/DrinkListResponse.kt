@@ -11,6 +11,7 @@ data class DrinkListResponse(
 
 data class DrinkDataResponse(
     val name : String,
+    val image : String,
     val dosu : Double,
     val volume : Int,
     val price : Int,
@@ -18,6 +19,7 @@ data class DrinkDataResponse(
 ){
     fun toDrinkData(): DrinkData = DrinkData(
         name = name,
+        image = image,
         dosu = dosu,
         volume = volume,
         price = price,

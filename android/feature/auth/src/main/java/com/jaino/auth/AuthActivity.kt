@@ -58,7 +58,7 @@ class AuthActivity : AppCompatActivity() {
                     socialAuthRepository.signInByKakaoAccount()
                         .onSuccess {
                             // viewModel.executeServiceSignIn(it.token)
-                            startActivity(appNavigator.navigateToSetting())
+                            startActivity(appNavigator.navigateToAnalyze())
                         }
                         .onFailure {
                             Toast.makeText(this@AuthActivity,
@@ -74,7 +74,7 @@ class AuthActivity : AppCompatActivity() {
             when(it){
                 is AuthViewModel.UiState.Init -> {}
                 is AuthViewModel.UiState.Success -> {
-                    startActivity(appNavigator.navigateToSetting())
+                    startActivity(appNavigator.navigateToAnalyze())
                 }
                 is AuthViewModel.UiState.Failure -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
