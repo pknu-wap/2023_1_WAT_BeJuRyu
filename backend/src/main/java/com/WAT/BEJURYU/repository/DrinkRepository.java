@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 public interface DrinkRepository extends JpaRepository<Drink,Long> {
     List<Drink> findByPriceBetween(int lowPrice,int highPrice);
     List<Drink> findByPriceGreaterThan(int price);
-    List<Drink> findByPriceLessThen(int price);
+    List<Drink> findByPriceLessThan(int price);
     List<Drink> findByType(String type);
 
 

@@ -7,7 +7,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface ReviewRepository extends JpaRepository<Review,Long>{
-    List<Review> findByUserId(Long user_id);
     List<Review> findByDrinkId(Long drink_id);
 
 
