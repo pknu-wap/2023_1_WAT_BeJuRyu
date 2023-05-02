@@ -42,6 +42,7 @@ retrofit = "2.9.0"
 okhttp = "4.10.0"
 timber = "5.0.1"
 kakao = "2.13.0"
+glide = "4.15.1"
 processphoenix = "2.1.2"
 
 junit = "4.13.2"
@@ -108,6 +109,7 @@ hilt-plugin = { group = "com.google.dagger", name = "hilt-android-gradle-plugin"
 
 kakao-login = { module = "com.kakao.sdk:v2-user", version.ref = "kakao" }
 processphoenix = { module = "com.jakewharton:process-phoenix", version.ref = "processphoenix" }
+glide = { module = "com.github.bumptech.glide:glide", version.ref = "glide"}
 
 [bundles]
 
