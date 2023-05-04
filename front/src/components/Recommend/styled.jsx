@@ -94,6 +94,25 @@ const textInput = styled.textarea`
   }
 `;
 
+const uploader_wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .img-wrapper {
+    margin: 50px 0 20px 0;
+    img {
+      width: 200px;
+      height: 200px;
+    }
+  }
+  .upload-button {
+    button {
+      margin: 0 5px;
+    }
+  }
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -103,6 +122,7 @@ const S = {
   MyState,
   textInput,
   ImageBox,
+  uploader_wrapper,
 };
 
 export default S;
