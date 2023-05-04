@@ -1,7 +1,6 @@
 import styled from "styled-components";
 import logo from "../image/bejuryu.png";
 import { Link } from "react-router-dom";
-import KakaoLogin from "./Login/Login";
 // 사용자 닉네임 불러올 떄
 // import { useSelector } from "react-redux";
 
@@ -87,7 +86,11 @@ export default function Header() {
           </Link>
         </Navbarlogo>
         <Navbarmenu>
-          <li>주류사전메뉴</li>
+          <li>
+            <Link to="/Dictionary" style={{ textDecoration: "none" }}>
+              주류사전메뉴
+            </Link>
+          </li>
           <li>
             <Link to="/Recommend" style={{ textDecoration: "none" }}>
               주류추천메뉴
