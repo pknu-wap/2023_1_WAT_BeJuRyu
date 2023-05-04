@@ -1,6 +1,7 @@
 import S from "./styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import PhotoUpload from "./PhotoUpload";
 
 function Recommend() {
   const navigate = useNavigate();
@@ -37,7 +38,11 @@ function Recommend() {
               </S.MyState>
             )}
           </S.WhiteBox>
-          <S.ImageBox>사진 업로드 기능이 들어갈 공간입니다.</S.ImageBox>
+          <PhotoUpload
+            setSelectedFile={setSelectedFile}
+            setImagePreview={setImagePreview}
+            imagePreview={imagePreview}
+          />
 
           <S.SubmitButton onClick={handleFormSubmit}>
             <strong>분석 시작</strong>

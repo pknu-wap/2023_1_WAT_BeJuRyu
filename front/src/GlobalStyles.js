@@ -3,7 +3,7 @@ import { createGlobalStyle } from "styled-components";
 const GlobalStyle = createGlobalStyle`
   *, *::before, *::after {
     box-sizing: border-box;
-    color: #FFEAEA;
+    color: #212A3E;
   }
   body {
     font-family: SCDream5;
