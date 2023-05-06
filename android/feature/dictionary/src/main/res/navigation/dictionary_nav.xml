@@ -13,6 +13,9 @@
         <argument
             android:name="word"
             app:argType="string"/>
+        <action
+            android:id="@+id/action_drinkListFragment_to_drinkInfoFragment"
+            app:destination="@id/drinkInfoFragment" />
     </fragment>
     <fragment
         android:id="@+id/drinkSearchFragment"
@@ -25,5 +28,16 @@
                 android:name="word"
                 app:argType="string"/>
         </action>
+    </fragment>
+    <fragment
+        android:id="@+id/drinkInfoFragment"
+        android:name="com.jaino.dictionary.drink_info.DrinkInfoFragment"
+        android:label="DrinkInfoFragment" >
+        <action
+            android:id="@+id/action_drinkInfoFragment_to_drinkSearchFragment"
+            app:destination="@id/drinkSearchFragment" />
+        <argument
+            android:name="id"
+            app:argType="long" />
     </fragment>
 </navigation>
