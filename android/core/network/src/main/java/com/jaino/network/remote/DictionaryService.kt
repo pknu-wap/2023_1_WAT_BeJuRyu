@@ -13,15 +13,15 @@ interface DictionaryService {
     @GET("/drinks/all")
     fun getDrinkList(): DrinkListResponse
 
+    // type 으로 주류 조회
+    @GET("/drinks/{type}")
+    fun getDrinkListByType(
+        @Query("type") type: String
+    ): DrinkListResponse
+
     // id 값으로 주류 조회
     @GET("/drinks/{drink-id}")
     fun getDrinkById(
         @Query("drink-id") id: Long
     ): BaseResponse<DrinkDataResponse>
-
-    // type 으로 주류 조회
-    @GET("/drinks/{type}")
-    fun getDrinkByType(
-        @Query("type") type: String
-    ): DrinkListResponse
 }
