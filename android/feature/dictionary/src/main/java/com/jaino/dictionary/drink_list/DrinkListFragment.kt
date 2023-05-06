@@ -50,7 +50,11 @@ class DrinkListFragment : Fragment(){
     }
 
     private fun initAdapter(){
-        adapter = DrinkDataAdapter()
+        adapter = DrinkDataAdapter(
+            itemClick = { id ->
+                navigateToInfo(id)
+            }
+        )
         binding.drinkDataRecyclerView.adapter = adapter
         binding.drinkDataRecyclerView.layoutManager = GridLayoutManager(requireContext(), 2)
     }
@@ -81,6 +85,12 @@ class DrinkListFragment : Fragment(){
             findNavController().navigate(direction)
         }
     }
+
+    private fun navigateToInfo(id : Long){
+        val direction = DrinkListFragmentDirections.actionDrinkListFragmentToDrinkInfoFragment(id)
+        findNavController().navigate(direction)
+    }
+
 
     override fun onDestroy() {
         _binding = null

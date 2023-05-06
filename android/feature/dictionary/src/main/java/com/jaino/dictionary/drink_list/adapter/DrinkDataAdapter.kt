@@ -8,7 +8,9 @@ import androidx.recyclerview.widget.RecyclerView
 import com.jaino.dictionary.databinding.ItemDrinkListBinding
 import com.jaino.model.dictionary.DrinkData
 
-class DrinkDataAdapter :ListAdapter<DrinkData, DrinkDataAdapter.DrinkDataViewHolder>(callback) {
+class DrinkDataAdapter(
+    private val itemClick : (Long) -> Unit
+) : ListAdapter<DrinkData, DrinkDataAdapter.DrinkDataViewHolder>(callback) {
 
     companion object{
         val callback = object : DiffUtil.ItemCallback<DrinkData>(){
@@ -33,8 +35,13 @@ class DrinkDataAdapter :ListAdapter<DrinkData, DrinkDataAdapter.DrinkDataViewHol
 
     inner class DrinkDataViewHolder(private val binding: ItemDrinkListBinding)
         : RecyclerView.ViewHolder(binding.root){
-            fun bind(item : DrinkData){
-                binding.item = item
+        fun bind(item : DrinkData){
+            binding.item = item
+
+            //TODO 실제 id 값으로 연결 현재 model에 id 값 빠져 있음.
+            binding.drinkDataItemCardView.setOnClickListener {
+                itemClick(30)
             }
+        }
     }
 }

@@ -7,4 +7,13 @@ data class DrinkData(
     val volume : Int,
     val price : Int,
     val type : String
-)
+){
+    constructor(): this(
+        "",
+        "",
+        0.0,
+        0,
+        0,
+        ""
+    )
+}

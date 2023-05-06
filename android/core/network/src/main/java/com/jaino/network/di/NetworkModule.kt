@@ -2,6 +2,8 @@ package com.jaino.network.di
 
 import com.jaino.network.datasource.auth.SignInDataSource
 import com.jaino.network.datasource.auth.SignInDataSourceImpl
+import com.jaino.network.datasource.dictionary.GetDrinkDataSource
+import com.jaino.network.datasource.dictionary.GetDrinkDataSourceImpl
 import com.jaino.network.datasource.dictionary.GetDrinkListDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkListDataSourceImpl
 import com.jaino.network.datasource.user.UserDataSource
@@ -33,4 +35,10 @@ abstract class NetworkModule {
     abstract fun provideDrinkListDataSource(
         drinkListDataSourceImpl: GetDrinkListDataSourceImpl
     ): GetDrinkListDataSource
+
+    @Binds
+    @Singleton
+    abstract fun provideDrinkDataSource(
+        drinkDataSourceImpl: GetDrinkDataSourceImpl
+    ): GetDrinkDataSource
 }
