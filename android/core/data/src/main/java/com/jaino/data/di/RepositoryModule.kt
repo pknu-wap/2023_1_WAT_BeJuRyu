@@ -10,6 +10,7 @@ import com.jaino.data.repository.user.UserRepository
 import com.jaino.data.repository.user.UserRepositoryImpl
 import com.jaino.datastore.BeJuRyuDatastore
 import com.jaino.network.datasource.auth.SignInDataSource
+import com.jaino.network.datasource.dictionary.GetDrinkDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkListDataSource
 import com.jaino.network.datasource.user.UserDataSource
 import dagger.Module
@@ -45,6 +46,7 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideDrinkRepository(
-        getDrinkListDataSource : GetDrinkListDataSource
-    ): DrinksRepository = DrinksRepositoryImpl(getDrinkListDataSource)
+        getDrinkListDataSource : GetDrinkListDataSource,
+        getDrinkDataSource : GetDrinkDataSource
+    ): DrinksRepository = DrinksRepositoryImpl(getDrinkListDataSource, getDrinkDataSource)
 }
