@@ -4,4 +4,6 @@ import com.jaino.network.model.dictionary.DrinkDataResponse
 
 interface GetDrinkListDataSource {
     suspend fun getDrinkList() : Result<List<DrinkDataResponse>>
+
+    suspend fun getDrinkListByType(type: String) : Result<List<DrinkDataResponse>>
 }
