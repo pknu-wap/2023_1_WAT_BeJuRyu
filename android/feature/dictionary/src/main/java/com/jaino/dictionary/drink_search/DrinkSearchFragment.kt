@@ -36,9 +36,7 @@ class DrinkSearchFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        // initAdapter()
         initView()
-        // observeData()
     }
 
     private fun initView(){
@@ -49,7 +47,8 @@ class DrinkSearchFragment : Fragment() {
         binding.searchEditTextView.setOnEditorActionListener { textView, actionId, keyEvent ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH && textView.text.isNotBlank()){
                 navigateToDrinkList(
-                    textView.text.toString()
+                    word = textView.text.toString(),
+                    type = ""
                 )
                 true
             }
@@ -59,13 +58,16 @@ class DrinkSearchFragment : Fragment() {
         binding.drinkChipGroup.setOnCheckedStateChangeListener{ group, checkedIds ->
             // single selection
             val drinkCategory = group.findViewById<Chip>(checkedIds.first()).text.toString()
-            navigateToDrinkList(drinkCategory)
+            navigateToDrinkList(
+                word = "",
+                type = drinkCategory
+            )
         }
     }
 
-    private fun navigateToDrinkList(word: String){
+    private fun navigateToDrinkList(word: String, type: String){
         val direction = DrinkSearchFragmentDirections
-            .actionDrinkSearchFragmentToDrinkListFragment(word)
+            .actionDrinkSearchFragmentToDrinkListFragment(word, type)
         findNavController().navigate(direction)
     }
 
