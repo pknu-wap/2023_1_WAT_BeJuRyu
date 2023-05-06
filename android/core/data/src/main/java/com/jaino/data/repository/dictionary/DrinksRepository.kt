@@ -4,4 +4,6 @@ import com.jaino.model.dictionary.DrinkData
 
 interface DrinksRepository {
     suspend fun getDrinkList(): Result<List<DrinkData>>
+
+    suspend fun getDrinkDataById(id: Long): Result<DrinkData>
 }
