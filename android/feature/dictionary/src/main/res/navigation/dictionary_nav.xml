@@ -13,6 +13,9 @@
         <argument
             android:name="word"
             app:argType="string"/>
+        <argument
+            android:name="type"
+            app:argType="string" />
         <action
             android:id="@+id/action_drinkListFragment_to_drinkInfoFragment"
             app:destination="@id/drinkInfoFragment" />
@@ -27,6 +30,9 @@
             <argument
                 android:name="word"
                 app:argType="string"/>
+            <argument
+                android:name="type"
+                app:argType="string" />
         </action>
     </fragment>
     <fragment

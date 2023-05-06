@@ -20,19 +20,28 @@ class DrinkListViewModel @Inject constructor(
 
     val searchWord : MutableStateFlow<String> = MutableStateFlow("")
 
-    private fun getAllDrinksList(){
+    fun getDrinkListByWord(word: String){
         viewModelScope.launch {
+            //TODO 전체 리스트가 아닌, 검색어로 변경된 로직을 호출해야 함.
             repository.getDrinkList()
                 .onSuccess {
                     _dictUiState.value = UiState.Success(it)
+                    searchWord.value = word
                 }
                 .onFailure {
                     _dictUiState.value = UiState.Failure(it.message)
                 }
         }
     }
-    private fun searchDrinks(word: String){
+    fun getDrinkListByType(type: String){
         viewModelScope.launch {
+            repository.getDrinkListByType(type)
+                .onSuccess {
+                    _dictUiState.value = UiState.Success(it)
+                }
+                .onFailure {
+                    _dictUiState.value = UiState.Failure(it.message)
+                }
         }
     }
 

@@ -11,6 +11,7 @@ class GetDrinkDataSourceImpl @Inject constructor(
         runCatching {
             service.getDrinkById(id).data
         }.onFailure {error ->
+            error.printStackTrace()
             Result.failure<DrinkDataResponse>(error)
         }
 }

@@ -20,4 +20,10 @@ class DrinksRepositoryImpl @Inject constructor(
             data.toDrinkData()
         }
     }
+
+    override suspend fun getDrinkListByType(type: String): Result<List<DrinkData>> {
+        return drinkListDataSource.getDrinkListByType(type).mapCatching { list ->
+            list.map { data -> data.toDrinkData() }
+        }
+    }
 }

@@ -79,6 +79,13 @@ class DrinkListFragment : Fragment(){
     }
 
     private fun initView(){
+        if(args.type.isNotBlank()){
+            viewModel.getDrinkListByType(args.type)
+        }
+        else if(args.word.isNotBlank()){
+            viewModel.getDrinkListByWord(args.word)
+        }
+
         binding.backToListButton.setOnClickListener{
             val direction = DrinkListFragmentDirections
                 .actionDrinkListFragmentToDrinkSearchFragment()

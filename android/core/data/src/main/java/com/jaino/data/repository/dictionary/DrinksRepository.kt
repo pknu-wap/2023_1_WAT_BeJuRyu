@@ -6,4 +6,6 @@ interface DrinksRepository {
     suspend fun getDrinkList(): Result<List<DrinkData>>
 
     suspend fun getDrinkDataById(id: Long): Result<DrinkData>
+
+    suspend fun getDrinkListByType(type: String): Result<List<DrinkData>>
 }
