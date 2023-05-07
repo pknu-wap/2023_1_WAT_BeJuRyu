@@ -1,6 +1,7 @@
 package com.WAT.BEJURYU.auth.controller;
 
 import com.WAT.BEJURYU.auth.dto.KakaoUserInfo;
+import com.WAT.BEJURYU.auth.dto.Token;
 import com.WAT.BEJURYU.auth.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.apache.tomcat.util.json.ParseException;
@@ -17,10 +18,13 @@ import java.net.URISyntaxException;
 public final class LoginController {
     private final LoginService loginService;
 
-    @GetMapping("/test")
-    public ResponseEntity<KakaoUserInfo> login(@RequestParam String token) throws MalformedURLException, URISyntaxException, ParseException {
-        final KakaoUserInfo parse = loginService.parse(token);
+    @GetMapping("/auth/login")
+    public ResponseEntity<Token> login(@RequestParam String token) throws MalformedURLException, URISyntaxException, ParseException {
+        final KakaoUserInfo userInfo = loginService.parse(token);
+        if (loginService.isNewUser(userInfo.getId())) {
+            loginService.register(userInfo);
+        }
 
-        return ResponseEntity.ok(parse);
+        return ResponseEntity.ok(loginService.createToken(userInfo));
     }
 }

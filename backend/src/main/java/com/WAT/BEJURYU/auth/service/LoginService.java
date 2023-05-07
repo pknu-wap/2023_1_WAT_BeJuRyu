@@ -37,8 +37,8 @@ public class LoginService {
         return client.exchange(url.toURI(), HttpMethod.GET, httpEntity, KakaoUserInfo.class).getBody();
     }
 
-    public boolean isRegistered(final Long kakaoId) {
-        return userRepository.existsById(kakaoId);
+    public boolean isNewUser(final Long kakaoId) {
+        return !userRepository.existsById(kakaoId);
     }
 
     @Transactional
@@ -53,5 +53,12 @@ public class LoginService {
         final String refresh = jwtTokenProvider.createRefreshToken();
 
         return new Token(access, refresh);
+    }
+
+    public Token reissueToken(final Token token) {
+        jwtTokenProvider.validate(token.getRefresh());
+
+        final String kakaoId = jwtTokenProvider.getPayload(token.getAccess());
+        return new Token(jwtTokenProvider.createToken(kakaoId), null);
     }
 }
