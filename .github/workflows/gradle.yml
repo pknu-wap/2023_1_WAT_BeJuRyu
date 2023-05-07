@@ -36,7 +36,8 @@ jobs:
         mysql database: 'juryu' 
         mysql user: 'root'
         mysql password: 'root'
-        host port: '13306'
+        host port: 13306
+        container port: 13306
     - uses: gradle/gradle-build-action@v2
       with:
         arguments: build
