@@ -26,6 +26,10 @@ dependencies {
 
 	implementation 'mysql:mysql-connector-java:8.0.28'
 	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+
+	// JWT
+	implementation 'com.auth0:java-jwt:4.2.0'
 }
 
 tasks.named('test') {
