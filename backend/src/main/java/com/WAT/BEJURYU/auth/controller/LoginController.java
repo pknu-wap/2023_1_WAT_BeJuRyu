@@ -1,13 +1,16 @@
 package com.WAT.BEJURYU.auth.controller;
 
+import com.WAT.BEJURYU.auth.config.AuthParam;
 import com.WAT.BEJURYU.auth.dto.KakaoUserInfo;
 import com.WAT.BEJURYU.auth.dto.Token;
+import com.WAT.BEJURYU.auth.dto.UserId;
 import com.WAT.BEJURYU.auth.service.LoginService;
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.json.ParseException;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.net.MalformedURLException;
@@ -19,12 +22,37 @@ public final class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/auth/login")
-    public ResponseEntity<Token> login(@RequestParam String token) throws MalformedURLException, URISyntaxException, ParseException {
+    public ResponseEntity<Token> login(@RequestParam String token) throws MalformedURLException, URISyntaxException {
         final KakaoUserInfo userInfo = loginService.parse(token);
         if (loginService.isNewUser(userInfo.getId())) {
             loginService.register(userInfo);
         }
 
         return ResponseEntity.ok(loginService.createToken(userInfo));
+    }
+
+    /**
+     * 토큰이 만료되면 바디에 아래와 같이 실어서 보낸다.(이때는 Bearer을 붙이지 않는다)
+     * {
+     * "access": "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIyNzM0OTYyMzgwIiwiaWF0IjoxNjgzNDQ3MTMxLCJleHAiOjE2ODM0NTQzMzF9.V16ATqEv-v5mns9-i6XE686kCA3MTern1B7JVsjgp9Y",
+     * "refresh": "eyJhbGciOiJIUzI1NiJ9.eyJpYXQiOjE2ODM0NDcxMzEsImV4cCI6MTY4NDA1MTkzMX0.KA9cLJ4uBINVvIsQzwv-w8QtrMe8yxpjU4caYWKdTLs"
+     * }
+     */
+    @PostMapping("/auth/refresh")
+    public ResponseEntity<Token> refresh(@RequestBody Token token) {
+        final Token reissuedToken = loginService.reissueToken(token);
+
+        return ResponseEntity.ok(reissuedToken);
+    }
+
+    /**
+     * 인증이 필요한 API에 아래와 같이 @AuthParam 어노테이션과 함께 UserId 클래스로 받도록 하면 된다.
+     * <p>
+     * 헤더에 "Authorization":"Bearer 토큰어쩌고" 정보가 없으면 400(Bad Request)을 리턴한다.
+     * 만료된 토큰을 가져오면 401(Unauthorized)을 리턴한다.
+     */
+    @GetMapping("/test")
+    public ResponseEntity<UserId> test(@AuthParam UserId userId) {
+        return ResponseEntity.ok(userId);
     }
 }
