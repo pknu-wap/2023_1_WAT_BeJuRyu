@@ -8,6 +8,7 @@ import RegisterPage from "./pages/RegisterPage";
 import MyPage from "./pages/MyPage";
 import ResultPage from "./pages/ResultPage";
 import DictionaryPage from "./pages/DictionaryPage";
+import HistoryPage from "./pages/HistoryPage";
 import axios from "axios";
 import { useEffect } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
@@ -46,6 +47,7 @@ function App() {
           <Route path="/recommend" element={<RecommendPage />} />
           <Route path="/result" element={<ResultPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
+          <Route path="/history" element={<HistoryPage />} />
         </Routes>
       </ContentWrapper>
       <Footer />

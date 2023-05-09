@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 30rem;
-  max-width: 45rem;
-  height: 30rem;
+  width: 80rem;
+  max-width: 85rem;
+  height: 40rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
@@ -11,19 +11,10 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 `;
 
-const Title = styled.div`
-  margin: 2rem 0;
-  font-weight: 600;
-  text-align: center;
-  font-size: 1.5rem;
-  font-family: SCDream5;
-  color: black;
-`;
-
-const SubmitButton = styled.button`
+const ReButton = styled.button`
   height: 3rem;
   width: 10rem;
   font-family: SCDream5;
@@ -33,22 +24,6 @@ const SubmitButton = styled.button`
   color: #f7f7f7;
   margin: 20px auto 0;
   display: block;
-  cursor: pointer;
-`;
-
-const LogoutButton = styled.button`
-  width: 100px;
-  height: 48px;
-  border: none;
-  font-weight: 700;
-  float: right;
-  font-family: SCDream5;
-  background-color: #9a208c;
-  border-radius: 64px;
-  color: white;
-  margin-bottom: 16px;
-  text-align: center;
-  margin-right: 20px;
   cursor: pointer;
 `;
 
@@ -82,11 +57,11 @@ const Form = styled.div`
 `;
 
 const WhiteBox = styled.div`
-  width: 25rem;
-  height: 15rem;
+  width: 70rem;
+  height: 35rem;
   margin: 0 auto;
   margin-bottom: 20px;
-  padding: 1rem;
+  padding: 0.5rem;
 
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
@@ -102,13 +77,12 @@ const WhiteBox = styled.div`
 const S = {
   Wrapper,
   Container,
-  SubmitButton,
-  LogoutButton,
+  ReButton,
+
   Info,
   Main,
   Form,
   WhiteBox,
-  Title,
 };
 
 export default S;

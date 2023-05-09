@@ -13,6 +13,10 @@ function MyPage() {
     navigate("/");
   };
 
+  const checkHistory = () => {
+    navigate("/history");
+  };
+
   const MyPageView = (
     <S.Container>
       <S.Info>
@@ -22,7 +26,7 @@ function MyPage() {
       <S.Wrapper>
         <S.Form>이름: 선예림</S.Form>
       </S.Wrapper>
-      <S.SubmitButton>
+      <S.SubmitButton onClick={checkHistory}>
         <strong>추천 히스토리 확인</strong>
       </S.SubmitButton>
     </S.Container>
