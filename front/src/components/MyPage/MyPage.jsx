@@ -3,15 +3,11 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
+import Logout from "./Logout";
 
 function MyPage() {
   const navigate = useNavigate();
   //const dispatch = useDispatch();
-
-  const logout = () => {
-    //settingCookie("remove");
-    navigate("/");
-  };
 
   const checkHistory = () => {
     navigate("/history");
@@ -20,8 +16,7 @@ function MyPage() {
   const MyPageView = (
     <S.Container>
       <S.Info>
-        <S.logoutButton>회원 탈퇴</S.logoutButton>
-        <S.logoutButton onClick={logout}>로그아웃</S.logoutButton>
+        <Logout />
       </S.Info>
       <S.Wrapper>
         <S.Form>이름: 선예림</S.Form>

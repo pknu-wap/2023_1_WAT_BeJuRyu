@@ -1,9 +1,15 @@
+/* 로그인, 회원가입의 로직
+  1. [x]카카오 토큰을 받아온다
+  2. [ ]서버에게 GET 요청
+  3. [ ]JWT 토큰(access, refresh)을 RESPONSE로 받게 되고 localstorage나 cookie에 저장시킨다.*/
 import { useEffect, useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, withRouter } from "react-router-dom";
 import axios from "axios";
 import S from "./styled";
 import logo from "../../image/bejuryu.png";
 import { connect } from "react-redux";
+
+const { Kakao } = window;
 
 function Login() {
   const navigate = useNavigate();
@@ -14,13 +20,14 @@ function Login() {
   const loginWithKakao = async () => {
     try {
       return new Promise((resolve, reject) => {
-        if (!window.Kakao) {
+        if (!Kakao) {
           reject("Kakao 인스턴스가 존재하지 않습니다.");
         }
-        window.Kakao.Auth.login({
-          success: (auth) => {
-            console.log("로그인 성공", auth);
+        Kakao.Auth.login({
+          success: async (res) => {
+            localStorage.setItem("token", res.access_token);
             setIsLogin(true);
+            console.log(res);
             navigate("/recommend");
           },
           fail: (err) => {
@@ -34,17 +41,9 @@ function Login() {
   };
 
   useEffect(() => {
-    const script = document.createElement("script");
-    script.async = true;
-    script.src = "https://developers.kakao.com/sdk/js/kakao.min.js";
-    document.head.appendChild(script);
-    script.onload = () => {
-      window.Kakao.init("d19046b7f49f6376e5f701a2a57167e3");
-      if (window.Kakao.Auth.getAccessToken()) {
-        console.log("액세스 토큰이 존재합니다. 세션을 유지합니다.");
-        setIsLogin(true);
-      }
-    };
+    if (Kakao.Auth.getAccessToken()) {
+      setIsLogin(true);
+    }
   }, []);
 
   const loginView = (
@@ -76,7 +75,6 @@ function Login() {
       </S.Wrapper>
     </S.Container>
   );
-
   return <div className="Login">{loginView}</div>;
 }
 
