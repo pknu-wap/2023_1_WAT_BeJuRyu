@@ -1,3 +1,6 @@
+/* TODO
+1. [] 주류 히스토리 페이지 대략적으로 어떻게 구현할 건지 UI
+2. [] 감정 분석 내역 리스트 형태로 => 반환 값이 id, date*/
 import S from "./styled";
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";

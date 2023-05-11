@@ -1,3 +1,7 @@
+/* TODO
+1. 거의 완료
+2. [] 이미지 첨부 후 서버와 통신할 때 URL로 넘기는 방법 찾아볼 것.(facial-expression: string
+3. [] 현재 줄글 작성 부분과 이미지 들어가는 게 따로 구현되있는데, 서버 넘길때 한 번에 넘겨야되므로 코드 합침 필요*/
 import S from "./styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -15,6 +19,7 @@ function Recommend() {
     const formData = new FormData();
     formData.append("image", selectedFile);
     //formData.append("mood", inputValue);
+    // 서버와의 통신 들어갈 부분
 
     navigate("/result");
   };

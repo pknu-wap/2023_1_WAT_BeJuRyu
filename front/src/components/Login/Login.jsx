@@ -1,7 +1,8 @@
 /* 로그인, 회원가입의 로직
   1. [x]카카오 토큰을 받아온다
-  2. [ ]서버에게 GET 요청
-  3. [ ]JWT 토큰(access, refresh)을 RESPONSE로 받게 되고 localstorage나 cookie에 저장시킨다.*/
+  2. [ ]서버에게 GET 요청 (서버와 통신 될때 넣을 얘쩡)
+  3. [ ]JWT 토큰(access, refresh)을 RESPONSE로 받게 되고 localstorage나 cookie에 저장시킨다. => 현재 cookie 사용으로 setting 해놓음.
+  4. */
 import { useEffect, useState } from "react";
 import { useNavigate, withRouter } from "react-router-dom";
 import axios from "axios";
