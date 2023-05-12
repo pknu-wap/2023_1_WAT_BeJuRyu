@@ -44,4 +44,7 @@
     <string name="price">가격</string>
     <string name="write_review">리뷰 작성하기</string>
     <string name="product_info">주류 정보</string>
+    <string name="rating_score_text">%1$s/5.0</string>
+    <string name="review_title">구매 후기</string>
+    <string name="review_score_title">평점</string>
 </resources>
