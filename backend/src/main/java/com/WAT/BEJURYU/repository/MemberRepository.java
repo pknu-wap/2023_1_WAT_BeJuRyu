@@ -1,12 +1,12 @@
 package com.WAT.BEJURYU.repository;
 
-import com.WAT.BEJURYU.entity.Review;
+import com.WAT.BEJURYU.entity.Member;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
 @Repository
-public interface ReviewRepository extends JpaRepository<Review, Long> {
-    List<Review> findByDrinkId(Long drink_id);
+public interface MemberRepository extends JpaRepository<Member, Long> {
+    List<Member> findByNickname(String nickname);
 }

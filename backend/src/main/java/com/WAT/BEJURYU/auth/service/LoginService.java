@@ -2,8 +2,8 @@ package com.WAT.BEJURYU.auth.service;
 
 import com.WAT.BEJURYU.auth.dto.KakaoUserInfo;
 import com.WAT.BEJURYU.auth.dto.Token;
-import com.WAT.BEJURYU.entity.User;
-import com.WAT.BEJURYU.repository.UserRepository;
+import com.WAT.BEJURYU.entity.Member;
+import com.WAT.BEJURYU.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +24,7 @@ public class LoginService {
     private static final String KAKAO_API_PROFILE = "https://kapi.kakao.com/v2/user/me";
 
     private final JwtTokenProvider jwtTokenProvider;
-    private final UserRepository userRepository;
+    private final MemberRepository memberRepository;
 
     public KakaoUserInfo parse(final String token) throws MalformedURLException, URISyntaxException {
         final RestTemplate client = new RestTemplate();
@@ -38,14 +38,14 @@ public class LoginService {
     }
 
     public boolean isNewUser(final Long kakaoId) {
-        return !userRepository.existsById(kakaoId);
+        return !memberRepository.existsById(kakaoId);
     }
 
     @Transactional
     public void register(final KakaoUserInfo userInfo) {
-        final User user = new User(userInfo.getId(), userInfo.getProperties().getNickname());
+        final Member user = new Member(userInfo.getId(), userInfo.getProperties().getNickname());
 
-        userRepository.save(user);
+        memberRepository.save(user);
     }
 
     public Token createToken(final KakaoUserInfo userInfo) {
