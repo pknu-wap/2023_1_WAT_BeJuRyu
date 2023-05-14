@@ -1,17 +1,18 @@
 package com.WAT.BEJURYU.repository;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
 import com.WAT.BEJURYU.entity.Analysis;
-import com.WAT.BEJURYU.entity.User;
+import com.WAT.BEJURYU.entity.Member;
 import jakarta.transaction.Transactional;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 
 @SpringBootTest
@@ -20,30 +21,32 @@ public class AnalysisRepositoryTest {
     @Autowired
     private AnalysisRepository analysisTestRepository;
     @Autowired
-    private UserRepository userTestRepository;
+    private MemberRepository userTestRepository;
 
-    private User user;
+    private Member member;
 
     @BeforeEach
-    public void before(){
-         user = User.builder()
-            .nickname("퀸원지")
-            .build();
-        userTestRepository.save(user);
+    public void before() {
+        member = Member.builder()
+                .id(12312412L)
+                .nickname("퀸원지")
+                .build();
+        userTestRepository.save(member);
     }
+
     @Test
     void 유저_ID로_조회_테스트() {
         // given
         Analysis analysis = Analysis.builder()
-            .user(user)
-            .build();
+                .member(member)
+                .build();
         analysisTestRepository.save(analysis);
 
         // when
-        List<Analysis> findUserAnalysis = analysisTestRepository.findByUserId(user.getId());
+        List<Analysis> findUserAnalysis = analysisTestRepository.findByMemberId(member.getId());
 
         // then
-        assertThat(findUserAnalysis.get(0).getUser().getId()).isEqualTo(user.getId());
+        assertThat(findUserAnalysis.get(0).getMember().getId()).isEqualTo(member.getId());
     }
 
     @Test
@@ -57,21 +60,21 @@ public class AnalysisRepositoryTest {
         LocalDateTime dateTime2 = LocalDateTime.parse(str2, formatter);
 
         Analysis analysis1 = Analysis.builder()
-            .user(user)
-            .date(dateTime1)
-            .build();
+                .member(member)
+                .date(dateTime1)
+                .build();
         Analysis analysis2 = Analysis.builder()
-            .user(user)
-            .date(dateTime2)
-            .build();
+                .member(member)
+                .date(dateTime2)
+                .build();
 
         analysisTestRepository.save(analysis1);
         analysisTestRepository.save(analysis2);
 
         // when
-        LocalDateTime start = LocalDateTime.parse("2023-05-01 00:00:00.000",formatter);
-        LocalDateTime end = LocalDateTime.parse("2023-05-01 23:59:59.999",formatter);
-        List<Analysis> findUserAnalysis = analysisTestRepository.findByDateBetween(start,end);
+        LocalDateTime start = LocalDateTime.parse("2023-05-01 00:00:00.000", formatter);
+        LocalDateTime end = LocalDateTime.parse("2023-05-01 23:59:59.999", formatter);
+        List<Analysis> findUserAnalysis = analysisTestRepository.findByDateBetween(start, end);
 
         // then
         assertThat(findUserAnalysis.get(0).getId()).isEqualTo(analysis1.getId());

@@ -28,6 +28,7 @@ dependencies {
 
     //DB
     implementation 'mysql:mysql-connector-java:8.0.32'
+    runtimeOnly 'com.h2database:h2'
     implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
     //JWT
