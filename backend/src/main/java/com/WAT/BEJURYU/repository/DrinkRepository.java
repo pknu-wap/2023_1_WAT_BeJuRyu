@@ -1,11 +1,7 @@
 package com.WAT.BEJURYU.repository;
 
 import com.WAT.BEJURYU.entity.Drink;
-import com.WAT.BEJURYU.entity.DrinkType;
-<<<<<<< HEAD
 import java.util.List;
-=======
->>>>>>> origin/develop_server
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
