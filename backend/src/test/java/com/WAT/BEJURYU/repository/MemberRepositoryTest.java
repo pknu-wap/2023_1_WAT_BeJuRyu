@@ -1,30 +1,32 @@
 package com.WAT.BEJURYU.repository;
 
-import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
-
-import com.WAT.BEJURYU.entity.User;
+import com.WAT.BEJURYU.entity.Member;
 import jakarta.transaction.Transactional;
-import java.util.List;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
+import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
+
 @SpringBootTest
 @Transactional
-public class UserRepositoryTest {
+public class MemberRepositoryTest {
     @Autowired
-    private UserRepository userTestRepository;
+    private MemberRepository memberRepository;
 
     @Test
     void 닉네임으로_조회_테스트() {
         // given
-        User user = User.builder()
-            .nickname("퀸원지")
-            .build();
-        User savedUser = userTestRepository.save(user);
+        Member user = Member.builder()
+                .id(1L)
+                .nickname("퀸원지")
+                .build();
+        Member savedUser = memberRepository.save(user);
 
         // when
-        List<User> findUsers = userTestRepository.findByNickname(savedUser.getNickname());
+        List<Member> findUsers = memberRepository.findByNickname(savedUser.getNickname());
 
         // then
         assertThat(findUsers.get(0).getNickname()).isEqualTo("퀸원지");
