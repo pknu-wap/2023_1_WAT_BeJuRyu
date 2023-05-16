@@ -15,7 +15,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Member {
     @Id
-    @Column(name = "user_id")
+    @Column(name = "member_id")
     private Long id;
     @Column(name = "nickname")
     private String nickname;

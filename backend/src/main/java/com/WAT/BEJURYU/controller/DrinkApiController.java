@@ -1,29 +1,32 @@
 package com.WAT.BEJURYU.controller;
 
-import com.WAT.BEJURYU.dto.DrinkListResponseDto;
+import com.WAT.BEJURYU.dto.DrinkResponses;
 import com.WAT.BEJURYU.service.DrinkService;
-import java.util.List;
+import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/drink")
+@RequiredArgsConstructor
+@RequestMapping("/drinks")
 public class DrinkApiController {
 
-    @GetMapping("/all")
-    @ResponseBody
-    public List<DrinkListResponseDto> findAll(){
-        return DrinkService.getAllDrinks();
-    }
+    private final DrinkService drinkService;
 
+    @GetMapping
+    public ResponseEntity<DrinkResponses> findAll() {
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+
+        return ResponseEntity.ok(drinks);
+    }
 
     @GetMapping("/{name}")
-    @ResponseBody
-    public List<DrinkListResponseDto> findByName(@PathVariable("name")String name){
-        return DrinkService.getDrinksByName(name);
-    }
+    public ResponseEntity<DrinkResponses> findByName(@PathVariable String name) {
+        final DrinkResponses drinks = drinkService.getDrinksByName(name);
 
+        return ResponseEntity.ok(drinks);
+    }
 }
