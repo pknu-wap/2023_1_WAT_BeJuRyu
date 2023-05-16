@@ -11,12 +11,12 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/drink")
+@RequestMapping("/drinks")
 public class DrinkApiController {
 
     private final DrinkService drinkService;
 
-    @GetMapping("/all")
+    @GetMapping
     public ResponseEntity<DrinkResponses> findAll() {
         final DrinkResponses drinks = drinkService.getAllDrinks();
 
