@@ -32,6 +32,7 @@ public class LoginService {
 
         final HttpHeaders header = new HttpHeaders();
         header.setBearerAuth(token);
+        header.setAccessControlAllowCredentials(true);
         final HttpEntity<Object> httpEntity = new HttpEntity<>(header);
 
         return client.exchange(url.toURI(), HttpMethod.GET, httpEntity, KakaoUserInfo.class).getBody();
