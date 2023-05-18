@@ -1,9 +1,9 @@
-import nicknameReducer from "../reducer/nicknameReducer.js";
+import nameReducer from "../reducer/nameSlice.js";
 const { configureStore } = require("@reduxjs/toolkit");
 
 const store = configureStore({
   reducer: {
-    nickname: nicknameReducer,
+    name: nameReducer,
   },
 });
 

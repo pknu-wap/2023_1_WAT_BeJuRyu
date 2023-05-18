@@ -1,11 +1,11 @@
 const { createSlice } = require("@reduxjs/toolkit");
 
 const initialState = {
-  nickname: "",
+  name: "",
 };
 
-const nicknameSlice = createSlice({
-  nickname: "NAME",
+const nameSlice = createSlice({
+  name: "NAME",
   initialState,
   reducers: {
     GET_NAME: (state, action) => {
@@ -14,6 +14,6 @@ const nicknameSlice = createSlice({
   },
 });
 
-export const { GET_NAME } = nicknameSlice.actions;
+export const { GET_NAME } = nameSlice.actions;
 
-export default nicknameSlice.reducer;
+export default nameSlice.reducer;

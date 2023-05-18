@@ -11,9 +11,12 @@ import DictionaryPage from "./pages/DictionaryPage";
 import HistoryPage from "./pages/HistoryPage";
 import axios from "axios";
 import { useEffect } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 import jwt_decode from "jwt-decode";
+import { useDispatch, useSelector } from "react-redux";
+import settingCookie from "./utils/settingCookie";
 
+//import { GET_NAME } from "./reducer/nameSlice";
 import React from "react";
 
 const AllWrapper = styled.div`
@@ -26,14 +29,33 @@ const ContentWrapper = styled.div`
   flex: 1;
 `;
 
+axios.defaults.withCredentials = true;
+
 function App() {
+  const dispatch = useDispatch();
+  const userName = useSelector((state) => state.name.name);
+
+  /*const isLogin = () => {
+    const token = settingCookie("get-access");
+    // 로그인이 되어있다면
+    //if (token !== undefined) {
+    //  const decode = jwt_decode(token);
+    //  dispatch(GET_NAME(decode.nickname));
+    }
+  };*/
+
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
     document.documentElement.style.setProperty("--vh", `${vh}px`);
   }
+
   useEffect(() => {
     setScreenSize();
   });
+
+  /*useEffect(() => {
+    isLogin();
+  }, []);*/
 
   return (
     <AllWrapper>
