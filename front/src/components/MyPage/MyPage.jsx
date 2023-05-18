@@ -1,3 +1,6 @@
+/* TODO
+  1. 닉네임 변경 기능 추가 */
+
 import S from "./styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
@@ -19,7 +22,7 @@ function MyPage() {
         <Logout />
       </S.Info>
       <S.Wrapper>
-        <S.Form>이름: 선예림</S.Form>
+        <S.Form>닉네임: 선예림</S.Form>
       </S.Wrapper>
       <S.SubmitButton onClick={checkHistory}>
         <strong>추천 히스토리 확인</strong>
