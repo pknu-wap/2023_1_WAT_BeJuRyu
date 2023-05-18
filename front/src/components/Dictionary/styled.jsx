@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 40rem;
+  width: 30rem;
   max-width: 45rem;
-  height: 20rem;
+  height: 30rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
@@ -12,6 +12,15 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   margin: 2rem 0;
+`;
+
+const Title = styled.div`
+  margin: 2rem 0;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: SCDream5;
+  color: black;
 `;
 
 const SubmitButton = styled.button`
@@ -27,7 +36,7 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
-const logoutButton = styled.button`
+const LogoutButton = styled.button`
   width: 100px;
   height: 48px;
   border: none;
@@ -72,14 +81,34 @@ const Form = styled.div`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
+const WhiteBox = styled.div`
+  width: 25rem;
+  height: 15rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 1rem;
+
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+`;
+
 const S = {
   Wrapper,
   Container,
   SubmitButton,
-  logoutButton,
+  LogoutButton,
   Info,
   Main,
   Form,
+  WhiteBox,
+  Title,
 };
 
 export default S;

@@ -1,28 +1,30 @@
+/* TODO
+  1. 닉네임 변경 기능 추가 */
+
 import S from "./styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 //import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
+import Logout from "./Logout";
 
 function MyPage() {
   const navigate = useNavigate();
   //const dispatch = useDispatch();
 
-  const logout = () => {
-    //settingCookie("remove");
-    navigate("/");
+  const checkHistory = () => {
+    navigate("/history");
   };
 
   const MyPageView = (
     <S.Container>
       <S.Info>
-        <S.logoutButton>회원 탈퇴</S.logoutButton>
-        <S.logoutButton onClick={logout}>로그아웃</S.logoutButton>
+        <Logout />
       </S.Info>
       <S.Wrapper>
-        <S.Form>이름: 선예림</S.Form>
+        <S.Form>닉네임: 선예림</S.Form>
       </S.Wrapper>
-      <S.SubmitButton>
+      <S.SubmitButton onClick={checkHistory}>
         <strong>추천 히스토리 확인</strong>
       </S.SubmitButton>
     </S.Container>

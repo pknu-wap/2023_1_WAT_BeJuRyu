@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 40rem;
-  max-width: 45rem;
-  height: 20rem;
+  width: 80rem;
+  max-width: 85rem;
+  height: 40rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
@@ -11,10 +11,10 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  margin: 2rem 0;
+  margin: 1.5rem 0;
 `;
 
-const SubmitButton = styled.button`
+const ReButton = styled.button`
   height: 3rem;
   width: 10rem;
   font-family: SCDream5;
@@ -24,22 +24,6 @@ const SubmitButton = styled.button`
   color: #f7f7f7;
   margin: 20px auto 0;
   display: block;
-  cursor: pointer;
-`;
-
-const logoutButton = styled.button`
-  width: 100px;
-  height: 48px;
-  border: none;
-  font-weight: 700;
-  float: right;
-  font-family: SCDream5;
-  background-color: #9a208c;
-  border-radius: 64px;
-  color: white;
-  margin-bottom: 16px;
-  text-align: center;
-  margin-right: 20px;
   cursor: pointer;
 `;
 
@@ -72,14 +56,33 @@ const Form = styled.div`
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
+const WhiteBox = styled.div`
+  width: 70rem;
+  height: 35rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+`;
+
 const S = {
   Wrapper,
   Container,
-  SubmitButton,
-  logoutButton,
+  ReButton,
+
   Info,
   Main,
   Form,
+  WhiteBox,
 };
 
 export default S;
