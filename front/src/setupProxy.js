@@ -4,8 +4,8 @@ module.exports = function (app) {
   app.use(
     "/api",
     createProxyMiddleware({
-      target: "http://localhost:8080", // 서버 URL or localhost:포트번호. 임시로 8080
-      changeOrigin: true,
+      target: "141.164.49.27:3000",
+      // target: "http://localhost:8080", // 서버 URL
       secure: false,
     })
   );
