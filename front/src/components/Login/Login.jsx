@@ -1,7 +1,7 @@
 /* 로그인, 회원가입의 로직
   1. [x]카카오 토큰을 받아온다
-  2. [ ]서버에게 GET 요청 (서버와 통신 될때 넣을 얘쩡)
-  3. [ ]JWT 토큰(access, refresh)을 RESPONSE로 받게 되고 localstorage나 cookie에 저장시킨다. => 현재 cookie 사용으로 setting 해놓음.
+  2. [x]서버에게 GET 요청 (서버와 통신 될때 넣을 얘쩡)
+  3. [x]JWT 토큰(access, refresh)을 RESPONSE로 받게 되고 localstorage나 cookie에 저장시킨다. => 현재 cookie 사용으로 setting 해놓음.
   4. */
 import { useEffect, useState } from "react";
 import { useNavigate, withRouter } from "react-router-dom";
@@ -13,6 +13,7 @@ import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { GET_NAME } from "../../reducer/nameSlice";
 import noAuthClient from "../../apis/noAuthClient";
+// import authClient from "../../apis/authClient";
 
 const { Kakao } = window;
 
@@ -25,17 +26,24 @@ function Login() {
   // snsLogin
   const snsLogin = async (kakaoToken) => {
     try {
-      const res = noAuthClient({
+      const res = await noAuthClient({
         method: "get",
         url: `/auth/login?token=${kakaoToken}`,
       });
-      const cookie = new Cookies();
-      cookie.set("accessToken", res.data.accessToken);
-      cookie.set("refreshToken", res.data.refreshToken);
+      console.log("res: ", res);
 
-      const decode = jwt_decode(res.data.accessToken);
+      const cookie = new Cookies();
+      cookie.set("accessToken", res.data.token.access);
+      cookie.set("refreshToken", res.data.token.refresh);
+
+      // console.log("AccessToken:", cookie.get("accessToken"));
+      // console.log("RefreshToken:", cookie.get("refreshToken"));
+
+      const decode = jwt_decode(res.data.token.access);
+      console.log(decode);
+
       // redux에 nickname 저장
-      dispatch(GET_NAME(decode.nickname));
+      dispatch(GET_NAME(res.data.memberResponse.nickname));
     } catch (error) {}
   };
 
@@ -55,7 +63,7 @@ function Login() {
             // snsLogin 함수 호출
             await snsLogin(access_token);
 
-            //localStorage.setItem("token", res.access_token);
+            localStorage.setItem("token", res.access_token);
             // setIsLogin(true);
             //console.log(res);
             navigate("/recommend");

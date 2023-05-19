@@ -2,7 +2,7 @@ import styled from "styled-components";
 import logo from "../image/bejuryu.png";
 import { Link } from "react-router-dom";
 // 사용자 닉네임 불러올 떄
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 
 const Navbar = styled.nav`
   display: flex;
@@ -75,7 +75,7 @@ const Navbarlink = styled.div`
 `;
 
 export default function Header() {
-  // const userName = useSelector((state) => state.name.name);
+  const userName = useSelector((state) => state.name.name);
   return (
     <>
       <Navbar>
@@ -85,6 +85,9 @@ export default function Header() {
             BeJuRyu
           </Link>
         </Navbarlogo>
+        {/* {userName === "" ? (
+          ""
+        ) : ( */}
         <Navbarmenu>
           <li>
             <Link to="/Dictionary" style={{ textDecoration: "none" }}>
@@ -102,6 +105,16 @@ export default function Header() {
             </Link>
           </li>
         </Navbarmenu>
+        {/* )} */}
+        {userName === "" ? (
+          <Navbarlink>
+            <div></div>
+          </Navbarlink>
+        ) : (
+          <Navbarlink>
+            <li>{userName}님</li>
+          </Navbarlink>
+        )}
       </Navbar>
     </>
   );
