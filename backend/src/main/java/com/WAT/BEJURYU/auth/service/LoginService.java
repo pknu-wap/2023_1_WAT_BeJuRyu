@@ -45,7 +45,6 @@ public class LoginService {
     private HttpEntity<Object> makeRequestWithBearer(final String token) {
         final HttpHeaders header = new HttpHeaders();
         header.setBearerAuth(token);
-        header.setAccessControlAllowCredentials(true);
 
         return new HttpEntity<>(header);
     }
