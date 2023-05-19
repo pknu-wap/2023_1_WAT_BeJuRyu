@@ -5,22 +5,23 @@ import { Cookies } from "react-cookie";
 import settingCookie from "../utils/settingCookie";
 
 const authClient = axios.create({
-  baseURL: "http://localhost:8080",
+  // baseURL: "http://localhost:8080",
+  baseURL: "141.164.49.27",
   headers: {
     "Content-Type": "application/json",
   },
 });
 
 // 토큰 만료 확인하기
-const checkToken = async () => {
-  console.log("check token 실행 중");
-  let token = settingCookie("get-access");
-  const exp = jwtDecode(token);
-  if (Date.now() / 1000 > exp.exp) {
-    console.log("해당 토큰은 만료됨");
-    await getNewToken();
-  }
-};
+// const checkToken = async () => {
+//   console.log("check token 실행 중");
+//   let token = settingCookie("get-access");
+//   const exp = jwtDecode(token);
+//   if (Date.now() / 1000 > exp.exp) {
+//     console.log("해당 토큰은 만료됨");
+//     await getNewToken();
+//   }
+// };
 
 // 새 토큰 발급
 const getNewToken = async () => {
@@ -30,7 +31,7 @@ const getNewToken = async () => {
   try {
     const res = await axios({
       method: "post",
-      url: "api/",
+      url: "api/auth/refresh",
       data: {
         accessToken: access,
         refreshToken: refresh,

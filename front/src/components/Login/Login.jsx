@@ -18,7 +18,8 @@ function Login() {
   const [jwtToken, setJwtToken] = useState("");
 
   // 카카오 로그인
-  const loginWithKakao = async () => {
+  const loginWithKakao = async (e) => {
+    e.preventDefault();
     try {
       return new Promise((resolve, reject) => {
         if (!Kakao) {
@@ -47,7 +48,7 @@ function Login() {
     }
   }, []);
 
-  const loginView = (
+  return (
     <S.Container>
       <S.Wrapper>
         <S.Title>BeJuRyu 서비스에 오신것을 환영합니다.</S.Title>
@@ -76,7 +77,6 @@ function Login() {
       </S.Wrapper>
     </S.Container>
   );
-  return <div className="Login">{loginView}</div>;
 }
 
 export default Login;
