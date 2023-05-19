@@ -5,20 +5,42 @@
   4. */
 import { useEffect, useState } from "react";
 import { useNavigate, withRouter } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
+import { Cookies } from "react-cookie";
 import S from "./styled";
 import logo from "../../image/bejuryu.png";
-import { connect } from "react-redux";
+import { useDispatch } from "react-redux";
+import jwt_decode from "jwt-decode";
+import { GET_NAME } from "../../reducer/nameSlice";
+import noAuthClient from "../../apis/noAuthClient";
 
 const { Kakao } = window;
 
 function Login() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const [isLogin, setIsLogin] = useState(false);
   const [jwtToken, setJwtToken] = useState("");
 
-  // 카카오 로그인
-  const loginWithKakao = async (e) => {
+  // snsLogin
+  const snsLogin = async (kakaoToken) => {
+    try {
+      const res = noAuthClient({
+        method: "get",
+        url: `/auth/login?token=${kakaoToken}`,
+      });
+      const cookie = new Cookies();
+      cookie.set("accessToken", res.data.accessToken);
+      cookie.set("refreshToken", res.data.refreshToken);
+
+      const decode = jwt_decode(res.data.accessToken);
+      // redux에 nickname 저장
+      dispatch(GET_NAME(decode.nickname));
+    } catch (error) {}
+  };
+
+  // 로그인
+  const login = async (e) => {
     e.preventDefault();
     try {
       return new Promise((resolve, reject) => {
@@ -27,9 +49,15 @@ function Login() {
         }
         Kakao.Auth.login({
           success: async (res) => {
-            localStorage.setItem("token", res.access_token);
-            setIsLogin(true);
-            console.log(res);
+            // 서버에 GET 요청을 보내는 작업
+            const { access_token } = res;
+
+            // snsLogin 함수 호출
+            await snsLogin(access_token);
+
+            //localStorage.setItem("token", res.access_token);
+            // setIsLogin(true);
+            //console.log(res);
             navigate("/recommend");
           },
           fail: (err) => {
@@ -63,7 +91,7 @@ function Login() {
           <div>
             <div
               id="kakao-login-btn"
-              onClick={loginWithKakao}
+              onClick={login}
               style={{ cursor: "pointer" }}
             >
               <img
