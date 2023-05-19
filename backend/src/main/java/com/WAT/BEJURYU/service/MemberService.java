@@ -21,6 +21,7 @@ public class MemberService {
         return !memberRepository.existsById(id);
     }
 
+    @Transactional
     public Member save(final Member member) {
         return memberRepository.save(member);
     }

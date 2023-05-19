@@ -8,7 +8,7 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public final class MemberResponse {
     private final Long id;
-    private final String email;
+    private final String nickname;
 
     public static MemberResponse from(final Member member) {
         return new MemberResponse(member.getId(), member.getNickname());
