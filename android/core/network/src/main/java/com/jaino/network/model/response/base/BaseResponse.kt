@@ -1,4 +1,4 @@
-package com.jaino.network.model.base
+package com.jaino.network.model.response.base
 
 import kotlinx.serialization.Serializable
 

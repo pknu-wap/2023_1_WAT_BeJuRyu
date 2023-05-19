@@ -1,6 +1,6 @@
 package com.jaino.network.datasource.auth
 
-import com.jaino.network.model.auth.SignInResponse
+import com.jaino.network.model.response.auth.SignInResponse
 
 
 interface SignInDataSource {

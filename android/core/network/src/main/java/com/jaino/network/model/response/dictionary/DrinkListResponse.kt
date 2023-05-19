@@ -1,4 +1,4 @@
-package com.jaino.network.model.dictionary
+package com.jaino.network.model.response.dictionary
 
 import com.jaino.model.dictionary.DrinkData
 

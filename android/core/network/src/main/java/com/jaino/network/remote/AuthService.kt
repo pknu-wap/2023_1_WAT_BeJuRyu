@@ -1,6 +1,6 @@
 package com.jaino.network.remote
 
-import com.jaino.network.model.auth.SignInResponse
+import com.jaino.network.model.response.auth.SignInResponse
 
 import retrofit2.http.GET
 import retrofit2.http.Query
