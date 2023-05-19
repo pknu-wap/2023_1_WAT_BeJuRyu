@@ -28,7 +28,7 @@ class AuthInterceptor @Inject constructor(
             401 -> {
                 try {
                     val refreshTokenRequest = originalRequest.newBuilder().get()
-                        .url("${BuildConfig.BASE_DOMAIN_URL}auth/token")
+                        .url("${BuildConfig.BASE_DOMAIN_URL}/auth/refresh")
                         .addHeader("accessToken", dataStore.accessToken)
                         .addHeader("refreshToken", dataStore.refreshToken)
                         .build()

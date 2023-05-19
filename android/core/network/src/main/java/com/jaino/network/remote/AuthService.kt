@@ -7,7 +7,7 @@ import retrofit2.http.Query
 
 interface AuthService {
 
-    @GET("/test")
+    @GET("/auth/login")
     suspend fun signIn(
         @Query("token") token: String
     ) : SignInResponse
