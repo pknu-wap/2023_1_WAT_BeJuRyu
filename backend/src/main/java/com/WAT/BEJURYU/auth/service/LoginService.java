@@ -1,9 +1,10 @@
 package com.WAT.BEJURYU.auth.service;
 
 import com.WAT.BEJURYU.auth.dto.KakaoUserInfo;
+import com.WAT.BEJURYU.auth.dto.MemberResponse;
 import com.WAT.BEJURYU.auth.dto.Token;
 import com.WAT.BEJURYU.entity.Member;
-import com.WAT.BEJURYU.repository.MemberRepository;
+import com.WAT.BEJURYU.service.MemberService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -24,7 +25,7 @@ public class LoginService {
     private static final String KAKAO_API_PROFILE = "https://kapi.kakao.com/v2/user/me";
 
     private final JwtTokenProvider jwtTokenProvider;
-    private final MemberRepository memberRepository;
+    private final MemberService memberService;
 
     public KakaoUserInfo parse(final String token) throws MalformedURLException, URISyntaxException {
         final RestTemplate client = new RestTemplate();
@@ -38,15 +39,11 @@ public class LoginService {
         return client.exchange(url.toURI(), HttpMethod.GET, httpEntity, KakaoUserInfo.class).getBody();
     }
 
-    public boolean isNewUser(final Long kakaoId) {
-        return !memberRepository.existsById(kakaoId);
-    }
-
     @Transactional
     public void register(final KakaoUserInfo userInfo) {
         final Member user = new Member(userInfo.getId(), userInfo.getProperties().getNickname());
 
-        memberRepository.save(user);
+        memberService.save(user);
     }
 
     public Token createToken(final KakaoUserInfo userInfo) {
@@ -59,7 +56,17 @@ public class LoginService {
     public Token reissueToken(final Token token) {
         jwtTokenProvider.validate(token.getRefresh());
 
-        final String kakaoId = jwtTokenProvider.getPayload(token.getAccess());
-        return new Token(jwtTokenProvider.createToken(kakaoId), null);
+        final String memberId = jwtTokenProvider.getPayload(token.getAccess());
+        return new Token(jwtTokenProvider.createToken(memberId), null);
+    }
+
+    public boolean isNewUser(final Long id) {
+        return memberService.notExistById(id);
+    }
+
+    public MemberResponse findMemberById(final Long id) {
+        final Member member = memberService.findById(id);
+
+        return MemberResponse.from(member);
     }
 }

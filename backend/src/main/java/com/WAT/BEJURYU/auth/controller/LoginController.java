@@ -1,9 +1,7 @@
 package com.WAT.BEJURYU.auth.controller;
 
 import com.WAT.BEJURYU.auth.config.AuthParam;
-import com.WAT.BEJURYU.auth.dto.KakaoUserInfo;
-import com.WAT.BEJURYU.auth.dto.Token;
-import com.WAT.BEJURYU.auth.dto.UserId;
+import com.WAT.BEJURYU.auth.dto.*;
 import com.WAT.BEJURYU.auth.service.LoginService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -22,13 +20,17 @@ public final class LoginController {
     private final LoginService loginService;
 
     @GetMapping("/auth/login")
-    public ResponseEntity<Token> login(@RequestParam String token) throws MalformedURLException, URISyntaxException {
-        final KakaoUserInfo userInfo = loginService.parse(token);
+    public ResponseEntity<LoginResponse> login(@RequestParam("token") String kakaoToken) throws MalformedURLException, URISyntaxException {
+        final KakaoUserInfo userInfo = loginService.parse(kakaoToken);
+
         if (loginService.isNewUser(userInfo.getId())) {
             loginService.register(userInfo);
         }
 
-        return ResponseEntity.ok(loginService.createToken(userInfo));
+        final MemberResponse member = loginService.findMemberById(userInfo.getId());
+        final Token token = loginService.createToken(userInfo);
+
+        return ResponseEntity.ok(new LoginResponse(member, token));
     }
 
     /**
@@ -52,7 +54,9 @@ public final class LoginController {
      * 만료된 토큰을 가져오면 401(Unauthorized)을 리턴한다.
      */
     @GetMapping("/test")
-    public ResponseEntity<UserId> test(@AuthParam UserId userId) {
-        return ResponseEntity.ok(userId);
+    public ResponseEntity<MemberResponse> test(@AuthParam UserId userId) {
+        final MemberResponse member = loginService.findMemberById(userId.getId());
+
+        return ResponseEntity.ok(member);
     }
 }
