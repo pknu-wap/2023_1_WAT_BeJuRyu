@@ -6,14 +6,14 @@
         <variable
             name="viewModel"
             type="com.jaino.dictionary.drink_info.DrinkInfoViewModel" />
-
     </data>
+
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/drink_info_cardView"
+            android:id="@+id/drink_info_search_card"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -37,14 +37,16 @@
 
                 <TextView
                     android:id="@+id/drink_info_card_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:gravity="left"
+                    android:text="@{viewModel.drinkDataUiState.name}"
                     android:textColor="@color/black"
                     android:textSize="18sp"
                     android:textStyle="bold"
-                    android:text="@{viewModel.drinkDataUiState.name}"
                     app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/goToSearchButton"
                     app:layout_constraintStart_toEndOf="@+id/back_button"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
@@ -60,6 +62,17 @@
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/home_24" />
 
+                <androidx.appcompat.widget.AppCompatImageButton
+                    android:id="@+id/goToSearchButton"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/transparent"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@id/goToHomeButton"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/baseline_search_24" />
+
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
@@ -71,12 +84,11 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drink_info_cardView">
+            app:layout_constraintTop_toBottomOf="@id/drink_info_search_card">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
-
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/drink_infoImage_card"
@@ -94,39 +106,27 @@
                             android:id="@+id/imageView"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
                             app:imageUrl="@{viewModel.drinkDataUiState.image}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/drink_info_name"
+                            app:layout_constraintTop_toTopOf="parent"
                             tools:srcCompat="@drawable/img" />
 
-                        <TextView
-                            android:id="@+id/drink_info_name"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="16dp"
-                            android:gravity="left"
-                            android:text="@{viewModel.drinkDataUiState.name}"
-                            android:textColor="@color/black"
-                            android:textSize="22sp"
-                            android:textStyle="bold"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent"
-                            tools:text="테라" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/drink_name_review_cardView"
+                    android:id="@+id/drink_review_cardView"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/drink_infoImage_card">
+                    app:layout_constraintTop_toBottomOf="@id/drink_info_card">
 
                     <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
@@ -137,23 +137,13 @@
                             android:id="@+id/review_rating_bar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
+                            android:enabled="false"
+                            android:isIndicator="true"
+                            android:progressTint="@color/yellow"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/review_title2" />
 
-                        <Button
-                            android:id="@+id/goReviewTextView"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:text="@string/write_review"
-                            android:layout_marginTop="16dp"
-                            android:textColor="@color/white"
-                            android:background="@drawable/rounded_button_background"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/review_rating_score_text" />
 
                         <TextView
                             android:id="@+id/reiview_title"
@@ -166,7 +156,7 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <TextView
                             android:id="@+id/review_title2"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
@@ -180,138 +170,165 @@
                             android:id="@+id/review_rating_score_text"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            tools:text="4.7/5.0"
                             android:fontFamily="@font/cookierun_bold"
                             app:layout_constraintEnd_toEndOf="@+id/review_rating_bar"
                             app:layout_constraintStart_toStartOf="@+id/review_rating_bar"
-                            app:layout_constraintTop_toBottomOf="@+id/review_rating_bar" />
+                            app:layout_constraintTop_toBottomOf="@+id/review_rating_bar"
+                            tools:text="4.7/5.0" />
+
+                        <Button
+                            android:id="@+id/goToReviewButton"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginVertical="16dp"
+                            android:background="@drawable/rounded_button_background"
+                            android:text="@string/write_review"
+                            android:textColor="@color/white"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/review_rating_score_text"/>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
 
-                <TextView
-                    android:id="@+id/drink_info_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_margin="16dp"
-                    android:text="@string/product_info"
-                    android:textColor="@color/black"
-                    android:textSize="22sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drink_name_review_cardView" />
-
-                <TableLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/drink_info_card"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_margin="16dp"
-                    android:stretchColumns="*"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="wrap_content"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drink_info_title">
+                    app:layout_constraintTop_toBottomOf="@id/drink_infoImage_card">
 
-                    <TableRow
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/drink_type"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_span="1"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/type"
-                            android:textColor="@color/black" />
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_margin="16dp"
+                            android:stretchColumns="*"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/drink_info_title">
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_type"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="1"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/type"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_type_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@{viewModel.drinkDataUiState.type}"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_dosu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/dosu"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_dosu_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@{Double.toString(viewModel.drinkDataUiState.dosu)}"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_volume"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/volume"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_volume_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@{Integer.toString(viewModel.drinkDataUiState.volume)}"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/price"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_price_texxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@{Integer.toString(viewModel.drinkDataUiState.price)}"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+                        </TableLayout>
 
                         <TextView
-                            android:id="@+id/drink_type_text"
+                            android:id="@+id/drink_info_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@{viewModel.drinkDataUiState.type}"
-                            android:textColor="@color/black" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/drink_dosu"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/dosu"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:id="@+id/drink_dosu_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@{Double.toString(viewModel.drinkDataUiState.dosu)}"
-                            android:textColor="@color/black" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/drink_volume"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/volume"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:id="@+id/drink_volume_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@{Integer.toString(viewModel.drinkDataUiState.volume)}"
-                            android:textColor="@color/black" />
-                    </TableRow>
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
-
-                        <TextView
-                            android:id="@+id/drink_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/price"
-                            android:textColor="@color/black" />
-
-                        <TextView
-                            android:id="@+id/drink_price_texxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@{Integer.toString(viewModel.drinkDataUiState.price)}"
-                            android:textColor="@color/black" />
-                    </TableRow>
-                </TableLayout>
+                            android:layout_margin="16dp"
+                            android:text="@string/product_info"
+                            android:textColor="@color/black"
+                            android:textSize="22sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </ScrollView>
