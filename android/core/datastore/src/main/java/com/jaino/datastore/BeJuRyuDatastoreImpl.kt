@@ -32,9 +32,9 @@ class BeJuRyuDatastoreImpl @Inject constructor(
         set(value) = storeDelegate.edit { putString("REFRESH_TOKEN", value) }
         get() = storeDelegate.getString("REFRESH_TOKEN", "") ?: ""
 
-    override var userId: Int
-        set(value) = storeDelegate.edit { putInt("USER_ID", value) }
-        get() = storeDelegate.getInt("USER_ID", -1)
+    override var userId: Long
+        set(value) = storeDelegate.edit { putLong("USER_ID", value) }
+        get() = storeDelegate.getLong("USER_ID", -1)
 
     override var nickName: String
         set(value) = storeDelegate.edit{ putString("NICK_NAME", value) }
