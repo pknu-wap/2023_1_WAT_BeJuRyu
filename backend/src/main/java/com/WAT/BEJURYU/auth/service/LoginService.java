@@ -3,6 +3,7 @@ package com.WAT.BEJURYU.auth.service;
 import com.WAT.BEJURYU.auth.dto.KakaoUserInfo;
 import com.WAT.BEJURYU.auth.dto.MemberResponse;
 import com.WAT.BEJURYU.auth.dto.Token;
+import com.WAT.BEJURYU.auth.exception.InvalidTokenException;
 import com.WAT.BEJURYU.entity.Member;
 import com.WAT.BEJURYU.service.MemberService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +12,7 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.client.HttpClientErrorException;
 import org.springframework.web.client.RestTemplate;
 
 import java.net.MalformedURLException;
@@ -31,12 +33,21 @@ public class LoginService {
         final RestTemplate client = new RestTemplate();
         final URL url = new URL(KAKAO_API_PROFILE);
 
+        final HttpEntity<Object> httpEntity = makeRequestForKakaoApi(token);
+
+        try {
+            return client.exchange(url.toURI(), HttpMethod.GET, httpEntity, KakaoUserInfo.class).getBody();
+        } catch (HttpClientErrorException e) {
+            throw new InvalidTokenException("잘못된 카카오 토큰 정보입니다.");
+        }
+    }
+
+    private HttpEntity<Object> makeRequestForKakaoApi(final String token) {
         final HttpHeaders header = new HttpHeaders();
         header.setBearerAuth(token);
         header.setAccessControlAllowCredentials(true);
-        final HttpEntity<Object> httpEntity = new HttpEntity<>(header);
 
-        return client.exchange(url.toURI(), HttpMethod.GET, httpEntity, KakaoUserInfo.class).getBody();
+        return new HttpEntity<>(header);
     }
 
     @Transactional
