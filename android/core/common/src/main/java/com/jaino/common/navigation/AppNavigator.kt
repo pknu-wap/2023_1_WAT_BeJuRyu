@@ -10,4 +10,6 @@ interface AppNavigator {
     fun navigateToAnalyze(): Intent
 
     fun navigateToDictionary(): Intent
+
+    fun navigateToReview(): Intent
 }
