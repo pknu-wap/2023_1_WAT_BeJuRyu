@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/review_nav"
+    app:startDestination="@id/reviewListFragment">
+
+    <fragment
+        android:id="@+id/reviewListFragment"
+        android:name="com.jaino.review.review_list.ReviewListFragment"
+        android:label="ReviewListFragment" >
+        <action
+            android:id="@+id/action_reviewListFragment_to_writeReviewFragment"
+            app:destination="@id/writeReviewFragment" >
+            <argument
+                android:name="drinkId"
+                app:argType="long" />
+        </action>
+        <argument
+            android:name="drinkId"
+            app:argType="long" />
+    </fragment>
+    <fragment
+        android:id="@+id/writeReviewFragment"
+        android:name="com.jaino.review.write_review.WriteReviewFragment"
+        android:label="WriteReviewFragment" >
+        <action
+            android:id="@+id/action_writeReviewFragment_to_reviewListFragment"
+            app:destination="@id/reviewListFragment" >
+            <argument
+                android:name="drinkId"
+                app:argType="long" />
+        </action>
+        <argument
+            android:name="drinkId"
+            app:argType="long" />
+    </fragment>
+</navigation>

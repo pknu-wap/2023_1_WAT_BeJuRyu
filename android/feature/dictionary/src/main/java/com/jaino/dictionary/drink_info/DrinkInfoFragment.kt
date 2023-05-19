@@ -62,6 +62,10 @@ class DrinkInfoFragment : Fragment() {
                 .actionDrinkInfoFragmentToDrinkSearchFragment()
             findNavController().navigate(direction)
         }
+
+        binding.goToReviewButton.setOnClickListener{
+            startActivity(navigator.navigateToReview())
+        }
     }
 
     private fun observeData(){

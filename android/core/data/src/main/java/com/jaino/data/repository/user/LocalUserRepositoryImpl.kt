@@ -8,5 +8,7 @@ class LocalUserRepositoryImpl @Inject constructor(
 ) : LocalUserRepository{
     override suspend fun getNickName(): String = dataStore.nickName
 
+    override suspend fun getUserId(): Long = dataStore.userId
+
     override fun clear() = dataStore.clear()
 }

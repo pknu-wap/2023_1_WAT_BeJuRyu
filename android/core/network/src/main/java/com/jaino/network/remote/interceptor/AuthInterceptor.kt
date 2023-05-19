@@ -3,7 +3,7 @@ package com.jaino.network.remote.interceptor
 import android.content.Context
 import com.jaino.datastore.BeJuRyuDatastore
 import com.jaino.network.BuildConfig
-import com.jaino.network.model.auth.AuthTokenResponse
+import com.jaino.network.model.response.auth.AuthTokenResponse
 import com.jakewharton.processphoenix.ProcessPhoenix
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.serialization.decodeFromString
@@ -25,10 +25,11 @@ class AuthInterceptor @Inject constructor(
                 .build()
         val response = chain.proceed(authRequest)
         when (response.code) {
+            // 액세스 토큰 만료
             401 -> {
                 try {
                     val refreshTokenRequest = originalRequest.newBuilder().get()
-                        .url("${BuildConfig.BASE_DOMAIN_URL}auth/token")
+                        .url("${BuildConfig.BASE_DOMAIN_URL}/auth/refresh")
                         .addHeader("accessToken", dataStore.accessToken)
                         .addHeader("refreshToken", dataStore.refreshToken)
                         .build()
@@ -40,8 +41,8 @@ class AuthInterceptor @Inject constructor(
                                 requireNotNull(refreshTokenResponse.body?.string())
                             )
                         with(dataStore) {
-                            accessToken = responseToken.accessToken
-                            refreshToken = responseToken.refreshToken
+                            accessToken = responseToken.access
+                            refreshToken = responseToken.refresh
                         }
                         refreshTokenResponse.close()
                         val newRequest = originalRequest.newBuilder()

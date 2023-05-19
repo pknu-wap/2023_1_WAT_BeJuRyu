@@ -37,6 +37,7 @@
             <option value="$PROJECT_DIR$/feature/analyze" />
             <option value="$PROJECT_DIR$/feature/auth" />
             <option value="$PROJECT_DIR$/feature/dictionary" />
+            <option value="$PROJECT_DIR$/feature/review" />
             <option value="$PROJECT_DIR$/feature/setting" />
           </set>
         </option>

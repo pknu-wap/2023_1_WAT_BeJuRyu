@@ -2,7 +2,6 @@ package com.jaino.data.repository.auth
 
 import com.jaino.datastore.BeJuRyuDatastore
 import com.jaino.network.datasource.auth.SignInDataSource
-import timber.log.Timber
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
@@ -14,7 +13,7 @@ class AuthRepositoryImpl @Inject constructor(
             .onSuccess {
                 setAccessToken(it.accessToken)
                 setRefreshToken(it.refreshToken)
-                setUserId(it.useId)
+                setUserId(it.userId)
                 setNickName(it.nickName)
                 return Result.success(Unit)
             }
@@ -32,7 +31,7 @@ class AuthRepositoryImpl @Inject constructor(
         datastore.refreshToken = token
     }
 
-    override fun setUserId(userId: Int) {
+    override fun setUserId(userId: Long) {
         datastore.userId = userId
     }
 

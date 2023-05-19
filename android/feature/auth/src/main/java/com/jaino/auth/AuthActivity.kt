@@ -44,8 +44,7 @@ class AuthActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     socialAuthRepository.signInByKakaoTalk()
                         .onSuccess {
-                            // viewModel.executeServiceSignIn(it.token)
-                            startActivity(appNavigator.navigateToAnalyze())
+                            viewModel.executeServiceSignIn(it.token)
                         }
                         .onFailure {
                             Toast.makeText(this@AuthActivity,
@@ -57,8 +56,7 @@ class AuthActivity : AppCompatActivity() {
                 lifecycleScope.launch {
                     socialAuthRepository.signInByKakaoAccount()
                         .onSuccess {
-                            // viewModel.executeServiceSignIn(it.token)
-                            startActivity(appNavigator.navigateToAnalyze())
+                            viewModel.executeServiceSignIn(it.token)
                         }
                         .onFailure {
                             Toast.makeText(this@AuthActivity,

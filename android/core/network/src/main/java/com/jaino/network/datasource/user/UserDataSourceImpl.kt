@@ -1,7 +1,7 @@
 package com.jaino.network.datasource.user
 
-import com.jaino.network.model.user.AnalysisResponse
-import com.jaino.network.model.user.AnalysisSentimentResponse
+import com.jaino.network.model.response.user.AnalysisResponse
+import com.jaino.network.model.response.user.AnalysisSentimentResponse
 import com.jaino.network.remote.UserService
 import javax.inject.Inject
 

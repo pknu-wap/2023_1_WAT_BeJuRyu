@@ -6,6 +6,7 @@ import com.jaino.analyze.AnalyzeActivity
 import com.jaino.auth.AuthActivity
 import com.jaino.common.navigation.AppNavigator
 import com.jaino.dictionary.DictionaryActivity
+import com.jaino.review.ReviewActivity
 import com.jaino.setting.SettingActivity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
@@ -20,4 +21,6 @@ class AppNavigatorImpl @Inject constructor(
     override fun navigateToAnalyze(): Intent = Intent(context, AnalyzeActivity::class.java)
 
     override fun navigateToDictionary(): Intent = Intent(context, DictionaryActivity::class.java)
+
+    override fun navigateToReview(): Intent = Intent(context, ReviewActivity::class.java)
 }

@@ -6,6 +6,10 @@ import com.jaino.network.datasource.dictionary.GetDrinkDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkDataSourceImpl
 import com.jaino.network.datasource.dictionary.GetDrinkListDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkListDataSourceImpl
+import com.jaino.network.datasource.review.GetReviewListDataSource
+import com.jaino.network.datasource.review.GetReviewListDataSourceImpl
+import com.jaino.network.datasource.review.PostReviewDataSource
+import com.jaino.network.datasource.review.PostReviewDataSourceImpl
 import com.jaino.network.datasource.user.UserDataSource
 import com.jaino.network.datasource.user.UserDataSourceImpl
 import dagger.Binds
@@ -41,4 +45,16 @@ abstract class NetworkModule {
     abstract fun provideDrinkDataSource(
         drinkDataSourceImpl: GetDrinkDataSourceImpl
     ): GetDrinkDataSource
+
+    @Binds
+    @Singleton
+    abstract fun provideGetReviewListDataStore(
+        reviewListDataSourceImpl: GetReviewListDataSourceImpl
+    ): GetReviewListDataSource
+
+    @Binds
+    @Singleton
+    abstract fun providePostReviewDataSource(
+        postReviewDataSourceImpl: PostReviewDataSourceImpl
+    ): PostReviewDataSource
 }

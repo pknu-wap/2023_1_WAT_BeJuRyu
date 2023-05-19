@@ -9,6 +9,6 @@ interface AuthRepository {
 
     fun setNickName(nickName: String)
 
-    fun setUserId(userId: Int)
+    fun setUserId(userId: Long)
 
 }
