@@ -8,39 +8,54 @@ import com.WAT.BEJURYU.entity.Member;
 import com.WAT.BEJURYU.entity.Review;
 import com.WAT.BEJURYU.repository.MemberRepository;
 import com.WAT.BEJURYU.repository.ReviewRepository;
-import java.util.List;
-import java.util.Optional;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
 
 @Service
 public class ReviewService {
 
-    private ReviewRepository reviewRepository;
-    private MemberRepository memberRepository;
+    private final ReviewRepository reviewRepository;
+    private final MemberRepository memberRepository;
 
-    public ReviewService(ReviewRepository reviewRepository) {
+    public ReviewService(ReviewRepository reviewRepository, final MemberRepository memberRepository) {
         this.reviewRepository = reviewRepository;
+        this.memberRepository = memberRepository;
     }
 
-    public ReviewResponses getReviews(long drink_id) {
-        final List<Review> reviews = reviewRepository.findByDrinkId(drink_id);
+    public ReviewResponses getReviews(long drinkId) {
+        final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
+
         return ReviewResponses.of(reviews);
     }
 
     @Transactional
     public ReviewResponse postReview(Drink drink, WriteReviewRequest reviewRequest) {
-        Optional<Member> member = memberRepository.findById(reviewRequest.getUser_id());
+        final Member member = memberRepository.findById(reviewRequest.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+
         Review review = Review.builder()
-            .comment(reviewRequest.getComment())
-            .score(reviewRequest.getScore())
-            .user(member.get())
-            .date(reviewRequest.getDate())
-            .drink(drink)
-            .build();
+                .comment(reviewRequest.getComment())
+                .score(reviewRequest.getScore())
+                .user(member)
+                .date(reviewRequest.getDate())
+                .drink(drink)
+                .build();
 
         Review postedReview = reviewRepository.save(review);
-
         return ReviewResponse.from(postedReview);
+    }
+
+    @Transactional
+    public ReviewResponse updateReview(final Long reviewId, WriteReviewRequest reviewRequest) {
+        final Review review = reviewRepository.findById(reviewId)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 리뷰입니다."));
+
+        review.updateScore(reviewRequest.getScore());
+        review.updateComment(reviewRequest.getComment());
+        review.updateDate(reviewRequest.getDate());
+
+        return ReviewResponse.from(review);
     }
 }

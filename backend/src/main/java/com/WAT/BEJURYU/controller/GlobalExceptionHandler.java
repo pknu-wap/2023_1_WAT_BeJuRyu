@@ -3,6 +3,7 @@ package com.WAT.BEJURYU.controller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
+import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
@@ -14,6 +15,12 @@ public final class GlobalExceptionHandler {
     public ResponseEntity<String> handle(final IllegalArgumentException e) {
         logger.info("잘못된 요청: ", e);
         return ResponseEntity.badRequest().body(e.getMessage());
+    }
+
+    @ExceptionHandler
+    public ResponseEntity<String> handle(final HttpMessageNotReadableException e) {
+        logger.info("잘못된 요청: ", e);
+        return ResponseEntity.badRequest().body("인자가 없습니다.");
     }
 
     @ExceptionHandler

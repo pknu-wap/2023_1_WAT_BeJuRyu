@@ -1,19 +1,26 @@
 package com.WAT.BEJURYU.dto;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@RequiredArgsConstructor
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+@NoArgsConstructor
 @Getter
 @Setter
 public class WriteReviewRequest {
 
-    private final long user_id;
-    private final String comment;
-    private final int score;
-    private final String date = LocalDateTime.now()
-        .format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
+    private long userId;
+    private String comment;
+    private int score;
+    private String date = LocalDateTime.now()
+            .format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
+
+    public WriteReviewRequest(final long userId, final String comment, final int score) {
+        this.userId = userId;
+        this.comment = comment;
+        this.score = score;
+    }
 }
