@@ -27,4 +27,16 @@ public class Review {
     @ManyToOne
     @JoinColumn(name = "drink_id")
     private Drink drink;
+
+    public void updateComment(final String comment) {
+        this.comment = comment;
+    }
+
+    public void updateScore(final int score) {
+        this.score = score;
+    }
+
+    public void updateDate(final String date) {
+        this.date = date;
+    }
 }
