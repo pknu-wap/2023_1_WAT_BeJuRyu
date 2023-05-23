@@ -25,47 +25,76 @@ function Dictionary() {
     return (
       <S.Container>
         <S.Wrapper>
-          <S.searchBox>
-            <Box
-              component="form"
-              sx={{
-                "&.MuiTextField-root": { m: 1, width: "40ch" },
-              }}
-              noValidate
-              autoComplete="off"
-            >
-              <FormControl fullWidth>
-                <NativeSelect
-                  defaultValue={"none"}
-                  inputProps={{ name: "category", id: "uncontrolled-native" }}
+          <S.Info>
+            <S.searchBox>
+              <Box
+                component="form"
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  "&.MuiTextField-root": { height: "100%" },
+                  "&.MuiInputBase=root": { height: "100%" },
+                }}
+                noValidate
+                autoComplete="off"
+              >
+                <FormControl sx={{ m: 1, width: "15ch" }}>
+                  <NativeSelect
+                    defaultValue={"none"}
+                    inputProps={{ name: "category", id: "uncontrolled-native" }}
+                  >
+                    <option value={"ALL"}>통합검색</option>
+                    <option value={"SOJU"}>소주</option>
+                    <option value={"BEER"}>맥주</option>
+                    <option value={"WINE"}>와인</option>
+                    <option value={"LIQUEUR"}>리큐어</option>
+                    <option value={"WHISKEY"}>위스키</option>
+                    <option value={"FRUIT"}>과실주</option>
+                    <option value={"YAKJU"}>약주</option>
+                    <option value={"BRANDY"}>브랜디</option>
+                    <option value={"RICE_WIND"}>청주</option>
+                    <option value={"MAKGEOLLI"}>막걸리</option>
+                  </NativeSelect>
+                </FormControl>
+                <TextField
+                  id="standard-search"
+                  label="찾고싶은 주류를 입력해주세요!"
+                  type="search"
+                  variant="standard"
+                  alignItems="center"
+                  InputProps={{
+                    disableUnderline: true,
+                  }}
+                  sx={{ m: 1, width: "60ch", height: "100%" }}
+                />
+                <IconButton
+                  type="submit"
+                  sx={{ p: "10px" }}
+                  aria-label="search"
                 >
-                  <option value={"none"}>통합검색</option>
-                  <option value={"SOJU"}>소주</option>
-                  <option value={"BEER"}>맥주</option>
-                  <option value={"WINE"}>와인</option>
-                  <option value={"LIQUEUR"}>리큐어</option>
-                  <option value={"WHISKEY"}>위스키</option>
-                  <option value={"FRUIT"}>과실주</option>
-                  <option value={"YAKJU"}>약주</option>
-                  <option value={"BRANDY"}>브랜디</option>
-                  <option value={"RICE_WIND"}>청주</option>
-                  <option value={"MAKGEOLLI"}>막걸리</option>
-                </NativeSelect>
-              </FormControl>
-              <TextField
-                id="standard-search"
-                label="찾고싶은 주류를 입력해주세요!"
-                type="search"
-                variant="standard"
-              />
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
-                <SearchIcon />
-              </IconButton>
-            </Box>
-          </S.searchBox>
-
-          <S.Title>주류를 검색해 보세요!</S.Title>
-          <S.WhiteBox></S.WhiteBox>
+                  <SearchIcon />
+                </IconButton>
+              </Box>
+            </S.searchBox>
+          </S.Info>
+          {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
+          <S.juruBox style={{ paddingTop: "20px" }}>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+            </div>
+            <div style={{ display: "flex", alignItems: "center" }}>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox></S.WhiteBox>
+            </div>
+          </S.juruBox>
         </S.Wrapper>
       </S.Container>
     );

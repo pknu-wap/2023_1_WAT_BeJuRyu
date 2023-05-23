@@ -4,7 +4,7 @@ const searchBox = styled.div`
   width: 50rem;
   //max-width: 45rem;
   height: 3rem;
-  background-color: #d9d9d9;
+  background-color: white;
   border-radius: 2rem;
   justify-content: center;
   display: flex;
@@ -71,7 +71,7 @@ const Info = styled.div`
   margin-top: 1rem;
   width: 100%;
   display: flex;
-  justify-content: flex-end;
+  justify-content: center;
   column-gap: 0.5rem;
 `;
 
@@ -96,7 +96,7 @@ const Form = styled.div`
 `;
 
 const WhiteBox = styled.div`
-  width: 60rem;
+  width: 10rem;
   height: 15rem;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -113,6 +113,19 @@ const WhiteBox = styled.div`
   }
 `;
 
+const juruBox = styled.div`
+  width: 80rem;
+  //max-width: 45rem;
+  height: 34rem;
+  //background-color: #e11299;
+  //border-radius: 2rem;
+  color: black;
+  //border: 5px solid #e11299;
+  //display: flex;
+  justify-content: center;
+  align-items: center;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -124,6 +137,7 @@ const S = {
   WhiteBox,
   Title,
   searchBox,
+  juruBox,
 };
 
 export default S;
