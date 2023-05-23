@@ -9,6 +9,7 @@ const Navbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #9a208c;
+
   padding: 0.5rem;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
@@ -85,27 +86,27 @@ export default function Header() {
             BeJuRyu
           </Link>
         </Navbarlogo>
-        {/* {userName === "" ? (
+        {userName === "" ? (
           ""
-        ) : ( */}
-        <Navbarmenu>
-          <li>
-            <Link to="/Dictionary" style={{ textDecoration: "none" }}>
-              주류사전메뉴
-            </Link>
-          </li>
-          <li>
-            <Link to="/Recommend" style={{ textDecoration: "none" }}>
-              주류추천메뉴
-            </Link>
-          </li>
-          <li>
-            <Link to="/MyPage" style={{ textDecoration: "none" }}>
-              마이페이지
-            </Link>
-          </li>
-        </Navbarmenu>
-        {/* )} */}
+        ) : (
+          <Navbarmenu>
+            <li>
+              <Link to="/Dictionary" style={{ textDecoration: "none" }}>
+                주류사전메뉴
+              </Link>
+            </li>
+            <li>
+              <Link to="/Recommend" style={{ textDecoration: "none" }}>
+                주류추천메뉴
+              </Link>
+            </li>
+            <li>
+              <Link to="/MyPage" style={{ textDecoration: "none" }}>
+                마이페이지
+              </Link>
+            </li>
+          </Navbarmenu>
+        )}
         {userName === "" ? (
           <Navbarlink>
             <div></div>
