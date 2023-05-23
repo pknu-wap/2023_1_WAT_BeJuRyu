@@ -7,7 +7,7 @@
     <fragment
         android:id="@+id/reviewListFragment"
         android:name="com.jaino.review.review_list.ReviewListFragment"
-        android:label="ReviewListFragment" >
+        android:label="ReviewListFragment">
         <action
             android:id="@+id/action_reviewListFragment_to_writeReviewFragment"
             app:destination="@id/writeReviewFragment" >
@@ -18,6 +18,9 @@
         <argument
             android:name="drinkId"
             app:argType="long" />
+        <deepLink
+            android:id="@+id/deepLink"
+            app:uri="BeJuRyu://feature/review/list/{drinkId}" />
     </fragment>
     <fragment
         android:id="@+id/writeReviewFragment"
@@ -25,11 +28,7 @@
         android:label="WriteReviewFragment" >
         <action
             android:id="@+id/action_writeReviewFragment_to_reviewListFragment"
-            app:destination="@id/reviewListFragment" >
-            <argument
-                android:name="drinkId"
-                app:argType="long" />
-        </action>
+            app:destination="@id/reviewListFragment" />
         <argument
             android:name="drinkId"
             app:argType="long" />
