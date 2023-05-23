@@ -5,6 +5,9 @@ on:
     types: closed
     branches:
       - develop_server
+      
+permissions:
+  contents: read
 
 jobs:
   deploy:
