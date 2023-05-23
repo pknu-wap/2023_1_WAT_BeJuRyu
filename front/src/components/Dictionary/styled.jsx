@@ -1,17 +1,31 @@
 import styled from "styled-components";
 
+const searchBox = styled.div`
+  width: 50rem;
+  //max-width: 45rem;
+  height: 3rem;
+  background-color: #d9d9d9;
+  border-radius: 2rem;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+`;
 const Container = styled.div`
-  width: 30rem;
-  max-width: 45rem;
-  height: 30rem;
+  width: 90rem;
+  //max-width: 45rem;
+  height: 42rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
   border: 5px solid #e11299;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const Wrapper = styled.div`
   margin: 2rem 0;
+  //align-items: center;
 `;
 
 const Title = styled.div`
@@ -82,7 +96,7 @@ const Form = styled.div`
 `;
 
 const WhiteBox = styled.div`
-  width: 25rem;
+  width: 60rem;
   height: 15rem;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -109,6 +123,7 @@ const S = {
   Form,
   WhiteBox,
   Title,
+  searchBox,
 };
 
 export default S;

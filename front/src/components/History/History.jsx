@@ -14,9 +14,9 @@ function History() {
   const HistoryView = (
     <S.Container>
       <S.Wrapper>
-        <S.WhiteBox>
-          <S.ReButton onClick={goMypage}>마이페이지로 돌아가기</S.ReButton>
-        </S.WhiteBox>
+        <S.Title>현재까지 추천받은 주류 목록입니다</S.Title>
+        <S.WhiteBox></S.WhiteBox>
+        <S.ReButton onClick={goMypage}>마이페이지로 돌아가기</S.ReButton>
       </S.Wrapper>
     </S.Container>
   );

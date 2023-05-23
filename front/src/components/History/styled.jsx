@@ -58,7 +58,7 @@ const Form = styled.div`
 
 const WhiteBox = styled.div`
   width: 70rem;
-  height: 35rem;
+  height: 25rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
@@ -74,11 +74,19 @@ const WhiteBox = styled.div`
   }
 `;
 
+const Title = styled.div`
+  margin: 2rem 0;
+  font-weight: 600;
+  text-align: center;
+  font-size: 1.5rem;
+  font-family: SCDream5;
+  color: black;
+`;
 const S = {
   Wrapper,
   Container,
   ReButton,
-
+  Title,
   Info,
   Main,
   Form,
