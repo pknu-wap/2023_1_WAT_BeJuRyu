@@ -1,4 +1,4 @@
-name: back deploy for prod
+name: deploy
 
 on:
   workflow_dispatch:
@@ -13,7 +13,6 @@ jobs:
         host: ${{ secrets.HOST }}
         username: ${{ secrets.USERNAME }}
         key: ${{ secrets.KEY }}
-# 	password: ${{ secrets.PASSWORD }}
         script: |
           kill -9 $(lsof -i:8080)
           cd ~/app/2023_1_WAT_BeJuRyu/backend
