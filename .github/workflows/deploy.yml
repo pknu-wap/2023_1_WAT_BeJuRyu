@@ -1,0 +1,28 @@
+name: deploy
+
+on:
+  pull_request:
+    types: closed
+    branches:
+      - develop_server
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    name: Deploy
+    runs-on: ubuntu-latest
+    steps:
+    - uses: appleboy/ssh-action@v0.1.10
+      with:
+        host: ${{ secrets.HOST }}
+        username: ${{ secrets.USERNAME }}
+        key: ${{ secrets.KEY }}
+        script: |
+          kill -9 $(lsof -i:8080)
+          cd ~/app/2023_1_WAT_BeJuRyu/backend
+          git pull origin develop_server
+          ./gradlew bootJar
+          cd build/libs
+          nohup java -jar BEJURYU-0.0.1-SNAPSHOT.jar &
