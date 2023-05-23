@@ -1,13 +1,7 @@
 name: deploy
 
 on:
-  pull_request:
-    types: closed
-    branches:
-      - develop_server
-
-permissions:
-  contents: read
+  workflow_dispatch:
 
 jobs:
   deploy:
