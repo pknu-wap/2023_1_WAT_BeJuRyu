@@ -55,4 +55,5 @@
     <string name="write_review_content_hint">주류에 대한 평가를 작성해 주세요.</string>
     <string name="register">등록</string>
     <string name="write_review_rating">주류에 대한 후기를 남겨주세요</string>
+    <string name="item_nickname">%1$s님</string>
 </resources>
