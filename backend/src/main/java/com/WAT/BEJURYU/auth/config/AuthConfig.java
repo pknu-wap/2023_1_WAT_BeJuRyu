@@ -20,8 +20,9 @@ public class AuthConfig implements WebMvcConfigurer {
 
     @Override
     public void addCorsMappings(final CorsRegistry registry) {
-        registry.addMapping("/**")
+        registry.addMapping("http://localhost:3000")
                 .allowedMethods("*")
+                .allowCredentials(true)
                 .allowedOrigins("*");
     }
 }
