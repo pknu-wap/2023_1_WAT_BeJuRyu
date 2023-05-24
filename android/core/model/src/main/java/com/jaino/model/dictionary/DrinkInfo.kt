@@ -1,6 +1,6 @@
 package com.jaino.model.dictionary
 
-data class DrinkData(
+data class DrinkInfo(
     val name : String,
     val image : String,
     val dosu : Double,
