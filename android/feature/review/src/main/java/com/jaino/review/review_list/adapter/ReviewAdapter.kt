@@ -5,18 +5,18 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jaino.model.review.DrinkReview
+import com.jaino.model.review.ReviewItem
 import com.jaino.review.databinding.ItemReviewBinding
 
-class ReviewAdapter : ListAdapter<DrinkReview, ReviewAdapter.ReviewViewHolder>(callback) {
+class ReviewAdapter : ListAdapter<ReviewItem, ReviewAdapter.ReviewViewHolder>(callback) {
 
     companion object{
-        val callback = object : DiffUtil.ItemCallback<DrinkReview>(){
-            override fun areContentsTheSame(oldItem: DrinkReview, newItem: DrinkReview): Boolean {
+        val callback = object : DiffUtil.ItemCallback<ReviewItem>(){
+            override fun areContentsTheSame(oldItem: ReviewItem, newItem: ReviewItem): Boolean {
                 return oldItem.reviewId == newItem.reviewId
             }
 
-            override fun areItemsTheSame(oldItem: DrinkReview, newItem: DrinkReview): Boolean {
+            override fun areItemsTheSame(oldItem: ReviewItem, newItem: ReviewItem): Boolean {
                 return oldItem == newItem
             }
         }
@@ -33,8 +33,8 @@ class ReviewAdapter : ListAdapter<DrinkReview, ReviewAdapter.ReviewViewHolder>(c
 
     inner class ReviewViewHolder(private val binding : ItemReviewBinding)
         : RecyclerView.ViewHolder(binding.root){
-            fun bind(item : DrinkReview){
-                binding.item = item
-            }
+        fun bind(item : ReviewItem){
+            binding.item = item
+        }
     }
 }
