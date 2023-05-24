@@ -7,9 +7,5 @@ interface AppNavigator {
 
     fun navigateToSetting(): Intent
 
-    fun navigateToAnalyze(): Intent
-
-    fun navigateToDictionary(): Intent
-
-    fun navigateToReview(): Intent
+    fun navigateToHome(): Intent
 }
