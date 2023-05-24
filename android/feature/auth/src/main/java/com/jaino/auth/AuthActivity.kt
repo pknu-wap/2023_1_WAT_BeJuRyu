@@ -72,7 +72,7 @@ class AuthActivity : AppCompatActivity() {
             when(it){
                 is AuthViewModel.UiState.Init -> {}
                 is AuthViewModel.UiState.Success -> {
-                    startActivity(appNavigator.navigateToAnalyze())
+                    startActivity(appNavigator.navigateToHome())
                 }
                 is AuthViewModel.UiState.Failure -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()

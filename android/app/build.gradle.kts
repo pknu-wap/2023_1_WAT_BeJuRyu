@@ -51,6 +51,7 @@ dependencies {
     kapt(libs.hilt.kapt)
     implementation(libs.androidx.hilt.work)
     kapt(libs.androidx.hilt.work.compiler)
+    implementation(libs.bundles.navigation)
 
     // Third-Party
     implementation(libs.kakao.login)

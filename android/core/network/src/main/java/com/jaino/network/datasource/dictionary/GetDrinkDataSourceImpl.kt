@@ -1,16 +1,16 @@
 package com.jaino.network.datasource.dictionary
 
-import com.jaino.network.model.response.dictionary.DrinkDataResponse
+import com.jaino.network.model.response.dictionary.DrinkInfoResponse
 import com.jaino.network.remote.DictionaryService
 import javax.inject.Inject
 
 class GetDrinkDataSourceImpl @Inject constructor(
     private val service: DictionaryService
 ): GetDrinkDataSource{
-    override suspend fun getDrinkById(id: Long): Result<DrinkDataResponse> =
+    override suspend fun getDrinkById(id: Long): Result<DrinkInfoResponse> =
         runCatching {
             // service.getDrinkById(id).data
-            DrinkDataResponse(
+            DrinkInfoResponse(
                 name = "테라",
                 image = "https://cdn.veluga.kr/files/supplier/13/drinks/24636_Main_-_RAMON.png",
                 dosu = 4.5,
@@ -20,6 +20,6 @@ class GetDrinkDataSourceImpl @Inject constructor(
             )
         }.onFailure {error ->
             error.printStackTrace()
-            Result.failure<DrinkDataResponse>(error)
+            Result.failure<DrinkInfoResponse>(error)
         }
 }

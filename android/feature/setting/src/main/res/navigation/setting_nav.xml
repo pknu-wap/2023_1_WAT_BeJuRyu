@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/setting_nav"
     app:startDestination="@id/settingFragment">
-
+    <deepLink app:uri="BeJuRyu://feature/setting"/>
     <fragment
         android:id="@+id/profileFragment"
         android:name="com.jaino.setting.profile.ProfileFragment"
@@ -45,11 +45,11 @@
         android:id="@+id/historyInfoFragment"
         android:name="com.jaino.setting.history.info.HistoryInfoFragment"
         android:label="HistoryInfoFragment" >
-        <action
-            android:id="@+id/action_historyInfoFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
         <argument
             android:name="id"
             app:argType="long" />
+        <action
+            android:id="@+id/action_historyInfoFragment_to_historyFragment"
+            app:destination="@id/historyFragment" />
     </fragment>
 </navigation>

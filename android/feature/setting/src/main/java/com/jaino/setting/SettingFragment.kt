@@ -58,7 +58,7 @@ class SettingFragment : Fragment() {
     }
 
     private fun navigateToAnalyze(){
-        startActivity(appNavigator.navigateToAnalyze())
+        startActivity(appNavigator.navigateToHome())
     }
 
     private fun navigateToAccount(){

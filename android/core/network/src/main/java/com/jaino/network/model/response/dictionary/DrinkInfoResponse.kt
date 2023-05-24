@@ -1,15 +1,8 @@
 package com.jaino.network.model.response.dictionary
 
-import com.jaino.model.dictionary.DrinkData
+import com.jaino.model.dictionary.DrinkInfo
 
-data class DrinkListResponse(
-    val status : Int,
-    val success: Boolean,
-    val message: String,
-    val data: List<DrinkDataResponse>
-)
-
-data class DrinkDataResponse(
+data class DrinkInfoResponse(
     val name : String,
     val image : String,
     val dosu : Double,
@@ -17,7 +10,7 @@ data class DrinkDataResponse(
     val price : Int,
     val type : String
 ){
-    fun toDrinkData(): DrinkData = DrinkData(
+    fun toDrinkInfo(): DrinkInfo = DrinkInfo(
         name = name,
         image = image,
         dosu = dosu,

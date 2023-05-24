@@ -6,19 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jaino.dictionary.databinding.ItemDrinkListBinding
-import com.jaino.model.dictionary.DrinkData
+import com.jaino.model.dictionary.DrinkInfo
 
 class DrinkDataAdapter(
     private val itemClick : (Long) -> Unit
-) : ListAdapter<DrinkData, DrinkDataAdapter.DrinkDataViewHolder>(callback) {
+) : ListAdapter<DrinkInfo, DrinkDataAdapter.DrinkDataViewHolder>(callback) {
 
     companion object{
-        val callback = object : DiffUtil.ItemCallback<DrinkData>(){
-            override fun areItemsTheSame(oldItem: DrinkData, newItem: DrinkData): Boolean {
+        val callback = object : DiffUtil.ItemCallback<DrinkInfo>(){
+            override fun areItemsTheSame(oldItem: DrinkInfo, newItem: DrinkInfo): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: DrinkData, newItem: DrinkData): Boolean {
+            override fun areContentsTheSame(oldItem: DrinkInfo, newItem: DrinkInfo): Boolean {
                 return oldItem.name == newItem.name
             }
         }
@@ -35,7 +35,7 @@ class DrinkDataAdapter(
 
     inner class DrinkDataViewHolder(private val binding: ItemDrinkListBinding)
         : RecyclerView.ViewHolder(binding.root){
-        fun bind(item : DrinkData){
+        fun bind(item : DrinkInfo){
             binding.item = item
 
             //TODO 실제 id 값으로 연결 현재 model에 id 값 빠져 있음.

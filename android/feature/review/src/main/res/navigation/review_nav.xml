@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/review_nav"
     app:startDestination="@id/reviewListFragment">
-
+    <deepLink app:uri="BeJuRyu://feature/review" />
     <fragment
         android:id="@+id/reviewListFragment"
         android:name="com.jaino.review.review_list.ReviewListFragment"
-        android:label="ReviewListFragment" >
+        android:label="ReviewListFragment">
+        <argument
+            android:name="drinkId"
+            android:defaultValue="0L"/>
+        <deepLink
+            app:uri="BeJuRyu://feature/review/list?drinkId={drinkId}" />
         <action
             android:id="@+id/action_reviewListFragment_to_writeReviewFragment"
             app:destination="@id/writeReviewFragment" >
@@ -15,14 +20,14 @@
                 android:name="drinkId"
                 app:argType="long" />
         </action>
-        <argument
-            android:name="drinkId"
-            app:argType="long" />
     </fragment>
     <fragment
         android:id="@+id/writeReviewFragment"
         android:name="com.jaino.review.write_review.WriteReviewFragment"
         android:label="WriteReviewFragment" >
+        <argument
+            android:name="drinkId"
+            app:argType="long" />
         <action
             android:id="@+id/action_writeReviewFragment_to_reviewListFragment"
             app:destination="@id/reviewListFragment" >
@@ -30,8 +35,5 @@
                 android:name="drinkId"
                 app:argType="long" />
         </action>
-        <argument
-            android:name="drinkId"
-            app:argType="long" />
     </fragment>
 </navigation>

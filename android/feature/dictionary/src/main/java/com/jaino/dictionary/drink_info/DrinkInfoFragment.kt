@@ -4,19 +4,20 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jaino.common.extensions.showToast
-import com.jaino.common.navigation.AppNavigator
 import com.jaino.dictionary.R
 import com.jaino.dictionary.databinding.FragmentDrinkInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class DrinkInfoFragment : Fragment() {
@@ -26,9 +27,6 @@ class DrinkInfoFragment : Fragment() {
 
     private val viewModel : DrinkInfoViewModel by viewModels()
     private val args : DrinkInfoFragmentArgs by navArgs()
-
-    @Inject
-    lateinit var navigator: AppNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,18 +41,18 @@ class DrinkInfoFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        viewModel.getDrinkData(args.id)
+        viewModel.getDrinkData(args.drinkId)
         initViews()
         observeData()
     }
 
     private fun initViews(){
         binding.backButton.setOnClickListener {
-
+            findNavController().popBackStack(R.id.drinkListFragment, false)
         }
 
         binding.goToHomeButton.setOnClickListener {
-            startActivity(navigator.navigateToAnalyze())
+            findNavController().navigate("BeJuRyu://feature/analyze".toUri())
         }
 
         binding.goToSearchButton.setOnClickListener {
@@ -64,23 +62,22 @@ class DrinkInfoFragment : Fragment() {
         }
 
         binding.goToReviewButton.setOnClickListener{
-            startActivity(navigator.navigateToReview())
+            findNavController()
+                .navigate("BeJuRyu://feature/review/list?drinkId=${args.drinkId}".toUri())
         }
     }
 
     private fun observeData(){
         viewModel.drinkInfoEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
-                when(it){
-                    is DrinkInfoViewModel.UiEvent.Init -> {}
-
+                when (it) {
                     is DrinkInfoViewModel.UiEvent.Failure -> {
-                        if(it.message != null){
+                        if (it.message != null) {
                             requireContext().showToast(it.message)
                         }
                     }
                 }
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     override fun onDestroy() {

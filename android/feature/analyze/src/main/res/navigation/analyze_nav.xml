@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/analyze_nav"
     app:startDestination="@id/analyzeHomeFragment">
+    <deepLink app:uri="BeJuRyu://feature/analyze" />
 
     <fragment
         android:id="@+id/analyzeHomeFragment"

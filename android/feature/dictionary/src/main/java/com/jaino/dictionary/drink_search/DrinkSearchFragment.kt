@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.EditorInfo
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -41,7 +42,7 @@ class DrinkSearchFragment : Fragment() {
 
     private fun initView(){
         binding.backToAnalyzeButton.setOnClickListener{
-            startActivity(navigator.navigateToAnalyze())
+            findNavController().navigate("BeJuRyu://feature/analyze".toUri())
         }
 
         binding.searchEditTextView.setOnEditorActionListener { textView, actionId, keyEvent ->

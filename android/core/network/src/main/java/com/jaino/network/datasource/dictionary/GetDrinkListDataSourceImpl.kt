@@ -1,17 +1,17 @@
 package com.jaino.network.datasource.dictionary
 
-import com.jaino.network.model.response.dictionary.DrinkDataResponse
+import com.jaino.network.model.response.dictionary.DrinkInfoResponse
 import com.jaino.network.remote.DictionaryService
 import javax.inject.Inject
 
 class GetDrinkListDataSourceImpl @Inject constructor(
     private val service : DictionaryService
 ): GetDrinkListDataSource{
-    override suspend fun getDrinkList(): Result<List<DrinkDataResponse>> =
+    override suspend fun getDrinkList(): Result<List<DrinkInfoResponse>> =
         runCatching {
             // service.getDrinkList().data
             listOf(
-                DrinkDataResponse(
+                DrinkInfoResponse(
                 name = "테라",
                 image = "https://cdn.veluga.kr/files/supplier/13/drinks/24636_Main_-_RAMON.png",
                 dosu = 4.5,
@@ -22,15 +22,15 @@ class GetDrinkListDataSourceImpl @Inject constructor(
             )
         }.onFailure { error ->
             error.printStackTrace()
-            Result.failure<List<DrinkDataResponse>>(error)
+            Result.failure<List<DrinkInfoResponse>>(error)
         }
 
-    override suspend fun getDrinkListByType(type: String): Result<List<DrinkDataResponse>> =
+    override suspend fun getDrinkListByType(type: String): Result<List<DrinkInfoResponse>> =
         runCatching {
             service.getDrinkListByType(type).data
         }.onFailure { error ->
             error.printStackTrace()
-            Result.failure<List<DrinkDataResponse>>(error)
+            Result.failure<List<DrinkInfoResponse>>(error)
         }
 
 }

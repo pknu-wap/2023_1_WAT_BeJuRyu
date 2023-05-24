@@ -3,7 +3,7 @@ package com.jaino.dictionary.drink_list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaino.data.repository.dictionary.DrinksRepository
-import com.jaino.model.dictionary.DrinkData
+import com.jaino.model.dictionary.DrinkInfo
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -47,7 +47,7 @@ class DrinkListViewModel @Inject constructor(
 
     sealed class UiState {
         object Init : UiState()
-        data class Success(val list : List<DrinkData>) : UiState()
+        data class Success(val list : List<DrinkInfo>) : UiState()
         data class Failure(val message : String?) : UiState()
     }
 }
