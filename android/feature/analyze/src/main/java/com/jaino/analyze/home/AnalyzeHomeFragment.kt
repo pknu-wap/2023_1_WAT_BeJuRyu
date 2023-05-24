@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -63,7 +64,7 @@ class AnalyzeHomeFragment : Fragment() {
     }
 
     private fun navigateToSearch(){
-        startActivity(appNavigator.navigateToDictionary())
+        findNavController().navigate("BeJuRyu://feature/dictionary".toUri())
     }
 
     override fun onDestroy() {
