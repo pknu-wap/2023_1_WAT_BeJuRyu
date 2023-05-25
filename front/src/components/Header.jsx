@@ -9,7 +9,7 @@ const Navbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #9a208c;
-
+  color: white;
   padding: 0.5rem;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
@@ -45,7 +45,6 @@ const Navbarmenu = styled.ul`
   padding-left: 0;
   font-size: 16px;
   justify-content: center;
-
   li {
     padding: 12px 24px;
   }

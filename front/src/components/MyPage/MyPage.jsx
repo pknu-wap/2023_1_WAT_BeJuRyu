@@ -9,6 +9,8 @@ import { useDispatch } from "react-redux";
 import Logout from "./Logout";
 import nickChange from "./Nickchange";
 
+import { useSelector } from "react-redux";
+
 function MyPage() {
   const navigate = useNavigate();
   //const dispatch = useDispatch();
@@ -20,6 +22,7 @@ function MyPage() {
   const nickChange = () => {
     navigate(nickChange);
   };
+  const userName = useSelector((state) => state.name.name);
 
   const MyPageView = (
     <S.Container>
@@ -30,7 +33,7 @@ function MyPage() {
       <S.Wrapper>
         {/* 전역 상태관리 기능 추가 */}
         <S.Form>
-          사용자: 선예림 님
+          사용자: {userName} 님
           <S.SubmitButton onClick={checkHistory}>
             <strong>추천 히스토리 확인</strong>
           </S.SubmitButton>
@@ -38,12 +41,6 @@ function MyPage() {
       </S.Wrapper>
     </S.Container>
   );
-
-  //const params = new URLSearchParams(window.location.search);
-  //const accessToken = params.get("access_token");
-  //const refreshToken = params.get("refresh_token");
-  //console.log("access token:", accessToken);
-  //console.log("refresh token:", refreshToken);
 
   return MyPageView;
 }

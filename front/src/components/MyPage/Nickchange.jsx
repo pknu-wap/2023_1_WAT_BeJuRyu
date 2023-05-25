@@ -17,7 +17,7 @@ const NickChange = () => {
     try {
       const res = await authClient({
         method: "post",
-        //url: `${process.env.REACT_APP_LOCAL}/auth/`,
+        url: `${process.env.REACT_APP_LOCAL}/auth/`,
         data: nickname,
       });
       console.log(res);

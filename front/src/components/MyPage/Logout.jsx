@@ -1,14 +1,21 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import s from "./styled";
+import { useDispatch } from "react-redux";
 
+import { GET_NAME } from "../../reducer/nameSlice";
+import settingCookie from "../../utils/settingCookie";
 const { Kakao } = window;
 
 function Logout() {
-  //const navigate = useNavigate;
+  const dispatch = useDispatch();
+  const navigate = useNavigate;
   const [isLogin, setIsLogin] = useState(false);
 
   const logoutWithKakao = async () => {
+    settingCookie("remove");
+    dispatch(GET_NAME(""));
+
     if (Kakao.Auth.getAccessToken()) {
       console.log(
         "카카오 인증 액세스 토큰이 존재합니다.",
@@ -20,6 +27,7 @@ function Logout() {
         setIsLogin(false);
         localStorage.clear();
         window.location.href = "/";
+        //navigate("/");
       });
     }
   };

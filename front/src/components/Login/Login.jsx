@@ -13,7 +13,7 @@ import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { GET_NAME } from "../../reducer/nameSlice";
 import noAuthClient from "../../apis/noAuthClient";
-// import authClient from "../../apis/authClient";
+import authClient from "../../apis/authClient";
 
 const { Kakao } = window;
 
@@ -36,15 +36,33 @@ function Login() {
       cookie.set("accessToken", res.data.token.access);
       cookie.set("refreshToken", res.data.token.refresh);
 
-      // console.log("AccessToken:", cookie.get("accessToken"));
-      // console.log("RefreshToken:", cookie.get("refreshToken"));
+      //console.log("AccessToken:", res.data.token.access);
+      //console.log("RefreshToken:", cookie.get("refreshToken"));
 
       const decode = jwt_decode(res.data.token.access);
       console.log(decode);
 
       // redux에 nickname 저장
       dispatch(GET_NAME(res.data.memberResponse.nickname));
+
+      await sendTestRequest();
     } catch (error) {}
+  };
+
+  // test 용
+  // 테스트용 GET 요청
+  const sendTestRequest = async () => {
+    try {
+      const res = await authClient({
+        method: "get",
+        url: "/test",
+      });
+
+      console.log("Test Response:", res.data);
+      console.log(res);
+    } catch (error) {
+      console.error("Test Error:", error);
+    }
   };
 
   // 로그인
@@ -62,6 +80,9 @@ function Login() {
 
             // snsLogin 함수 호출
             await snsLogin(access_token);
+
+            // test 요청 보내기
+            // await sendTestRequest();
 
             localStorage.setItem("token", res.access_token);
             // setIsLogin(true);
