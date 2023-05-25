@@ -25,8 +25,8 @@ class BeJuRyuDatastoreImpl @Inject constructor(
     }
 
     override var accessToken: String
-        set(value) = storeDelegate.edit { putString("REFRESH_TOKEN", value) }
-        get() = storeDelegate.getString("REFRESH_TOKEN", "") ?: ""
+        set(value) = storeDelegate.edit { putString("ACCESS_TOKEN", value) }
+        get() = storeDelegate.getString("ACCESS_TOKEN", "") ?: ""
 
     override var refreshToken: String
         set(value) = storeDelegate.edit { putString("REFRESH_TOKEN", value) }
