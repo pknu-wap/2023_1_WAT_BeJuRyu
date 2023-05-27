@@ -5,6 +5,8 @@ import com.WAT.BEJURYU.entity.DrinkType;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.util.Base64;
+
 @Getter
 @RequiredArgsConstructor
 public class DrinkResponse {
@@ -26,5 +28,9 @@ public class DrinkResponse {
                 drink.getVolume(),
                 drink.getImage(),
                 drink.getType());
+    }
+
+    public String toEncodedImage() {
+        return Base64.getEncoder().encodeToString(image);
     }
 }

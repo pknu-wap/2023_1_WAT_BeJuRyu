@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" th:href="@{/css/base.css}">
+    <link rel="stylesheet" th:href="@{/css/admin.css}">
+    <title>Drinks</title>
+</head>
+<body>
+<div class="container">
+    <table>
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>name</th>
+            <th>price</th>
+            <th>dosu</th>
+            <th>sweetness</th>
+            <th>type</th>
+            <th>volume</th>
+            <th>image</th>
+        </tr>
+        </thead>
+
+        <tbody id="product-list">
+        <tr th:each="drink: ${drinks}">
+            <td th:text="${drink.id}"/>
+            <td th:text="${drink.name}"/>
+            <td th:text="${drink.price}"/>
+            <td th:text="${drink.dosu}"/>
+            <td th:text="${drink.sweetness}"/>
+            <td th:text="${drink.type}"/>
+            <td th:text="${drink.volume}"/>
+            <td><img th:src="${'data:image/jpg;base64,' + drink.toEncodedImage()}" alt="" width="150" height="150"></td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+
+</body>
+</html>

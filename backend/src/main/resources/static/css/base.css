@@ -1,0 +1,76 @@
+/* 전체 스타일 */
+* {
+    box-sizing: border-box;
+    font-family: 'Open Sans', sans-serif;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+body {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.4;
+    background-color: #f4f4f4;
+    margin: 0;
+    padding: 0;
+    min-width: 300px;
+}
+
+/* 헤더 스타일 */
+.gnb {
+    background-color: #fff;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+}
+
+.gnb .gnb-title {
+    color: #333;
+    font-weight: 600;
+}
+
+.gnb .gnb-group {
+    display: flex;
+    justify-content: right;
+}
+
+.gnb .gnb-group li {
+    margin: 0 10px;
+}
+
+.gnb .gnb-group a {
+    color: #333;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.gnb .gnb-group a:hover {
+    color: #e84c3d;
+}
+
+.gnb .gnb-group .nav-admin {
+    position: relative;
+    margin-left: 15px;
+}
+
+.gnb .gnb-group .nav-admin::before {
+    content: '|';
+    position: absolute;
+    left: -15px;
+}
+
+.gnb .gnb-group .nav-admin a:hover {
+    color: #457b9d;
+}
+
+.container {
+    margin: 0 auto;
+    padding: 50px 20px;
+}
+
+h1 {
+    font-weight: 600;
+    font-size: 24px;
+    text-transform: uppercase;
+    margin: 0 0 20px;
+}
