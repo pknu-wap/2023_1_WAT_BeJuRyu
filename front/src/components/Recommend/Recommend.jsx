@@ -18,7 +18,7 @@ function Recommend() {
 
     const formData = new FormData();
     formData.append("image", selectedFile);
-    //formData.append("mood", inputValue);
+    // formData.append("mood", inputValue);
     // 서버와의 통신 들어갈 부분
 
     navigate("/result");

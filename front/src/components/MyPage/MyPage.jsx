@@ -7,7 +7,6 @@ import { useNavigate } from "react-router-dom";
 //import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
 import Logout from "./Logout";
-import nickChange from "./Nickchange";
 
 import { useSelector } from "react-redux";
 
@@ -19,8 +18,8 @@ function MyPage() {
     navigate("/history");
   };
 
-  const nickChange = () => {
-    navigate(nickChange);
+  const changeNick = () => {
+    navigate("/nickChange");
   };
   const userName = useSelector((state) => state.name.name);
 
@@ -28,7 +27,9 @@ function MyPage() {
     <S.Container>
       <S.Info>
         <Logout />
-        <S.logoutButton onClick={nickChange}>닉네임 변경</S.logoutButton>
+        <S.LogoutButton type="button" onClick={changeNick}>
+          닉네임 변경
+        </S.LogoutButton>
       </S.Info>
       <S.Wrapper>
         {/* 전역 상태관리 기능 추가 */}

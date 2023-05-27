@@ -4,7 +4,7 @@ import S from "./styled";
 import "../../utils/settingCookie";
 import authClient from "../../apis/authClient";
 
-const NickChange = () => {
+function NickChange() {
   const navigate = useNavigate();
 
   const [nickname, setNickname] = useState("");
@@ -12,12 +12,13 @@ const NickChange = () => {
     setNickname(e.currentTarget.value);
   };
 
+  // api 명세서 업데이트 되면 수정 예정
   const onchangeNick = async () => {
-    navigate("/MyAccount");
+    navigate("/");
     try {
       const res = await authClient({
         method: "post",
-        url: `${process.env.REACT_APP_LOCAL}/auth/`,
+        // url: `${process.env.REACT_APP_LOCAL}/auth/`,
         data: nickname,
       });
       console.log(res);
@@ -27,22 +28,33 @@ const NickChange = () => {
     }
   };
 
-  return (
-    <S.Container>
-      <S.Title>닉네임 변경</S.Title>
-      <S.Form>
-        <S.Input
-          type="text"
-          value={nickname}
-          placeholder="변경할 닉네임을 입력하세요"
-          onChange={onNickHandler}
-        ></S.Input>
-        <S.nickCheck type="button" onClick={onchangeNick}>
-          변경 버튼
-        </S.nickCheck>
-      </S.Form>
-    </S.Container>
+  const NickChangeView = (
+    <S.Container2>
+      <S.Info>
+        <S.LogoutButton type="button" onClick={() => navigate("/")}>
+          되돌아가기
+        </S.LogoutButton>
+      </S.Info>
+      <S.Wrapper>
+        {/* 전역 상태관리 기능 추가 */}
+        <S.Form>
+          <S.Input
+            type="text"
+            value={nickname}
+            placeholder="변경할 닉네임을 입력하세요"
+            onChange={onNickHandler}
+          ></S.Input>
+          <S.NickCheck type="button" onClick={onchangeNick}>
+            {" "}
+            {/* 수정된 부분 */}
+            변경 버튼
+          </S.NickCheck>
+        </S.Form>
+      </S.Wrapper>
+    </S.Container2>
   );
-};
+
+  return NickChangeView;
+}
 
 export default NickChange;

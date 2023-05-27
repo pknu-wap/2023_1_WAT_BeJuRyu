@@ -36,9 +36,6 @@ function Login() {
       cookie.set("accessToken", res.data.token.access);
       cookie.set("refreshToken", res.data.token.refresh);
 
-      //console.log("AccessToken:", res.data.token.access);
-      //console.log("RefreshToken:", cookie.get("refreshToken"));
-
       const decode = jwt_decode(res.data.token.access);
       console.log(decode);
 
@@ -87,7 +84,7 @@ function Login() {
             localStorage.setItem("token", res.access_token);
             // setIsLogin(true);
             //console.log(res);
-            navigate("/recommend");
+            navigate("/");
           },
           fail: (err) => {
             console.error(err);

@@ -39,7 +39,7 @@ function Logout() {
   }, []);
 
   const logoutView = (
-    <s.logoutButton onClick={logoutWithKakao}>로그아웃</s.logoutButton>
+    <s.LogoutButton onClick={logoutWithKakao}>로그아웃</s.LogoutButton>
   );
 
   return <div className="Logout">{logoutView}</div>;
