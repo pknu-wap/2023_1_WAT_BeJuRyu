@@ -126,6 +126,16 @@ const juruBox = styled.div`
   align-items: center;
 `;
 
+const Image = styled.img`
+  width: 100%;
+  height: auto;
+`;
+
+const Text = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -138,6 +148,8 @@ const S = {
   Title,
   searchBox,
   juruBox,
+  Image,
+  Text,
 };
 
 export default S;

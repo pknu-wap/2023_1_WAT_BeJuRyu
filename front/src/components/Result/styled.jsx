@@ -103,6 +103,17 @@ const BtnList = styled.div`
   column-gap: 1rem;
 `;
 
+const Image = styled.img`
+  width: 100%;
+  height: 90%;
+  align-items: center;
+`;
+
+const Text = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -113,6 +124,8 @@ const S = {
   textInput,
   ImageBox,
   BtnList,
+  Image,
+  Text,
 };
 
 export default S;

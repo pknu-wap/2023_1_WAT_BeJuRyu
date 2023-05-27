@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import logo from "../image/bejuryu.png";
+import logo from "../image/logo2.png";
 import { Link } from "react-router-dom";
 // 사용자 닉네임 불러올 떄
 import { useSelector } from "react-redux";
@@ -9,7 +9,6 @@ const Navbar = styled.nav`
   justify-content: space-between;
   align-items: center;
   background-color: #9a208c;
-  color: white;
   padding: 0.5rem;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
@@ -47,6 +46,8 @@ const Navbarmenu = styled.ul`
   justify-content: center;
   li {
     padding: 12px 24px;
+    color: white; /* 글씨 색상 변경 */
+    font-family: Arial, Helvetica, sans-serif; /* 글씨체 변경 */
   }
   li:hover {
     background-color: #e11299;
@@ -81,7 +82,7 @@ export default function Header() {
       <Navbar>
         <Navbarlogo>
           <NavbarlogoImage src={logo} alt="BeJuRyu Logo" />
-          <Link to="/" style={{ textDecoration: "none" }}>
+          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
             BeJuRyu
           </Link>
         </Navbarlogo>
@@ -90,17 +91,26 @@ export default function Header() {
         ) : (
           <Navbarmenu>
             <li>
-              <Link to="/Dictionary" style={{ textDecoration: "none" }}>
+              <Link
+                to="/Dictionary"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 주류사전메뉴
               </Link>
             </li>
             <li>
-              <Link to="/Recommend" style={{ textDecoration: "none" }}>
+              <Link
+                to="/Recommend"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 주류추천메뉴
               </Link>
             </li>
             <li>
-              <Link to="/MyPage" style={{ textDecoration: "none" }}>
+              <Link
+                to="/MyPage"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
                 마이페이지
               </Link>
             </li>
@@ -113,7 +123,7 @@ export default function Header() {
           </Navbarlink>
         ) : (
           <Navbarlink>
-            <li>{userName}님</li>
+            <li style={{ color: "white", fontSize: "24px" }}>{userName}</li>
           </Navbarlink>
         )}
       </Navbar>

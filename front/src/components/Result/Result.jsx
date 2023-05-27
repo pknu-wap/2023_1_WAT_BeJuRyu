@@ -4,6 +4,7 @@
 import S from "./styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import logo from "../../image/bejuryu.png";
 
 function Recommend() {
   const navigate = useNavigate();
@@ -36,7 +37,10 @@ function Recommend() {
       <S.Container>
         <S.Wrapper>
           <S.Title>현재 당신에게 어울리는 주류는 바로!</S.Title>
-          <S.WhiteBox>주류 추천 결과가 들어올 공간입니다.</S.WhiteBox>
+          <S.WhiteBox>
+            <S.Image src={logo}></S.Image>
+            <S.Text>술이다냥</S.Text>
+          </S.WhiteBox>
           <S.BtnList>
             <S.SubmitButton onClick={handleFormSubmit}>
               <strong>결과 공유하기</strong>

@@ -56,7 +56,8 @@ function Login() {
       });
 
       console.log("Test Response:", res.data);
-      console.log(res);
+      // console.log(res);
+      console.log(res.data.id);
     } catch (error) {
       console.error("Test Error:", error);
     }
@@ -81,7 +82,7 @@ function Login() {
             // test 요청 보내기
             // await sendTestRequest();
 
-            localStorage.setItem("token", res.access_token);
+            //localStorage.setItem("token", res.access_token);
             // setIsLogin(true);
             //console.log(res);
             navigate("/");

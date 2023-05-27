@@ -15,6 +15,8 @@ import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import { InputLabel } from "@mui/material";
 
+import logo from "../../image/bejuryu.png";
+
 function Dictionary() {
   const navigate = useNavigate();
   const [jwtToken, setJwtToken] = useState("");
@@ -81,7 +83,10 @@ function Dictionary() {
           {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
           <S.juruBox style={{ paddingTop: "20px" }}>
             <div style={{ display: "flex", alignItems: "center" }}>
-              <S.WhiteBox></S.WhiteBox>
+              <S.WhiteBox>
+                <S.Image src={logo}></S.Image>
+                <S.Text>춘식이맥주다냥</S.Text>
+              </S.WhiteBox>
               <S.WhiteBox></S.WhiteBox>
               <S.WhiteBox></S.WhiteBox>
               <S.WhiteBox></S.WhiteBox>
