@@ -14,6 +14,7 @@ public class DrinkResponse {
     private final int sweetness;
     private final int price;
     private final int volume;
+    private final byte[] image;
     private final DrinkType type;
 
     public static DrinkResponse from(final Drink drink) {
@@ -23,6 +24,7 @@ public class DrinkResponse {
                 drink.getSweetness(),
                 drink.getPrice(),
                 drink.getVolume(),
+                drink.getImage(),
                 drink.getType());
     }
 }

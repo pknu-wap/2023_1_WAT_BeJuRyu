@@ -7,6 +7,7 @@ import com.WAT.BEJURYU.dto.WriteReviewRequest;
 import com.WAT.BEJURYU.service.DrinkService;
 import com.WAT.BEJURYU.service.ReviewService;
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -55,5 +56,12 @@ public class DrinkApiController {
         final ReviewResponse review = drinkService.updateReview(reviewId, reviewRequest);
 
         return ResponseEntity.ok(review);
+    }
+
+    @GetMapping(value = "/{drink_name}/image", produces = MediaType.IMAGE_JPEG_VALUE)
+    public ResponseEntity<byte[]> showImage(@PathVariable("drink_name") final String name) {
+        final DrinkResponses drinksByName = drinkService.getDrinksByName(name.replaceAll("_", " "));
+
+        return ResponseEntity.ok(drinksByName.getDrinks().get(0).getImage());
     }
 }
