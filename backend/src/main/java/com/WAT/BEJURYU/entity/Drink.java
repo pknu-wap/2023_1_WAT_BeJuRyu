@@ -1,12 +1,18 @@
 package com.WAT.BEJURYU.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.EnumType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-
-import java.util.List;
 
 @Entity
 @Getter
@@ -14,6 +20,7 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 public class Drink {
+
     @Id
     @Column(name = "drink_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -34,8 +41,6 @@ public class Drink {
     private int price;
     @Column(name = "volume")
     private int volume;
-    @OneToMany(mappedBy = "drink")
-    private List<Review> reviews;
     @ManyToOne
     @JoinColumn(name = "sentiment_id")
     private Sentiment sentiment;
