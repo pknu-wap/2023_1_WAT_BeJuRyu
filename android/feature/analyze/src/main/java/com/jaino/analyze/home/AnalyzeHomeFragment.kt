@@ -60,7 +60,7 @@ class AnalyzeHomeFragment : Fragment() {
     }
 
     private fun navigateToSetting(){
-        startActivity(appNavigator.navigateToSetting())
+        findNavController().navigate("BeJuRyu://feature/setting".toUri())
     }
 
     private fun navigateToSearch(){
