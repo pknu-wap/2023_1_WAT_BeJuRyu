@@ -2,20 +2,21 @@ package com.jaino.app.navigator
 
 import android.content.Context
 import android.content.Intent
+import com.jaino.account.AccountActivity
 import com.jaino.app.HomeActivity
 import com.jaino.auth.AuthActivity
 import com.jaino.common.navigation.AppNavigator
-import com.jaino.setting.SettingActivity
 import dagger.hilt.android.qualifiers.ApplicationContext
 import javax.inject.Inject
 
 class AppNavigatorImpl @Inject constructor(
     @ApplicationContext private val context: Context
 ): AppNavigator {
-    override fun navigateToAuth(): Intent = Intent(context, AuthActivity::class.java)
+    override fun navigateToAuth(): Intent = AuthActivity.getIntent(context)
 
-    override fun navigateToSetting(): Intent = Intent(context, SettingActivity::class.java)
+    override fun navigateToAccount(): Intent = AccountActivity.getIntent(context)
 
-    override fun navigateToHome(): Intent = Intent(context, HomeActivity::class.java)
+    override fun navigateToHome(destination: String): Intent =
+        HomeActivity.getIntent(context, destination)
 
 }

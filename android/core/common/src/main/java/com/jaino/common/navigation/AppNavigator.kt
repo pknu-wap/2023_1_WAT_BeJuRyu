@@ -5,7 +5,7 @@ import android.content.Intent
 interface AppNavigator {
     fun navigateToAuth(): Intent
 
-    fun navigateToSetting(): Intent
+    fun navigateToAccount(): Intent
 
-    fun navigateToHome(): Intent
+    fun navigateToHome(destination: String = ""): Intent
 }
