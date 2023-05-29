@@ -42,6 +42,7 @@ dependencies {
     implementation(project(":feature:analyze"))
     implementation(project(":feature:dictionary"))
     implementation(project(":feature:review"))
+    implementation(project(":feature:account"))
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(libs.bundles.kotlin)
