@@ -1,5 +1,7 @@
 package com.jaino.auth
 
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Toast
 import androidx.activity.viewModels
@@ -79,5 +81,10 @@ class AuthActivity : AppCompatActivity() {
                 }
             }
         }.launchIn(lifecycleScope)
+    }
+
+    companion object {
+        fun getIntent(context: Context): Intent =
+            Intent(context, AuthActivity::class.java)
     }
 }

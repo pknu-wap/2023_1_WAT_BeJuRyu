@@ -1,15 +1,14 @@
 package com.jaino.setting
 
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.jaino.common.navigation.AppNavigator
-import com.jaino.setting.account.AccountActivity
 import com.jaino.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -58,11 +57,11 @@ class SettingFragment : Fragment() {
     }
 
     private fun navigateToAnalyze(){
-        startActivity(appNavigator.navigateToHome())
+        findNavController().navigate("BeJuRyu://feature/analyze".toUri())
     }
 
     private fun navigateToAccount(){
-        startActivity(Intent(requireContext(), AccountActivity::class.java))
+        startActivity(appNavigator.navigateToAccount())
     }
 
     private fun navigateToProfile(){
