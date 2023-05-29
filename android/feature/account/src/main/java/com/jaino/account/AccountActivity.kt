@@ -1,14 +1,14 @@
-package com.jaino.setting.account
+package com.jaino.account
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
+import com.jaino.account.databinding.ActivityAccountBinding
+import com.jaino.common.navigation.AppNavigator
 import com.jaino.data.repository.auth.SocialAuthRepository
 import com.jaino.data.repository.user.LocalUserRepository
-import com.jaino.setting.R
-import com.jaino.setting.SettingActivity
-import com.jaino.setting.databinding.ActivityAccountBinding
 import com.jakewharton.processphoenix.ProcessPhoenix
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,6 +21,9 @@ class AccountActivity : AppCompatActivity() {
 
     @Inject
     lateinit var localData : LocalUserRepository
+
+    @Inject
+    lateinit var appNavigator : AppNavigator
 
     private var _binding: ActivityAccountBinding? = null
     private val binding
@@ -64,6 +67,11 @@ class AccountActivity : AppCompatActivity() {
     }
 
     private fun navigateToSetting(){
-        startActivity(Intent(this, SettingActivity::class.java))
+        startActivity(appNavigator.navigateToHome("BeJuRyu://feature/setting"))
+    }
+
+    companion object {
+        fun getIntent(context: Context): Intent =
+            Intent(context, AccountActivity::class.java)
     }
 }

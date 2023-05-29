@@ -1,10 +1,10 @@
-package com.jaino.setting.account
+package com.jaino.account
 
 import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import android.view.WindowManager
-import com.jaino.setting.databinding.DialogConfirmBinding
+import com.jaino.account.databinding.DialogConfirmBinding
 
 class ConfirmDialog  (
     context : Context,
