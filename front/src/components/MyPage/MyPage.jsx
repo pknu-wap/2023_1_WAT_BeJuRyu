@@ -12,13 +12,15 @@ import { useSelector } from "react-redux";
 
 function MyPage() {
   const navigate = useNavigate();
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
 
   const checkHistory = () => {
     navigate("/history");
   };
 
   const changeNick = () => {
+    // const newNickname = "choonsik";
+
     navigate("/nickChange");
   };
   const userName = useSelector((state) => state.name.name);

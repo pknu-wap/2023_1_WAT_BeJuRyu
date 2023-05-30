@@ -1,8 +1,10 @@
 import styled from "styled-components";
+import { useEffect, useState } from "react";
 import logo from "../image/logo2.png";
 import { Link } from "react-router-dom";
 // 사용자 닉네임 불러올 떄
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
+import noAuthClient from "../apis/noAuthClient";
 
 const Navbar = styled.nav`
   display: flex;
@@ -77,6 +79,57 @@ const Navbarlink = styled.div`
 
 export default function Header() {
   const userName = useSelector((state) => state.name.name);
+  const dispatch = useDispatch();
+  const [dictionaryData, setDictionaryData] = useState(null);
+
+  const handleDictionaryButtonClick = async () => {
+    try {
+      const response = await noAuthClient({
+        method: "get",
+        url: "/drinks",
+      });
+      if (response.status === 200) {
+        const data = response.data;
+        setDictionaryData(data); // 데이터를 상태에 저장
+        console.log(data);
+        //dispatch({ type: "SET_DICTIONARY_DATA", payload: data }); // 가져온 데이터를 Redux 스토어에 저장
+        console.log("데이터를 가져왔습니다.");
+      } else {
+        console.log("데이터를 가져오는데 실패하였습니다.");
+      }
+    } catch (error) {
+      console.log("오류가 발생하였습니다.", error);
+    }
+  };
+
+  useEffect(() => {
+    const dictionaryButton = document.querySelector('li a[href="/Dictionary"]');
+    if (dictionaryButton) {
+      dictionaryButton.addEventListener("click", handleDictionaryButtonClick);
+    }
+
+    return () => {
+      if (dictionaryButton) {
+        dictionaryButton.removeEventListener(
+          "click",
+          handleDictionaryButtonClick
+        );
+      }
+    };
+  }, []);
+
+  // const dictionaryData = useSelector((state) => state.dictionaryData); // Redux 스토어에서 필요한 데이터 선택
+  //console.log(dictionaryData); // 데이터 콘솔 출력
+
+  // return () => {
+  //   if (dictionaryButton) {
+  //     dictionaryButton.removeEventListener(
+  //       "click",
+  //       handleDictionaryButtonClick
+  //     );
+  //   }
+  // };
+
   return (
     <>
       <Navbar>
@@ -90,14 +143,19 @@ export default function Header() {
           ""
         ) : (
           <Navbarmenu>
-            <li>
-              <Link
-                to="/Dictionary"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                주류사전메뉴
-              </Link>
-            </li>
+            <div onClick={handleDictionaryButtonClick}>
+              <li>
+                <Link
+                  to={{
+                    pathname: "/Dictionary",
+                    state: { dictionaryData: dictionaryData }, // 데이터를 props로 전달
+                  }}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  주류사전메뉴
+                </Link>
+              </li>
+            </div>
             <li>
               <Link
                 to="/Recommend"

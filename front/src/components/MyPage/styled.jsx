@@ -62,7 +62,7 @@ const LogoutButton = styled.button`
   font-weight: 700;
   float: right;
   font-family: SCDream5;
-  background-color: #9a208c;
+  background-color: #9932cc;
   border-radius: 64px;
   color: white;
   margin-bottom: 16px;

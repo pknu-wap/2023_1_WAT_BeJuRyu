@@ -5,107 +5,104 @@
  4. [o] 주류 검색 창과 "맥주, 소주"와 같은 태그 버튼 구현
   */
 import S from "./styled";
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useNavigate, useLocation } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import NativeSelect from "@mui/material/NativeSelect";
 import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
+import noAuthClient from "../../apis/noAuthClient";
 import { InputLabel } from "@mui/material";
 
 import logo from "../../image/bejuryu.png";
 
 function Dictionary() {
   const navigate = useNavigate();
+  const location = useLocation();
   const [jwtToken, setJwtToken] = useState("");
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [jsonData, setJsonData] = useState(null);
 
-  const DictionaryView = () => {
-    return (
-      <S.Container>
-        <S.Wrapper>
-          <S.Info>
-            <S.searchBox>
-              <Box
-                component="form"
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  "&.MuiTextField-root": { height: "100%" },
-                  "&.MuiInputBase=root": { height: "100%" },
-                }}
-                noValidate
-                autoComplete="off"
-              >
-                <FormControl sx={{ m: 1, width: "15ch" }}>
-                  <NativeSelect
-                    defaultValue={"none"}
-                    inputProps={{ name: "category", id: "uncontrolled-native" }}
-                  >
-                    <option value={"ALL"}>통합검색</option>
-                    <option value={"SOJU"}>소주</option>
-                    <option value={"BEER"}>맥주</option>
-                    <option value={"WINE"}>와인</option>
-                    <option value={"LIQUEUR"}>리큐어</option>
-                    <option value={"WHISKEY"}>위스키</option>
-                    <option value={"FRUIT"}>과실주</option>
-                    <option value={"YAKJU"}>약주</option>
-                    <option value={"BRANDY"}>브랜디</option>
-                    <option value={"RICE_WIND"}>청주</option>
-                    <option value={"MAKGEOLLI"}>막걸리</option>
-                  </NativeSelect>
-                </FormControl>
-                <TextField
-                  id="standard-search"
-                  label="찾고싶은 주류를 입력해주세요!"
-                  type="search"
-                  variant="standard"
-                  alignItems="center"
-                  InputProps={{
-                    disableUnderline: true,
-                  }}
-                  sx={{ m: 1, width: "60ch", height: "100%" }}
-                />
-                <IconButton
-                  type="submit"
-                  sx={{ p: "10px" }}
-                  aria-label="search"
+  const dictionaryData = location.state?.dictionaryData;
+
+  return (
+    <S.Container>
+      <S.Wrapper>
+        <S.Info>
+          <S.searchBox>
+            <Box
+              component="form"
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                "&.MuiTextField-root": { height: "100%" },
+                "&.MuiInputBase=root": { height: "100%" },
+              }}
+              noValidate
+              autoComplete="off"
+            >
+              <FormControl sx={{ m: 1, width: "15ch" }}>
+                <NativeSelect
+                  defaultValue={"none"}
+                  inputProps={{ name: "category", id: "uncontrolled-native" }}
                 >
-                  <SearchIcon />
-                </IconButton>
-              </Box>
-            </S.searchBox>
-          </S.Info>
-          {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
-          <S.juruBox style={{ paddingTop: "20px" }}>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <S.WhiteBox>
-                <S.Image src={logo}></S.Image>
-                <S.Text>춘식이맥주다냥</S.Text>
-              </S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-            </div>
-            <div style={{ display: "flex", alignItems: "center" }}>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-              <S.WhiteBox></S.WhiteBox>
-            </div>
-          </S.juruBox>
-        </S.Wrapper>
-      </S.Container>
-    );
-  };
-
-  return <DictionaryView />;
+                  <option value={"ALL"}>통합검색</option>
+                  <option value={"SOJU"}>소주</option>
+                  <option value={"BEER"}>맥주</option>
+                  <option value={"WINE"}>와인</option>
+                  <option value={"LIQUEUR"}>리큐어</option>
+                  <option value={"WHISKEY"}>위스키</option>
+                  <option value={"FRUIT"}>과실주</option>
+                  <option value={"YAKJU"}>약주</option>
+                  <option value={"BRANDY"}>브랜디</option>
+                  <option value={"RICE_WIND"}>청주</option>
+                  <option value={"MAKGEOLLI"}>막걸리</option>
+                </NativeSelect>
+              </FormControl>
+              <TextField
+                id="standard-search"
+                label="찾고싶은 주류를 입력해주세요!"
+                type="search"
+                variant="standard"
+                alignItems="center"
+                InputProps={{
+                  disableUnderline: true,
+                }}
+                sx={{ m: 1, width: "60ch", height: "100%" }}
+              />
+              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+                <SearchIcon />
+              </IconButton>
+            </Box>
+          </S.searchBox>
+        </S.Info>
+        {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
+        <S.juruBox style={{ paddingTop: "20px" }}>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <S.WhiteBox>
+              <S.Image src={logo}></S.Image>
+              <S.Text>춘식이맥주다냥</S.Text>
+            </S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+          </div>
+          <div style={{ display: "flex", alignItems: "center" }}>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+            <S.WhiteBox></S.WhiteBox>
+          </div>
+        </S.juruBox>
+      </S.Wrapper>
+    </S.Container>
+  );
 }
 
 export default Dictionary;

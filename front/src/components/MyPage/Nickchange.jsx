@@ -3,9 +3,12 @@ import { useNavigate } from "react-router-dom";
 import S from "./styled";
 import "../../utils/settingCookie";
 import authClient from "../../apis/authClient";
+import { GET_NAME } from "../../reducer/nameSlice";
+import { useDispatch } from "react-redux";
 
 function NickChange() {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const [nickname, setNickname] = useState("");
   const onNickHandler = (e) => {
@@ -14,7 +17,9 @@ function NickChange() {
 
   // api 명세서 업데이트 되면 수정 예정
   const onchangeNick = async () => {
+    dispatch(GET_NAME(nickname));
     navigate("/");
+    alert("변경이 완료되었습니다.");
     try {
       const res = await authClient({
         method: "post",
@@ -47,7 +52,7 @@ function NickChange() {
           <S.NickCheck type="button" onClick={onchangeNick}>
             {" "}
             {/* 수정된 부분 */}
-            변경 버튼
+            변경
           </S.NickCheck>
         </S.Form>
       </S.Wrapper>

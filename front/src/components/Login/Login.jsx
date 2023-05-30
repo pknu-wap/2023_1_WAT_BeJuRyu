@@ -8,7 +8,7 @@ import { useNavigate, withRouter } from "react-router-dom";
 // import axios from "axios";
 import { Cookies } from "react-cookie";
 import S from "./styled";
-import logo from "../../image/bejuryu.png";
+import logo from "../../image/logo2.png";
 import { useDispatch } from "react-redux";
 import jwt_decode from "jwt-decode";
 import { GET_NAME } from "../../reducer/nameSlice";
