@@ -9,6 +9,7 @@ import MyPage from "./pages/MyPage";
 import ResultPage from "./pages/ResultPage";
 import DictionaryPage from "./pages/DictionaryPage";
 import HistoryPage from "./pages/HistoryPage";
+import NickChangePage from "./pages/NickChangePage";
 import axios from "axios";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -16,8 +17,10 @@ import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import settingCookie from "./utils/settingCookie";
 
-//import { GET_NAME } from "./reducer/nameSlice";
+import { GET_NAME } from "./reducer/nameSlice";
 import React from "react";
+import NickChange from "./components/MyPage/Nickchange";
+import Login from "./components/Login/Login";
 
 const AllWrapper = styled.div`
   display: flex;
@@ -35,14 +38,14 @@ function App() {
   const dispatch = useDispatch();
   const userName = useSelector((state) => state.name.name);
 
-  /*const isLogin = () => {
+  const isLogin = () => {
     const token = settingCookie("get-access");
     // 로그인이 되어있다면
-    //if (token !== undefined) {
-    //  const decode = jwt_decode(token);
-    //  dispatch(GET_NAME(decode.nickname));
+    if (token !== undefined) {
+      const decode = jwt_decode(token);
+      dispatch(GET_NAME(decode.nickname));
     }
-  };*/
+  };
 
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
@@ -53,9 +56,9 @@ function App() {
     setScreenSize();
   });
 
-  /*useEffect(() => {
+  useEffect(() => {
     isLogin();
-  }, []);*/
+  }, []);
 
   return (
     <AllWrapper>
@@ -63,13 +66,19 @@ function App() {
       <ContentWrapper>
         <Header />
         <Routes>
-          <Route path="/" element={<LoginPage />} />
+          {userName === "" ? (
+            <Route path="/" element={<LoginPage />} />
+          ) : (
+            <Route path="/" element={<MyPage />} />
+          )}
+          {/* <Route path="/" element={<LoginPage />} /> */}
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/register" element={<RegisterPage />} />
           <Route path="/recommend" element={<RecommendPage />} />
           <Route path="/result" element={<ResultPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
           <Route path="/history" element={<HistoryPage />} />
+          <Route path="/nickchange" element={<NickChange />} />
         </Routes>
       </ContentWrapper>
       <Footer />

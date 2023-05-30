@@ -11,7 +11,7 @@ const settingCookie = (type) => {
     return token;
   } else if (type === "remove") {
     cookie.remove("accessToken");
-    cookie.remove("refreshToken);");
+    cookie.remove("refreshToken");
   }
 };
 

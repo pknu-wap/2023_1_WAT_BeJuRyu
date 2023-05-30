@@ -12,17 +12,6 @@ const authClient = axios.create({
   },
 });
 
-// 토큰 만료 확인하기
-// const checkToken = async () => {
-//   console.log("check token 실행 중");
-//   let token = settingCookie("get-access");
-//   const exp = jwtDecode(token);
-//   if (Date.now() / 1000 > exp.exp) {
-//     console.log("해당 토큰은 만료됨");
-//     await getNewToken();
-//   }
-// };
-
 // 새 토큰 발급
 const getNewToken = async () => {
   const access = settingCookie("get-access");
@@ -40,6 +29,7 @@ const getNewToken = async () => {
     settingCookie("remove");
     cookie.set("accessToken", res.data.accessToken);
     cookie.set("refreshToken", res.data.refreshToken);
+    console.log(res.data);
     return res.data.accessToken;
   } catch (error) {
     alert("error");
@@ -56,10 +46,10 @@ authClient.interceptors.request.use(function (config) {
     console.log("만료된 토큰", token);
     getNewToken().then((newToken) => {
       console.log("새 토큰", newToken);
-      config.headers["Authorization"] = `${newToken}`;
+      config.headers["Authorization"] = `Bearer ${newToken}`;
     });
   } else {
-    config.headers["Authorization"] = `${token}`;
+    config.headers["Authorization"] = `Bearer ${token}`;
   }
   return config;
 });

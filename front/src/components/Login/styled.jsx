@@ -14,6 +14,11 @@ const Container = styled.div`
   border-radius: 2rem;
   color: #f7f7f7;
   border: 5px solid #e11299;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 `;
 
 const explainBox = styled.div`

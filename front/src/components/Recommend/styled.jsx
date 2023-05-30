@@ -20,7 +20,7 @@ const SubmitButton = styled.button`
   font-family: SCDream5;
   border-radius: 1rem;
   border: none;
-  background-color: #e11299;
+  background-color: #9932cc;
   color: #f7f7f7;
   cursor: pointer;
   margin: 20px auto 0;
@@ -38,7 +38,7 @@ const Title = styled.div`
 
 const WhiteBox = styled.div`
   width: 25rem;
-  height: 15rem;
+  height: 10rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 1rem;
@@ -56,7 +56,7 @@ const WhiteBox = styled.div`
 
 const ImageBox = styled.div`
   width: 25rem;
-  height: 10rem;
+  height: 15rem;
   margin-top: 20px;
   margin: 0 auto;
   padding: 2rem;
@@ -84,7 +84,7 @@ const MyState = styled.div`
 
 const textInput = styled.textarea`
   width: 100%;
-  height: 50%;
+  height: 100px;
   font-size: 1.2rem;
   resize: none;
   border: none;

@@ -11,8 +11,8 @@ const PhotoUpload = ({
   setSelectedFile,
   setImagePreview,
   imagePreview,
-  width = "100px",
-  height = "100px",
+  width = "120px",
+  height = "100%",
 }) => {
   const handleImageChange = (e) => {
     const file = e.target.files[0];
@@ -33,8 +33,10 @@ const PhotoUpload = ({
     <S.ImageBox>
       {imagePreview ? (
         <div>
-          <img src={imagePreview} alt="preview" style={{ width, height }} />
-          <button onClick={handleImageRemove}>Remove</button>
+          <div>
+            <img src={imagePreview} alt="preview" style={{ width, height }} />
+          </div>
+          <button onClick={handleImageRemove}>재업로드</button>
         </div>
       ) : (
         <div>
