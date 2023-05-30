@@ -3,9 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-        <variable
-            name="viewModel"
-            type="com.jaino.analyze.AnalyzeViewModel" />
+
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -68,7 +66,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/analyze_text_title_cardView"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="300dp"
             android:layout_marginTop="16dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -85,7 +83,8 @@
                     android:layout_height="wrap_content"
                     android:text="@string/analyze_text_expression_title"
                     android:textColor="@color/black"
-                    android:textSize="22sp"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     tools:text="오늘은 어떤 일이 있었나요?" />
@@ -94,9 +93,8 @@
                     android:id="@+id/analyze_text_title2"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
                     android:text="@string/analyze_text_semi_title"
-                    android:textSize="18sp"
+                    android:textSize="16sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/analyze_text_expression_title" />
 
@@ -112,6 +110,7 @@
                     android:paddingHorizontal="16dp"
                     android:paddingVertical="8dp"
                     android:singleLine="false"
+                    android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
