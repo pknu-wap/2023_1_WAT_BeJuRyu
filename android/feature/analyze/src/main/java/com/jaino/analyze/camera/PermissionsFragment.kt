@@ -1,4 +1,4 @@
-package com.jaino.analyze.input
+package com.jaino.analyze.camera
 
 import android.Manifest
 import android.content.Context

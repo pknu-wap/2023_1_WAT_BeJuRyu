@@ -1,10 +1,9 @@
-package com.jaino.analyze.input
+package com.jaino.analyze.camera
 
 import android.content.ContentValues
 import android.graphics.Color
 import android.graphics.drawable.ColorDrawable
 import android.media.MediaActionSound
-import android.media.MediaActionSound.SHUTTER_CLICK
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.LayoutInflater
@@ -45,7 +44,6 @@ class CameraFragment : Fragment() {
 
     private lateinit var cameraExecutor: ExecutorService
     private lateinit var cameraSound: MediaActionSound
-
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -124,16 +122,15 @@ class CameraFragment : Fragment() {
     }
 
     private fun captureImage(){
-        val outputFileOptions = ImageCapture.OutputFileOptions
-            .Builder(requireContext().contentResolver,
-                MediaStore.Images.Media.EXTERNAL_CONTENT_URI, ContentValues().getCurrentFileName()
-            ).build()
+        val outputFileOptions = ImageCapture.OutputFileOptions.Builder(
+            requireContext().contentResolver,
+            MediaStore.Images.Media.EXTERNAL_CONTENT_URI, ContentValues().getCurrentFileName()
+        ).build()
 
         imageCapture.takePicture(outputFileOptions, cameraExecutor,
             object : ImageCapture.OnImageSavedCallback {
                 override fun onImageSaved(outputFileResults: ImageCapture.OutputFileResults) {
-                    // navigateToResult(outputFileResults.savedUri.toString())
-                    navigateToResult()
+                    navigateToImage(outputFileResults.savedUri.toString())
                 }
 
                 override fun onError(exception: ImageCaptureException) {
@@ -148,7 +145,7 @@ class CameraFragment : Fragment() {
     }
 
     private fun startCameraSound(){
-        cameraSound.play(SHUTTER_CLICK) // camera sound
+        cameraSound.play(MediaActionSound.SHUTTER_CLICK) // camera sound
     }
 
     private fun startCameraScreenAnimation(){
@@ -161,11 +158,13 @@ class CameraFragment : Fragment() {
         }, ANIMATION_SLOW_MILLIS)
     }
 
-    private fun navigateToResult(){
+    private fun navigateToImage(uri : String){
         lifecycleScope.launch{
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 findNavController().navigate(
-                    CameraFragmentDirections.actionCameraFragmentToAnalyzeResultFragment()
+                    CameraFragmentDirections.actionCameraFragmentToAnalyzeImageFragment(
+                        uri, ""
+                    )
                 )
             }
         }
@@ -174,6 +173,8 @@ class CameraFragment : Fragment() {
     override fun onDestroy() {
         _binding = null
         super.onDestroy()
+        cameraExecutor.shutdown()
+        cameraSound.release()
     }
 
     companion object {
