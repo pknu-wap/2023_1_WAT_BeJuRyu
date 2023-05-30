@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 80rem;
+  width: 40rem;
   max-width: 85rem;
   height: 40rem;
   background-color: #f5c6ec;
@@ -20,7 +20,7 @@ const ReButton = styled.button`
   font-family: SCDream5;
   border-radius: 1rem;
   border: none;
-  background-color: #e11299;
+  background-color: #9932cc;
   color: #f7f7f7;
   margin: 20px auto 0;
   display: block;
@@ -57,7 +57,7 @@ const Form = styled.div`
 `;
 
 const WhiteBox = styled.div`
-  width: 70rem;
+  width: 35rem;
   height: 25rem;
   margin: 0 auto;
   margin-bottom: 20px;

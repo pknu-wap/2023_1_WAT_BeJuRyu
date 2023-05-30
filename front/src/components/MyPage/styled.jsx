@@ -48,8 +48,9 @@ const SubmitButton = styled.button`
   font-family: SCDream5;
   border-radius: 1rem;
   border: none;
-  background-color: #e11299;
-  color: #f7f7f7;
+  background-color: #9932cc;
+  color: white;
+  font-weight: 700;
   margin: 20px auto 0;
   display: block;
   cursor: pointer;
@@ -61,7 +62,7 @@ const LogoutButton = styled.button`
   border: none;
   font-weight: 700;
   float: right;
-  font-family: SCDream5;
+  //font-family: SCDream5;
   background-color: #9932cc;
   border-radius: 64px;
   color: white;
@@ -129,7 +130,7 @@ const NickCheck = styled.button`
   border: none;
   font-weight: 700;
   float: right;
-  background-color: #e11299;
+  background-color: #9932cc;
   border-radius: 64px;
   color: white;
   margin-bottom: 16px;

@@ -38,7 +38,7 @@ function MyPage() {
         <S.Form>
           사용자: {userName} 님
           <S.SubmitButton onClick={checkHistory}>
-            <strong>추천 히스토리 확인</strong>
+            추천 히스토리 확인
           </S.SubmitButton>
         </S.Form>
       </S.Wrapper>

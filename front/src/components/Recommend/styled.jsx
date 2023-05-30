@@ -20,7 +20,7 @@ const SubmitButton = styled.button`
   font-family: SCDream5;
   border-radius: 1rem;
   border: none;
-  background-color: #e11299;
+  background-color: #9932cc;
   color: #f7f7f7;
   cursor: pointer;
   margin: 20px auto 0;

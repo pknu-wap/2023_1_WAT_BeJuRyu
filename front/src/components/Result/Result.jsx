@@ -43,10 +43,10 @@ function Recommend() {
           </S.WhiteBox>
           <S.BtnList>
             <S.SubmitButton onClick={handleFormSubmit}>
-              <strong>결과 공유하기</strong>
+              결과 공유하기
             </S.SubmitButton>
             <S.SubmitButton onClick={handleButtonClick}>
-              <strong>다시 추천받기</strong>
+              다시 추천받기
             </S.SubmitButton>
           </S.BtnList>
         </S.Wrapper>
