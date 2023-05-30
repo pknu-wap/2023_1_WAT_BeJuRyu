@@ -19,6 +19,7 @@ dependencies {
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
     implementation(libs.bundles.camerax)
+    implementation(libs.glide)
     implementation(libs.timber)
     implementation(libs.kotlin.datetime)
     implementation(libs.androidx.fragment)
