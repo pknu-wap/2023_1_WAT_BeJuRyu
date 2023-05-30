@@ -1,6 +1,7 @@
 package com.WAT.BEJURYU.repository;
 
 import com.WAT.BEJURYU.entity.Drink;
+import com.WAT.BEJURYU.entity.Sentiment;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
@@ -15,4 +16,6 @@ public interface DrinkRepository extends JpaRepository<Drink, Long> {
     List<Drink> findByPriceLessThan(int price);
 
     List<Drink> findByName(String name);
+
+    List<Drink> findBySentiment(Sentiment sentiment);
 }

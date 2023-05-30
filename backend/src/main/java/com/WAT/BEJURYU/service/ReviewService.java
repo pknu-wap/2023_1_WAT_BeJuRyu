@@ -1,5 +1,6 @@
 package com.WAT.BEJURYU.service;
 
+import com.WAT.BEJURYU.dto.DrinkRatingResponse;
 import com.WAT.BEJURYU.dto.ReviewResponse;
 import com.WAT.BEJURYU.dto.ReviewResponses;
 import com.WAT.BEJURYU.dto.WriteReviewRequest;
@@ -28,6 +29,13 @@ public class ReviewService {
         final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
 
         return ReviewResponses.of(reviews);
+    }
+
+    public DrinkRatingResponse getAverageScore(long drinkId) {
+        final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
+        double sum = reviews.stream().mapToDouble(s -> s.getScore()).sum();
+
+        return new DrinkRatingResponse(drinkId,sum/reviews.size());
     }
 
     @Transactional

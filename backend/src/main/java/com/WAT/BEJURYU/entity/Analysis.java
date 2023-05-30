@@ -20,12 +20,10 @@ public class Analysis {
     @Column(name = "text_expresstion")
     private String textExpression;
     @Column(name = "facial_expression")
-    private String facialExpression;
+    private byte[] facialExpression;
 
     @Column(name = "date")
     private LocalDateTime date;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "sentiment_id")
     private Sentiment sentiment;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "drink_id")

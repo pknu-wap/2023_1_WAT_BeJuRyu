@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.micrometer:micrometer-commons:1.10.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-commons/1.10.5/bb78821020b0e6008e62ee919702b8d4249794d5/micrometer-commons-1.10.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.micrometer/micrometer-commons/1.10.5/ea07962a2c12ae29f82e60caddeb4bab993762dd/micrometer-commons-1.10.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

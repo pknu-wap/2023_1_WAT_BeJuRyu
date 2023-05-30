@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.jsonwebtoken:jjwt-gson:0.11.5">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt-gson/0.11.5/d54a7ebe36ea2884588fa9556ce4295cffbd671d/jjwt-gson-0.11.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.jsonwebtoken/jjwt-gson/0.11.5/585b7c8288902bc55a98239cbc6a293181f1d02f/jjwt-gson-0.11.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

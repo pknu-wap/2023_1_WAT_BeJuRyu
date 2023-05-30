@@ -29,7 +29,6 @@ public class DrinkResponse {
                 drink.getImage(),
                 drink.getType());
     }
-
     public String toEncodedImage() {
         return Base64.getEncoder().encodeToString(image);
     }
