@@ -9,7 +9,8 @@
     <fragment
         android:id="@+id/analyzeHomeFragment"
         android:name="com.jaino.analyze.home.AnalyzeHomeFragment"
-        android:label="AnalyzeHomeFragment">
+        android:label="AnalyzeHomeFragment"
+        tools:layout="@layout/fragment_analyze_home">
         <action
             android:id="@+id/action_analyzeHomeFragment_to_analyzeTextFragment"
             app:destination="@id/analyzeTextFragment" />
@@ -17,35 +18,65 @@
     <fragment
         android:id="@+id/analyzeResultFragment"
         android:name="com.jaino.analyze.result.AnalyzeResultFragment"
-        android:label="AnalyzeResultFragment" />
+        android:label="AnalyzeResultFragment"
+        tools:layout="@layout/fragment_analyze_result">
+        <argument
+            android:name="analyzeId"
+            android:defaultValue="0L" />
+        <deepLink app:uri="BeJuRyu://feature/analyze/result?analyzeId={analyzeId}"/>
+        <action
+            android:id="@+id/action_analyzeResultFragment_to_analyzeHomeFragment"
+            app:destination="@id/analyzeHomeFragment" />
+    </fragment>
     <fragment
         android:id="@+id/cameraFragment"
-        android:name="com.jaino.analyze.input.CameraFragment"
-        android:label="CameraFragment" >
+        android:name="com.jaino.analyze.camera.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera">
         <action
-            android:id="@+id/action_cameraFragment_to_analyzeResultFragment"
-            app:destination="@id/analyzeResultFragment" />
+            android:id="@+id/action_cameraFragment_to_analyzeImageFragment"
+            app:destination="@id/analyzeImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/analyzeTextFragment"
-        android:name="com.jaino.analyze.input.AnalyzeTextFragment"
-        android:label="AnalyzeTextFragment" >
-        <action
-            android:id="@+id/action_analyzeTextFragment_to_permissionsFragment"
-            app:destination="@id/permissionsFragment" />
+        android:name="com.jaino.analyze.input_text.AnalyzeTextFragment"
+        android:label="AnalyzeTextFragment"
+        tools:layout="@layout/fragment_analyze_text">
         <action
             android:id="@+id/action_analyzeTextFragment_to_analyzeHomeFragment"
             app:destination="@id/analyzeHomeFragment" />
         <action
-            android:id="@+id/action_analyzeTextFragment_to_analyzeResultFragment"
-            app:destination="@id/analyzeResultFragment" />
+            android:id="@+id/action_analyzeTextFragment_to_analyzeImageFragment"
+            app:destination="@id/analyzeImageFragment" />
     </fragment>
     <fragment
         android:id="@+id/permissionsFragment"
-        android:name="com.jaino.analyze.input.PermissionsFragment"
-        android:label="PermissionsFragment" >
+        android:name="com.jaino.analyze.camera.PermissionsFragment"
+        android:label="PermissionsFragment"
+        tools:layout="@layout/dialog_choose_tools">
         <action
             android:id="@+id/action_permissionsFragment_to_cameraFragment"
             app:destination="@id/cameraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/analyzeImageFragment"
+        android:name="com.jaino.analyze.input_image.AnalyzeImageFragment"
+        android:label="AnalyzeImageFragment"
+        tools:layout="@layout/fragment_analyze_image">
+        <action
+            android:id="@+id/action_analyzeImageFragment_to_permissionsFragment"
+            app:destination="@id/permissionsFragment" />
+        <action
+            android:id="@+id/action_analyzeImageFragment_to_analyzeResultFragment"
+            app:destination="@id/analyzeResultFragment" />
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+        <argument
+            android:name="analyzeText"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_analyzeImageFragment_to_analyzeTextFragment"
+            app:destination="@id/analyzeTextFragment" />
     </fragment>
 </navigation>
