@@ -6,7 +6,11 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
-@Getter
 public final class UserId {
     private Long id;
+
+    public Long get() {
+        return id;
+    }
 }
+

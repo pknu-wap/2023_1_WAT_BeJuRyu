@@ -21,7 +21,8 @@ public class ReviewResponse {
             review.getScore(),
             review.getDate(),
             review.getUser().getNickname(),
-            review.getDrink().getId());
+            review.getDrink().getId()
+            );
     }
 
 }

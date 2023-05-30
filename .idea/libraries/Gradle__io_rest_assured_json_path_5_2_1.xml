@@ -1,0 +1,11 @@
+<component name="libraryTable">
+  <library name="Gradle: io.rest-assured:json-path:5.2.1">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.rest-assured/json-path/5.2.1/f53d9cefcf3e3f4554f390ec17d278c47d4125ad/json-path-5.2.1.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/io.rest-assured/json-path/5.2.1/317ace840954371a50e02a42e09d782ca2be6046/json-path-5.2.1-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

@@ -1,9 +1,6 @@
 package com.WAT.BEJURYU.controller;
 
-import com.WAT.BEJURYU.dto.DrinkResponses;
-import com.WAT.BEJURYU.dto.ReviewResponse;
-import com.WAT.BEJURYU.dto.ReviewResponses;
-import com.WAT.BEJURYU.dto.WriteReviewRequest;
+import com.WAT.BEJURYU.dto.*;
 import com.WAT.BEJURYU.service.DrinkService;
 import com.WAT.BEJURYU.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -32,6 +29,12 @@ public class DrinkApiController {
         final DrinkResponses drinks = drinkService.getDrinksByName(name);
 
         return ResponseEntity.ok(drinks);
+    }
+
+    @GetMapping("/{drink_id}/rating")
+    public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable Long id){
+        final DrinkRatingResponse rating = reviewService.getAverageScore(id);
+        return ResponseEntity.ok(rating);
     }
 
     @GetMapping("/{drink_id}/reviews")
