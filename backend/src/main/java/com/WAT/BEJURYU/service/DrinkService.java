@@ -1,5 +1,6 @@
 package com.WAT.BEJURYU.service;
 
+import com.WAT.BEJURYU.dto.DrinkResponse;
 import com.WAT.BEJURYU.dto.DrinkResponses;
 import com.WAT.BEJURYU.dto.ReviewResponse;
 import com.WAT.BEJURYU.dto.WriteReviewRequest;
@@ -27,6 +28,13 @@ public class DrinkService {
         final List<Drink> drinks = drinkRepository.findAll();
 
         return DrinkResponses.of(drinks);
+    }
+
+    public DrinkResponse getDrinkById(final Long id) {
+        final Drink drink = drinkRepository.findById(id)
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주류 정보입니다."));
+
+        return DrinkResponse.from(drink);
     }
 
     public DrinkResponses getDrinksByName(String name) {

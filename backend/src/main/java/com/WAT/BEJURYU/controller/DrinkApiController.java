@@ -28,7 +28,14 @@ public class DrinkApiController {
         return ResponseEntity.ok(drinks);
     }
 
-    @GetMapping("/{name}")
+    @GetMapping("/{id}")
+    public ResponseEntity<DrinkResponse> findById(@PathVariable Long id) {
+        final DrinkResponse drink = drinkService.getDrinkById(id);
+
+        return ResponseEntity.ok(drink);
+    }
+
+    @GetMapping("/name/{name}")
     public ResponseEntity<DrinkResponses> findByName(@PathVariable String name) {
         final DrinkResponses drinks = drinkService.getAllDrinks();
         final List<DrinkResponse> foundByName = drinks.getDrinks().stream()
