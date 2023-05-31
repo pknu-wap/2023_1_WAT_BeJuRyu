@@ -21,9 +21,9 @@
         android:label="AnalyzeResultFragment"
         tools:layout="@layout/fragment_analyze_result">
         <argument
-            android:name="analyzeId"
+            android:name="analysisId"
             android:defaultValue="0L" />
-        <deepLink app:uri="BeJuRyu://feature/analyze/result?analyzeId={analyzeId}"/>
+        <deepLink app:uri="BeJuRyu://feature/analyze/result?analysisId={analysisId}"/>
         <action
             android:id="@+id/action_analyzeResultFragment_to_analyzeHomeFragment"
             app:destination="@id/analyzeHomeFragment" />
@@ -68,7 +68,11 @@
             app:destination="@id/permissionsFragment" />
         <action
             android:id="@+id/action_analyzeImageFragment_to_analyzeResultFragment"
-            app:destination="@id/analyzeResultFragment" />
+            app:destination="@id/analyzeResultFragment" >
+            <argument
+                android:name="analysisId"
+                app:argType="long" />
+        </action>
         <argument
             android:name="imageUri"
             app:argType="string" />
