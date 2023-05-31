@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -14,7 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jaino.setting.R
 import com.jaino.setting.databinding.FragmentHistoryBinding
-import com.jaino.setting.history.adapter.UserAnalyzeAdapter
+import com.jaino.setting.history.adapter.AnalysisHistoryAdapter
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -26,7 +27,7 @@ class HistoryFragment: Fragment() {
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
-    private lateinit var userAnalyzeAdapter : UserAnalyzeAdapter
+    private lateinit var analysisHistoryAdapter : AnalysisHistoryAdapter
     private val viewModel : HistoryViewModel by viewModels()
 
     override fun onCreateView(
@@ -43,17 +44,18 @@ class HistoryFragment: Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViews()
         initAdapter()
+        initViewModelStates()
         observeData()
     }
 
     private fun initAdapter(){
-        userAnalyzeAdapter = UserAnalyzeAdapter(
+        analysisHistoryAdapter = AnalysisHistoryAdapter(
             onItemClick = {
-                navigateToHistoryInfo(it)
+                navigateAnalysisResult(it)
             }
         )
         binding.profileUserAnalyzeList.layoutManager = LinearLayoutManager(requireContext())
-        binding.profileUserAnalyzeList.adapter = userAnalyzeAdapter
+        binding.profileUserAnalyzeList.adapter = analysisHistoryAdapter
     }
 
     private fun initViews(){
@@ -62,17 +64,24 @@ class HistoryFragment: Fragment() {
         }
     }
 
+    private fun initViewModelStates(){
+        viewModel.getAnalyzeList()
+    }
+
     private fun observeData(){
-        viewModel.historyUiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+        viewModel.historyUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is HistoryViewModel.UiEvent.Init -> {}
-                    is HistoryViewModel.UiEvent.Success -> {
-                        userAnalyzeAdapter.submitList(it.data)
-                    }
                     is HistoryViewModel.UiEvent.Failure -> {
                         Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
                     }
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.historyListState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                if(it.isNotEmpty()){
+                    analysisHistoryAdapter.submitList(it)
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -82,10 +91,10 @@ class HistoryFragment: Fragment() {
         findNavController().navigate(direction)
     }
 
-    private fun navigateToHistoryInfo(id: Long){
-        val direction = HistoryFragmentDirections
-            .actionHistoryFragmentToHistoryInfoFragment(id)
-        findNavController().navigate(direction)
+    private fun navigateAnalysisResult(analysisId: Long){
+        findNavController().navigate(
+            "BeJuRyu://feature/analyze/result?analysisId={$analysisId}".toUri()
+        )
     }
 
     override fun onDestroy() {
