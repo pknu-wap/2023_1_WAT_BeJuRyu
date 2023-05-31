@@ -2,9 +2,15 @@
 <layout xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jaino.analyze.result.AnalysisResultViewModel" />
+    </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:background="@color/light_white">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/analyze_result_top_card"
@@ -20,7 +26,7 @@
                 android:padding="16dp">
 
                 <ImageButton
-                    android:id="@+id/analyze_back_button"
+                    android:id="@+id/result_home_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -43,7 +49,7 @@
                     tools:text="주류 추천 결과" />
 
                 <ImageButton
-                    android:id="@+id/analyze_share_button"
+                    android:id="@+id/result_share_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
@@ -55,242 +61,269 @@
 
         </androidx.cardview.widget.CardView>
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/analyze_result_top_card">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
+                android:layout_height="wrap_content">
 
-                <TextView
-                    android:id="@+id/sentiment_result_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="감정 분석 결과" />
-
-                <TextView
-                    android:id="@+id/sentiment_result_content"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginEnd="16dp"
-                    app:layout_constraintEnd_toStartOf="@+id/setiment_icon"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/sentiment_result_title"
-                    tools:text="정자이노 님의 감정분석 결과는 '기쁨'입니다." />
-
-                <ImageView
-                    android:id="@+id/setiment_icon"
-                    android:layout_width="50dp"
-                    android:layout_height="50dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/smile" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cardView2"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/drink_result_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="주류 추천 결과" />
-
-                <TextView
-                    android:id="@+id/drink_result_content"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drink_result_title"
-                    tools:text="오늘 정말 재밌고 행복한 하루를 보내셨네요!" />
-
-                <ImageView
-                    android:id="@+id/drink_image"
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drink_result_content"
-                    app:srcCompat="@drawable/img" />
-
-                <TextView
-                    android:id="@+id/drink_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/drink_image"
-                    tools:text="테라" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-        </androidx.cardview.widget.CardView>
-
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView2" >
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/drink_info_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:textColor="@color/black"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="주류 정보" />
-
-                <TableLayout
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView2"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:stretchColumns="*"
+                    android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/drink_info_title">
+                    app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-                    <TableRow
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/drink_type"
+                            android:id="@+id/drink_result_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="@string/drink_result_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="주류 추천 결과" />
+
+                        <TextView
+                            android:id="@+id/drink_result_content"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_span="1"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/type"
-                            android:textColor="@color/black" />
+                            android:text="@{viewModel.sentimentContentState}"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/drink_result_title"
+                            tools:text="오늘 정말 재밌고 행복한 하루를 보내셨네요!" />
+
+                        <ImageView
+                            android:id="@+id/drink_image"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_marginTop="16dp"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/drink_result_content"
+                            app:srcCompat="@drawable/img" />
 
                         <TextView
-                            android:id="@+id/drink_type_text"
+                            android:id="@+id/drink_name"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:textColor="@color/black" />
-                    </TableRow>
+                            android:layout_marginTop="16dp"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:text="@{viewModel.analysisResultUiState.result.drink.name}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/drink_image"
+                            tools:text="테라" />
 
-                    <TableRow
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/drink_dosu"
+                            android:id="@+id/sentiment_result_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/dosu"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="@string/sentiment_result_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            tools:text="감정 분석 결과" />
 
                         <TextView
-                            android:id="@+id/drink_dosu_text"
-                            android:layout_width="wrap_content"
+                            android:id="@+id/sentiment_result_content"
+                            android:layout_width="0dp"
                             android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:textColor="@color/black" />
-                    </TableRow>
+                            android:layout_marginEnd="16dp"
+                            android:text="@{@string/sentiment_result_content(viewModel.nicknameState, viewModel.analysisResultUiState.result.sentiment)}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toStartOf="@+id/sentiment_icon"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/sentiment_result_title"
+                            tools:text="정자이노 님의 감정분석 결과는 '기쁨'입니다." />
 
-                    <TableRow
+                        <ImageView
+                            android:id="@+id/sentiment_icon"
+                            android:layout_width="50dp"
+                            android:layout_height="50dp"
+                            app:drawableId="@{viewModel.sentimentIconState}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/smile" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                        android:layout_height="match_parent"
+                        android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/drink_volume"
+                            android:id="@+id/drink_info_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/volume"
-                            android:textColor="@color/black" />
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="@string/product_info"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
-                        <TextView
-                            android:id="@+id/drink_volume_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:textColor="@color/black" />
-                    </TableRow>
+                        <TableLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginTop="16dp"
+                            android:stretchColumns="*"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@id/drink_info_title">
 
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent">
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
 
-                        <TextView
-                            android:id="@+id/drink_price"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:background="@color/light_white"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:text="@string/price"
-                            android:textColor="@color/black" />
+                                <TextView
+                                    android:id="@+id/drink_type"
+                                    android:layout_width="0dp"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="1"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/type"
+                                    android:textColor="@color/black" />
 
-                        <TextView
-                            android:id="@+id/drink_price_texxt"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_span="4"
-                            android:gravity="center"
-                            android:paddingVertical="16dp"
-                            android:textColor="@color/black" />
-                    </TableRow>
-                </TableLayout>
+                                <TextView
+                                    android:id="@+id/drink_type_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:text="@{viewModel.analysisResultUiState.result.drink.type}"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_dosu"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/dosu"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_dosu_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:text="@{Double.toString(viewModel.analysisResultUiState.result.drink.dosu)}"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_volume"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/volume"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_volume_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:text="@{Integer.toString(viewModel.analysisResultUiState.result.drink.volume)}"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_price"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/price"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_price_texxt"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:text="@{Integer.toString(viewModel.analysisResultUiState.result.drink.price)}"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+                        </TableLayout>
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
             </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
+        </ScrollView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>
