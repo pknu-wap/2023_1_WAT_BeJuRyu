@@ -27,34 +27,66 @@ function Dictionary() {
   const [jsonData, setJsonData] = useState(null);
   // 검색어 상태를 useState 훅 사용하여 관리
   const [searchTerm, setSearchTerm] = useState("");
+  // 주류 종류
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  // 주류 이름 검색 함수
   const handleSearch = async (e) => {
     e.preventDefault();
-
+    console.log(selectedCategory);
     try {
-      const res = await noAuthClient({
-        method: "get",
-        url: `/drinks/name/${searchTerm}`,
-      });
-      if (res) {
-        console.log(res);
+      if (selectedCategory === "ALL") {
+        const nameRes = await noAuthClient({
+          method: "get",
+          url: `/drinks/name/${searchTerm}`, // 작성한 주류 이름에 해당하는 API 요청
+        });
+        console.log("Name response:", nameRes);
+      } else if (selectedCategory !== "All") {
+        const typeRes = await noAuthClient({
+          method: "get",
+          url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
+        });
+        console.log("Type response:", typeRes);
       }
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
         console.log(err);
       }
-      //console.log(searchTerm);
     }
   };
+
+  // // 주류 이름 검색 함수
+  // const handleNameSearch = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await noAuthClient({
+  //       method: "get",
+  //       url: `/drinks/name/${searchTerm}`,
+  //     });
+  //     if (res) {
+  //       console.log(res);
+  //     }
+  //   } catch (error) {
+  //     if (error.response) {
+  //       const err = error.response.data;
+  //       console.log(err);
+  //     }
+  //     //console.log(searchTerm);
+  //   }
+  // };
 
   // 검색어 입력 필드의 onChange 핸들러
   const handleChange = (e) => {
     setSearchTerm(e.target.value);
   };
 
-  const dictionaryData = location.state?.dictionaryData;
+  // 카테고리
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  //const dictionaryData = location.state?.dictionaryData;
 
   return (
     <S.Container>
@@ -76,6 +108,7 @@ function Dictionary() {
               <FormControl sx={{ m: 1, width: "15ch", alignitems: "center" }}>
                 <NativeSelect
                   defaultValue={"none"}
+                  onChange={handleCategoryChange}
                   inputProps={{ name: "category", id: "uncontrolled-native" }}
                 >
                   <option value={"ALL"}>이름검색</option>
