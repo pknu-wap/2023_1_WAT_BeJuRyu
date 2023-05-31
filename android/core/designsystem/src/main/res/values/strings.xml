@@ -3,7 +3,7 @@
     <string name="dialog_choose_tools_title">감정 분석에 사용할 사진을 선택해주세요.</string>
     <string name="dialog_album_text">앨범에서 가져오기</string>
     <string name="dialog_camera_text">카메라로 촬영하기</string>
-    <string name="goToAnalyze_text">술 추천 받으러 가기</string>
+    <string name="goToAnalyze_text">내 기분에 맞는 주류 확인하기</string>
     <string name="analyze_text_expression_title">오늘은 어떤 일이 있었나요?</string>
     <string name="analyze_text_expression_content">감정이 들어간 문장이 포함될 수록 더 좋아요!</string>
     <string name="analyze_text_done">다 작성했어요!</string>
@@ -23,7 +23,7 @@
     <string name="yes">확인</string>
     <string name="no">아니요</string>
     <string name="profile_userAnalyze_title">이용 기록</string>
-    <string name="dict_search">원하는 주류를 입력하세요!</string>
+    <string name="dict_search">원하는 주류를 검색하세요!</string>
     <string name="beer">맥주</string>
     <string name="soju">소주</string>
     <string name="wine">와인</string>
@@ -38,7 +38,7 @@
     <string name="analyze_title">오늘 하루는 어떠셨나요?\n오늘 기분에 맞는 주류를 추천해드릴게요.</string>
     <string name="app_name">Be주류</string>
     <string name="drink_recent_title">최근 검색어</string>
-    <string name="analyze_text_semi_title">인공지능이 당신의 하루를 분석해 줄 거에요.</string>
+    <string name="analyze_text_semi_title">당신의 하루를 분석해, 알맞는 주류를 추천할게요.</string>
     <string name="dosu">도수</string>
     <string name="volume">용량</string>
     <string name="type">종류</string>
@@ -47,12 +47,13 @@
     <string name="write_review">리뷰 작성하기</string>
     <string name="product_info">주류 정보</string>
     <string name="rating_score_text">%1$s/5.0</string>
-    <string name="review_title">구매 후기</string>
-    <string name="review_title_name">%1$s 구매 후기</string>
+    <string name="review_title">구매후기</string>
+    <string name="review_title_name">%1$s 리뷰</string>
     <string name="review_score_title">평점</string>
-    <string name="write_review_title">주류 후기 작성</string>
+    <string name="write_review_title">주류후기 작성</string>
+    <string name="review_drink_name">주류 | %1$s</string>
     <string name="content">내용</string>
-    <string name="write_review_content_hint">주류에 대한 평가를 작성해 주세요.</string>
+    <string name="write_review_content_hint">주류에 대한 후기를 작성해 주세요.</string>
     <string name="register">등록</string>
     <string name="write_review_rating">주류에 대한 후기를 남겨주세요</string>
     <string name="item_nickname">%1$s님</string>
@@ -62,4 +63,12 @@
     <string name="analysis_content">얼굴 표정이 들어난 사진을 더 잘 분석해요!</string>
     <string name="analysis_image_content">사진을 클릭하여 이미지 선택하기</string>
     <string name="analysis_image_input">사진 입력</string>
+    <string name="dosu_unit">%.1f%%</string>
+    <string name="price_unit">%dml</string>
+    <string name="volume_unit">%d원</string>
+    <string name="home_title">Be주류 |</string>
+    <string name="rank_title">Be주류 랭킹</string>
+    <string name="rank_content">유저들이 직접 선정한 \n비주류에서 가장 인기가 많은 술을 확인해보세요!</string>
+    <string name="drink_category_title">카테고리</string>
+    <string name="max_rating">/5</string>
 </resources>
