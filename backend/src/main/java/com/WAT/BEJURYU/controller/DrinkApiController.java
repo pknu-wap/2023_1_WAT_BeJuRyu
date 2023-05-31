@@ -9,6 +9,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/drinks")
@@ -26,13 +29,16 @@ public class DrinkApiController {
 
     @GetMapping("/{name}")
     public ResponseEntity<DrinkResponses> findByName(@PathVariable String name) {
-        final DrinkResponses drinks = drinkService.getDrinksByName(name);
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+        final List<DrinkResponse> foundByName = drinks.getDrinks().stream()
+                .filter(drink -> drink.getName().contains(name))
+                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(drinks);
+        return ResponseEntity.ok(new DrinkResponses(foundByName));
     }
 
     @GetMapping("/{drink_id}/rating")
-    public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable Long id){
+    public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable Long id) {
         final DrinkRatingResponse rating = reviewService.getAverageScore(id);
         return ResponseEntity.ok(rating);
     }
