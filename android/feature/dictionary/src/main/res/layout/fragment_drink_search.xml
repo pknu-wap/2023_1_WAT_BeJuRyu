@@ -6,10 +6,12 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/Theme.BeJuRyu">
+        android:theme="@style/Theme.BeJuRyu"
+        android:background="@color/light_white">
+
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/cardView"
+            android:id="@+id/cardView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             app:layout_constraintEnd_toEndOf="parent"
@@ -18,13 +20,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
+                android:layout_height="match_parent">
 
                 <androidx.appcompat.widget.AppCompatImageButton
                     android:id="@+id/backToAnalyzeButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
                     android:background="@color/transparent"
                     android:src="@drawable/back_button"
                     app:layout_constraintBottom_toBottomOf="@+id/searchEditTextView"
@@ -35,28 +37,58 @@
                     android:id="@+id/searchEditTextView"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
                     android:layout_marginHorizontal="16dp"
                     android:background="@drawable/rounded_edit_text_background"
+                    android:drawableRight="@drawable/baseline_search_24"
                     android:hint="@string/dict_search"
                     android:imeOptions="actionSearch"
                     android:inputType="text"
                     android:padding="8dp"
                     android:singleLine="true"
-                    android:drawableRight="@drawable/baseline_search_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/backToAnalyzeButton"
                     app:layout_constraintTop_toTopOf="parent" />
 
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cardView2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/drink_category_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="16dp"
+                    android:text="@string/drink_category_title"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="카테고리" />
+
                 <com.google.android.material.chip.ChipGroup
                     android:id="@+id/drink_chip_group"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    android:padding="16dp"
+                    android:paddingHorizontal="16dp"
+                    android:paddingVertical="8dp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/searchEditTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/drink_category_title"
                     app:singleSelection="true">
 
                     <com.google.android.material.chip.Chip
@@ -65,124 +97,202 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="@string/beer"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/beer"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/soju_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:text="@string/soju"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/soju"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/sake_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:text="@string/sake"
-                        app:chipBackgroundColor="@drawable/chip_background" />
-
-                    <com.google.android.material.chip.Chip
-                        android:id="@+id/rice_wine_chip"
-                        style="@style/Widget.MaterialComponents.Chip.Filter"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
-                        android:text="@string/rice_wine"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/sake"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/wine_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:text="@string/wine"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        android:layout_marginStart="8dp"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/wine"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/liquor_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:text="@string/liquor"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/liquor"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/cognac_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:text="@string/cognac"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/cognac"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/whisky_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:text="@string/whisky"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        android:layout_marginStart="8dp"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/whiskey"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/fruit_drink_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
                         android:text="@string/fruit_drink"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/fruit_drink"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/yakju_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:text="@string/yakju"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/yakju"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                     <com.google.android.material.chip.Chip
                         android:id="@+id/makgeolli_chip"
                         style="@style/Widget.MaterialComponents.Chip.Filter"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="16dp"
+                        android:layout_marginStart="8dp"
                         android:text="@string/makgeolli"
-                        app:chipBackgroundColor="@drawable/chip_background" />
+                        android:textColor="@color/purple"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/makgeolli"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@color/purple"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp" />
 
                 </com.google.android.material.chip.ChipGroup>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.cardview.widget.CardView>
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/recent_drink_recyclerView"
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_marginTop="16dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/drink_recent_title" />
+            app:layout_constraintTop_toBottomOf="@+id/cardView">
 
-        <TextView
-            android:id="@+id/drink_recent_title"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="16dp"
-            android:text="@string/drink_recent_title"
-            android:textColor="@color/black"
-            android:textStyle="bold"
-            android:textSize="18sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cardView"
-            tools:text="최근 검색어" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/drink_recent_title"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:text="@string/drink_recent_title"
+                    android:textColor="@color/black"
+                    android:textStyle="bold"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="최근 검색어" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recent_drink_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/drink_recent_title">
+
+                </androidx.recyclerview.widget.RecyclerView>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

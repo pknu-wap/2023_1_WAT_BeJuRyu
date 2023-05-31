@@ -263,7 +263,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{Double.toString(viewModel.analysisResultUiState.result.drink.dosu)}"
+                                    android:text="@{@string/dosu_unit(viewModel.analysisResultUiState.result.drink.dosu)}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
                                     android:textColor="@color/black" />
@@ -288,7 +288,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{Integer.toString(viewModel.analysisResultUiState.result.drink.volume)}"
+                                    android:text="@{@string/volume_unit(viewModel.analysisResultUiState.result.drink.volume)}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
                                     android:textColor="@color/black" />
@@ -313,7 +313,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{Integer.toString(viewModel.analysisResultUiState.result.drink.price)}"
+                                    android:text="@{@string/price_unit(viewModel.analysisResultUiState.result.drink.price)}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
                                     android:textColor="@color/black" />
