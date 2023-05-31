@@ -21,32 +21,43 @@ function Recommend() {
     navigate("/result");
     if (selectedFile) {
       const reader = new FileReader();
-
+      // base64 encoding해서
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
-
-        const requestData = {
-          "user-id": localStorage.getItem("user-id"),
-          "text-expression": inputValue,
-          "facial-expression": base64Data,
-        };
-
+        reader.readAsDataURL(selectedFile); // 이미지 파일을 Base64로 인코딩
+        console.log(typeof parseInt(localStorage.getItem("user-id"), 10));
+        console.log(typeof base64Data);
+        console.log(typeof inputValue);
         try {
           const res = await authClient({
             method: "post",
-            url: "/analyze/source",
-            data: requestData,
+            url: "/analyze/sources",
+            data: {
+              "user-id": parseInt(localStorage.getItem("user-id"), 10),
+              "text-expression": inputValue,
+              "facial-expression": base64Data,
+            },
           });
-          console.log(res);
+          if (res) {
+            console.log(res);
+          }
+
           // 서버 응답 처리
         } catch (error) {
-          const err = error.response.data;
-          console.log(err);
-          // 에러 처리
+          if (error.response) {
+            // 서버 응답 에러
+            const err = error.response.data;
+            console.log(err);
+          } else {
+            // 네트워크 에러 또는 클라이언트 에러
+            console.log("Error:", error.message);
+          }
         }
       };
 
-      reader.readAsDataURL(selectedFile); // 이미지 파일을 Base64로 인코딩
+      reader.readAsDataURL(selectedFile);
+      // const userId = localStorage.getItem("user-id");
+      // console.log(typeof parseInt(userId, 10));
     }
   };
 
