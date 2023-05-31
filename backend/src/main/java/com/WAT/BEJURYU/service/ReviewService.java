@@ -31,6 +31,10 @@ public class ReviewService {
         return ReviewResponses.of(reviews);
     }
 
+    public int getReviewSize(long drinkId) {
+        return reviewRepository.countByDrinkId(drinkId);
+    }
+
     public DrinkRatingResponse getAverageScore(long drinkId) {
         final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
         double sum = reviews.stream()

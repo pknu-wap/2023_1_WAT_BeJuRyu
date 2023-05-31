@@ -51,6 +51,20 @@ public class DrinkApiController {
                 .collect(Collectors.toList());
     }
 
+    @GetMapping("/rankings/review")
+    public ResponseEntity<DrinkResponses> findTop10ByReviews() {
+        final List<DrinkResponse> drinks = getDrinksByReviews();
+
+        return ResponseEntity.ok(new DrinkResponses(drinks.subList(0, 10)));
+    }
+
+    private List<DrinkResponse> getDrinksByReviews() {
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+        return drinks.getDrinks().stream()
+                .sorted((drink1, drink2) -> reviewService.getReviewSize(drink2.getId()) - reviewService.getReviewSize(drink1.getId()))
+                .collect(Collectors.toList());
+    }
+
     @GetMapping("/{drink_id}/rating")
     public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable Long id) {
         final DrinkRatingResponse rating = reviewService.getAverageScore(id);
