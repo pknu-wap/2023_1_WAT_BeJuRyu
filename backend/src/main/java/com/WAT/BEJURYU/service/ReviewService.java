@@ -33,9 +33,11 @@ public class ReviewService {
 
     public DrinkRatingResponse getAverageScore(long drinkId) {
         final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
-        double sum = reviews.stream().mapToDouble(s -> s.getScore()).sum();
+        double sum = reviews.stream()
+                .mapToDouble(Review::getScore)
+                .sum();
 
-        return new DrinkRatingResponse(drinkId,sum/reviews.size());
+        return new DrinkRatingResponse(drinkId, sum / reviews.size());
     }
 
     @Transactional
