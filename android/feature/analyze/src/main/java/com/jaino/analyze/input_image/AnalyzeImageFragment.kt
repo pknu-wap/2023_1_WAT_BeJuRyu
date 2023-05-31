@@ -11,12 +11,17 @@ import androidx.activity.result.launch
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jaino.analyze.R
 import com.jaino.analyze.databinding.FragmentAnalyzeImageBinding
+import com.jaino.common.extensions.showToast
 import com.jaino.common.utils.PickPhotoContract
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class AnalyzeImageFragment : Fragment() {
@@ -30,7 +35,6 @@ class AnalyzeImageFragment : Fragment() {
     private val viewModel : AnalyzeImageViewModel by viewModels()
     private val args : AnalyzeImageFragmentArgs by navArgs()
 
-    //TODO savedStateHandle 관리
     override fun onAttach(context: Context) {
         super.onAttach(context)
         singlePhotoPickerLauncher =  registerForActivityResult(PickPhotoContract())
@@ -56,18 +60,19 @@ class AnalyzeImageFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+        initViewModelStates()
+        observeData()
     }
 
     private fun initViews(){
-        if(args.imageUri.isNotEmpty()){
-            loadImage(args.imageUri)
-        }
         binding.analyzeInputImage.setOnClickListener {
             showDialog()
         }
+        // 완료 버튼 클릭
         binding.analyzeImageDoneButton.setOnClickListener {
-            viewModel.postAnalyzeInput(args.analyzeText)
+            viewModel.postAnalysisSource(args.analyzeText)
         }
+        // 뒤로가기 버튼 클릭
         binding.analyzeBackButton.setOnClickListener {
             findNavController().popBackStack(R.id.analyzeTextFragment, false)
         }
@@ -83,8 +88,38 @@ class AnalyzeImageFragment : Fragment() {
         ).show()
     }
 
+    private fun initViewModelStates(){
+        // userId 불러오기
+        viewModel.getUserId()
+
+        // imageUri 저장
+        if(args.imageUri.isNotEmpty()){
+            loadImage(args.imageUri)
+        }
+    }
+
     private fun loadImage(uri: String){
         viewModel.setImageUri(uri)
+    }
+
+    private fun observeData(){
+        viewModel.analysisId.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach { id ->
+                if (id != -1L) {
+                    navigateToResult(id)
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.analysisUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                when(it){
+                    is AnalyzeImageViewModel.UiEvent.Failure -> {
+                        if(it.message != null){
+                            requireContext().showToast(it.message)
+                        }
+                    }
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun navigateToPermission(){
@@ -93,9 +128,11 @@ class AnalyzeImageFragment : Fragment() {
         )
     }
 
-    private fun navigateToResult(){
+    private fun navigateToResult(analysisId: Long){
         findNavController().navigate(
-            AnalyzeImageFragmentDirections.actionAnalyzeImageFragmentToAnalyzeResultFragment()
+            AnalyzeImageFragmentDirections.actionAnalyzeImageFragmentToAnalyzeResultFragment(
+                analysisId
+            )
         )
     }
 }
