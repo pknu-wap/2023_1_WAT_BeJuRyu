@@ -1,5 +1,6 @@
 package com.jaino.data.di
 
+import com.jaino.data.repository.analysis.AnalysisRepository
 import com.jaino.data.repository.auth.AuthRepository
 import com.jaino.data.repository.auth.AuthRepositoryImpl
 import com.jaino.data.repository.dictionary.DrinksRepository
@@ -8,15 +9,14 @@ import com.jaino.data.repository.review.ReviewRepository
 import com.jaino.data.repository.review.ReviewRepositoryImpl
 import com.jaino.data.repository.user.LocalUserRepository
 import com.jaino.data.repository.user.LocalUserRepositoryImpl
-import com.jaino.data.repository.user.UserRepository
-import com.jaino.data.repository.user.UserRepositoryImpl
+import com.jaino.data.repository.analysis.AnalysisRepositoryImpl
 import com.jaino.datastore.BeJuRyuDatastore
-import com.jaino.network.datasource.auth.SignInDataSource
+import com.jaino.network.datasource.analysis.AnalysisDataSource
+import com.jaino.network.datasource.auth.AuthDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkListDataSource
 import com.jaino.network.datasource.review.GetReviewListDataSource
 import com.jaino.network.datasource.review.PostReviewDataSource
-import com.jaino.network.datasource.user.UserDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -30,7 +30,7 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideSocialAuthRepository(
-        dataSource: SignInDataSource,
+        dataSource: AuthDataSource,
         dataStore : BeJuRyuDatastore
     ) : AuthRepository = AuthRepositoryImpl(dataSource, dataStore)
 
@@ -42,9 +42,9 @@ object RepositoryModule {
 
     @Singleton
     @Provides
-    fun provideUserRepository(
-        source : UserDataSource
-    ): UserRepository = UserRepositoryImpl(source)
+    fun provideAnalysisRepository(
+        source : AnalysisDataSource
+    ): AnalysisRepository = AnalysisRepositoryImpl(source)
 
 
     @Singleton

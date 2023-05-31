@@ -1,11 +1,11 @@
 package com.jaino.data.repository.auth
 
 import com.jaino.datastore.BeJuRyuDatastore
-import com.jaino.network.datasource.auth.SignInDataSource
+import com.jaino.network.datasource.auth.AuthDataSource
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
-    private val source: SignInDataSource,
+    private val source: AuthDataSource,
     private val datastore: BeJuRyuDatastore
 ) : AuthRepository {
     override suspend fun signInService(token: String) : Result<Unit> {

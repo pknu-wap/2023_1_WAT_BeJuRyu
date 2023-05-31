@@ -21,4 +21,18 @@ object BindingAdapter {
                 .into(view)
         }
     }
+
+    @JvmStatic
+    @BindingAdapter("app:drawableId")
+    fun loadDrawable(view: ImageView, drawableId: Int) {
+        if (drawableId != 0) {
+            Glide.with(view.context)
+                .load(drawableId)
+                .placeholder(com.jaino.designsystem.R.drawable.img)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .apply(RequestOptions().fitCenter())
+                .error(com.jaino.designsystem.R.drawable.img)
+                .into(view)
+        }
+    }
 }

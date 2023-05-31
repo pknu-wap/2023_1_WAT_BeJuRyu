@@ -45,7 +45,7 @@ class DrinkSearchFragment : Fragment() {
             findNavController().navigate("BeJuRyu://feature/analyze".toUri())
         }
 
-        binding.searchEditTextView.setOnEditorActionListener { textView, actionId, keyEvent ->
+        binding.searchEditTextView.setOnEditorActionListener { textView, actionId, _ ->
             if(actionId == EditorInfo.IME_ACTION_SEARCH && textView.text.isNotBlank()){
                 navigateToDrinkList(
                     word = textView.text.toString(),

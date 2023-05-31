@@ -56,4 +56,10 @@
     <string name="register">등록</string>
     <string name="write_review_rating">주류에 대한 후기를 남겨주세요</string>
     <string name="item_nickname">%1$s님</string>
+    <string name="sentiment_result_title">감정 분석 결과</string>
+    <string name="sentiment_result_content">%1$s님의 감정 분석 결과는 %2$s입니다.</string>
+    <string name="drink_result_title">주류 추천 결과</string>
+    <string name="analysis_content">얼굴 표정이 들어난 사진을 더 잘 분석해요!</string>
+    <string name="analysis_image_content">사진을 클릭하여 이미지 선택하기</string>
+    <string name="analysis_image_input">사진 입력</string>
 </resources>

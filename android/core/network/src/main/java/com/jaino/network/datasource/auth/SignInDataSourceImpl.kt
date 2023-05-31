@@ -6,7 +6,7 @@ import javax.inject.Inject
 
 class SignInDataSourceImpl @Inject constructor(
     private val service : AuthService
-) : SignInDataSource{
+) : AuthDataSource{
     override suspend fun signIn(token: String) : SignInResponse =
         service.signIn(token)
 }

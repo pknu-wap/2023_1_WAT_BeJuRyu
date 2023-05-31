@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
     <data>
-
+        <variable
+            name="viewModel"
+            type="com.jaino.analyze.input_image.AnalyzeImageViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -11,7 +13,7 @@
         android:theme="@style/Theme.BeJuRyu">
 
         <androidx.cardview.widget.CardView
-            android:id="@+id/analyze_text_cardView"
+            android:id="@+id/analyze_image_cardView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -34,7 +36,7 @@
                     app:srcCompat="@drawable/baseline_back_32" />
 
                 <TextView
-                    android:id="@+id/analyze_text_title"
+                    android:id="@+id/analyze_image_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cookierun_bold"
@@ -44,14 +46,71 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    tools:text="오늘의 감정 작성" />
+                    tools:text="감정 분석 사진 입력" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/analyze_image_cardView">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="16dp">
+
+                <TextView
+                    android:id="@+id/analyze_image_title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:text="@string/analysis_image_input"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/analyze_image_content"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analysis_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/analyze_image_title2" />
+
+                <ImageView
+                    android:id="@+id/analyze_input_image"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:imageUrl="@{viewModel.imageSourceState}"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/analyze_image_content" />
+
+                <TextView
+                    android:id="@+id/analyze_image_content2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/analysis_image_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/analyze_input_image" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </androidx.cardview.widget.CardView>
 
         <androidx.appcompat.widget.AppCompatButton
-            android:id="@+id/analyze_text_doneButton"
+            android:id="@+id/analyze_image_doneButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             tools:text="다 작성했어요!"
@@ -62,64 +121,6 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
-
-        <androidx.cardview.widget.CardView
-            android:id="@+id/analyze_text_title_cardView"
-            android:layout_width="match_parent"
-            android:layout_height="300dp"
-            android:layout_marginTop="16dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/analyze_text_cardView">
-
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:padding="16dp">
-
-                <TextView
-                    android:id="@+id/analyze_text_expression_title"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/analyze_text_expression_title"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="오늘은 어떤 일이 있었나요?" />
-
-                <TextView
-                    android:id="@+id/analyze_text_title2"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:text="@string/analyze_text_semi_title"
-                    android:textSize="16sp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/analyze_text_expression_title" />
-
-                <EditText
-                    android:id="@+id/analyze_text_expression"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    android:background="@drawable/rounded_edit_text_background"
-                    android:gravity="start"
-                    android:hint="@string/analyze_text_expression_content"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:singleLine="false"
-                    android:textSize="14sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/analyze_text_title2"
-                    tools:hint="감정이 들어간 문장이 포함될 수록 더 정확해요!" />
-
-            </androidx.constraintlayout.widget.ConstraintLayout>
-
-        </androidx.cardview.widget.CardView>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

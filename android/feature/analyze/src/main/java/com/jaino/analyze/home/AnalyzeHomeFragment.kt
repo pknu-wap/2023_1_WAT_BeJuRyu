@@ -10,9 +10,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.jaino.analyze.R
 import com.jaino.analyze.databinding.FragmentAnalyzeHomeBinding
-import com.jaino.common.navigation.AppNavigator
 import dagger.hilt.android.AndroidEntryPoint
-import javax.inject.Inject
 
 @AndroidEntryPoint
 class AnalyzeHomeFragment : Fragment() {
@@ -20,9 +18,6 @@ class AnalyzeHomeFragment : Fragment() {
     private var _binding: FragmentAnalyzeHomeBinding? = null
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
-
-    @Inject
-    lateinit var appNavigator: AppNavigator
 
     override fun onCreateView(
         inflater: LayoutInflater,

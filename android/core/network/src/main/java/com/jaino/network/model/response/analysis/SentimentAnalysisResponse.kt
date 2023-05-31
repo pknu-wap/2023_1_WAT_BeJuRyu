@@ -1,24 +1,20 @@
 package com.jaino.network.model.response.user
 
-import com.jaino.model.user.*
+import com.jaino.model.analysis.AnalysisDrink
+import com.jaino.model.analysis.AnalysisResult
+import com.jaino.model.analysis.AnalysisSource
+import com.jaino.model.analysis.SentimentAnalysis
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
-@Serializable
-@SerialName("UserSentimentAnalysisResponse")
-data class AnalysisSentimentResponse (
-    val status: Int,
-    val success: Boolean,
-    val message: String,
-    val data : AnalysisDataResponse
-    )
 
 @Serializable
-data class AnalysisDataResponse(
+@SerialName("UserSentimentAnalysisResponse")
+data class SentimentAnalysisResponse(
     val source : AnalysisSourceResponse,
     val result : AnalysisResultResponse
 ){
-    fun toAnalysisData() : AnalysisSentiment = AnalysisSentiment(
+    fun toSentimentAnalysis() : SentimentAnalysis = SentimentAnalysis(
         source = source.toAnalysisSource(),
         result = result.toAnalysisResult()
     )

@@ -1,4 +1,4 @@
-package com.jaino.analyze.input
+package com.jaino.analyze.input_image
 
 import android.content.Context
 import android.os.Bundle

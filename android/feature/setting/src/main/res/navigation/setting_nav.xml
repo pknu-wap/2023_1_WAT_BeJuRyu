@@ -17,8 +17,7 @@
     <fragment
         android:id="@+id/settingFragment"
         android:name="com.jaino.setting.SettingFragment"
-        android:label="SettingFragment"
-        tools:layout="@layout/activity_setting">
+        android:label="SettingFragment">
         <action
             android:id="@+id/action_settingFragment_to_profileFragment"
             app:destination="@id/profileFragment" />
@@ -33,23 +32,5 @@
         <action
             android:id="@+id/action_historyFragment_to_settingFragment"
             app:destination="@id/settingFragment" />
-        <action
-            android:id="@+id/action_historyFragment_to_historyInfoFragment"
-            app:destination="@id/historyInfoFragment" >
-            <argument
-                android:name="id"
-                app:argType="long" />
-        </action>
-    </fragment>
-    <fragment
-        android:id="@+id/historyInfoFragment"
-        android:name="com.jaino.setting.history.info.HistoryInfoFragment"
-        android:label="HistoryInfoFragment" >
-        <argument
-            android:name="id"
-            app:argType="long" />
-        <action
-            android:id="@+id/action_historyInfoFragment_to_historyFragment"
-            app:destination="@id/historyFragment" />
     </fragment>
 </navigation>

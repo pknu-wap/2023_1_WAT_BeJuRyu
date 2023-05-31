@@ -1,10 +1,7 @@
 package com.jaino.network.di
 
 import com.jaino.network.BuildConfig
-import com.jaino.network.remote.AuthService
-import com.jaino.network.remote.DictionaryService
-import com.jaino.network.remote.ReviewService
-import com.jaino.network.remote.UserService
+import com.jaino.network.remote.*
 import com.jaino.network.remote.interceptor.AuthInterceptor
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import dagger.Module
@@ -76,12 +73,6 @@ object ApiModule {
 
     @Provides
     @Singleton
-    fun provideUserService(
-        retrofit: Retrofit
-    ): UserService = retrofit.create(UserService::class.java)
-
-    @Provides
-    @Singleton
     fun provideDictionaryService(
         retrofit: Retrofit
     ): DictionaryService = retrofit.create(DictionaryService::class.java)
@@ -91,4 +82,10 @@ object ApiModule {
     fun provideReviewService(
         retrofit: Retrofit
     ): ReviewService = retrofit.create(ReviewService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideAnalysisService(
+        retrofit: Retrofit
+    ): AnalysisService = retrofit.create(AnalysisService::class.java)
 }

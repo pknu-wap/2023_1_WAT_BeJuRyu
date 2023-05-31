@@ -1,6 +1,8 @@
 package com.jaino.network.di
 
-import com.jaino.network.datasource.auth.SignInDataSource
+import com.jaino.network.datasource.analysis.AnalysisDataSource
+import com.jaino.network.datasource.analysis.AnalysisDataSourceImpl
+import com.jaino.network.datasource.auth.AuthDataSource
 import com.jaino.network.datasource.auth.SignInDataSourceImpl
 import com.jaino.network.datasource.dictionary.GetDrinkDataSource
 import com.jaino.network.datasource.dictionary.GetDrinkDataSourceImpl
@@ -10,8 +12,6 @@ import com.jaino.network.datasource.review.GetReviewListDataSource
 import com.jaino.network.datasource.review.GetReviewListDataSourceImpl
 import com.jaino.network.datasource.review.PostReviewDataSource
 import com.jaino.network.datasource.review.PostReviewDataSourceImpl
-import com.jaino.network.datasource.user.UserDataSource
-import com.jaino.network.datasource.user.UserDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -26,13 +26,7 @@ abstract class NetworkModule {
     @Singleton
     abstract fun provideSignInDataSource(
         signInDataSourceImpl : SignInDataSourceImpl
-    ): SignInDataSource
-
-    @Binds
-    @Singleton
-    abstract fun provideUserDataSource(
-        userDataSourceImpl : UserDataSourceImpl
-    ): UserDataSource
+    ): AuthDataSource
 
     @Binds
     @Singleton
@@ -57,4 +51,10 @@ abstract class NetworkModule {
     abstract fun providePostReviewDataSource(
         postReviewDataSourceImpl: PostReviewDataSourceImpl
     ): PostReviewDataSource
+
+    @Binds
+    @Singleton
+    abstract fun providePostAnalysisSourceDataSource(
+        analysisDataSourceImpl : AnalysisDataSourceImpl
+    ): AnalysisDataSource
 }

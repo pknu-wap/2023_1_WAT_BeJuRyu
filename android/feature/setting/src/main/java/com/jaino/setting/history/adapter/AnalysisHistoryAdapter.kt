@@ -5,24 +5,24 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jaino.model.user.Analysis
+import com.jaino.model.analysis.AnalysisHistory
 import com.jaino.setting.databinding.ItemUserAnalyzeBinding
 
-
-class UserAnalyzeAdapter(
+class AnalysisHistoryAdapter(
     private val onItemClick : (Long) -> Unit
-) : ListAdapter<Analysis,
-        UserAnalyzeAdapter.UserAnalyzeViewHolder>(UserAnalyzeCallback) {
+) : ListAdapter<AnalysisHistory,
+        AnalysisHistoryAdapter.UserAnalyzeViewHolder>(UserAnalyzeCallback) {
 
     companion object {
-        val UserAnalyzeCallback = object : DiffUtil.ItemCallback<Analysis>(){
+        val UserAnalyzeCallback = object : DiffUtil.ItemCallback<AnalysisHistory>(){
             override fun areItemsTheSame(
-                oldItem: Analysis, newItem: Analysis): Boolean {
+                oldItem: AnalysisHistory, newItem: AnalysisHistory
+            ): Boolean {
                 return oldItem.id == newItem.id
             }
 
             override fun areContentsTheSame(
-                oldItem: Analysis, newItem: Analysis
+                oldItem: AnalysisHistory, newItem: AnalysisHistory
             ): Boolean {
                 return oldItem == newItem
             }
@@ -41,7 +41,7 @@ class UserAnalyzeAdapter(
 
     inner class UserAnalyzeViewHolder(private val binding : ItemUserAnalyzeBinding)
         : RecyclerView.ViewHolder(binding.root) {
-        fun bind(item : Analysis) {
+        fun bind(item : AnalysisHistory) {
             binding.item = item
             binding.root.setOnClickListener {
                 onItemClick(item.id)
