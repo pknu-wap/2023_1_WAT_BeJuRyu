@@ -8,7 +8,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/Theme.BeJuRyu">
+        android:theme="@style/Theme.BeJuRyu"
+        android:background="@color/light_white">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/analyze_text_cardView"
@@ -107,15 +108,13 @@
                     android:background="@drawable/rounded_edit_text_background"
                     android:gravity="start"
                     android:hint="@string/analyze_text_expression_content"
-                    android:paddingHorizontal="16dp"
-                    android:paddingVertical="8dp"
-                    android:singleLine="false"
+                    android:padding="12dp"
                     android:textSize="14sp"
+                    android:singleLine="false"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/analyze_text_title2"
-                    tools:hint="감정이 들어간 문장이 포함될 수록 더 정확해요!" />
+                    app:layout_constraintTop_toBottomOf="@+id/analyze_text_title2" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
