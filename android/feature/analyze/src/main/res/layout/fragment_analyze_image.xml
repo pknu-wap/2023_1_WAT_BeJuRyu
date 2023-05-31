@@ -72,36 +72,35 @@
                     android:textColor="@color/black"
                     android:textSize="16sp"
                     android:textStyle="bold"
+                    android:text="@string/analysis_image_input"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="사진 입력" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     android:id="@+id/analyze_image_content"
                     android:textSize="16sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="@string/analysis_content"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/analyze_image_title2"
-                    tools:text="얼굴 표정이 들어난 사진이 더 잘 분석해요!" />
+                    app:layout_constraintTop_toBottomOf="@+id/analyze_image_title2" />
 
                 <ImageView
                     android:id="@+id/analyze_input_image"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:imageUrl="@{viewModel.analyzeImageState}"
+                    android:layout_width="200dp"
+                    android:layout_height="200dp"
+                    app:imageUrl="@{viewModel.imageSourceState}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/analyze_image_content"
-                    app:srcCompat="@drawable/img" />
+                    app:layout_constraintTop_toBottomOf="@+id/analyze_image_content" />
 
                 <TextView
                     android:id="@+id/analyze_image_content2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    tools:text="사진을 클릭하여 이미지 선택하기"
+                    android:text="@string/analysis_image_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/analyze_input_image" />
