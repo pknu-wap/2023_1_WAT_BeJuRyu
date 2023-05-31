@@ -25,8 +25,68 @@ function Dictionary() {
   const [imagePreview, setImagePreview] = useState(null);
   const [selectedFile, setSelectedFile] = useState(null);
   const [jsonData, setJsonData] = useState(null);
+  // 검색어 상태를 useState 훅 사용하여 관리
+  const [searchTerm, setSearchTerm] = useState("");
+  // 주류 종류
+  const [selectedCategory, setSelectedCategory] = useState("");
 
-  const dictionaryData = location.state?.dictionaryData;
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    console.log(selectedCategory);
+    try {
+      if (selectedCategory === "ALL") {
+        const nameRes = await noAuthClient({
+          method: "get",
+          url: `/drinks/name/${searchTerm}`, // 작성한 주류 이름에 해당하는 API 요청
+        });
+        console.log("Name response:", nameRes);
+      } else if (selectedCategory !== "All") {
+        const typeRes = await noAuthClient({
+          method: "get",
+          url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
+        });
+        console.log("Type response:", typeRes);
+      }
+    } catch (error) {
+      if (error.response) {
+        const err = error.response.data;
+        console.log(err);
+      }
+    }
+  };
+
+  // // 주류 이름 검색 함수
+  // const handleNameSearch = async (e) => {
+  //   e.preventDefault();
+
+  //   try {
+  //     const res = await noAuthClient({
+  //       method: "get",
+  //       url: `/drinks/name/${searchTerm}`,
+  //     });
+  //     if (res) {
+  //       console.log(res);
+  //     }
+  //   } catch (error) {
+  //     if (error.response) {
+  //       const err = error.response.data;
+  //       console.log(err);
+  //     }
+  //     //console.log(searchTerm);
+  //   }
+  // };
+
+  // 검색어 입력 필드의 onChange 핸들러
+  const handleChange = (e) => {
+    setSearchTerm(e.target.value);
+  };
+
+  // 카테고리
+  const handleCategoryChange = (e) => {
+    setSelectedCategory(e.target.value);
+  };
+
+  //const dictionaryData = location.state?.dictionaryData;
 
   return (
     <S.Container>
@@ -37,7 +97,7 @@ function Dictionary() {
               component="form"
               sx={{
                 display: "flex",
-                alignItems: "center",
+                alignitems: "center",
                 justifyContent: "center",
                 "&.MuiTextField-root": { height: "100%" },
                 "&.MuiInputBase=root": { height: "100%" },
@@ -45,12 +105,13 @@ function Dictionary() {
               noValidate
               autoComplete="off"
             >
-              <FormControl sx={{ m: 1, width: "15ch" }}>
+              <FormControl sx={{ m: 1, width: "15ch", alignitems: "center" }}>
                 <NativeSelect
                   defaultValue={"none"}
+                  onChange={handleCategoryChange}
                   inputProps={{ name: "category", id: "uncontrolled-native" }}
                 >
-                  <option value={"ALL"}>통합검색</option>
+                  <option value={"ALL"}>이름검색</option>
                   <option value={"SOJU"}>소주</option>
                   <option value={"BEER"}>맥주</option>
                   <option value={"WINE"}>와인</option>
@@ -68,13 +129,19 @@ function Dictionary() {
                 label="찾고싶은 주류를 입력해주세요!"
                 type="search"
                 variant="standard"
-                alignItems="center"
+                alignitems="center"
                 InputProps={{
                   disableUnderline: true,
                 }}
                 sx={{ m: 1, width: "60ch", height: "100%" }}
+                value={searchTerm} // 검색어 상태를 입력 필드의 값으로 설정
+                onChange={handleChange} // onChange 핸들러 연결
               />
-              <IconButton type="submit" sx={{ p: "10px" }} aria-label="search">
+              <IconButton
+                type="submit"
+                onClick={handleSearch}
+                aria-label="search"
+              >
                 <SearchIcon />
               </IconButton>
             </Box>
@@ -82,7 +149,7 @@ function Dictionary() {
         </S.Info>
         {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
         <S.juruBox style={{ paddingTop: "20px" }}>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignitems: "center" }}>
             <S.WhiteBox>
               <S.Image src={logo}></S.Image>
               <S.Text>춘식이맥주다냥</S.Text>
@@ -92,7 +159,7 @@ function Dictionary() {
             <S.WhiteBox></S.WhiteBox>
             <S.WhiteBox></S.WhiteBox>
           </div>
-          <div style={{ display: "flex", alignItems: "center" }}>
+          <div style={{ display: "flex", alignitems: "center" }}>
             <S.WhiteBox></S.WhiteBox>
             <S.WhiteBox></S.WhiteBox>
             <S.WhiteBox></S.WhiteBox>
