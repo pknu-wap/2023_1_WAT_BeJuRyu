@@ -2,12 +2,10 @@ package com.WAT.BEJURYU.service;
 
 import com.WAT.BEJURYU.dto.DrinkResponses;
 import com.WAT.BEJURYU.dto.ReviewResponse;
-import com.WAT.BEJURYU.dto.ReviewResponses;
 import com.WAT.BEJURYU.dto.WriteReviewRequest;
 import com.WAT.BEJURYU.entity.Drink;
-import com.WAT.BEJURYU.entity.Review;
+import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.repository.DrinkRepository;
-import com.WAT.BEJURYU.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -37,7 +35,11 @@ public class DrinkService {
         return DrinkResponses.of(drinks);
     }
 
+    public DrinkResponses getDrinksByType(final DrinkType type) {
+        final List<Drink> drinks = drinkRepository.findByType(type);
 
+        return DrinkResponses.of(drinks);
+    }
 
     @Transactional
     public ReviewResponse postReview(final Long drinkId, final WriteReviewRequest request) {

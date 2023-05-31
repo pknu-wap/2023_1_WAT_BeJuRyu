@@ -1,6 +1,7 @@
 package com.WAT.BEJURYU.controller;
 
 import com.WAT.BEJURYU.dto.*;
+import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.service.DrinkService;
 import com.WAT.BEJURYU.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -35,6 +36,13 @@ public class DrinkApiController {
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(new DrinkResponses(foundByName));
+    }
+
+    @GetMapping("/type/{type}")
+    public ResponseEntity<DrinkResponses> findByType(@PathVariable DrinkType type) {
+        final DrinkResponses foundByType = drinkService.getDrinksByType(type);
+
+        return ResponseEntity.ok(foundByType);
     }
 
     @GetMapping("/rankings/rating")
