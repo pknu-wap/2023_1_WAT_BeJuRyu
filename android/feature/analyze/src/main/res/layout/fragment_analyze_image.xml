@@ -10,7 +10,8 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:theme="@style/Theme.BeJuRyu">
+        android:theme="@style/Theme.BeJuRyu"
+        android:background="@color/light_white">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/analyze_image_cardView"
