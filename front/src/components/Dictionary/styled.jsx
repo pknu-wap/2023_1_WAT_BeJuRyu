@@ -134,6 +134,7 @@ const Image = styled.img`
 const Text = styled.p`
   text-align: center;
   margin-top: 1rem;
+  font-size: 13px;
 `;
 
 const S = {
