@@ -1,6 +1,9 @@
 package com.jaino.analyze.input_text
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.Editable
+import android.text.TextWatcher
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -34,6 +37,7 @@ class AnalyzeTextFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initButtons()
+        initViews()
     }
 
     private fun initButtons(){
@@ -50,6 +54,21 @@ class AnalyzeTextFragment : Fragment() {
             }
             navigateToImage(text)
         }
+    }
+
+    @SuppressLint("SetTextI18n")
+    private fun initViews(){
+
+        binding.analyzeTextExpression.addTextChangedListener(object : TextWatcher{
+            override fun afterTextChanged(p0: Editable?) {}
+
+            override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {}
+
+            override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+                val length = binding.analyzeTextExpression.text.toString().length
+                binding.analyzeTextCounter.text = "$length/10자 이상"
+            }
+        })
     }
 
     private fun navigateToHome(){
