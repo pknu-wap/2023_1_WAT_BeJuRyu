@@ -17,7 +17,7 @@ public class DrinkResponse {
     private final int price;
     private final int volume;
     private final byte[] image;
-    private final String type;
+    private final DrinkType type;
 
     public static DrinkResponse from(final Drink drink) {
         return new DrinkResponse(drink.getId(),
@@ -27,7 +27,7 @@ public class DrinkResponse {
                 drink.getPrice(),
                 drink.getVolume(),
                 drink.getImage(),
-                drink.getType().getLabel());
+                drink.getType());
     }
 
     public String toEncodedImage() {
