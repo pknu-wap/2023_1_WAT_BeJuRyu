@@ -55,7 +55,11 @@ public final class LoginController {
      */
     @GetMapping("/test")
     public ResponseEntity<MemberResponse> test(@AuthParam UserId userId) {
+<<<<<<< HEAD
+        final MemberResponse member = loginService.findMemberById(userId.getId());
+=======
         final MemberResponse member = loginService.findMemberById(userId.get());
+>>>>>>> 3ce8b09b24cf0309802c4f5871de0c8de1b5af64
 
         return ResponseEntity.ok(member);
     }

@@ -1,9 +1,7 @@
 package com.WAT.BEJURYU.controller;
 
-import com.WAT.BEJURYU.dto.DrinkResponses;
-import com.WAT.BEJURYU.dto.ReviewResponse;
-import com.WAT.BEJURYU.dto.ReviewResponses;
-import com.WAT.BEJURYU.dto.WriteReviewRequest;
+import com.WAT.BEJURYU.dto.*;
+import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.service.DrinkService;
 import com.WAT.BEJURYU.service.ReviewService;
 import lombok.RequiredArgsConstructor;
@@ -11,6 +9,9 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -27,11 +28,62 @@ public class DrinkApiController {
         return ResponseEntity.ok(drinks);
     }
 
-    @GetMapping("/{name}")
-    public ResponseEntity<DrinkResponses> findByName(@PathVariable String name) {
-        final DrinkResponses drinks = drinkService.getDrinksByName(name);
+    @GetMapping("/{id}")
+    public ResponseEntity<DrinkResponse> findById(@PathVariable Long id) {
+        final DrinkResponse drink = drinkService.getDrinkById(id);
 
-        return ResponseEntity.ok(drinks);
+        return ResponseEntity.ok(drink);
+    }
+
+    @GetMapping("/name/{name}")
+    public ResponseEntity<DrinkResponses> findByName(@PathVariable String name) {
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+        final List<DrinkResponse> foundByName = drinks.getDrinks().stream()
+                .filter(drink -> drink.getName().contains(name))
+                .collect(Collectors.toList());
+
+        return ResponseEntity.ok(new DrinkResponses(foundByName));
+    }
+
+    @GetMapping("/type/{type}")
+    public ResponseEntity<DrinkResponses> findByType(@PathVariable DrinkType type) {
+        final DrinkResponses foundByType = drinkService.getDrinksByType(type);
+
+        return ResponseEntity.ok(foundByType);
+    }
+
+    @GetMapping("/rankings/rating")
+    public ResponseEntity<DrinkResponses> findTop10ByRating() {
+        final List<DrinkResponse> drinks = getDrinksByRating();
+
+        return ResponseEntity.ok(new DrinkResponses(drinks.subList(0, 10)));
+    }
+
+    private List<DrinkResponse> getDrinksByRating() {
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+        return drinks.getDrinks().stream()
+                .sorted((drink1, drink2) -> (int) (reviewService.getAverageScore(drink2.getId()).getRating() - reviewService.getAverageScore(drink1.getId()).getRating()))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/rankings/review")
+    public ResponseEntity<DrinkResponses> findTop10ByReviews() {
+        final List<DrinkResponse> drinks = getDrinksByReviews();
+
+        return ResponseEntity.ok(new DrinkResponses(drinks.subList(0, 10)));
+    }
+
+    private List<DrinkResponse> getDrinksByReviews() {
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+        return drinks.getDrinks().stream()
+                .sorted((drink1, drink2) -> reviewService.getReviewSize(drink2.getId()) - reviewService.getReviewSize(drink1.getId()))
+                .collect(Collectors.toList());
+    }
+
+    @GetMapping("/{drink_id}/rating")
+    public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable Long id) {
+        final DrinkRatingResponse rating = reviewService.getAverageScore(id);
+        return ResponseEntity.ok(rating);
     }
 
     @GetMapping("/{drink_id}/reviews")

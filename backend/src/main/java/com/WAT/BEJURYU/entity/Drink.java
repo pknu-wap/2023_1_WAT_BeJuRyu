@@ -36,8 +36,6 @@ public class Drink {
     @Lob
     @Column(name = "image", columnDefinition = "LONGBLOB")
     private byte[] image;
-    @ManyToOne
-    @JoinColumn(name = "sentiment_id")
     private Sentiment sentiment;
 }
 

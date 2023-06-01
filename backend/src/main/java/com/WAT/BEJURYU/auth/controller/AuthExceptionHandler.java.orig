@@ -6,7 +6,11 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 
+<<<<<<< HEAD
+@ControllerAdvice(basePackages = {"com.WAT.BEJURYU.auth"})
+=======
 @ControllerAdvice
+>>>>>>> 3ce8b09b24cf0309802c4f5871de0c8de1b5af64
 public final class AuthExceptionHandler {
 
     @ExceptionHandler

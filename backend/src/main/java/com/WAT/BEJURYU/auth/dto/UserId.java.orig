@@ -6,6 +6,12 @@ import lombok.NoArgsConstructor;
 
 @NoArgsConstructor
 @AllArgsConstructor
+<<<<<<< HEAD
+@Getter
+public final class UserId {
+    private Long id;
+}
+=======
 public final class UserId {
     private Long id;
 
@@ -14,3 +20,4 @@ public final class UserId {
     }
 }
 
+>>>>>>> 3ce8b09b24cf0309802c4f5871de0c8de1b5af64

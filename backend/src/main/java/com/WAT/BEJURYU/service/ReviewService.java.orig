@@ -1,6 +1,9 @@
 package com.WAT.BEJURYU.service;
 
+<<<<<<< HEAD
+=======
 import com.WAT.BEJURYU.dto.DrinkRatingResponse;
+>>>>>>> 3ce8b09b24cf0309802c4f5871de0c8de1b5af64
 import com.WAT.BEJURYU.dto.ReviewResponse;
 import com.WAT.BEJURYU.dto.ReviewResponses;
 import com.WAT.BEJURYU.dto.WriteReviewRequest;
@@ -31,6 +34,8 @@ public class ReviewService {
         return ReviewResponses.of(reviews);
     }
 
+<<<<<<< HEAD
+=======
     public int getReviewSize(long drinkId) {
         return reviewRepository.countByDrinkId(drinkId);
     }
@@ -44,6 +49,7 @@ public class ReviewService {
         return new DrinkRatingResponse(drinkId, sum / reviews.size());
     }
 
+>>>>>>> 3ce8b09b24cf0309802c4f5871de0c8de1b5af64
     @Transactional
     public ReviewResponse postReview(Drink drink, WriteReviewRequest reviewRequest) {
         final Member member = memberRepository.findById(reviewRequest.getUserId())
