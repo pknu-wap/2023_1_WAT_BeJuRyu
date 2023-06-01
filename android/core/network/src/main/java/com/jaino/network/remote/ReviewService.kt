@@ -1,25 +1,21 @@
 package com.jaino.network.remote
 
-import com.jaino.network.model.response.base.BaseResponse
 import com.jaino.network.model.response.base.EmptyResponse
 import com.jaino.network.model.request.review.WriteDrinkReviewRequest
-import com.jaino.network.model.response.review.DrinkReviewResponse
-import retrofit2.http.Body
-import retrofit2.http.GET
-import retrofit2.http.POST
-import retrofit2.http.Query
+import com.jaino.network.model.response.review.DrinkReviewListResponse
+import retrofit2.http.*
 
 
 interface ReviewService {
 
-    @GET("/drinks/{drink-id}")
+    @GET("/drinks/{drink-id}/reviews")
     suspend fun getReviewList(
-        @Query("drink-id") drink_id : Long
-    ): BaseResponse<List<DrinkReviewResponse>>
+        @Path("drink-id") drink_id : Long
+    ): DrinkReviewListResponse
 
-    @POST("/drinks/{drink-id}/review")
+    @POST("/drinks/{drink-id}/reviews")
     suspend fun postReview(
-        @Query("drink-id") drink_id : Long,
+        @Path("drink-id") drink_id : Long,
         @Body writeDrinkReviewRequest : WriteDrinkReviewRequest
     ): EmptyResponse
 

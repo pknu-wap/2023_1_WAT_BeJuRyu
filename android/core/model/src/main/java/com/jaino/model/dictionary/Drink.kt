@@ -1,17 +1,19 @@
 package com.jaino.model.dictionary
 
-data class DrinkInfo(
+data class Drink(
+    val id : Long,
     val name : String,
-    val image : String,
     val dosu : Double,
-    val volume : Int,
+    val sweetness : Int,
     val price : Int,
-    val type : String
+    val volume : Int,
+    val image : String,
 ){
     constructor(): this(
-        "",
+        0,
         "",
         0.0,
+        0,
         0,
         0,
         ""

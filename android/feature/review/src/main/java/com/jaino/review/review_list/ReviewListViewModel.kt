@@ -3,8 +3,8 @@ package com.jaino.review.review_list
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaino.data.repository.dictionary.DrinksRepository
-import com.jaino.model.dictionary.DrinkInfo
-import com.jaino.model.review.ReviewItem
+import com.jaino.model.dictionary.Drink
+import model.review.ReviewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -23,10 +23,10 @@ class ReviewListViewModel @Inject constructor(
     private val _reviewEvent = MutableSharedFlow<UiEvent>()
     val reviewEvent : SharedFlow<UiEvent> get() = _reviewEvent
 
-    private val _reviewItem = MutableStateFlow<List<ReviewItem>>(emptyList())
-    val reviewItem : SharedFlow<List<ReviewItem>> get() = _reviewItem
-    private val _reviewState = MutableStateFlow<DrinkInfo>(DrinkInfo())
-    val reviewState : StateFlow<DrinkInfo> get() =  _reviewState
+    private val _reviewItem = MutableStateFlow<List<ReviewModel>>(emptyList())
+    val reviewItem : SharedFlow<List<ReviewModel>> get() = _reviewItem
+    private val _reviewState = MutableStateFlow<Drink>(Drink())
+    val reviewState : StateFlow<Drink> get() =  _reviewState
 
     // 평점, 닉네임, 코멘트,
     fun getReviewList(drinkId : Long){

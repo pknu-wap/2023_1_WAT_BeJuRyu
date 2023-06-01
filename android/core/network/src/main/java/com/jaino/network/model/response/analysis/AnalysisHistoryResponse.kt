@@ -6,10 +6,12 @@ import kotlinx.serialization.Serializable
 @Serializable
 data class AnalysisHistoryResponse (
     val id: Long,
-    val date: String
+    val date: String,
+    val sentiment : String
 ){
     fun toAnalyzeHistory() : AnalysisHistory = AnalysisHistory(
         id = id,
-        date = date
+        date = date,
+        sentiment = sentiment
     )
 }
