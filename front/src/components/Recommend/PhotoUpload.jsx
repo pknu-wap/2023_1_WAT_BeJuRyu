@@ -36,12 +36,12 @@ const PhotoUpload = ({
           <div>
             <img src={imagePreview} alt="preview" style={{ width, height }} />
           </div>
-          <button onClick={handleImageRemove}>재업로드</button>
+          <S.SubmitButton onClick={handleImageRemove}>재업로드</S.SubmitButton>
         </div>
       ) : (
         <div>
           <input type="file" accept="image/*" onChange={handleImageChange} />
-          <p>이미지 파일을 업로드해주세요.</p>
+          <p>분석하고 싶은 사진을 업로드해주세요!</p>
         </div>
       )}
     </S.ImageBox>

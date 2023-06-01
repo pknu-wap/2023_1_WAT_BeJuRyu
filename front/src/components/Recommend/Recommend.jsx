@@ -25,17 +25,17 @@ function Recommend() {
       reader.onloadend = async () => {
         const base64Data = reader.result.split(",")[1];
         reader.readAsDataURL(selectedFile); // 이미지 파일을 Base64로 인코딩
-        console.log(typeof parseInt(localStorage.getItem("user-id"), 10));
-        console.log(typeof base64Data);
-        console.log(typeof inputValue);
+        // console.log(typeof parseInt(localStorage.getItem("user-id"), 10));
+        // console.log(typeof base64Data);
+        // console.log(typeof inputValue);
         try {
           const res = await authClient({
             method: "post",
             url: "/analyze/sources",
             data: {
-              "user-id": parseInt(localStorage.getItem("user-id"), 10),
-              "text-expression": inputValue,
-              "facial-expression": base64Data,
+              userId: parseInt(localStorage.getItem("user-id"), 10),
+              textExpression: inputValue,
+              facialExpression: base64Data,
             },
           });
           if (res) {
@@ -77,7 +77,9 @@ function Recommend() {
         <S.WhiteBox>
           <S.textInput value={inputValue} onChange={handleInputChange} />
           {inputValue === "" && (
-            <S.MyState>현재 기분이 어떠신가요? 간단하게 적어주세요 !</S.MyState>
+            <S.MyState>
+              기분이 어떠신가요? 감정이 표현되는 언어가 들어가있으면 좋아요!
+            </S.MyState>
           )}
         </S.WhiteBox>
         <PhotoUpload

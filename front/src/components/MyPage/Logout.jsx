@@ -32,6 +32,7 @@ function Logout() {
     settingCookie("remove");
     dispatch(GET_NAME(""));
     navigate("/");
+    localStorage.clear();
   };
 
   const logoutWithKakao = async () => {

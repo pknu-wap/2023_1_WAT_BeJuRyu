@@ -128,7 +128,7 @@ const juruBox = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 70%;
 `;
 
 const Text = styled.p`

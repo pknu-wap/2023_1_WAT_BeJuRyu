@@ -23,8 +23,8 @@ function MyPage() {
 
     navigate("/nickChange");
   };
-  const userName = useSelector((state) => state.name.name);
-
+  // const userName = useSelector((state) => state.name.name);
+  const userName = localStorage.getItem("nickname");
   const MyPageView = (
     <S.Container>
       <S.Info>

@@ -1,5 +1,5 @@
 /* TODO
-1. [] 주류 이미지와 대략적인 줄글이 들어갈 공간 component 작성
+1. [X] 주류 이미지와 대략적인 줄글이 들어갈 공간 component 작성
 2. [] 주류 추천 결과를 whitebox내에 구현할 것이므로 whitebox자체를 image로 처리하여 결과공유가 가능한지, 앱 설치링크?*/
 import S from "./styled";
 import { useState } from "react";
