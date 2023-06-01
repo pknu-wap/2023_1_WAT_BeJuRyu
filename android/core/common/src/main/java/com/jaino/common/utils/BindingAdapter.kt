@@ -1,5 +1,6 @@
 package com.jaino.common.utils
 
+import android.util.Base64
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
@@ -28,6 +29,21 @@ object BindingAdapter {
         if (drawableId != 0) {
             Glide.with(view.context)
                 .load(drawableId)
+                .placeholder(com.jaino.designsystem.R.drawable.img)
+                .diskCacheStrategy(DiskCacheStrategy.NONE)
+                .apply(RequestOptions().fitCenter())
+                .error(com.jaino.designsystem.R.drawable.img)
+                .into(view)
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:encodedImage")
+    fun loadDrawable(view: ImageView, encodedImage: String) {
+        if (encodedImage.isNotEmpty()) {
+            val image: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
+            Glide.with(view.context)
+                .load(image)
                 .placeholder(com.jaino.designsystem.R.drawable.img)
                 .diskCacheStrategy(DiskCacheStrategy.NONE)
                 .apply(RequestOptions().fitCenter())

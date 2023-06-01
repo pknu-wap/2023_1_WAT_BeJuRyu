@@ -90,7 +90,7 @@
                     android:id="@+id/analyze_input_image"
                     android:layout_width="200dp"
                     android:layout_height="200dp"
-                    app:imageUrl="@{viewModel.imageSourceState}"
+                    app:imageUrl="@{viewModel.imageUri}"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
