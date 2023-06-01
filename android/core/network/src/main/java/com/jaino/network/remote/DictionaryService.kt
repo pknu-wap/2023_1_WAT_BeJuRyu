@@ -2,9 +2,9 @@ package com.jaino.network.remote
 
 import com.jaino.network.model.response.base.BaseResponse
 import com.jaino.network.model.response.dictionary.DrinkInfoResponse
+import com.jaino.network.model.response.dictionary.DrinkListResponse
 import retrofit2.http.GET
-import retrofit2.http.Query
-
+import retrofit2.http.Path
 
 interface DictionaryService {
 
@@ -12,15 +12,21 @@ interface DictionaryService {
     @GET("/drinks/all")
     suspend fun getDrinkList(): BaseResponse<List<DrinkInfoResponse>>
 
+    // 이름으로 주류 조회
+    @GET("/drinks/name/{name}")
+    suspend fun getDrinkListByName(
+        @Path("name") name: String
+    ): DrinkListResponse
+
     // type 으로 주류 조회
-    @GET("/drinks/{type}")
+    @GET("/drinks/type/{type}")
     suspend fun getDrinkListByType(
-        @Query("type") type: String
-    ): BaseResponse<List<DrinkInfoResponse>>
+        @Path("type") type: String
+    ): DrinkListResponse
 
     // id 값으로 주류 조회
     @GET("/drinks/{drink-id}")
     suspend fun getDrinkById(
-        @Query("drink-id") id: Long
-    ): BaseResponse<DrinkInfoResponse>
+        @Path("drink-id") id: Long
+    ): DrinkInfoResponse
 }
