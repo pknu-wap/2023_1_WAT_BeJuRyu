@@ -1,5 +1,6 @@
 package com.jaino.review.write_review
 
+import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jaino.common.extensions.showToast
@@ -16,6 +18,7 @@ import com.jaino.common.navigation.AppNavigator
 import com.jaino.review.R
 import com.jaino.review.databinding.FragmentWriteReviewBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
@@ -37,6 +40,7 @@ class WriteReviewFragment : Fragment(){
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_write_review, container, false)
+        binding.viewModel = viewModel
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -49,14 +53,11 @@ class WriteReviewFragment : Fragment(){
 
     private fun initViews(){
         binding.backButton.setOnClickListener {
-            val direction = WriteReviewFragmentDirections.actionWriteReviewFragmentToReviewListFragment(
-                args.drinkId
-            )
-            findNavController().navigate(direction)
+            navigateToList()
         }
 
         binding.goToHomeButton.setOnClickListener {
-            findNavController().navigate("BeJuRyu://feature/dictionary".toUri())
+            navigateToDictionary()
         }
 
         binding.reviewPostButton.setOnClickListener {
@@ -64,29 +65,41 @@ class WriteReviewFragment : Fragment(){
         }
     }
 
+    @SuppressLint("SetTextI18n")
     private fun observeData(){
         viewModel.uiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
+                    is WriteReviewViewModel.UiEvent.Success -> {
+                        navigateToList()
+                    }
+
                     is WriteReviewViewModel.UiEvent.Failure -> {
                         if(it.message != null) {
                             requireContext().showToast(it.message)
                         }
                     }
-
-                    is WriteReviewViewModel.UiEvent.Success -> {
-                        showDialog()
-                    }
                 }
-            }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.reviewContent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                binding.reviewTextCounter.text = "${it.length}/10자 이상"
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun showDialog(){
 
     }
 
-    private fun navigateDictionary(){
+    private fun navigateToDictionary(){
+        findNavController().navigate("BeJuRyu://feature/dictionary".toUri())
+    }
 
+    private fun navigateToList(){
+        val direction = WriteReviewFragmentDirections
+            .actionWriteReviewFragmentToReviewListFragment(args.drinkId)
+        findNavController().navigate(direction)
     }
 
     override fun onDestroy() {
