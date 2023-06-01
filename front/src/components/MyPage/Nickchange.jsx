@@ -17,13 +17,13 @@ function NickChange() {
 
   // api 명세서 업데이트 되면 수정 예정
   const onchangeNick = async () => {
-    dispatch(GET_NAME(nickname));
+    //dispatch(GET_NAME(nickname));
     navigate("/");
     alert("변경이 완료되었습니다.");
     try {
       const res = await authClient({
         method: "post",
-        //url: `${process.env.REACT_APP_LOCAL}/auth/`,
+        url: `${process.env.REACT_APP_LOCAL}/auth/`,
         data: nickname,
       });
       console.log(res);

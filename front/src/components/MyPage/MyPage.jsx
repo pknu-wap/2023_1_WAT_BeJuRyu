@@ -4,9 +4,10 @@
 import S from "./styled";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-//import settingCookie from "../../utils/settingCookie";
+import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
 import Logout from "./Logout";
+import authClient from "../../apis/authClient";
 
 import { useSelector } from "react-redux";
 
@@ -14,8 +15,25 @@ function MyPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
-  const checkHistory = () => {
+  const checkHistory = async (e) => {
+    e.preventDefault();
     navigate("/history");
+
+    try {
+      const res = await authClient({
+        method: "get",
+        url: "/analyze",
+      });
+      console.log(res);
+    } catch (error) {
+      if (error.response) {
+        const err = error.response.data;
+        console.log(err);
+      } else {
+        // 네트워크 에러 또는 클라이언트 에러
+        console.log("Error:", error.message);
+      }
+    }
   };
 
   const changeNick = () => {
@@ -23,8 +41,8 @@ function MyPage() {
 
     navigate("/nickChange");
   };
-  const userName = useSelector((state) => state.name.name);
-
+  // const userName = useSelector((state) => state.name.name);
+  const userName = localStorage.getItem("nickname");
   const MyPageView = (
     <S.Container>
       <S.Info>

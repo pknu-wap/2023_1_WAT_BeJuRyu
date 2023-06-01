@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
-  height: 38rem;
+  height: 40rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
@@ -23,7 +23,7 @@ const SubmitButton = styled.button`
   background-color: #9932cc;
   color: white;
   cursor: pointer;
-  margin: 20px auto 0;
+  margin: 0px auto 0;
   display: block;
 `;
 
@@ -38,9 +38,9 @@ const Title = styled.div`
 
 const WhiteBox = styled.div`
   width: 25rem;
-  height: 25rem;
+  height: 30rem;
   margin: 0 auto;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   padding: 1rem;
   color: #9a208c;
   background: white;
@@ -104,9 +104,11 @@ const BtnList = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100%;
-  height: 90%;
+  width: 50%;
+  height: 50%;
   align-items: center;
+  justify-content: center;
+  display: flex;
 `;
 
 const Text = styled.p`

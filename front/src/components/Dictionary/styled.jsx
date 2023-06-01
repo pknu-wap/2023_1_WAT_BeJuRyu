@@ -11,13 +11,13 @@ const searchBox = styled.div`
   align-items: center;
 `;
 const Container = styled.div`
-  width: 90rem;
+  width: 100rem;
   //max-width: 45rem;
   height: 42rem;
-  background-color: #f5c6ec;
+  //background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  //border: 5px solid #e11299;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -128,7 +128,7 @@ const juruBox = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: auto;
+  height: 70%;
 `;
 
 const Text = styled.p`

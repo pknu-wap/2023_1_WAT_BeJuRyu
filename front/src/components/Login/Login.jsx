@@ -37,10 +37,12 @@ function Login() {
       cookie.set("refreshToken", res.data.token.refresh);
 
       const decode = jwt_decode(res.data.token.access);
-      console.log(decode);
+      console.log("login하면서 decode한 것.", decode.nickname);
 
       // redux에 nickname 저장
       dispatch(GET_NAME(res.data.memberResponse.nickname));
+      localStorage.setItem("user-id", res.data.memberResponse.id);
+      localStorage.setItem("nickname", res.data.memberResponse.nickname);
 
       await sendTestRequest();
     } catch (error) {}
@@ -82,7 +84,6 @@ function Login() {
             // test 요청 보내기
             // await sendTestRequest();
 
-            //localStorage.setItem("token", res.access_token);
             // setIsLogin(true);
             //console.log(res);
             navigate("/");

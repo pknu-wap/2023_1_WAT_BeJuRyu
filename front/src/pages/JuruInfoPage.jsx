@@ -1,5 +1,5 @@
 import React from "react";
-import Register from "../components/Register/Register";
+import JuryuInfo from "../components/JuryuInfo/JuruInfo";
 import styled from "styled-components";
 
 const Main = styled.div`
@@ -11,14 +11,14 @@ const Main = styled.div`
 `;
 
 const Content = styled.div``;
-const RegisterPage = () => {
+const JuryuInfoPage = () => {
   return (
     <Main>
       <Content>
-        <Register />
+        <JuryuInfo />
       </Content>
     </Main>
   );
 };
 
-export default RegisterPage;
+export default JuryuInfoPage;

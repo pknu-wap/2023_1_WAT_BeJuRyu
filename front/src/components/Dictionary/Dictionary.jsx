@@ -1,7 +1,7 @@
 /* TODO
  1. [o] 사전 페이지 UI 구현 어떤식으로 할건지 결정
  2. [] 사전 페이지에서 주류 목록을 띄우고 해당 주류를 누르면 주류에 대한 정보와 후기 작성까지 가능하게끔
- 3. [] 주류 사진을 클릭할 때 마다 다른 페이지로 연결이 될 텐데, 페이지 100개를 만드는 것 말고 그때그때마다 정보 다르게 들어오게끔 하는 것 찾아봐야함.
+ 3. [o] 주류 사진을 클릭할 때 마다 다른 페이지로 연결이 될 텐데, 페이지 100개를 만드는 것 말고 그때그때마다 정보 다르게 들어오게끔 하는 것 찾아봐야함.
  4. [o] 주류 검색 창과 "맥주, 소주"와 같은 태그 버튼 구현
   */
 import S from "./styled";
@@ -29,23 +29,59 @@ function Dictionary() {
   const [searchTerm, setSearchTerm] = useState("");
   // 주류 종류
   const [selectedCategory, setSelectedCategory] = useState("");
+  // 이미지
+  const [decodedImage, setDecodedImage] = useState(null);
+  // 주류 정보 상태
+  const [drinkInfo, setDrinkInfo] = useState(null);
+  const [drinkInfoList, setDrinkInfoList] = useState([]);
+
+  // 이미지 디코딩 함수
+  const decodeBase64 = (base64) => {
+    const binaryString = window.atob(base64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return URL.createObjectURL(new Blob([bytes.buffer], { type: "image/png" }));
+  };
+
+  useEffect(() => {
+    if (drinkInfo) {
+      const decodedImage = decodeBase64(drinkInfo.image);
+      setDecodedImage(decodedImage);
+    }
+  }, [drinkInfo]);
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log(selectedCategory);
+
     try {
-      if (selectedCategory === "ALL") {
+      if (searchTerm !== "") {
         const nameRes = await noAuthClient({
           method: "get",
           url: `/drinks/name/${searchTerm}`, // 작성한 주류 이름에 해당하는 API 요청
         });
         console.log("Name response:", nameRes);
-      } else if (selectedCategory !== "All") {
+        console.log(searchTerm);
+        console.log(nameRes.data.drinks.length);
+
+        setDrinkInfoList(nameRes.data.drinks);
+        // 이미지 디코딩 및 설정
+        // const decodedImage = decodeBase64(nameRes.data.drinks[0].image);
+        // setDecodedImage(decodedImage);
+      } else if (selectedCategory !== "ALL") {
         const typeRes = await noAuthClient({
           method: "get",
           url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
         });
         console.log("Type response:", typeRes);
+        console.log(selectedCategory);
+        console.log(typeRes.data.drinks.length);
+
+        setDrinkInfoList(typeRes.data.drinks);
+        //setDrinkInfo(typeRes.data.drinks[typeRes.data.drinks.length - 1]);
+        // const decodedImage = decodeBase64(typeRes.data.drinks[0].image);
+        // setDecodedImage(decodedImage);
       }
     } catch (error) {
       if (error.response) {
@@ -54,6 +90,10 @@ function Dictionary() {
       }
     }
   };
+
+  useEffect(() => {
+    setDrinkInfoList([]);
+  }, [searchTerm]);
 
   // // 주류 이름 검색 함수
   // const handleNameSearch = async (e) => {
@@ -150,21 +190,15 @@ function Dictionary() {
         {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
         <S.juruBox style={{ paddingTop: "20px" }}>
           <div style={{ display: "flex", alignitems: "center" }}>
-            <S.WhiteBox>
-              <S.Image src={logo}></S.Image>
-              <S.Text>춘식이맥주다냥</S.Text>
-            </S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-          </div>
-          <div style={{ display: "flex", alignitems: "center" }}>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
+            {drinkInfoList.map((drinkInfo) => (
+              <S.WhiteBox key={drinkInfo.id}>
+                <S.Image
+                  src={decodeBase64(drinkInfo.image)}
+                  alt="주류 이미지"
+                />
+                <S.Text>{drinkInfo.name}</S.Text>
+              </S.WhiteBox>
+            ))}
           </div>
         </S.juruBox>
       </S.Wrapper>

@@ -4,7 +4,6 @@ import Footer from "./pages/Footer/Footer";
 import GlobalStyle from "./GlobalStyles";
 import LoginPage from "./pages/LoginPage";
 import RecommendPage from "./pages/RecommendPage";
-import RegisterPage from "./pages/RegisterPage";
 import MyPage from "./pages/MyPage";
 import ResultPage from "./pages/ResultPage";
 import DictionaryPage from "./pages/DictionaryPage";
@@ -43,7 +42,7 @@ function App() {
     // 로그인이 되어있다면
     if (token !== undefined) {
       const decode = jwt_decode(token);
-      dispatch(GET_NAME(decode.nickname));
+      dispatch(GET_NAME(decode.name));
     }
   };
 
@@ -73,7 +72,7 @@ function App() {
           )}
           {/* <Route path="/" element={<LoginPage />} /> */}
           <Route path="/mypage" element={<MyPage />} />
-          <Route path="/register" element={<RegisterPage />} />
+
           <Route path="/recommend" element={<RecommendPage />} />
           <Route path="/result" element={<ResultPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
