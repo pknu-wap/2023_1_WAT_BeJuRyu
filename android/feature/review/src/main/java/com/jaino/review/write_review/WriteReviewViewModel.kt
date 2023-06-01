@@ -5,7 +5,7 @@ import androidx.lifecycle.viewModelScope
 import com.jaino.common.extensions.toDateTime
 import com.jaino.data.repository.review.ReviewRepository
 import com.jaino.data.repository.user.LocalUserRepository
-import com.jaino.model.review.WriteReview
+import com.jaino.data.model.review.ReviewRequest
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -28,8 +28,9 @@ class WriteReviewViewModel @Inject constructor(
     fun postReview(drinkId : Long){
         viewModelScope.launch {
             repository.postReview(drinkId,
-                WriteReview(userRepository.getUserId(), reviewContent.value,
-                    ratingCount.value.toInt(), System.currentTimeMillis().toDateTime()))
+                ReviewRequest(userRepository.getUserId(), reviewContent.value,
+                    ratingCount.value.toInt(), System.currentTimeMillis().toDateTime())
+            )
                 .onSuccess {
                     _uiEvent.emit(UiEvent.Success)
                 }

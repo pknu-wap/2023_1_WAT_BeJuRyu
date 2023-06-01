@@ -73,5 +73,5 @@
     <string name="rank_content">유저들이 직접 선정한 \n비주류에서 가장 인기가 많은 술을 확인해보세요!</string>
     <string name="drink_category_title">카테고리</string>
     <string name="max_rating">/5</string>
-    <string name="text_count">%d/10자 이상</string>
+    <string name="text_count_hint">0/10자 이상</string>
 </resources>
