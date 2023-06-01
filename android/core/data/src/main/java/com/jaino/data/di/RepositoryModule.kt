@@ -13,10 +13,8 @@ import com.jaino.data.repository.analysis.AnalysisRepositoryImpl
 import com.jaino.datastore.BeJuRyuDatastore
 import com.jaino.network.datasource.analysis.AnalysisDataSource
 import com.jaino.network.datasource.auth.AuthDataSource
-import com.jaino.network.datasource.dictionary.GetDrinkDataSource
-import com.jaino.network.datasource.dictionary.GetDrinkListDataSource
-import com.jaino.network.datasource.review.GetReviewListDataSource
-import com.jaino.network.datasource.review.PostReviewDataSource
+import com.jaino.network.datasource.dictionary.DrinkDataSource
+import com.jaino.network.datasource.review.ReviewDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -50,14 +48,12 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideDrinkRepository(
-        getDrinkListDataSource : GetDrinkListDataSource,
-        getDrinkDataSource : GetDrinkDataSource
-    ): DrinksRepository = DrinksRepositoryImpl(getDrinkListDataSource, getDrinkDataSource)
+        drinkDataSource : DrinkDataSource,
+    ): DrinksRepository = DrinksRepositoryImpl(drinkDataSource)
 
     @Singleton
     @Provides
     fun provideReviewRepository(
-        postReviewDataSource: PostReviewDataSource,
-        getReviewListDataSource: GetReviewListDataSource
-    ): ReviewRepository = ReviewRepositoryImpl(postReviewDataSource, getReviewListDataSource)
+        reviewDataSource: ReviewDataSource,
+    ): ReviewRepository = ReviewRepositoryImpl(reviewDataSource)
 }
