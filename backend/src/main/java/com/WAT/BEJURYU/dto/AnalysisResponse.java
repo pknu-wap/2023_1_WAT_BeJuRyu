@@ -17,7 +17,7 @@ public class AnalysisResponse {
     private final Long id;
     private final String textExpression;
     private final byte[] facialExpression;
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy.MM.dd HH:mm", timezone = "Asia/Seoul")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm", timezone = "Asia/Seoul")
     private final LocalDateTime date;
     private final Sentiment sentiment;
     private final Long drinkId;

@@ -15,12 +15,12 @@ public class WriteReviewRequest {
     private long userId;
     private String comment;
     private int score;
-    private String date = LocalDateTime.now()
-            .format(DateTimeFormatter.ofPattern("yyyy.MM.dd HH:mm"));
+    private String date ;
 
-    public WriteReviewRequest(final long userId, final String comment, final int score) {
+    public WriteReviewRequest(final long userId, final String comment, final int score,final String date) {
         this.userId = userId;
         this.comment = comment;
         this.score = score;
+        this.date = date;
     }
 }

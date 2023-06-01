@@ -13,7 +13,7 @@ public class AnalysisSourceRequest {
 
     private String textExpression;
     private byte[] facialExpression;
-    @DateTimeFormat(pattern = "yyyy.MM.dd HH:mm")
+    @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;
 
     public AnalysisSourceRequest( final String textExpression,
