@@ -30,7 +30,7 @@ class HistoryViewModel @Inject constructor(
                     _historyListState.value = it
                 }
                 .onFailure {
-                    _historyUiEvent.emit(UiEvent.Failure("사용자 정보를 불러오는데 실패하였습니다."))
+                    _historyUiEvent.emit(UiEvent.Failure("사용자 정보가 없거나, 불러오는데 실패하였습니다."))
                 }
         }
     }
