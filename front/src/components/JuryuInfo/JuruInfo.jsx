@@ -42,6 +42,8 @@ function JuryuInfo() {
     <S.Container>
       <S.Wrapper>
         <S.WhiteBox>
+          <S.Title>주류를 평가해주세요!</S.Title>
+
           <Box
             sx={{
               width: 200,
@@ -74,6 +76,7 @@ function JuryuInfo() {
               <Box sx={{ ml: 2 }}>{labels[hover !== -1 ? hover : value]}</Box>
             )}
           </Box>
+          <S.textInput></S.textInput>
         </S.WhiteBox>
         <S.ReButton onClick={dictionary}>다른 술 검색하기</S.ReButton>
       </S.Wrapper>

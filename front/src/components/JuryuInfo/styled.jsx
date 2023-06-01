@@ -78,9 +78,21 @@ const Title = styled.div`
   margin: 2rem 0;
   font-weight: 600;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   font-family: SCDream5;
   color: black;
+`;
+
+const textInput = styled.textarea`
+  width: 100%;
+  height: 100px;
+  font-size: 1rem;
+  resize: none;
+  border: 1px solid purple;
+  color: black;
+  &:focus {
+    outline: none;
+  }
 `;
 const S = {
   Wrapper,
@@ -91,6 +103,7 @@ const S = {
   Main,
   Form,
   WhiteBox,
+  textInput,
 };
 
 export default S;
