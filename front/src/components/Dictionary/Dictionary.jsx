@@ -54,16 +54,18 @@ function Dictionary() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    console.log(selectedCategory);
+
     try {
-      if (selectedCategory === "ALL") {
+      if (searchTerm !== "") {
         const nameRes = await noAuthClient({
           method: "get",
           url: `/drinks/name/${searchTerm}`, // 작성한 주류 이름에 해당하는 API 요청
         });
         console.log("Name response:", nameRes);
+        console.log(searchTerm);
+        console.log(nameRes.data.drinks.length);
 
-        setDrinkInfo(nameRes.data.drinks[0]);
+        setDrinkInfoList(nameRes.data.drinks);
         // 이미지 디코딩 및 설정
         // const decodedImage = decodeBase64(nameRes.data.drinks[0].image);
         // setDecodedImage(decodedImage);
@@ -73,8 +75,11 @@ function Dictionary() {
           url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
         });
         console.log("Type response:", typeRes);
+        console.log(selectedCategory);
+        console.log(typeRes.data.drinks.length);
 
-        setDrinkInfo(typeRes.data.drinks[0]);
+        setDrinkInfoList(typeRes.data.drinks);
+        //setDrinkInfo(typeRes.data.drinks[typeRes.data.drinks.length - 1]);
         // const decodedImage = decodeBase64(typeRes.data.drinks[0].image);
         // setDecodedImage(decodedImage);
       }
@@ -85,6 +90,10 @@ function Dictionary() {
       }
     }
   };
+
+  useEffect(() => {
+    setDrinkInfoList([]);
+  }, [searchTerm]);
 
   // // 주류 이름 검색 함수
   // const handleNameSearch = async (e) => {
@@ -181,33 +190,15 @@ function Dictionary() {
         {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
         <S.juruBox style={{ paddingTop: "20px" }}>
           <div style={{ display: "flex", alignitems: "center" }}>
-            <S.WhiteBox>
-              <S.Image src={decodedImage} alt="Decoded Image"></S.Image>
-              <S.Text>주류 이름: </S.Text>
-            </S.WhiteBox>
-            <S.WhiteBox>
-              <S.Image src={decodedImage} alt="Decoded Image"></S.Image>
-              <S.Text>주류 이름: </S.Text>
-            </S.WhiteBox>
-            <S.WhiteBox>
-              <S.Image src={decodedImage} alt="Decoded Image"></S.Image>
-              <S.Text>주류 이름: </S.Text>
-            </S.WhiteBox>
-            <S.WhiteBox>
-              <S.Image src={decodedImage} alt="Decoded Image"></S.Image>
-              <S.Text>주류 이름: </S.Text>
-            </S.WhiteBox>
-            <S.WhiteBox>
-              <S.Image src={decodedImage} alt="Decoded Image"></S.Image>
-              <S.Text>주류 이름: </S.Text>
-            </S.WhiteBox>
-          </div>
-          <div style={{ display: "flex", alignitems: "center" }}>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
-            <S.WhiteBox></S.WhiteBox>
+            {drinkInfoList.map((drinkInfo) => (
+              <S.WhiteBox key={drinkInfo.id}>
+                <S.Image
+                  src={decodeBase64(drinkInfo.image)}
+                  alt="주류 이미지"
+                />
+                <S.Text>{drinkInfo.name}</S.Text>
+              </S.WhiteBox>
+            ))}
           </div>
         </S.juruBox>
       </S.Wrapper>
