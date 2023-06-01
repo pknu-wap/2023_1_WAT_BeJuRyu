@@ -21,6 +21,9 @@ class AnalyzeImageViewModel @Inject constructor(
     private val _imageSourceState = MutableStateFlow<String>("")
     val imageSourceState : StateFlow<String> get() = _imageSourceState
 
+    private val _imageUri = MutableStateFlow<String>("")
+    val imageUri : StateFlow<String> get() = _imageUri
+
     private val userId = MutableStateFlow<Long>(-1L)
 
     private val _analysisId = MutableStateFlow<Long>(-1L)
@@ -33,7 +36,11 @@ class AnalyzeImageViewModel @Inject constructor(
             userId.value = userRepository.getUserId()
         }
     }
-    fun setImageUri(analyzeImage: String){
+
+    fun setImageUri(imageUri: String){
+        _imageUri.value = imageUri
+    }
+    fun setImageSource(analyzeImage: String){
         _imageSourceState.value = analyzeImage
     }
 
@@ -43,9 +50,9 @@ class AnalyzeImageViewModel @Inject constructor(
                 return@launch
             }
             analysisRepository.postAnalysisSource(
-                userId.value,
-                imageSourceState.value,
-                textSource
+                userId = userId.value,
+                textExpression = textSource,
+                facialExpression = imageSourceState.value
             ).onSuccess {
                 _analysisId.value = it.analysisId
             }.onFailure {

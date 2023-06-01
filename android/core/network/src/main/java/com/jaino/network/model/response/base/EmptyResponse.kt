@@ -1,6 +1,8 @@
 package com.jaino.network.model.response.base
 
-@kotlinx.serialization.Serializable
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class EmptyResponse(
     val status: Int,
     val success: Boolean,

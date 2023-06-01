@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.jaino.model.dictionary.DrinkInfo" />
+            type="com.jaino.model.dictionary.Drink" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -32,7 +32,6 @@
                     android:id="@+id/item_drink_type"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="@{item.type}"
                     android:textSize="14sp"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/item_drink_image"
@@ -43,7 +42,7 @@
                     android:layout_width="150dp"
                     android:layout_height="150dp"
                     android:scaleType="fitXY"
-                    app:imageUrl="@{item.image}"
+                    app:encodedImage="@{item.image}"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"

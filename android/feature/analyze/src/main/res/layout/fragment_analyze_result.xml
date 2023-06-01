@@ -318,6 +318,31 @@
                                     android:paddingVertical="16dp"
                                     android:textColor="@color/black" />
                             </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_sweetness"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/sweetness"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_sweetness_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
                         </TableLayout>
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

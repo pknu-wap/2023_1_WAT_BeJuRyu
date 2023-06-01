@@ -1,21 +1,31 @@
 package com.jaino.network.model.response.dictionary
 
-import com.jaino.model.dictionary.DrinkInfo
+import com.jaino.model.dictionary.Drink
+import kotlinx.serialization.Serializable
 
+@Serializable
+data class DrinkListResponse(
+    val drinks : List<DrinkInfoResponse>
+)
+
+@Serializable
 data class DrinkInfoResponse(
+    val id : Long,
     val name : String,
-    val image : String,
     val dosu : Double,
-    val volume : Int,
+    val sweetness : Int,
     val price : Int,
-    val type : String
+    val volume : Int,
+    val image : String,
+    // val type : String
 ){
-    fun toDrinkInfo(): DrinkInfo = DrinkInfo(
+    fun toDrinkInfo(): Drink = Drink(
+        id = id,
         name = name,
-        image = image,
         dosu = dosu,
-        volume = volume,
+        sweetness = sweetness,
         price = price,
-        type = type
+        volume = volume,
+        image = image
     )
 }

@@ -1,6 +1,6 @@
-package com.jaino.model.review
+package com.jaino.data.model.review
 
-data class WriteReview(
+data class ReviewRequest(
     val userId : Long,
     val comment : String,
     val score : Int,

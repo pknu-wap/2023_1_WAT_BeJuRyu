@@ -2,8 +2,9 @@ package com.jaino.dictionary.drink_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jaino.common.extensions.toTypedEng
 import com.jaino.data.repository.dictionary.DrinksRepository
-import com.jaino.model.dictionary.DrinkInfo
+import com.jaino.model.dictionary.Drink
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,8 +23,7 @@ class DrinkListViewModel @Inject constructor(
 
     fun getDrinkListByWord(word: String){
         viewModelScope.launch {
-            //TODO 전체 리스트가 아닌, 검색어로 변경된 로직을 호출해야 함.
-            repository.getDrinkList()
+            repository.getDrinkListByName(word)
                 .onSuccess {
                     _dictUiState.value = UiState.Success(it)
                     searchWord.value = word
@@ -35,7 +35,11 @@ class DrinkListViewModel @Inject constructor(
     }
     fun getDrinkListByType(type: String){
         viewModelScope.launch {
-            repository.getDrinkListByType(type)
+            if(type.toTypedEng().isEmpty()){
+                _dictUiState.value = UiState.Failure("해당 카테고리를 찾을 수 없습니다.")
+                return@launch
+            }
+            repository.getDrinkListByType(type.toTypedEng())
                 .onSuccess {
                     _dictUiState.value = UiState.Success(it)
                 }
@@ -47,7 +51,7 @@ class DrinkListViewModel @Inject constructor(
 
     sealed class UiState {
         object Init : UiState()
-        data class Success(val list : List<DrinkInfo>) : UiState()
+        data class Success(val list : List<Drink>) : UiState()
         data class Failure(val message : String?) : UiState()
     }
 }

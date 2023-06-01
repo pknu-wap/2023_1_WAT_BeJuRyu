@@ -4,6 +4,7 @@ import com.jaino.model.analysis.AnalysisId
 import com.jaino.model.analysis.SentimentAnalysis
 import com.jaino.model.analysis.AnalysisHistory
 import com.jaino.network.datasource.analysis.AnalysisDataSource
+import com.jaino.network.model.request.analysis.AnalysisSourceRequest
 import javax.inject.Inject
 
 class AnalysisRepositoryImpl @Inject constructor(
@@ -15,7 +16,9 @@ class AnalysisRepositoryImpl @Inject constructor(
         textExpression: String,
         facialExpression: String
     ): Result<AnalysisId> =
-        source.postAnalysisSource(userId, textExpression, facialExpression).mapCatching {
+        source.postAnalysisSource(
+            AnalysisSourceRequest(userId, textExpression, facialExpression)
+        ).mapCatching {
             it.toAnalysisId()
         }
 

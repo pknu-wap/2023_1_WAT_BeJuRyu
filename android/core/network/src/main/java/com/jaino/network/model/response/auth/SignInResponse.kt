@@ -1,6 +1,6 @@
 package com.jaino.network.model.response.auth
 
-import com.jaino.model.auth.SignIn
+import com.jaino.model.auth.User
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -8,7 +8,7 @@ data class SignInResponse (
     val memberResponse : MemberResponse,
     val token : TokenResponse
 ){
-    fun toSignIn(): SignIn = SignIn(
+    fun toSignIn(): User = User(
         refreshToken = token.refresh,
         accessToken = token.access,
         userId = memberResponse.id,

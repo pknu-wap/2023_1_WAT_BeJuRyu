@@ -3,11 +3,14 @@ package com.jaino.analyze.input_image
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
+import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.activity.result.ActivityResultLauncher
 import androidx.activity.result.launch
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -40,6 +43,7 @@ class AnalyzeImageFragment : Fragment() {
         singlePhotoPickerLauncher =  registerForActivityResult(PickPhotoContract())
         { imageUri: Uri? ->
             if (imageUri != null) {
+                viewModel.setImageUri(imageUri.toString())
                 loadImage(imageUri.toString())
             }
         }
@@ -74,7 +78,7 @@ class AnalyzeImageFragment : Fragment() {
         }
         // 뒤로가기 버튼 클릭
         binding.analyzeBackButton.setOnClickListener {
-            findNavController().popBackStack(R.id.analyzeTextFragment, false)
+            navigateToText()
         }
     }
 
@@ -91,15 +95,26 @@ class AnalyzeImageFragment : Fragment() {
     private fun initViewModelStates(){
         // userId 불러오기
         viewModel.getUserId()
-
         // imageUri 저장
-        if(args.imageUri.isNotEmpty()){
-            loadImage(args.imageUri)
+        val imageUri = args.imageUri
+        if(imageUri.isNotEmpty()){
+            viewModel.setImageUri(imageUri)
+            loadImage(imageUri)
         }
     }
 
     private fun loadImage(uri: String){
-        viewModel.setImageUri(uri)
+        val inputStream = requireActivity().contentResolver.openInputStream(uri.toUri())
+        if(inputStream != null) {
+            val bytes = ByteArray(inputStream.available())
+            inputStream.read(bytes)
+            val encodedImage: String = Base64.encodeToString(bytes, Base64.DEFAULT)
+            viewModel.setImageSource(encodedImage)
+        }else{
+            Toast.makeText(requireContext(), "사진을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()
+            navigateToText()
+        }
+        inputStream?.close()
     }
 
     private fun observeData(){
@@ -134,5 +149,9 @@ class AnalyzeImageFragment : Fragment() {
                 analysisId
             )
         )
+    }
+
+    private fun navigateToText(){
+        findNavController().popBackStack(R.id.analyzeTextFragment, false)
     }
 }

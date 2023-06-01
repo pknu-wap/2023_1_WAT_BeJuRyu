@@ -106,10 +106,10 @@
 
                         <androidx.appcompat.widget.AppCompatImageView
                             android:id="@+id/imageView"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="16dp"
-                            app:imageUrl="@{viewModel.drinkInfoUiState.image}"
+                            android:layout_width="wrap_content"
+                            android:layout_height="200dp"
+                            android:layout_marginVertical="16dp"
+                            app:encodedImage="@{viewModel.drinkInfoUiState.image}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -252,7 +252,6 @@
                                     android:layout_span="4"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
-                                    android:text="@{viewModel.drinkInfoUiState.type}"
                                     android:textColor="@color/black" />
                             </TableRow>
 
@@ -328,6 +327,31 @@
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
                                     android:text="@{@string/price_unit(viewModel.drinkInfoUiState.price)}"
+                                    android:textColor="@color/black" />
+                            </TableRow>
+
+                            <TableRow
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent">
+
+                                <TextView
+                                    android:id="@+id/drink_sweetness"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:background="@color/light_white"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@string/sweetness"
+                                    android:textColor="@color/black" />
+
+                                <TextView
+                                    android:id="@+id/drink_sweetness_text"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_span="4"
+                                    android:gravity="center"
+                                    android:paddingVertical="16dp"
+                                    android:text="@{@string/sweetness_unit(viewModel.drinkInfoUiState.sweetness)}"
                                     android:textColor="@color/black" />
                             </TableRow>
                         </TableLayout>
