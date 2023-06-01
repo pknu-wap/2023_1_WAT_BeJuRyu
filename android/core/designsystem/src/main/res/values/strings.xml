@@ -43,6 +43,7 @@
     <string name="volume">용량</string>
     <string name="type">종류</string>
     <string name="price">가격</string>
+    <string name="sweetness">당도(100ml당)</string>
     <string name="go_to_review">리뷰 확인하기</string>
     <string name="write_review">리뷰 작성하기</string>
     <string name="product_info">주류 정보</string>
@@ -64,11 +65,13 @@
     <string name="analysis_image_content">사진을 클릭하여 이미지 선택하기</string>
     <string name="analysis_image_input">사진 입력</string>
     <string name="dosu_unit">%.1f%%</string>
-    <string name="price_unit">%dml</string>
-    <string name="volume_unit">%d원</string>
+    <string name="price_unit">%d원</string>
+    <string name="volume_unit">%dml</string>
     <string name="home_title">Be주류 |</string>
     <string name="rank_title">Be주류 랭킹</string>
+    <string name="sweetness_unit">%dg</string>
     <string name="rank_content">유저들이 직접 선정한 \n비주류에서 가장 인기가 많은 술을 확인해보세요!</string>
     <string name="drink_category_title">카테고리</string>
     <string name="max_rating">/5</string>
+    <string name="text_count">%d/10자 이상</string>
 </resources>
