@@ -29,6 +29,35 @@ function JuryuInfo() {
   const [drinkInfo, setDrinkInfo] = useState(null);
   // 주류 리뷰 리스트
   const [drinkReviewList, setDrinkReviewList] = useState([]);
+  // 리뷰 리스트 길이에 따라 pagination
+  // const [startIndex, setStartIndex] = useState(0); // 시작 인덱스 상태
+  // const [endIndex, setEndIndex] = useState(4); // 종료 인덱스 상태
+  // const [showMore, setShowMore] = useState(false); // 더보기 상태 추가
+  const [page, setPage] = useState(1);
+  const [perPage, setPerPage] = useState(4);
+
+  const totalPages = Math.ceil(drinkReviewList.length / perPage);
+
+  // 현재 페이지에 해당하는 항목들만 추출하는 함수
+  const getCurrentPageItems = () => {
+    const startIndex = (page - 1) * perPage;
+    const endIndex = startIndex + perPage;
+    return drinkReviewList.slice(startIndex, endIndex);
+  };
+
+  // 다음 페이지로 이동하는 함수
+  const goToNextPage = () => {
+    if (page < totalPages) {
+      setPage(page + 1);
+    }
+  };
+
+  // 이전 페이지로 이동하는 함수
+  const goToPreviousPage = () => {
+    if (page > 1) {
+      setPage(page - 1);
+    }
+  };
 
   const juryuId = location.state?.juryuId;
 
@@ -48,14 +77,6 @@ function JuryuInfo() {
       return null;
     }
   };
-
-  // useEffect(() => {
-  //   if (drinkInfo) {
-  //     console.log(drinkInfo);
-  //     const decodedImage = decodeBase64(drinkInfo.image);
-  //     setDecodedImage(decodedImage);
-  //   }
-  // }, [drinkInfo]);
 
   // 주류 정보 import
   useEffect(() => {
@@ -209,7 +230,15 @@ function JuryuInfo() {
           <S.FormBox>
             <S.Title>Be주류 사용자들의 한줄 리뷰</S.Title>
 
-            {drinkReviewList.map((reviews) => (
+            {/* {drinkReviewList.map((reviews) => (
+              <p key={reviews.id}>
+                {reviews.comment}{" "}
+                <p>
+                  {reviews.nickname} {reviews.date}
+                </p>
+              </p>
+            ))} */}
+            {getCurrentPageItems().map((reviews) => (
               <p key={reviews.id}>
                 {reviews.comment}{" "}
                 <p>
@@ -217,6 +246,14 @@ function JuryuInfo() {
                 </p>
               </p>
             ))}
+
+            {/* 이전 페이지로 돌아가기 버튼 */}
+            {page > 1 && <button onClick={goToPreviousPage}>앞으로</button>}
+
+            {/* 더 보기 버튼 */}
+            {page < totalPages && (
+              <button onClick={goToNextPage}>더 많은 리뷰!</button>
+            )}
           </S.FormBox>
 
           <S.ReviewBox>
