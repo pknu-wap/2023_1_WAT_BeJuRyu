@@ -27,7 +27,8 @@ function JuryuInfo() {
   // 이미지
   const [decodedImage, setDecodedImage] = useState(null);
   const [drinkInfo, setDrinkInfo] = useState(null);
-  const [drinkInfoList, setDrinkInfoList] = useState([]);
+  // 주류 리뷰 리스트
+  const [drinkReviewList, setDrinkReviewList] = useState([]);
 
   const juryuId = location.state?.juryuId;
 
@@ -90,6 +91,7 @@ function JuryuInfo() {
         console.error(error);
       }
     };
+    //console.log(drinkReviewList);
 
     const juryuReview = async () => {
       try {
@@ -99,7 +101,7 @@ function JuryuInfo() {
         });
 
         if (response) {
-          console.log(response.data);
+          setDrinkReviewList(response.data.reviews);
         }
       } catch (error) {
         console.error(error);
@@ -174,9 +176,6 @@ function JuryuInfo() {
       });
       if (res) {
         console.log(res.data);
-        console.log(res.status); // HTTP 응답 상태 코드
-        console.log(res.statusText); // HTTP 응답 상태 텍스트
-        console.log(res.headers); // 응답 헤더 정보
       }
     } catch (error) {
       if (error.response) {
@@ -209,7 +208,15 @@ function JuryuInfo() {
           </S.FormBox>
           <S.FormBox>
             <S.Title>Be주류 사용자들의 한줄 리뷰</S.Title>
-            <S.WhiteBox2></S.WhiteBox2>
+
+            {drinkReviewList.map((reviews) => (
+              <p key={reviews.id}>
+                {reviews.comment}{" "}
+                <p>
+                  {reviews.nickname} {reviews.date}
+                </p>
+              </p>
+            ))}
           </S.FormBox>
 
           <S.ReviewBox>
