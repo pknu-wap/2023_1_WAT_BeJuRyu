@@ -1,12 +1,12 @@
 /* TODO
  1. [o] 사전 페이지 UI 구현 어떤식으로 할건지 결정
- 2. [] 사전 페이지에서 주류 목록을 띄우고 해당 주류를 누르면 주류에 대한 정보와 후기 작성까지 가능하게끔
+ 2. [o] 사전 페이지에서 주류 목록을 띄우고 해당 주류를 누르면 주류에 대한 정보와 후기 작성까지 가능하게끔
  3. [o] 주류 사진을 클릭할 때 마다 다른 페이지로 연결이 될 텐데, 페이지 100개를 만드는 것 말고 그때그때마다 정보 다르게 들어오게끔 하는 것 찾아봐야함.
  4. [o] 주류 검색 창과 "맥주, 소주"와 같은 태그 버튼 구현
   */
 import S from "./styled";
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -14,7 +14,6 @@ import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
 import noAuthClient from "../../apis/noAuthClient";
-import { InputLabel } from "@mui/material";
 
 import logo from "../../image/bejuryu.png";
 
@@ -66,6 +65,7 @@ function Dictionary() {
         console.log(nameRes.data.drinks.length);
 
         setDrinkInfoList(nameRes.data.drinks);
+
         // 이미지 디코딩 및 설정
         // const decodedImage = decodeBase64(nameRes.data.drinks[0].image);
         // setDecodedImage(decodedImage);
@@ -74,9 +74,6 @@ function Dictionary() {
           method: "get",
           url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
         });
-        console.log("Type response:", typeRes);
-        console.log(selectedCategory);
-        console.log(typeRes.data.drinks.length);
 
         setDrinkInfoList(typeRes.data.drinks);
         //setDrinkInfo(typeRes.data.drinks[typeRes.data.drinks.length - 1]);
@@ -91,30 +88,31 @@ function Dictionary() {
     }
   };
 
+  const checkJuryuInfo = async (e, juryuId) => {
+    e.preventDefault();
+    navigate("/juryuInfo", { state: { juryuId } });
+
+    try {
+      const res = await noAuthClient({
+        method: "get",
+        url: `/drinks/${juryuId}`,
+      });
+      if (res) {
+        console.log(res);
+      } else {
+        console.log("res엄썽");
+      }
+    } catch (error) {
+      if (error.response) {
+        const err = error.response.data;
+        console.log(err);
+      }
+    }
+  };
+
   useEffect(() => {
     setDrinkInfoList([]);
   }, [searchTerm]);
-
-  // // 주류 이름 검색 함수
-  // const handleNameSearch = async (e) => {
-  //   e.preventDefault();
-
-  //   try {
-  //     const res = await noAuthClient({
-  //       method: "get",
-  //       url: `/drinks/name/${searchTerm}`,
-  //     });
-  //     if (res) {
-  //       console.log(res);
-  //     }
-  //   } catch (error) {
-  //     if (error.response) {
-  //       const err = error.response.data;
-  //       console.log(err);
-  //     }
-  //     //console.log(searchTerm);
-  //   }
-  // };
 
   // 검색어 입력 필드의 onChange 핸들러
   const handleChange = (e) => {
@@ -189,9 +187,18 @@ function Dictionary() {
         </S.Info>
         {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
         <S.juruBox style={{ paddingTop: "20px" }}>
-          <div style={{ display: "flex", alignitems: "center" }}>
+          <div
+            style={{
+              display: "flex",
+              alignitems: "center",
+              marginLeft: "10px",
+            }}
+          >
             {drinkInfoList.map((drinkInfo) => (
-              <S.WhiteBox key={drinkInfo.id}>
+              <S.WhiteBox
+                key={drinkInfo.id}
+                onClick={(e) => checkJuryuInfo(e, drinkInfo.id)}
+              >
                 <S.Image
                   src={decodeBase64(drinkInfo.image)}
                   alt="주류 이미지"

@@ -9,6 +9,7 @@ import ResultPage from "./pages/ResultPage";
 import DictionaryPage from "./pages/DictionaryPage";
 import HistoryPage from "./pages/HistoryPage";
 import NickChangePage from "./pages/NickChangePage";
+import JuryuInfoPage from "./pages/JuruInfoPage";
 import axios from "axios";
 import { useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
@@ -35,6 +36,7 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
+  //const userName = localStorage.getItem("nickname");
   const userName = useSelector((state) => state.name.name);
 
   const isLogin = () => {
@@ -72,12 +74,12 @@ function App() {
           )}
           {/* <Route path="/" element={<LoginPage />} /> */}
           <Route path="/mypage" element={<MyPage />} />
-
           <Route path="/recommend" element={<RecommendPage />} />
           <Route path="/result" element={<ResultPage />} />
           <Route path="/dictionary" element={<DictionaryPage />} />
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/nickchange" element={<NickChange />} />
+          <Route path="/juryuInfo" element={<JuryuInfoPage />} />
         </Routes>
       </ContentWrapper>
       <Footer />

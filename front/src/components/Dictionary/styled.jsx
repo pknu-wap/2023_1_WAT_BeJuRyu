@@ -110,6 +110,7 @@ const WhiteBox = styled.div`
 
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
   }
 `;
 
@@ -134,6 +135,7 @@ const Image = styled.img`
 const Text = styled.p`
   text-align: center;
   margin-top: 1rem;
+  font-size: 13px;
 `;
 
 const S = {

@@ -36,6 +36,11 @@ function NickChange() {
   const NickChangeView = (
     <S.Container2>
       <S.Info>
+        <S.NickCheck type="button" onClick={onchangeNick}>
+          {" "}
+          {/* 수정된 부분 */}
+          닉네임 변경
+        </S.NickCheck>
         <S.LogoutButton type="button" onClick={() => navigate("/")}>
           되돌아가기
         </S.LogoutButton>
@@ -49,11 +54,6 @@ function NickChange() {
             placeholder="변경할 닉네임을 입력하세요"
             onChange={onNickHandler}
           ></S.Input>
-          <S.NickCheck type="button" onClick={onchangeNick}>
-            {" "}
-            {/* 수정된 부분 */}
-            변경
-          </S.NickCheck>
         </S.Form>
       </S.Wrapper>
     </S.Container2>

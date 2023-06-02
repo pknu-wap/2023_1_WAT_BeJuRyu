@@ -16,6 +16,7 @@ function Recommend() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [inputValue, setInputValue] = useState(""); // 텍스트 입력값 상태 추가
 
+  const currentDate = getCurrentDateTime(); // 현재 시각 가져오기
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     navigate("/result");
@@ -23,31 +24,41 @@ function Recommend() {
       const reader = new FileReader();
       // base64 encoding해서
       reader.onloadend = async () => {
-        const base64Data = reader.result.split(",")[1];
-        reader.readAsDataURL(selectedFile); // 이미지 파일을 Base64로 인코딩
-        // console.log(typeof parseInt(localStorage.getItem("user-id"), 10));
-        // console.log(typeof base64Data);
-        // console.log(typeof inputValue);
+        const arrayBuffer = reader.result;
+        const byteArray = new Uint8Array(arrayBuffer);
+
+        const base64Data = String(reader.result.split(",")[1]);
+
+        console.log(typeof base64Data);
+
+        console.log(currentDate);
+        //console.log(currentDate, typeof currentDate);
+        //console.log(inputValue, typeof inputValue);
+        //console.log(new Blob([byteArray]), typeof new Blob([byteArray]));
+
         try {
           const res = await authClient({
             method: "post",
             url: "/analyze/sources",
             data: {
-              userId: parseInt(localStorage.getItem("user-id"), 10),
               textExpression: inputValue,
               facialExpression: base64Data,
+              date: currentDate,
             },
           });
           if (res) {
-            console.log(res);
+            console.log(res.data);
+            console.log(res.status); // HTTP 응답 상태 코드
+            console.log(res.statusText); // HTTP 응답 상태 텍스트
+            console.log(res.headers); // 응답 헤더 정보
           }
-
           // 서버 응답 처리
         } catch (error) {
           if (error.response) {
             // 서버 응답 에러
             const err = error.response.data;
             console.log(err);
+            console.log(error.message);
           } else {
             // 네트워크 에러 또는 클라이언트 에러
             console.log("Error:", error.message);
@@ -92,6 +103,21 @@ function Recommend() {
       </S.Wrapper>
     </S.Container>
   );
+}
+
+// 현재 날짜와 시각을 "yyyy.MM.dd HH:mm" 형식으로 반환하는 함수
+function getCurrentDateTime() {
+  const date = new Date();
+
+  const year = date.getFullYear();
+  const month = String(date.getMonth() + 1).padStart(2, "0");
+  const day = String(date.getDate()).padStart(2, "0");
+  const hours = String(date.getHours()).padStart(2, "0");
+  const minutes = String(date.getMinutes()).padStart(2, "0");
+
+  const formattedDateTime = `${year}-${month}-${day} ${hours}:${minutes}`;
+
+  return formattedDateTime;
 }
 
 export default Recommend;

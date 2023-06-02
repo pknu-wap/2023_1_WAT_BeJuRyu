@@ -57,8 +57,8 @@ const Form = styled.div`
 `;
 
 const WhiteBox = styled.div`
-  width: 35rem;
-  height: 25rem;
+  width: 80rem;
+  height: 35rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
@@ -72,6 +72,45 @@ const WhiteBox = styled.div`
   &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
   }
+  display: flex;
+  justify-content: space-between;
+`;
+
+const WhiteBox2 = styled.div`
+  width: 20rem;
+  height: 25rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
+const FormBox = styled.div`
+  width: 25rem;
+  height: 34rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+
+  background: pink;
+`;
+
+const ReviewBox = styled.div`
+  width: 20rem;
+  height: 34rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+
+  background: pink;
 `;
 
 const Title = styled.div`
@@ -104,6 +143,9 @@ const S = {
   Form,
   WhiteBox,
   textInput,
+  FormBox,
+  ReviewBox,
+  WhiteBox2,
 };
 
 export default S;

@@ -90,8 +90,7 @@ const Main = styled.div`
 
 const Form = styled.div`
   width: 80%;
-  height: 8rem;
-
+  height: 10rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
@@ -134,6 +133,7 @@ const NickCheck = styled.button`
   border-radius: 64px;
   color: white;
   margin-bottom: 16px;
+
   text-align: center;
   font-family: SCDream5;
   cursor: pointer;
