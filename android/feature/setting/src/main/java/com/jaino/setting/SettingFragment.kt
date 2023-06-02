@@ -1,6 +1,10 @@
 package com.jaino.setting
 
+import android.graphics.Color
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableStringBuilder
+import android.text.style.ForegroundColorSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -36,6 +40,7 @@ class SettingFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initButtons()
+        initNicknameColor()
     }
 
     private fun initButtons(){
@@ -54,6 +59,17 @@ class SettingFragment : Fragment() {
         binding.historyCardView.setOnClickListener {
             navigateToHistory()
         }
+    }
+
+    private fun initNicknameColor(){
+        val text = binding.settingNicknameTitle.text
+        val spannable = SpannableStringBuilder(text)
+        spannable.setSpan(
+            ForegroundColorSpan(Color.BLACK),
+            text.length - 15, text.length,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+        binding.settingNicknameTitle.text = spannable
     }
 
     private fun navigateToAnalyze(){
