@@ -19,7 +19,6 @@ class AnalyzeImageViewModel @Inject constructor(
 ): ViewModel(){
 
     private val _imageSourceState = MutableStateFlow<String>("")
-    val imageSourceState : StateFlow<String> get() = _imageSourceState
 
     private val _imageUri = MutableStateFlow<String>("")
     val imageUri : StateFlow<String> get() = _imageUri
@@ -52,7 +51,7 @@ class AnalyzeImageViewModel @Inject constructor(
             analysisRepository.postAnalysisSource(
                 userId = userId.value,
                 textExpression = textSource,
-                facialExpression = imageSourceState.value
+                facialExpression = _imageSourceState.value
             ).onSuccess {
                 _analysisId.value = it.analysisId
             }.onFailure {
