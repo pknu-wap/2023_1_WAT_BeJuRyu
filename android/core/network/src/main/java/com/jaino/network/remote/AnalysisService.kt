@@ -4,7 +4,7 @@ import com.jaino.network.model.request.analysis.AnalysisSourceRequest
 import com.jaino.network.model.response.analysis.AnalysisIdResponse
 import com.jaino.network.model.response.base.BaseResponse
 import com.jaino.network.model.response.analysis.AnalysisHistoryResponse
-import com.jaino.network.model.response.user.SentimentAnalysisResponse
+import com.jaino.network.model.response.analysis.SentimentAnalysisResponse
 import retrofit2.http.*
 
 interface AnalysisService {

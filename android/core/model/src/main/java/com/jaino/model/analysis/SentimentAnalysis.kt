@@ -6,7 +6,7 @@ data class SentimentAnalysis(
 ){
     constructor() : this(
             AnalysisSource("", ""),
-            AnalysisResult("", AnalysisDrink())
+            AnalysisResult("", 0, AnalysisDrink())
     )
 }
 
@@ -17,6 +17,7 @@ data class AnalysisSource(
 
 data class AnalysisResult(
     val sentiment: String,
+    val level : Int,
     val drink: AnalysisDrink
 )
 

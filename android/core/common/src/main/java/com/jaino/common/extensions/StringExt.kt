@@ -6,7 +6,7 @@ fun String.toTypedEng(): String{
         "소주" -> "SOJU"
         "막걸리" -> "MAKGEOLLI"
         "와인" -> "WINE"
-        "리큐어" -> "LIQUEUR"
+        "리큐르" -> "LIQUEUR"
         "위스키" -> "WHISKEY"
         "사케" -> "RICE_WINE"
         "꼬냑" -> "BRANDY"

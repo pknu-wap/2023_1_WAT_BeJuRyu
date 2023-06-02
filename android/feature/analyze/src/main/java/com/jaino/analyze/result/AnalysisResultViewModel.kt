@@ -46,13 +46,13 @@ class AnalysisResultViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getSentimentAnalysis(analysisId = analysisId)
                 .onSuccess {
-                    when (it.result.sentiment.slice(0 until 2)) {
-                        "슬픔" -> {
+                    when (it.result.sentiment) {
+                        SAD -> {
                             _sentimentIconState.value = SAD_ICON
                             _sentimentContentState.value = SAD_CONTENT
                             _analysisResultUiState.value = it
                         }
-                        "기쁨" -> {
+                        HAPPY -> {
                             _sentimentIconState.value = HAPPY_ICON
                             _sentimentContentState.value = HAPPY_CONTENT
                             _analysisResultUiState.value = it
@@ -70,8 +70,10 @@ class AnalysisResultViewModel @Inject constructor(
     companion object{
         val SAD_ICON = com.jaino.designsystem.R.drawable.sad
         val HAPPY_ICON = com.jaino.designsystem.R.drawable.smile
-        const val SAD_CONTENT = "오늘 하루 수고 많으셨어요. 술 한잔 하면서 다 오늘 있었던 일 다 잊어버려요."
-        const val HAPPY_CONTENT = "오늘 정말 재밌고 행복한 하루를 보내셨네요! 다같이 치얼스~!"
+        const val SAD = "슬픔"
+        const val HAPPY = "기쁨"
+        const val SAD_CONTENT = "힘들 때는 술 한 잔이 약이될 수 있어요.\n술 한 잔하며, 다 같이 스트레스를 풀어볼까요?"
+        const val HAPPY_CONTENT = "오늘 재밌고 행복한 하루를 보내셨네요!\n술 한 잔하며, 분위기를 올려볼까요?"
     }
 
     sealed class UiEvent{

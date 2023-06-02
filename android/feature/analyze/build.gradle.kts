@@ -25,6 +25,7 @@ dependencies {
     implementation(libs.androidx.fragment)
     implementation(libs.bundles.navigation)
     implementation(libs.material)
+    implementation(libs.progressView)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.lifecycle.livedata)
