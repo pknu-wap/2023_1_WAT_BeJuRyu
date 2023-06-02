@@ -85,7 +85,8 @@ const MyState = styled.div`
 const textInput = styled.textarea`
   width: 100%;
   height: 100px;
-  font-size: 1.2rem;
+  font-weight: 400;
+  font-size: 1rem;
   resize: none;
   border: none;
   color: #e11299;

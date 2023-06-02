@@ -36,6 +36,15 @@ function Logout() {
   };
 
   const logoutWithKakao = async () => {
+    Kakao.API.request({
+      url: "/v1/user/unlink",
+    })
+      .then(function (response) {
+        alert(response);
+      })
+      .catch(function (error) {
+        alert(error);
+      });
     if (Kakao.Auth.getAccessToken()) {
       console.log(
         "카카오 인증 액세스 토큰이 존재합니다.",
@@ -43,12 +52,12 @@ function Logout() {
       );
       try {
         await Kakao.Auth.logout();
-        console.log("로그아웃 되었습니다.", Kakao.Auth.getAccessToken());
+        alert("로그아웃 되었습니다.", Kakao.Auth.getAccessToken());
         setIsLogin(false);
         localStorage.clear();
 
-        //window.location.href = "/";
-        navigate("/");
+        window.location.href = "/";
+        //navigate("/");
         Kakao.Auth.setAccessToken(null); // 카카오 SDK의 자동 로그인 초기화
 
         // 카카오 API에서 사용하는 쿠키 삭제
@@ -66,7 +75,7 @@ function Logout() {
 
         logout(); // 비주류 서비스 로그아웃
       } catch (error) {
-        console.error("카카오 로그아웃 중 오ㅇ류가 발생했습니다:", error);
+        alert(error);
       }
     }
   };

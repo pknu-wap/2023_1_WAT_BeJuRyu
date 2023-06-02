@@ -76,8 +76,25 @@ const WhiteBox = styled.div`
   justify-content: space-between;
 `;
 
+const WhiteBox2 = styled.div`
+  width: 20rem;
+  height: 25rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  display: flex;
+  justify-content: space-between;
+`;
+
 const FormBox = styled.div`
-  width: 35rem;
+  width: 25rem;
   height: 34rem;
   margin: 0 auto;
   margin-bottom: 20px;
@@ -88,7 +105,7 @@ const FormBox = styled.div`
 
 const ReviewBox = styled.div`
   width: 20rem;
-  height: 30rem;
+  height: 34rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
@@ -128,6 +145,7 @@ const S = {
   textInput,
   FormBox,
   ReviewBox,
+  WhiteBox2,
 };
 
 export default S;

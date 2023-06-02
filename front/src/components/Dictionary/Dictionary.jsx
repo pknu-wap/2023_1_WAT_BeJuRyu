@@ -6,7 +6,7 @@
   */
 import S from "./styled";
 import { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { useNavigate, useLocation, Link } from "react-router-dom";
 import Box from "@mui/material/Box";
 import TextField from "@mui/material/TextField";
 import NativeSelect from "@mui/material/NativeSelect";
@@ -74,9 +74,6 @@ function Dictionary() {
           method: "get",
           url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
         });
-        console.log("Type response:", typeRes);
-        console.log(selectedCategory);
-        console.log(typeRes.data.drinks.length);
 
         setDrinkInfoList(typeRes.data.drinks);
         //setDrinkInfo(typeRes.data.drinks[typeRes.data.drinks.length - 1]);
@@ -93,7 +90,7 @@ function Dictionary() {
 
   const checkJuryuInfo = async (e, juryuId) => {
     e.preventDefault();
-    navigate("/juryuInfo");
+    navigate("/juryuInfo", { state: { juryuId } });
 
     try {
       const res = await noAuthClient({

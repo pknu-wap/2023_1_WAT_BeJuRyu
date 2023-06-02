@@ -78,6 +78,7 @@ const Navbarlink = styled.div`
 `;
 
 export default function Header() {
+  const nickname = localStorage.getItem("nickname");
   const userName = useSelector((state) => state.name.name);
   const dispatch = useDispatch();
   const [dictionaryData, setDictionaryData] = useState(null);
@@ -140,48 +141,50 @@ export default function Header() {
             BeJuRyu
           </Link>
         </Navbarlogo>
-
-        <Navbarmenu>
-          <div>
+        {userName === "" ? (
+          ""
+        ) : (
+          <Navbarmenu>
+            <div>
+              <li>
+                <Link
+                  to={{
+                    pathname: "/Dictionary",
+                    state: { dictionaryData: dictionaryData }, // 데이터를 props로 전달
+                  }}
+                  style={{ textDecoration: "none", color: "inherit" }}
+                >
+                  주류사전메뉴
+                </Link>
+              </li>
+            </div>
             <li>
               <Link
-                to={{
-                  pathname: "/Dictionary",
-                  state: { dictionaryData: dictionaryData }, // 데이터를 props로 전달
-                }}
+                to="/Recommend"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                주류사전메뉴
+                주류추천메뉴
               </Link>
             </li>
-          </div>
-          <li>
-            <Link
-              to="/Recommend"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              주류추천메뉴
-            </Link>
-          </li>
-          <li>
-            <Link
-              to="/MyPage"
-              style={{ textDecoration: "none", color: "inherit" }}
-            >
-              마이페이지
-            </Link>
-          </li>
-        </Navbarmenu>
-
-        {/* {userName === "" ? (
+            <li>
+              <Link
+                to="/MyPage"
+                style={{ textDecoration: "none", color: "inherit" }}
+              >
+                마이페이지
+              </Link>
+            </li>
+          </Navbarmenu>
+        )}
+        {userName === "" ? (
           <Navbarlink>
             <div></div>
           </Navbarlink>
         ) : (
           <Navbarlink>
-            <li style={{ color: "white", fontSize: "24px" }}>{userName}</li>
+            <li style={{ color: "white", fontSize: "18px" }}>{nickname} 님</li>
           </Navbarlink>
-        )} */}
+        )}
       </Navbar>
     </>
   );

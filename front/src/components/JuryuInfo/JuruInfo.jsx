@@ -6,13 +6,17 @@
 import React from "react";
 import S from "./styled";
 import { useNavigate, useLocation } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import Rating from "@mui/material/Rating";
 import StarIcon from "@mui/icons-material/Star";
 import Box from "@mui/material/Box";
 import authClient from "../../apis/authClient";
+import Container from "@mui/material/Container";
+import InfiniteScroll from "react-infinite-scroller";
+import axios from "axios";
+import noAuthClient from "../../apis/noAuthClient";
 
 function JuryuInfo() {
   const location = useLocation();
@@ -20,7 +24,92 @@ function JuryuInfo() {
   const [hover, setHover] = useState(-1);
   // 주류 리뷰 텍스트 입력값 상태
   const [inputValue, setInputValue] = useState("");
+  // 이미지
+  const [decodedImage, setDecodedImage] = useState(null);
+  const [drinkInfo, setDrinkInfo] = useState(null);
+  const [drinkInfoList, setDrinkInfoList] = useState([]);
+
   const juryuId = location.state?.juryuId;
+
+  // 이미지 디코딩 함수
+  const decodeBase64 = (base64) => {
+    try {
+      const binaryString = window.atob(base64);
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+      return URL.createObjectURL(
+        new Blob([bytes.buffer], { type: "image/png" })
+      );
+    } catch (error) {
+      console.error(error);
+      return null;
+    }
+  };
+
+  // useEffect(() => {
+  //   if (drinkInfo) {
+  //     console.log(drinkInfo);
+  //     const decodedImage = decodeBase64(drinkInfo.image);
+  //     setDecodedImage(decodedImage);
+  //   }
+  // }, [drinkInfo]);
+
+  // 주류 정보 import
+  useEffect(() => {
+    const JuryuData = async () => {
+      try {
+        const response = await noAuthClient({
+          method: "get",
+          url: `/drinks/${juryuId}`,
+        });
+        //const { name, image, dosu, price } = response.data;
+        //const decodedImage = decodeBase64(image)'
+
+        setDrinkInfo(response.data);
+
+        if (response) {
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const juryuScore = async () => {
+      try {
+        const response = await noAuthClient({
+          method: "get",
+          url: `/drinks/${juryuId}/rating`,
+        });
+        if (response) {
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const juryuReview = async () => {
+      try {
+        const response = await noAuthClient({
+          method: "get",
+          url: `/drinks/${juryuId}/reviews`,
+        });
+
+        if (response) {
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    JuryuData();
+    juryuScore();
+    juryuReview();
+  }, [juryuId]);
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -100,13 +189,29 @@ function JuryuInfo() {
     }
   };
 
-  const JuryuView = (
+  return (
     <S.Container>
       <S.Wrapper>
         <S.WhiteBox>
           <S.FormBox>
             <S.Title>주류정보</S.Title>
+            <Container>
+              <img
+                src={drinkInfo && decodeBase64(drinkInfo.image)}
+                width="200"
+                height="300"
+                alt="주류 이미지"
+              />
+              <p>{drinkInfo?.name}</p>
+              <p>{drinkInfo?.dosu}</p>
+              {drinkInfo?.price}
+            </Container>
           </S.FormBox>
+          <S.FormBox>
+            <S.Title>Be주류 사용자들의 한줄 리뷰</S.Title>
+            <S.WhiteBox2></S.WhiteBox2>
+          </S.FormBox>
+
           <S.ReviewBox>
             <S.Title>주류를 평가해주세요!</S.Title>
             <Box
@@ -148,15 +253,13 @@ function JuryuInfo() {
             <S.ReButton onClick={(e) => handleReviewSubmit(e, juryuId)}>
               리뷰 등록하기
             </S.ReButton>
-            <S.ReButton>리뷰 보러가기</S.ReButton>
+            {/* <S.ReButton>리뷰 보러가기</S.ReButton> */}
           </S.ReviewBox>
         </S.WhiteBox>
         <S.ReButton onClick={dictionary}>다른 주류 둘러보기</S.ReButton>
       </S.Wrapper>
     </S.Container>
   );
-
-  return JuryuView;
 }
 
 export default JuryuInfo;
