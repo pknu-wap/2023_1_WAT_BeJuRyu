@@ -1,4 +1,4 @@
-package com.jaino.network.model.response.user
+package com.jaino.network.model.response.analysis
 
 import com.jaino.model.analysis.AnalysisDrink
 import com.jaino.model.analysis.AnalysisResult
@@ -37,7 +37,8 @@ data class AnalysisResultResponse(
     val drink: AnalysisDrinkResponse
 ){
     fun toAnalysisResult(): AnalysisResult = AnalysisResult(
-        sentiment = sentiment,
+        sentiment = sentiment.slice(0 until 2),
+        level = sentiment[2].digitToInt(),
         drink = drink.toAnalysisDrink()
     )
 }
