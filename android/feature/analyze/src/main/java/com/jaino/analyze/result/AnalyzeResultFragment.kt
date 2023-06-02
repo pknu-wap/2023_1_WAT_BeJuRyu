@@ -14,6 +14,7 @@ import androidx.navigation.fragment.navArgs
 import com.jaino.analyze.R
 import com.jaino.analyze.databinding.FragmentAnalyzeResultBinding
 import com.jaino.common.extensions.showToast
+import com.jaino.model.analysis.AnalysisResult
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -70,6 +71,21 @@ class AnalyzeResultFragment : Fragment(){
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.analysisResultUiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                if(it.result.drink.name.isNotEmpty()){
+                    setProgress(it.result)
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun setProgress(result : AnalysisResult){
+        binding.resultProgress.progress = result.level.toFloat()
+        with(binding.resultProgress){
+            this.progress = result.level.toFloat()
+            this.labelText = "${result.sentiment} ${result.level}단계"
+        }
     }
 
     override fun onDestroy() {

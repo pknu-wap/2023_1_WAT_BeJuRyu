@@ -160,12 +160,10 @@
 
                         <TextView
                             android:id="@+id/sentiment_result_content"
-                            android:layout_width="0dp"
+                            android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
                             android:text="@{@string/sentiment_result_content(viewModel.nicknameState, viewModel.analysisResultUiState.result.sentiment)}"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toStartOf="@+id/sentiment_icon"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/sentiment_result_title"
                             tools:text="정자이노 님의 감정분석 결과는 '기쁨'입니다." />
@@ -179,6 +177,24 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
                             app:srcCompat="@drawable/smile" />
+
+                        <com.skydoves.progressview.ProgressView
+                            android:id="@+id/result_progress"
+                            android:layout_width="0dp"
+                            android:layout_height="24dp"
+                            android:layout_marginTop="8dp"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="@+id/sentiment_result_content"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/sentiment_result_content"
+                            app:progressView_colorBackground="@color/light_white"
+                            app:progressView_colorProgress="@color/purple"
+                            app:progressView_labelSize="14sp"
+                            app:progressView_labelSpace="10dp"
+                            app:progressView_max="3"
+                            app:progressView_padding="1dp"
+                            app:progressView_radius="12dp" />
+
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
