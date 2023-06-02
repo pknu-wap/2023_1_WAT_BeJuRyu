@@ -248,11 +248,13 @@ function JuryuInfo() {
             ))}
 
             {/* 이전 페이지로 돌아가기 버튼 */}
-            {page > 1 && <button onClick={goToPreviousPage}>앞으로</button>}
+            {page > 1 && (
+              <button onClick={goToPreviousPage}>이전 페이지</button>
+            )}
 
             {/* 더 보기 버튼 */}
             {page < totalPages && (
-              <button onClick={goToNextPage}>더 많은 리뷰!</button>
+              <button onClick={goToNextPage}>다음 페이지</button>
             )}
           </S.FormBox>
 
