@@ -10,10 +10,13 @@ import com.jaino.data.repository.review.ReviewRepositoryImpl
 import com.jaino.data.repository.user.LocalUserRepository
 import com.jaino.data.repository.user.LocalUserRepositoryImpl
 import com.jaino.data.repository.analysis.AnalysisRepositoryImpl
+import com.jaino.data.repository.rank.RankRepository
+import com.jaino.data.repository.rank.RankRepositoryImpl
 import com.jaino.datastore.BeJuRyuDatastore
 import com.jaino.network.datasource.analysis.AnalysisDataSource
 import com.jaino.network.datasource.auth.AuthDataSource
 import com.jaino.network.datasource.dictionary.DrinkDataSource
+import com.jaino.network.datasource.rank.RankDataSource
 import com.jaino.network.datasource.review.ReviewDataSource
 import dagger.Module
 import dagger.Provides
@@ -56,4 +59,10 @@ object RepositoryModule {
     fun provideReviewRepository(
         reviewDataSource: ReviewDataSource,
     ): ReviewRepository = ReviewRepositoryImpl(reviewDataSource)
+
+    @Singleton
+    @Provides
+    fun provideRankRepository(
+        RankDataSource: RankDataSource,
+    ): RankRepository = RankRepositoryImpl(RankDataSource)
 }
