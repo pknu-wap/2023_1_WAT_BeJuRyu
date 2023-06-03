@@ -11,6 +11,7 @@ import com.WAT.BEJURYU.repository.AnalysisRepository;
 import com.WAT.BEJURYU.repository.DrinkRepository;
 import com.WAT.BEJURYU.repository.MemberRepository;
 
+import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
 import org.springframework.stereotype.Service;
@@ -61,7 +62,7 @@ public class AnalysisService {
         final List<Drink> drinks = drinkRepository.findBySentiment(sentiment);
         Collections.shuffle(drinks);
         final Drink recommended = drinks.get(0);
-        byte[] decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFaicalExpression());
+        byte[] decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFacialExpression());
 
         return Analysis.builder()
                 .sentiment(sentiment)
