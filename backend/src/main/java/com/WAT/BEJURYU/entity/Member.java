@@ -19,4 +19,9 @@ public class Member {
     private Long id;
     @Column(name = "nickname")
     private String nickname;
+
+    public void updateNickname(final String newNickname) {
+        this.nickname = newNickname;
+    }
+
 }
