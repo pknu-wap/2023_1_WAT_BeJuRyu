@@ -34,6 +34,7 @@
             android:padding="8dp"
             android:singleLine="true"
             android:drawableRight="@drawable/baseline_search_24"
+            android:enabled="false"
             android:text="@={viewModel.searchWord}"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/backToListButton"
