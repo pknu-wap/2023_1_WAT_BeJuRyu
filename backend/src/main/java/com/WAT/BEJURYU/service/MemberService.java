@@ -17,12 +17,10 @@ import static com.WAT.BEJURYU.dto.MemberResponse.from;
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
-
     public Member findById(final Long id) {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저 정보입니다."));
     }
-
     public boolean notExistById(final Long id) {
         return !memberRepository.existsById(id);
     }
@@ -32,7 +30,6 @@ public class MemberService {
 
         return MemberResponse.from(member);
     }
-
     @Transactional
     public Member save(final Member member) {
         return memberRepository.save(member);

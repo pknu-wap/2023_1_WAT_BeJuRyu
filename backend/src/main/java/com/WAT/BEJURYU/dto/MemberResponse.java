@@ -8,8 +8,8 @@ import lombok.RequiredArgsConstructor;
 @Getter
 @RequiredArgsConstructor
 public class MemberResponse {
-    final Long userId;
-    final String nickname;
+    private final Long userId;
+    private final String nickname;
 
     public static MemberResponse from(final Member member) {
         return new MemberResponse(member.getId(),
