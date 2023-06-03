@@ -14,7 +14,7 @@ public class MemberChangeNicknameRequest {
     private Long userId;
     private String newNickname;
 
-    public AnalysisSourceRequest( final Long userId,final String newNickname) {
+    public MemberChangeNicknameRequest( final Long userId,final String newNickname) {
         this.userId= userId;
         this.newNickname = newNickname;
     }
