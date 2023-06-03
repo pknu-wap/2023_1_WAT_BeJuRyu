@@ -72,11 +72,10 @@ class AuthActivity : AppCompatActivity() {
     private fun observeData(){
         viewModel.authUiState.flowWithLifecycle(lifecycle).onEach{
             when(it){
-                is AuthViewModel.UiState.Init -> {}
-                is AuthViewModel.UiState.Success -> {
+                is AuthViewModel.UiEvent.Success -> {
                     startActivity(appNavigator.navigateToHome())
                 }
-                is AuthViewModel.UiState.Failure -> {
+                is AuthViewModel.UiEvent.Failure -> {
                     Toast.makeText(this, it.message, Toast.LENGTH_SHORT).show()
                 }
             }

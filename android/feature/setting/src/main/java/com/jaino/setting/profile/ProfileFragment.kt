@@ -7,10 +7,15 @@ import android.view.ViewGroup
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.jaino.common.extensions.showToast
 import com.jaino.setting.R
 import com.jaino.setting.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
 class ProfileFragment  : Fragment(){
@@ -35,6 +40,8 @@ class ProfileFragment  : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initButtons()
+        initViewModelState()
+        observeData()
     }
 
     private fun initButtons() {
@@ -49,6 +56,23 @@ class ProfileFragment  : Fragment(){
                 }
             ).show()
         }
+    }
+
+    private fun initViewModelState(){
+        viewModel.getNickName()
+    }
+
+    private fun observeData(){
+        viewModel.profileUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                when(it){
+                    is ProfileViewModel.UiEvent.Failure -> {
+                        if(it.message != null) {
+                            requireContext().showToast(it.message)
+                        }
+                    }
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun navigateToSetting(){
