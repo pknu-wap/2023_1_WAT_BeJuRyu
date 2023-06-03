@@ -9,10 +9,8 @@ import retrofit2.http.Path
 
 interface ProfileService {
 
-    @GET("/member/{user_id}")
-    suspend fun getProfile(
-        @Path("user_id") userId: Long
-    ): MemberResponse
+    @GET("/member")
+    suspend fun getProfile(): MemberResponse
 
     @PUT("/member/nickname")
     suspend fun editNickname(

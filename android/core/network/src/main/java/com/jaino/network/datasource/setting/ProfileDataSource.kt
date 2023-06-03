@@ -5,7 +5,7 @@ import com.jaino.network.model.response.auth.MemberResponse
 
 interface ProfileDataSource {
 
-    suspend fun getProfile(userId: Long): Result<MemberResponse>
+    suspend fun getProfile(): Result<MemberResponse>
 
     suspend fun editNickname(profileRequest: ProfileRequest): Result<MemberResponse>
 

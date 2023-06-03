@@ -9,9 +9,9 @@ class ProfileDataSourceImpl @Inject constructor(
     private val service : ProfileService
 ): ProfileDataSource{
 
-    override suspend fun getProfile(userId: Long): Result<MemberResponse> =
+    override suspend fun getProfile(): Result<MemberResponse> =
         runCatching {
-            service.getProfile(userId)
+            service.getProfile()
         }.onFailure { error ->
             error.printStackTrace()
             Result.failure<MemberResponse>(error)

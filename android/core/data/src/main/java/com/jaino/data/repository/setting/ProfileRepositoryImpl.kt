@@ -8,8 +8,8 @@ import javax.inject.Inject
 class ProfileRepositoryImpl @Inject constructor(
     private val dataSource: ProfileDataSource
 ): ProfileRepository{
-    override suspend fun getProfile(userId: Long): Result<Profile> {
-        return dataSource.getProfile(userId).mapCatching { it.toProfile() }
+    override suspend fun getProfile(): Result<Profile> {
+        return dataSource.getProfile().mapCatching { it.toProfile() }
     }
 
     override suspend fun editNickname(userId: Long, nickname: String): Result<Profile> {
