@@ -187,10 +187,11 @@
                             app:layout_constraintEnd_toEndOf="@+id/sentiment_result_content"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/sentiment_result_content"
-                            app:progressView_colorBackground="@color/light_white"
+                            app:progressView_colorBackground="@color/light_gray"
                             app:progressView_colorProgress="@color/purple"
-                            app:progressView_labelSize="14sp"
+                            app:progressView_labelSize="13sp"
                             app:progressView_labelSpace="10dp"
+                            app:progressView_labelTypeface="bold"
                             app:progressView_max="3"
                             app:progressView_padding="1dp"
                             app:progressView_radius="12dp" />
@@ -254,7 +255,7 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{viewModel.analysisResultUiState.result.drink.type}"
+                                    app:typeName="@{viewModel.analysisResultUiState.result.drink.type}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
                                     android:textColor="@color/black" />

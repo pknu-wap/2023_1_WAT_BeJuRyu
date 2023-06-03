@@ -17,7 +17,7 @@ data class DrinkInfoResponse(
     val price : Int,
     val volume : Int,
     val image : String,
-    // val type : String
+    val type : String
 ){
     fun toDrinkInfo(): Drink = Drink(
         id = id,
@@ -26,6 +26,7 @@ data class DrinkInfoResponse(
         sweetness = sweetness,
         price = price,
         volume = volume,
-        image = image
+        image = image,
+        type = type
     )
 }

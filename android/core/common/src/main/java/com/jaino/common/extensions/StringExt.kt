@@ -15,3 +15,19 @@ fun String.toTypedEng(): String{
         else -> ""
     }
 }
+
+fun String.toTypedKor(): String{
+    return when(this){
+        "BEER" -> "맥주"
+        "SOJU" -> "소주"
+        "MAKGEOLLI" -> "막걸리"
+        "WINE" -> "와인"
+        "LIQUEUR" -> "리큐르"
+        "WHISKEY" -> "위스키"
+        "RICE_WINE" -> "사케"
+        "BRANDY" -> "꼬냑"
+        "FRUIT" -> "과실주"
+        "YAKJU" -> "약주"
+        else -> ""
+    }
+}
