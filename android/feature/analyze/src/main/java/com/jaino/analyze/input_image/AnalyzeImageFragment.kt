@@ -21,6 +21,7 @@ import androidx.navigation.fragment.navArgs
 import com.jaino.analyze.R
 import com.jaino.analyze.databinding.FragmentAnalyzeImageBinding
 import com.jaino.common.extensions.showToast
+import com.jaino.common.extensions.toDateTime
 import com.jaino.common.utils.PickPhotoContract
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -74,7 +75,7 @@ class AnalyzeImageFragment : Fragment() {
         }
         // 완료 버튼 클릭
         binding.analyzeImageDoneButton.setOnClickListener {
-            viewModel.postAnalysisSource(args.analyzeText)
+            viewModel.postAnalysisSource(System.currentTimeMillis().toDateTime(), args.analyzeText)
         }
         // 뒤로가기 버튼 클릭
         binding.analyzeBackButton.setOnClickListener {
@@ -93,8 +94,6 @@ class AnalyzeImageFragment : Fragment() {
     }
 
     private fun initViewModelStates(){
-        // userId 불러오기
-        viewModel.getUserId()
         // imageUri 저장
         val imageUri = args.imageUri
         if(imageUri.isNotEmpty()){
