@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AnalysisSourceRequest(
-   val userId : Long,
+   val date : String,
    val textExpression : String,
    val facialExpression: String
 )
