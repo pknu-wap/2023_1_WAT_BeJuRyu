@@ -19,9 +19,8 @@ import java.util.stream.Collectors;
 @RequestMapping("/members")
 public class MemberApiController {
     private final MemberService memberService;
-    @PutMapping("/nickname/{new_nickname}")
-    public ResponseEntity<MemberResponse> updateNickname(@PathVariable(value = "new_nickname") String newNickname,
-                                                       @RequestBody MemberChangeNicknameRequest memberChangeNicknameRequest) {
+    @PutMapping("/nickname")
+    public ResponseEntity<MemberResponse> updateNickname(@RequestBody MemberChangeNicknameRequest memberChangeNicknameRequest) {
         final MemberResponse member = memberService.updateNickname(memberChangeNicknameRequest);
 
         return ResponseEntity.ok(member);
