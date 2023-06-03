@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
-@RequestMapping("/members")
+@RequestMapping("/member")
 public class MemberApiController {
     private final MemberService memberService;
     @PutMapping("/nickname")
