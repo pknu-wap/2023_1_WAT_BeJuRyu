@@ -24,17 +24,10 @@ function Recommend() {
       const reader = new FileReader();
       // base64 encoding해서
       reader.onloadend = async () => {
-        const arrayBuffer = reader.result;
-        const byteArray = new Uint8Array(arrayBuffer);
+        //const arrayBuffer = reader.result;
+        //const byteArray = new Uint8Array(arrayBuffer);
 
         const base64Data = String(reader.result.split(",")[1]);
-
-        console.log(typeof base64Data);
-
-        console.log(currentDate);
-        //console.log(currentDate, typeof currentDate);
-        //console.log(inputValue, typeof inputValue);
-        //console.log(new Blob([byteArray]), typeof new Blob([byteArray]));
 
         try {
           const res = await authClient({
@@ -48,9 +41,6 @@ function Recommend() {
           });
           if (res) {
             console.log(res.data);
-            console.log(res.status); // HTTP 응답 상태 코드
-            console.log(res.statusText); // HTTP 응답 상태 텍스트
-            console.log(res.headers); // 응답 헤더 정보
           }
           // 서버 응답 처리
         } catch (error) {
@@ -58,15 +48,16 @@ function Recommend() {
             // 서버 응답 에러
             const err = error.response.data;
             console.log(err);
+            //console.log(err);
             console.log(error.message);
           } else {
             // 네트워크 에러 또는 클라이언트 에러
             console.log("Error:", error.message);
           }
         }
+        reader.readAsDataURL(selectedFile);
       };
 
-      reader.readAsDataURL(selectedFile);
       // const userId = localStorage.getItem("user-id");
       // console.log(typeof parseInt(userId, 10));
     }

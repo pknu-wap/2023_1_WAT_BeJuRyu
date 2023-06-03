@@ -75,6 +75,10 @@ function Dictionary() {
           url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
         });
 
+        console.log("Name response:", typeRes);
+        //console.log(searchTerm);
+        //console.log(nameRes.data.drinks.length);
+
         setDrinkInfoList(typeRes.data.drinks);
         //setDrinkInfo(typeRes.data.drinks[typeRes.data.drinks.length - 1]);
         // const decodedImage = decodeBase64(typeRes.data.drinks[0].image);
@@ -158,7 +162,7 @@ function Dictionary() {
                   <option value={"FRUIT"}>과실주</option>
                   <option value={"YAKJU"}>약주</option>
                   <option value={"BRANDY"}>브랜디</option>
-                  <option value={"RICE_WIND"}>청주</option>
+                  <option value={"RICE_WINE"}>청주</option>
                   <option value={"MAKGEOLLI"}>막걸리</option>
                 </NativeSelect>
               </FormControl>
