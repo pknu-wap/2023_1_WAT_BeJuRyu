@@ -76,4 +76,6 @@
     <string name="text_count_hint">0/10자 이상</string>
     <string name="history_date">일시 | %1$s</string>
     <string name="history_sentiment">결과 | %1$s</string>
+    <string name="most_reviewed">리뷰 많은 순</string>
+    <string name="highest_rated">평점 높은 순</string>
 </resources>
