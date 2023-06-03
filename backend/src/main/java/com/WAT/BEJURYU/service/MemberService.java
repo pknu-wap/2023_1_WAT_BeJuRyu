@@ -1,26 +1,18 @@
 package com.WAT.BEJURYU.service;
 
-import com.WAT.BEJURYU.dto.DrinkResponse;
+import com.WAT.BEJURYU.auth.dto.MemberResponse;
 import com.WAT.BEJURYU.dto.MemberChangeNicknameRequest;
-import com.WAT.BEJURYU.dto.MemberResponse;
-import com.WAT.BEJURYU.entity.Drink;
 import com.WAT.BEJURYU.entity.Member;
-import com.WAT.BEJURYU.repository.DrinkRepository;
 import com.WAT.BEJURYU.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import static com.WAT.BEJURYU.dto.MemberResponse.from;
-
 @Service
 @Transactional(readOnly = true)
+@RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
 
-    public MemberService(MemberRepository memberRepository) {
-        this.memberRepository = memberRepository;
-    }
     public Member findById(final Long id) {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저 정보입니다."));

@@ -1,5 +1,6 @@
 package com.WAT.BEJURYU.controller;
 
+import com.WAT.BEJURYU.auth.dto.MemberResponse;
 import com.WAT.BEJURYU.dto.*;
 import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.service.DrinkService;
