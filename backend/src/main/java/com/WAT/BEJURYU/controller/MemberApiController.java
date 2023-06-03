@@ -3,6 +3,7 @@ package com.WAT.BEJURYU.controller;
 import com.WAT.BEJURYU.dto.*;
 import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.service.DrinkService;
+import com.WAT.BEJURYU.service.MemberService;
 import com.WAT.BEJURYU.service.ReviewService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
@@ -16,14 +17,19 @@ import java.util.stream.Collectors;
 @Controller
 @RequiredArgsConstructor
 @RequestMapping("/members")
-public class DrinkApiController {
+public class MemberApiController {
     private final MemberService memberService;
-
     @PutMapping("/nickname/{new_nickname}")
-    public ResponseEntity<MemberChangeNicknameResponse> updateNickname(@PathVariable(value = "new_nickname") String newNickname,
-                                                       @RequestBody MemberChangeNicknameRequest memberChangeNicknameRequestRequest) {
-        final MemberChangeNicknameResponse member = memberService.updateNickname(memberChangeNicknameRequest);
+    public ResponseEntity<MemberResponse> updateNickname(@PathVariable(value = "new_nickname") String newNickname,
+                                                       @RequestBody MemberChangeNicknameRequest memberChangeNicknameRequest) {
+        final MemberResponse member = memberService.updateNickname(memberChangeNicknameRequest);
 
+        return ResponseEntity.ok(member);
+    }
+
+    @GetMapping("/{user_id}")
+    public ResponseEntity<MemberResponse> findMember(@PathVariable Long userId) {
+        final MemberResponse member = memberService.getMember(userId);
         return ResponseEntity.ok(member);
     }
 
