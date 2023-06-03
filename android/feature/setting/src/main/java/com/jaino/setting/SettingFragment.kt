@@ -11,10 +11,16 @@ import android.view.ViewGroup
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.flowWithLifecycle
+import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import com.jaino.common.extensions.showToast
 import com.jaino.common.navigation.AppNavigator
 import com.jaino.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.flow.launchIn
+import kotlinx.coroutines.flow.onEach
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -27,6 +33,8 @@ class SettingFragment : Fragment() {
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
+    private val viewModel : SettingViewModel by viewModels()
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -34,13 +42,20 @@ class SettingFragment : Fragment() {
     ): View? {
         _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_setting, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
+        binding.viewModel = viewModel
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initViewModelStates()
         initButtons()
         initNicknameColor()
+        observeData()
+    }
+
+    private fun initViewModelStates(){
+        viewModel.getNickname()
     }
 
     private fun initButtons(){
@@ -70,6 +85,19 @@ class SettingFragment : Fragment() {
             Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
         )
         binding.settingNicknameTitle.text = spannable
+    }
+
+    private fun observeData(){
+        viewModel.settingUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                when(it){
+                    is SettingViewModel.UiEvent.Failure ->{
+                        if(it.message != null){
+                            requireContext().showToast(it.message)
+                        }
+                    }
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
     private fun navigateToAnalyze(){
