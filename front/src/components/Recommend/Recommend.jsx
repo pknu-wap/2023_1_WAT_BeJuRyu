@@ -16,29 +16,30 @@ function Recommend() {
   const [selectedFile, setSelectedFile] = useState(null);
   const [inputValue, setInputValue] = useState(""); // 텍스트 입력값 상태 추가
 
-  const currentDate = getCurrentDateTime(); // 현재 시각 가져오기
   const handleFormSubmit = async (e) => {
     e.preventDefault();
     navigate("/result");
     if (selectedFile) {
       const reader = new FileReader();
       // base64 encoding해서
-      reader.onloadend = async () => {
+      reader.onloadend = async (e) => {
         //const arrayBuffer = reader.result;
         //const byteArray = new Uint8Array(arrayBuffer);
 
         const base64Data = String(reader.result.split(",")[1]);
 
         try {
+          const currentDate = getCurrentDateTime(); // 현재 시각 가져오기
           const res = await authClient({
             method: "post",
-            url: "/analyze/sources",
+            url: `/analyze/sources`,
             data: {
               textExpression: inputValue,
               facialExpression: base64Data,
               date: currentDate,
             },
           });
+
           if (res) {
             console.log(res.data);
           }
@@ -55,6 +56,7 @@ function Recommend() {
             console.log("Error:", error.message);
           }
         }
+        console.log("왜 안돼!");
         reader.readAsDataURL(selectedFile);
       };
 

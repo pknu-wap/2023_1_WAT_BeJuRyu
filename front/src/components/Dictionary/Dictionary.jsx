@@ -51,6 +51,18 @@ function Dictionary() {
     }
   }, [drinkInfo]);
 
+  // 배열을 나누어주는 함수
+  const divideArray = (array, size) => {
+    const dividedArray = [];
+    while (array.length > 0) {
+      dividedArray.push(array.splice(0, size));
+    }
+    return dividedArray;
+  };
+
+  // drinkInfoList를 7개씩 나누어주는 부분
+  const dividedDrinkInfoList = divideArray(drinkInfoList, 7);
+
   const handleSearch = async (e) => {
     e.preventDefault();
 
@@ -116,7 +128,7 @@ function Dictionary() {
 
   useEffect(() => {
     setDrinkInfoList([]);
-  }, [searchTerm]);
+  }, [searchTerm, selectedCategory]);
 
   // 검색어 입력 필드의 onChange 핸들러
   const handleChange = (e) => {
@@ -191,26 +203,29 @@ function Dictionary() {
         </S.Info>
         {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
         <S.juruBox style={{ paddingTop: "20px" }}>
-          <div
-            style={{
-              display: "flex",
-              alignitems: "center",
-              marginLeft: "10px",
-            }}
-          >
-            {drinkInfoList.map((drinkInfo) => (
-              <S.WhiteBox
-                key={drinkInfo.id}
-                onClick={(e) => checkJuryuInfo(e, drinkInfo.id)}
-              >
-                <S.Image
-                  src={decodeBase64(drinkInfo.image)}
-                  alt="주류 이미지"
-                />
-                <S.Text>{drinkInfo.name}</S.Text>
-              </S.WhiteBox>
-            ))}
-          </div>
+          {dividedDrinkInfoList.map((line, index) => (
+            <div
+              key={index}
+              style={{
+                display: "flex",
+                alignitems: "center",
+                marginLeft: "10px",
+              }}
+            >
+              {line.map((drinkInfo) => (
+                <S.WhiteBox
+                  key={drinkInfo.id}
+                  onClick={(e) => checkJuryuInfo(e, drinkInfo.id)}
+                >
+                  <S.Image
+                    src={decodeBase64(drinkInfo.image)}
+                    alt="주류 이미지"
+                  />
+                  <S.Text>{drinkInfo.name}</S.Text>
+                </S.WhiteBox>
+              ))}
+            </div>
+          ))}
         </S.juruBox>
       </S.Wrapper>
     </S.Container>

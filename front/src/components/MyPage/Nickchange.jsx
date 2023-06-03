@@ -27,18 +27,15 @@ function NickChange() {
         url: `/member/nickname`,
         data: {
           userId: localStorage.getItem("user-id"),
-          nickname: nickname,
+          newNickname: nickname,
         },
       });
-      console.log(res.data);
     } catch (error) {
       const err = error.response.data;
       console.log(err);
     }
   };
-
-  console.log(nickname);
-
+  localStorage.setItem("nickname", nickname);
   const NickChangeView = (
     <S.Container2>
       <S.Info>
@@ -53,14 +50,14 @@ function NickChange() {
       </S.Info>
       <S.Wrapper>
         {/* 전역 상태관리 기능 추가 */}
-        <S.Form>
-          <S.Input
-            type="text"
-            value={nickname}
-            placeholder="변경할 닉네임을 입력하세요"
-            onChange={onNickHandler}
-          ></S.Input>
-        </S.Form>
+        {/* <S.Form> */}
+        <S.Input
+          type="text"
+          value={nickname}
+          placeholder="변경할 닉네임을 입력하세요"
+          onChange={onNickHandler}
+        ></S.Input>
+        {/* </S.Form> */}
       </S.Wrapper>
     </S.Container2>
   );

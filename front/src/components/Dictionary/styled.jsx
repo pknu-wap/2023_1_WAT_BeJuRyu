@@ -125,6 +125,7 @@ const juruBox = styled.div`
   //display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
 `;
 
 const Image = styled.img`

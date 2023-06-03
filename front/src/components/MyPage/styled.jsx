@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 40rem;
-  max-width: 45rem;
-  height: 20rem;
+  width: 90rem;
+  //max-width: 45rem;
+  height: 40rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  //border: 5px solid #e11299;
 
-  /* display: flex;
+  //display: flex;
   justify-content: center;
-  align-itetms: center; */
+  align-items: center;
 
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
 `;
 
 const Container2 = styled.div`
@@ -56,6 +56,11 @@ const SubmitButton = styled.button`
   cursor: pointer;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const LogoutButton = styled.button`
   width: 100px;
   height: 48px;
@@ -69,6 +74,7 @@ const LogoutButton = styled.button`
   margin-bottom: 16px;
   text-align: center;
   margin-right: 20px;
+  display: block;
   cursor: pointer;
 `;
 
@@ -89,14 +95,16 @@ const Main = styled.div`
 `;
 
 const Form = styled.div`
-  width: 80%;
-  height: 10rem;
+  width: 100%;
+  height: 30rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
+  align-items: center;
+  justify-content: center;
   background-color: white;
   color: #9a208c;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
@@ -139,6 +147,51 @@ const NickCheck = styled.button`
   cursor: pointer;
 `;
 
+const ReviewBox = styled.div`
+  width: 8rem;
+  height: 11rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 1rem;
+
+  background: gray;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+  }
+`;
+
+const juruBox = styled.div`
+  width: 80rem;
+  //max-width: 45rem;
+  height: 15rem;
+  //background-color: #e11299;
+  //border-radius: 2rem;
+  color: black;
+  //border: 5px solid #e11299;
+  display: flex;
+  //flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+
+  /* top: 50%;
+  left: 50%; */
+  //transform: translate(-50%, -50%);
+`;
+
+const JuruBoxContainer = styled.div`
+  display: flex;
+  gap: 20px; // 좌우 간격을 조정할 값
+  justify-content: center;
+  align-items: center;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -151,6 +204,10 @@ const S = {
   Input,
   NickCheck,
   Container2,
+  ReviewBox,
+  juruBox,
+  ButtonContainer,
+  JuruBoxContainer,
 };
 
 export default S;
