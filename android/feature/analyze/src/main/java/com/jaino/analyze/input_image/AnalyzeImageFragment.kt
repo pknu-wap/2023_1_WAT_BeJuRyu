@@ -23,6 +23,8 @@ import com.jaino.analyze.databinding.FragmentAnalyzeImageBinding
 import com.jaino.common.extensions.showToast
 import com.jaino.common.extensions.toDateTime
 import com.jaino.common.utils.PickPhotoContract
+import com.jaino.common.widget.ConfirmDialog
+import com.jaino.common.widget.LoadingDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -71,26 +73,16 @@ class AnalyzeImageFragment : Fragment() {
 
     private fun initViews(){
         binding.analyzeInputImage.setOnClickListener {
-            showDialog()
+            showChooseToolsDialog()
         }
         // 완료 버튼 클릭
         binding.analyzeImageDoneButton.setOnClickListener {
-            viewModel.postAnalysisSource(System.currentTimeMillis().toDateTime(), args.analyzeText)
+            showConfirmDialog()
         }
         // 뒤로가기 버튼 클릭
         binding.analyzeBackButton.setOnClickListener {
             navigateToText()
         }
-    }
-
-    private fun showDialog(){
-        ChooseToolsDialog(
-            requireContext(),
-            onCameraClick = { navigateToPermission() },
-            onAlbumClick = {
-                singlePhotoPickerLauncher.launch()
-            }
-        ).show()
     }
 
     private fun initViewModelStates(){
@@ -134,6 +126,33 @@ class AnalyzeImageFragment : Fragment() {
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showChooseToolsDialog(){
+        ChooseToolsDialog(
+            requireContext(),
+            onCameraClick = { navigateToPermission() },
+            onAlbumClick = {
+                singlePhotoPickerLauncher.launch()
+            }
+        ).show()
+    }
+
+    private fun showConfirmDialog(){
+        ConfirmDialog(
+            requireContext(),
+            "제출 하시겠습니까?",
+            onDoneButtonClick = {
+                viewModel.postAnalysisSource(System.currentTimeMillis().toDateTime(), args.analyzeText)
+                showLoadingDialog()
+            }
+        ).show()
+    }
+
+    private fun showLoadingDialog(){
+        val dialog = LoadingDialog(requireContext())
+        dialog.setCancelable(false)
+        dialog.show()
     }
 
     private fun navigateToPermission(){

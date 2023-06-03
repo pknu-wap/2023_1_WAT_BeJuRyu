@@ -3,7 +3,6 @@ package com.jaino.setting
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaino.data.repository.setting.ProfileRepository
-import com.jaino.data.repository.user.LocalUserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -14,7 +13,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SettingViewModel @Inject constructor(
-    private val localRepository: LocalUserRepository,
     private val repository: ProfileRepository
 ): ViewModel() {
 
@@ -26,8 +24,7 @@ class SettingViewModel @Inject constructor(
 
     fun getNickname(){
         viewModelScope.launch {
-            val userId = localRepository.getUserId()
-            repository.getProfile(userId)
+            repository.getProfile()
                 .onSuccess { profile ->
                     _nicknameState.value = profile.nickname
                 }

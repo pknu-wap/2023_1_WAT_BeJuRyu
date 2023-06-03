@@ -50,7 +50,6 @@ class SettingFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initViewModelStates()
         initButtons()
-        initNicknameColor()
         observeData()
     }
 
@@ -96,6 +95,13 @@ class SettingFragment : Fragment() {
                             requireContext().showToast(it.message)
                         }
                     }
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.nicknameState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                if(it.isNotEmpty()){
+                    initNicknameColor()
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }

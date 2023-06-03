@@ -26,9 +26,9 @@ class ProfileViewModel @Inject constructor(
 
     fun getNickName(){
         viewModelScope.launch {
-            repository.getProfile(localRepository.getUserId())
+            repository.getProfile()
                 .onSuccess { profile ->
-                    // _nickNameState.value = profile.nickname
+                    _nickNameState.value = profile.nickname
                 }
                 .onFailure {
                     _profileUiEvent.emit(UiEvent.Failure(it.message))
