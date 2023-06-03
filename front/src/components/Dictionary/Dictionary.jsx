@@ -116,7 +116,7 @@ function Dictionary() {
 
   useEffect(() => {
     setDrinkInfoList([]);
-  }, [searchTerm]);
+  }, [searchTerm, selectedCategory]);
 
   // 검색어 입력 필드의 onChange 핸들러
   const handleChange = (e) => {

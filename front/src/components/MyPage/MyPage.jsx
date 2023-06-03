@@ -1,7 +1,7 @@
 /* TODO
   1. [o] 닉네임 변경 기능 추가 
-  2. [ ]리뷰많은 순 랭킹 조회
-  3. [ ]평점순 랭킹 조회 */
+  2. [o]리뷰많은 순 랭킹 조회
+  3. [o]평점순 랭킹 조회 */
 
 import S from "./styled";
 import { useEffect, useState } from "react";
@@ -15,9 +15,14 @@ import noAuthClient from "../../apis/noAuthClient";
 import { useSelector } from "react-redux";
 
 function MyPage() {
+  // 리뷰순 랭킹
+  const [reviewRank, setReviewRank] = useState([]);
+  // 평점순 랭킹
+  const [scoreRank, setScoreRank] = useState([]);
+
   const navigate = useNavigate();
   const dispatch = useDispatch();
-  const userId = localStorage.getItem("user-id");
+  const userId = parseInt(localStorage.getItem("user-id"));
   //console.log(typeof userId);
 
   // 주류 랭킹 보여주기 위해 api 요청
@@ -29,6 +34,7 @@ function MyPage() {
           url: `/drinks/rankings/review`,
         });
         if (response) {
+          setReviewRank(response.data.drinks);
           console.log(response.data);
         }
       } catch (error) {
@@ -43,6 +49,7 @@ function MyPage() {
           url: `/drinks/rankings/rating`,
         });
         if (response) {
+          setScoreRank(response.data.drinks);
           console.log(response.data);
         }
       } catch (error) {
@@ -76,11 +83,12 @@ function MyPage() {
     }
 
     try {
-      const response = await noAuthClient({
+      const response = await authClient({
         method: "get",
-        url: `/member/${userId}`,
+        url: `/member`,
       });
-      console.log(response);
+      console.log("떵공");
+      console.log("member api response:", response);
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
@@ -109,6 +117,30 @@ function MyPage() {
         <S.Form>
           {userName} 님 오늘의 기분은 어떠신가요? 다른 Be주류 유저들의 주류
           추천이에요!
+          <S.juruBox>
+            {/* <h2>리뷰많은 순 랭킹</h2> */}
+            {reviewRank.map((drink, index) => (
+              <S.ReviewBox>
+                <div key={index}>
+                  <h3>{drink.name}</h3>
+                  <p>평점: {drink.score}</p>
+                  {/* Display other properties as needed */}
+                </div>
+              </S.ReviewBox>
+            ))}
+          </S.juruBox>
+          <S.juruBox>
+            {/* <h2>평점순 랭킹</h2> */}
+            {scoreRank.map((drink, index) => (
+              <S.ReviewBox>
+                <div key={index}>
+                  <h3>{drink.name}</h3>
+                  <p>평점: {drink.score}</p>
+                  {/* Display other properties as needed */}
+                </div>
+              </S.ReviewBox>
+            ))}
+          </S.juruBox>
         </S.Form>
       </S.Wrapper>
     </S.Container>

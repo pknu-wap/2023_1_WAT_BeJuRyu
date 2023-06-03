@@ -27,18 +27,15 @@ function NickChange() {
         url: `/member/nickname`,
         data: {
           userId: localStorage.getItem("user-id"),
-          nickname: nickname,
+          newNickname: nickname,
         },
       });
-      console.log(res.data);
     } catch (error) {
       const err = error.response.data;
       console.log(err);
     }
   };
-
-  console.log(nickname);
-
+  localStorage.setItem("nickname", nickname);
   const NickChangeView = (
     <S.Container2>
       <S.Info>

@@ -89,14 +89,14 @@ const Main = styled.div`
 `;
 
 const Form = styled.div`
-  width: 80%;
+  width: 100%;
   height: 30rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
-  background-color: white;
+  //background-color: white;
   color: #9a208c;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  //box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 `;
 
@@ -139,6 +139,40 @@ const NickCheck = styled.button`
   cursor: pointer;
 `;
 
+const ReviewBox = styled.div`
+  width: 8rem;
+  height: 12rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 1rem;
+
+  background: gray;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+    cursor: pointer;
+  }
+`;
+
+const juruBox = styled.div`
+  width: 80rem;
+  //max-width: 45rem;
+  height: 15rem;
+  //background-color: #e11299;
+  //border-radius: 2rem;
+  color: black;
+  //border: 5px solid #e11299;
+  display: flex;
+  //flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -151,6 +185,8 @@ const S = {
   Input,
   NickCheck,
   Container2,
+  ReviewBox,
+  juruBox,
 };
 
 export default S;
