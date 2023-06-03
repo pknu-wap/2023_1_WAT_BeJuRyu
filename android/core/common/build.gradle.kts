@@ -12,6 +12,7 @@ dependencies {
     implementation(libs.kotlin.datetime)
     implementation(libs.timber)
     implementation(libs.glide)
+    implementation(libs.lottie)
     implementation(libs.androidx.appcompat)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.junit)
