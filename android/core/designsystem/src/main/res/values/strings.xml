@@ -78,4 +78,5 @@
     <string name="history_sentiment">결과 | %1$s</string>
     <string name="most_reviewed">리뷰 많은 순</string>
     <string name="highest_rated">평점 높은 순</string>
+    <string name="setting_nickname">%1$s님\n오늘의 기분은 어떠신가요?</string>
 </resources>
