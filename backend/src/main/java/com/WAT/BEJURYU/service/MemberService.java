@@ -25,4 +25,13 @@ public class MemberService {
     public Member save(final Member member) {
         return memberRepository.save(member);
     }
+    @Transactional
+    public MemberChangeNicknameResponse updateNickname(MemberChangeNicknameRequest request) {
+        final Member member = memberRepository.findById(request.getUserId())
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+
+        member.updateNickname(request.getNickname());
+
+        return new MemberChangeNicknameResponse(request.getNewNickname());
+    }
 }
