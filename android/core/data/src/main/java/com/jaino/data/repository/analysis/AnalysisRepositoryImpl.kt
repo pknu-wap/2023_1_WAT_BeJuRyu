@@ -12,12 +12,12 @@ class AnalysisRepositoryImpl @Inject constructor(
 ) : AnalysisRepository {
 
     override suspend fun postAnalysisSource(
-        userId: Long,
+        date: String,
         textExpression: String,
         facialExpression: String
     ): Result<AnalysisId> =
         source.postAnalysisSource(
-            AnalysisSourceRequest(userId, textExpression, facialExpression)
+            AnalysisSourceRequest(date, textExpression, facialExpression)
         ).mapCatching {
             it.toAnalysisId()
         }

@@ -21,7 +21,14 @@ class AnalysisDataSourceImpl @Inject constructor(
 
     override suspend fun getAnalysisList(): Result<List<AnalysisHistoryResponse>> =
         runCatching {
-            service.getAnalyzeList()
+            // service.getAnalyzeList()
+            listOf(
+                AnalysisHistoryResponse(
+                    23,
+                    "2023.06.23",
+                    "기쁨"
+                )
+            )
         }.onFailure { error ->
             Result.failure<List<AnalysisHistoryResponse>>(error)
         }

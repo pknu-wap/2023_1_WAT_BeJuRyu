@@ -7,7 +7,7 @@ import com.jaino.model.analysis.AnalysisHistory
 interface AnalysisRepository {
 
     suspend fun postAnalysisSource(
-        userId: Long, textExpression: String, facialExpression: String
+        date: String, textExpression: String, facialExpression: String
     ): Result<AnalysisId>
     suspend fun getAnalysisList() : Result<List<AnalysisHistory>>
 
