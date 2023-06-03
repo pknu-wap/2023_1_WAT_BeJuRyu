@@ -6,6 +6,8 @@ import com.jaino.network.datasource.auth.AuthDataSource
 import com.jaino.network.datasource.auth.AuthDataSourceImpl
 import com.jaino.network.datasource.dictionary.DrinkDataSource
 import com.jaino.network.datasource.dictionary.DrinkDataSourceImpl
+import com.jaino.network.datasource.rank.RankDataSource
+import com.jaino.network.datasource.rank.RankDataSourceImpl
 import com.jaino.network.datasource.review.ReviewDataSource
 import com.jaino.network.datasource.review.ReviewDataSourceImpl
 import dagger.Binds
@@ -38,7 +40,13 @@ abstract class NetworkModule {
 
     @Binds
     @Singleton
-    abstract fun providePostAnalysisSourceDataSource(
+    abstract fun provideAnalysisSourceDataSource(
         analysisDataSourceImpl : AnalysisDataSourceImpl
     ): AnalysisDataSource
+
+    @Binds
+    @Singleton
+    abstract fun provideRankDataSource(
+        rankDataSourceImpl : RankDataSourceImpl
+    ): RankDataSource
 }
