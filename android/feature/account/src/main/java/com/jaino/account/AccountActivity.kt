@@ -58,7 +58,7 @@ class AccountActivity : AppCompatActivity() {
                 this,
                 "로그아웃을 하시겠습니까?",
                 onDoneButtonClick = {
-                    socialAuth.unlink()
+                    socialAuth.signOut()
                     localData.clear()
                     ProcessPhoenix.triggerRebirth(this)
                 }
