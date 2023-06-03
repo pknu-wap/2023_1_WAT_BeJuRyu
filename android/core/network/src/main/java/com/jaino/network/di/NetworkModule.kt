@@ -10,6 +10,8 @@ import com.jaino.network.datasource.rank.RankDataSource
 import com.jaino.network.datasource.rank.RankDataSourceImpl
 import com.jaino.network.datasource.review.ReviewDataSource
 import com.jaino.network.datasource.review.ReviewDataSourceImpl
+import com.jaino.network.datasource.setting.ProfileDataSource
+import com.jaino.network.datasource.setting.ProfileDataSourceImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -49,4 +51,10 @@ abstract class NetworkModule {
     abstract fun provideRankDataSource(
         rankDataSourceImpl : RankDataSourceImpl
     ): RankDataSource
+
+    @Binds
+    @Singleton
+    abstract fun provideProfileDataSource(
+        profileDataSourceImpl : ProfileDataSourceImpl
+    ): ProfileDataSource
 }

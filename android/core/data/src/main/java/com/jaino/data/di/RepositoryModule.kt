@@ -12,12 +12,15 @@ import com.jaino.data.repository.user.LocalUserRepositoryImpl
 import com.jaino.data.repository.analysis.AnalysisRepositoryImpl
 import com.jaino.data.repository.rank.RankRepository
 import com.jaino.data.repository.rank.RankRepositoryImpl
+import com.jaino.data.repository.setting.ProfileRepository
+import com.jaino.data.repository.setting.ProfileRepositoryImpl
 import com.jaino.datastore.BeJuRyuDatastore
 import com.jaino.network.datasource.analysis.AnalysisDataSource
 import com.jaino.network.datasource.auth.AuthDataSource
 import com.jaino.network.datasource.dictionary.DrinkDataSource
 import com.jaino.network.datasource.rank.RankDataSource
 import com.jaino.network.datasource.review.ReviewDataSource
+import com.jaino.network.datasource.setting.ProfileDataSource
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -65,4 +68,10 @@ object RepositoryModule {
     fun provideRankRepository(
         RankDataSource: RankDataSource,
     ): RankRepository = RankRepositoryImpl(RankDataSource)
+
+    @Singleton
+    @Provides
+    fun provideProfileRepository(
+        profileDataSource: ProfileDataSource,
+    ): ProfileRepository = ProfileRepositoryImpl(profileDataSource)
 }
