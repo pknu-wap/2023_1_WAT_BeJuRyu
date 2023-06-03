@@ -94,4 +94,10 @@ object ApiModule {
     fun provideRankService(
         retrofit: Retrofit
     ): RankService = retrofit.create(RankService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideProfileService(
+        retrofit: Retrofit
+    ): ProfileService = retrofit.create(ProfileService::class.java)
 }
