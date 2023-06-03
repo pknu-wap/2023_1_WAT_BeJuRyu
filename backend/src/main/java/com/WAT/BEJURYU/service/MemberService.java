@@ -22,8 +22,7 @@ public class MemberService {
     }
 
     public MemberResponse getMember(final Long id) {
-        final Member member = memberRepository.findById(id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저 정보입니다."));
+        final Member member = findById(id);
 
         return MemberResponse.from(member);
     }

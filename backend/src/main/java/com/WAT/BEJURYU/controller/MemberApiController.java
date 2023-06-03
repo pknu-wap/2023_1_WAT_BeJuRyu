@@ -1,6 +1,8 @@
 package com.WAT.BEJURYU.controller;
 
+import com.WAT.BEJURYU.auth.config.AuthParam;
 import com.WAT.BEJURYU.auth.dto.MemberResponse;
+import com.WAT.BEJURYU.auth.dto.UserId;
 import com.WAT.BEJURYU.dto.*;
 import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.service.DrinkService;
@@ -27,9 +29,9 @@ public class MemberApiController {
         return ResponseEntity.ok(member);
     }
 
-    @GetMapping("/{user_id}")
-    public ResponseEntity<MemberResponse> findMember(@PathVariable Long userId) {
-        final MemberResponse member = memberService.getMember(userId);
+    @GetMapping("")
+    public ResponseEntity<MemberResponse> findMember(@AuthParam UserId userId) {
+        final MemberResponse member = memberService.getMember(userId.get());
         return ResponseEntity.ok(member);
     }
 
