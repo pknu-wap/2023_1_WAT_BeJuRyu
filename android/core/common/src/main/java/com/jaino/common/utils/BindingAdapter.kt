@@ -2,10 +2,12 @@ package com.jaino.common.utils
 
 import android.util.Base64
 import android.widget.ImageView
+import android.widget.TextView
 import androidx.databinding.BindingAdapter
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.bumptech.glide.request.RequestOptions
+import com.jaino.common.extensions.toTypedKor
 
 object BindingAdapter {
 
@@ -39,7 +41,7 @@ object BindingAdapter {
 
     @JvmStatic
     @BindingAdapter("app:encodedImage")
-    fun loadDrawable(view: ImageView, encodedImage: String) {
+    fun loadEncodedImage(view: ImageView, encodedImage: String) {
         if (encodedImage.isNotEmpty()) {
             val image: ByteArray = Base64.decode(encodedImage, Base64.DEFAULT)
             Glide.with(view.context)
@@ -50,5 +52,11 @@ object BindingAdapter {
                 .error(com.jaino.designsystem.R.drawable.img)
                 .into(view)
         }
+    }
+
+    @JvmStatic
+    @BindingAdapter("app:typeName")
+    fun setKorTypeName(view: TextView, text: String) {
+        view.text = text.toTypedKor()
     }
 }
