@@ -88,4 +88,10 @@ object ApiModule {
     fun provideAnalysisService(
         retrofit: Retrofit
     ): AnalysisService = retrofit.create(AnalysisService::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRankService(
+        retrofit: Retrofit
+    ): RankService = retrofit.create(RankService::class.java)
 }
