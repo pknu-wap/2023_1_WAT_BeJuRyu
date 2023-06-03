@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.databinding.DataBindingUtil
 import com.jaino.account.databinding.ActivityAccountBinding
 import com.jaino.common.navigation.AppNavigator
+import com.jaino.common.widget.ConfirmDialog
 import com.jaino.data.repository.auth.SocialAuthRepository
 import com.jaino.data.repository.user.LocalUserRepository
 import com.jakewharton.processphoenix.ProcessPhoenix

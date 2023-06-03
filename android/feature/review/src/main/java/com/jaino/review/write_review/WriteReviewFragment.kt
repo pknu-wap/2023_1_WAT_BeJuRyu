@@ -15,6 +15,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jaino.common.extensions.showToast
 import com.jaino.common.navigation.AppNavigator
+import com.jaino.common.widget.ConfirmDialog
 import com.jaino.review.R
 import com.jaino.review.databinding.FragmentWriteReviewBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,7 +62,7 @@ class WriteReviewFragment : Fragment(){
         }
 
         binding.reviewPostButton.setOnClickListener {
-            viewModel.postReview(args.drinkId)
+            showConfirmDialog()
         }
     }
 
@@ -88,8 +89,14 @@ class WriteReviewFragment : Fragment(){
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun showDialog(){
-
+    private fun showConfirmDialog(){
+        ConfirmDialog(
+            requireContext(),
+            "작성한 후기를 등록할까요?",
+            onDoneButtonClick = {
+                viewModel.postReview(args.drinkId)
+            }
+        ).show()
     }
 
     private fun navigateToDictionary(){
