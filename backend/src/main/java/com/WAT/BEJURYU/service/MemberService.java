@@ -15,7 +15,6 @@ import static com.WAT.BEJURYU.dto.MemberResponse.from;
 
 @Service
 @Transactional(readOnly = true)
-@RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
 
