@@ -56,6 +56,7 @@ dependencies {
 
     // Third-Party
     implementation(libs.kakao.login)
+    implementation(libs.kakao.share)
     implementation(libs.timber)
     implementation(libs.material)
     implementation(platform(libs.firebase))
