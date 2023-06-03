@@ -61,12 +61,13 @@ public class AnalysisService {
         final List<Drink> drinks = drinkRepository.findBySentiment(sentiment);
         Collections.shuffle(drinks);
         final Drink recommended = drinks.get(0);
+        byte[] decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFaicalExpression());
 
         return Analysis.builder()
                 .sentiment(sentiment)
                 .date(sourceRequest.getDate())
                 .member(member)
-                .facialExpression(sourceRequest.getFacialExpression())
+                .facialExpression(decodedFacialExpression)
                 .textExpression(sourceRequest.getTextExpression())
                 .recommendDrink(recommended)
                 .build();

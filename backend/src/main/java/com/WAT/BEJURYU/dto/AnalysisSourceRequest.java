@@ -12,12 +12,12 @@ import org.springframework.format.annotation.DateTimeFormat;
 public class AnalysisSourceRequest {
 
     private String textExpression;
-    private byte[] facialExpression;
+    private String facialExpression;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
     private LocalDateTime date;
 
     public AnalysisSourceRequest( final String textExpression,
-        final byte[] facialExpression, final LocalDateTime date) {
+        final String facialExpression, final LocalDateTime date) {
         this.textExpression = textExpression;
         this.facialExpression = facialExpression;
         this.date = date;
