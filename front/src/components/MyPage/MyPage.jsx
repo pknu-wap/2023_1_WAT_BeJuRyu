@@ -4,7 +4,7 @@
   3. [ ]평점순 랭킹 조회 */
 
 import S from "./styled";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
@@ -19,6 +19,41 @@ function MyPage() {
   const dispatch = useDispatch();
   const userId = localStorage.getItem("user-id");
   //console.log(typeof userId);
+
+  // 주류 랭킹 보여주기 위해 api 요청
+  useEffect(() => {
+    const ReviewData = async () => {
+      try {
+        const response = await noAuthClient({
+          method: "get",
+          url: `/drinks/rankings/review`,
+        });
+        if (response) {
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    const ScoreData = async () => {
+      try {
+        const response = await noAuthClient({
+          method: "get",
+          url: `/drinks/rankings/rating`,
+        });
+        if (response) {
+          console.log(response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    // API 요청 함수 호출
+    ReviewData();
+    ScoreData();
+  }, []);
 
   const checkHistory = async (e) => {
     e.preventDefault();
@@ -62,18 +97,18 @@ function MyPage() {
   const MyPageView = (
     <S.Container>
       <S.Info>
-        <Logout />
+        <S.LogoutButton onClick={checkHistory}>히스토리 확인</S.LogoutButton>
+
         <S.LogoutButton type="button" onClick={changeNick}>
           닉네임 변경
         </S.LogoutButton>
+        <Logout />
       </S.Info>
       <S.Wrapper>
         {/* 전역 상태관리 기능 추가 */}
         <S.Form>
-          사용자: {userName} 님
-          <S.SubmitButton onClick={checkHistory}>
-            추천 히스토리 확인
-          </S.SubmitButton>
+          {userName} 님 오늘의 기분은 어떠신가요? 다른 Be주류 유저들의 주류
+          추천이에요!
         </S.Form>
       </S.Wrapper>
     </S.Container>

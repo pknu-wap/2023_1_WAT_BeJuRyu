@@ -1,22 +1,22 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 40rem;
-  max-width: 45rem;
-  height: 20rem;
+  width: 80rem;
+  //max-width: 45rem;
+  height: 40rem;
   background-color: #f5c6ec;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  //border: 5px solid #e11299;
 
-  /* display: flex;
+  //display: flex;
   justify-content: center;
-  align-itetms: center; */
+  align-items: center;
 
   position: absolute;
   top: 50%;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translate(-50%, -45%);
 `;
 
 const Container2 = styled.div`
@@ -90,7 +90,7 @@ const Main = styled.div`
 
 const Form = styled.div`
   width: 80%;
-  height: 10rem;
+  height: 30rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;
