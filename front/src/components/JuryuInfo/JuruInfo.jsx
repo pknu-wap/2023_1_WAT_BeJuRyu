@@ -14,7 +14,6 @@ import StarIcon from "@mui/icons-material/Star";
 import Box from "@mui/material/Box";
 import authClient from "../../apis/authClient";
 import Container from "@mui/material/Container";
-import InfiniteScroll from "react-infinite-scroller";
 import axios from "axios";
 import noAuthClient from "../../apis/noAuthClient";
 
@@ -35,8 +34,9 @@ function JuryuInfo() {
   // const [showMore, setShowMore] = useState(false); // 더보기 상태 추가
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(4);
-
   const totalPages = Math.ceil(drinkReviewList.length / perPage);
+
+  const [alertMessage, setAlertMessage] = useState("");
 
   // 현재 페이지에 해당하는 항목들만 추출하는 함수
   const getCurrentPageItems = () => {
@@ -180,8 +180,8 @@ function JuryuInfo() {
 
   const handleReviewSubmit = async (e, juryuId) => {
     e.preventDefault();
-    alert("리뷰 등록이 완료되었습니다!");
-    navigate("/dictionary");
+    //alert("리뷰 등록이 완료되었습니다!");
+    //navigate("/dictionary");
 
     const labelKey = parseInt(value);
     try {
@@ -207,6 +207,8 @@ function JuryuInfo() {
         console.log("ERROR:", error.message);
       }
     }
+
+    setAlertMessage("등록되었습니다. 최신 리뷰를 확인하려면 새로고침해주세요!");
   };
 
   return (
@@ -230,14 +232,6 @@ function JuryuInfo() {
           <S.FormBox>
             <S.Title>Be주류 사용자들의 한줄 리뷰</S.Title>
 
-            {/* {drinkReviewList.map((reviews) => (
-              <p key={reviews.id}>
-                {reviews.comment}{" "}
-                <p>
-                  {reviews.nickname} {reviews.date}
-                </p>
-              </p>
-            ))} */}
             {getCurrentPageItems().map((reviews) => (
               <p key={reviews.id}>
                 {reviews.comment}{" "}
@@ -299,6 +293,7 @@ function JuryuInfo() {
             <S.ReButton onClick={(e) => handleReviewSubmit(e, juryuId)}>
               리뷰 등록하기
             </S.ReButton>
+            {alertMessage && <p>{alertMessage}</p>}
             {/* <S.ReButton>리뷰 보러가기</S.ReButton> */}
           </S.ReviewBox>
         </S.WhiteBox>

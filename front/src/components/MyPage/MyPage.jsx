@@ -1,5 +1,7 @@
 /* TODO
-  1. [o] 닉네임 변경 기능 추가 */
+  1. [o] 닉네임 변경 기능 추가 
+  2. [ ]리뷰많은 순 랭킹 조회
+  3. [ ]평점순 랭킹 조회 */
 
 import S from "./styled";
 import { useState } from "react";
@@ -8,12 +10,15 @@ import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
 import Logout from "./Logout";
 import authClient from "../../apis/authClient";
+import noAuthClient from "../../apis/noAuthClient";
 
 import { useSelector } from "react-redux";
 
 function MyPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const userId = localStorage.getItem("user-id");
+  //console.log(typeof userId);
 
   const checkHistory = async (e) => {
     e.preventDefault();
@@ -34,14 +39,25 @@ function MyPage() {
         console.log("Error:", error.message);
       }
     }
+
+    try {
+      const response = await noAuthClient({
+        method: "get",
+        url: `/member/${userId}`,
+      });
+      console.log(response);
+    } catch (error) {
+      if (error.response) {
+        const err = error.response.data;
+        console.log(err);
+      }
+    }
   };
 
   const changeNick = () => {
-    // const newNickname = "choonsik";
-
     navigate("/nickChange");
   };
-  // const userName = useSelector((state) => state.name.name);
+
   const userName = localStorage.getItem("nickname");
   const MyPageView = (
     <S.Container>

@@ -18,7 +18,7 @@ const PhotoUpload = ({
     const file = e.target.files[0];
     if (file) {
       const imageUrl = URL.createObjectURL(file);
-      setSelectedFile(file);
+      setSelectedFile(file); // 변경점
       setImagePreview(imageUrl);
     }
   };

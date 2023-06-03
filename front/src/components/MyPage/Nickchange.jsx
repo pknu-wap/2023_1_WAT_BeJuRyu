@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import S from "./styled";
 import "../../utils/settingCookie";
 import authClient from "../../apis/authClient";
+import noAuthClient from "../../apis/noAuthClient";
 import { GET_NAME } from "../../reducer/nameSlice";
 import { useDispatch } from "react-redux";
 
@@ -22,16 +23,21 @@ function NickChange() {
     alert("변경이 완료되었습니다.");
     try {
       const res = await authClient({
-        method: "post",
-        url: `${process.env.REACT_APP_LOCAL}/auth/`,
-        data: nickname,
+        method: "put",
+        url: `/member/nickname`,
+        data: {
+          userId: localStorage.getItem("user-id"),
+          nickname: nickname,
+        },
       });
-      console.log(res);
+      console.log(res.data);
     } catch (error) {
       const err = error.response.data;
       console.log(err);
     }
   };
+
+  console.log(nickname);
 
   const NickChangeView = (
     <S.Container2>

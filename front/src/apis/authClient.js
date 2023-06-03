@@ -12,7 +12,7 @@ const authClient = axios.create({
   },
 });
 
-const userId = localStorage.getItem("user-id");
+const userId = parseInt(localStorage.getItem("user-id"));
 
 // 새 토큰 발급
 const getNewToken = async () => {
@@ -22,7 +22,7 @@ const getNewToken = async () => {
   try {
     const res = await axios({
       method: "post",
-      url: `auth/${userId}`,
+      url: `http://141.164.49.27/auth/${userId}`,
       data: {
         accessToken: access,
         refreshToken: refresh,
@@ -34,7 +34,7 @@ const getNewToken = async () => {
     console.log(res.data);
     return res.data.accessToken;
   } catch (error) {
-    alert("error");
+    console.log(error);
   }
 };
 
@@ -45,13 +45,13 @@ authClient.interceptors.request.use(function (config) {
   const exp = jwtDecode(token);
   // 토큰 만료여부 확인
   if (Date.now() / 1000 > exp.exp) {
-    console.log("만료된 토큰", token);
+    //console.log("만료된 토큰", token);
     getNewToken().then((newToken) => {
       //console.log("새 토큰", newToken);
       config.headers["Authorization"] = `Bearer ${newToken}`;
     });
   } else {
-    console.log("토큰이 아직 만료 안됐어요!");
+    //console.log("토큰이 아직 만료 안됐어요!");
     config.headers["Authorization"] = `Bearer ${token}`;
   }
   return config;
