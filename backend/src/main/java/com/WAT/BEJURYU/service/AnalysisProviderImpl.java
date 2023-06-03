@@ -23,7 +23,7 @@ public class AnalysisProviderImpl implements AnalysisProvider{
 
         final JsonObject expressionJson = new JsonObject();
         if (analysisSourceRequest.isImageExist()) {
-            expressionJson.addProperty("image", Base64.getEncoder().encodeToString(analysisSourceRequest.getFacialExpression()));
+            expressionJson.addProperty("image", analysisSourceRequest.getFacialExpression());
         }
         if (analysisSourceRequest.isTextExist()) {
             expressionJson.addProperty("text", analysisSourceRequest.getTextExpression());
