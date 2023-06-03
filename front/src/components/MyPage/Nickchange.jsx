@@ -50,14 +50,14 @@ function NickChange() {
       </S.Info>
       <S.Wrapper>
         {/* 전역 상태관리 기능 추가 */}
-        <S.Form>
-          <S.Input
-            type="text"
-            value={nickname}
-            placeholder="변경할 닉네임을 입력하세요"
-            onChange={onNickHandler}
-          ></S.Input>
-        </S.Form>
+        {/* <S.Form> */}
+        <S.Input
+          type="text"
+          value={nickname}
+          placeholder="변경할 닉네임을 입력하세요"
+          onChange={onNickHandler}
+        ></S.Input>
+        {/* </S.Form> */}
       </S.Wrapper>
     </S.Container2>
   );

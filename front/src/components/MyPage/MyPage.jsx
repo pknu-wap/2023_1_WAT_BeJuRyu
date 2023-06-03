@@ -19,6 +19,9 @@ function MyPage() {
   const [reviewRank, setReviewRank] = useState([]);
   // 평점순 랭킹
   const [scoreRank, setScoreRank] = useState([]);
+  // 로딩 상태를 관리하는 변수
+  const [isLoading, setIsLoading] = useState(true);
+  const [selectedData, setSelectedData] = useState(null);
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ function MyPage() {
 
   // 주류 랭킹 보여주기 위해 api 요청
   useEffect(() => {
-    const ReviewData = async () => {
+    const getReviewRanking = async () => {
       try {
         const response = await noAuthClient({
           method: "get",
@@ -35,6 +38,7 @@ function MyPage() {
         });
         if (response) {
           setReviewRank(response.data.drinks);
+          setIsLoading(false);
           console.log(response.data);
         }
       } catch (error) {
@@ -42,7 +46,7 @@ function MyPage() {
       }
     };
 
-    const ScoreData = async () => {
+    const getScoreRanking = async () => {
       try {
         const response = await noAuthClient({
           method: "get",
@@ -58,8 +62,8 @@ function MyPage() {
     };
 
     // API 요청 함수 호출
-    ReviewData();
-    ScoreData();
+    getReviewRanking();
+    getScoreRanking();
   }, []);
 
   const checkHistory = async (e) => {
@@ -102,6 +106,14 @@ function MyPage() {
   };
 
   const userName = localStorage.getItem("nickname");
+
+  const handleReviewData = () => {
+    setSelectedData(reviewRank);
+  };
+
+  const handleScoreData = () => {
+    setSelectedData(scoreRank);
+  };
   const MyPageView = (
     <S.Container>
       <S.Info>
@@ -113,34 +125,36 @@ function MyPage() {
         <Logout />
       </S.Info>
       <S.Wrapper>
-        {/* 전역 상태관리 기능 추가 */}
         <S.Form>
-          {userName} 님 오늘의 기분은 어떠신가요? 다른 Be주류 유저들의 주류
-          추천이에요!
-          <S.juruBox>
-            {/* <h2>리뷰많은 순 랭킹</h2> */}
-            {reviewRank.map((drink, index) => (
-              <S.ReviewBox>
-                <div key={index}>
-                  <h3>{drink.name}</h3>
-                  <p>평점: {drink.score}</p>
-                  {/* Display other properties as needed */}
-                </div>
-              </S.ReviewBox>
-            ))}
-          </S.juruBox>
-          <S.juruBox>
-            {/* <h2>평점순 랭킹</h2> */}
-            {scoreRank.map((drink, index) => (
-              <S.ReviewBox>
-                <div key={index}>
-                  <h3>{drink.name}</h3>
-                  <p>평점: {drink.score}</p>
-                  {/* Display other properties as needed */}
-                </div>
-              </S.ReviewBox>
-            ))}
-          </S.juruBox>
+          {userName} 님 오늘의 기분은 어떠신가요? Be주류 랭킹을 확인할 수
+          있어요!
+          {isLoading ? (
+            <div>Loading....</div>
+          ) : (
+            <>
+              <S.ButtonContainer>
+                <S.SubmitButton onClick={handleReviewData}>
+                  리뷰많은순
+                </S.SubmitButton>
+                <S.SubmitButton onClick={handleScoreData}>
+                  평점순
+                </S.SubmitButton>
+              </S.ButtonContainer>
+              <S.juruBox>
+                <S.JuruBoxContainer>
+                  {selectedData &&
+                    selectedData.map((drink, index) => (
+                      <S.ReviewBox key={index}>
+                        <div>
+                          <h3>{drink.name}</h3>
+                          <p>평점: {drink.score}</p>
+                        </div>
+                      </S.ReviewBox>
+                    ))}
+                </S.JuruBoxContainer>
+              </S.juruBox>
+            </>
+          )}
         </S.Form>
       </S.Wrapper>
     </S.Container>
