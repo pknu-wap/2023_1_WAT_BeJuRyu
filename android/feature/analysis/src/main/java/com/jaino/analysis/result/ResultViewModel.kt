@@ -1,4 +1,4 @@
-package com.jaino.analyze.result
+package com.jaino.analysis.result
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -14,7 +14,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AnalysisResultViewModel @Inject constructor(
+class ResultViewModel @Inject constructor(
     private val repository: AnalysisRepository,
     private val userRepository: LocalUserRepository
 ): ViewModel(){

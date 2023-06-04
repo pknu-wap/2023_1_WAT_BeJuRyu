@@ -1,4 +1,4 @@
-package com.jaino.analyze.result
+package com.jaino.analysis.result
 
 import android.content.ActivityNotFoundException
 import android.content.Context
@@ -13,9 +13,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.jaino.analyze.R
-import com.jaino.analyze.databinding.FragmentAnalyzeResultBinding
-import com.jaino.analyze.result.ui.FeedMessage
+import com.jaino.analysis.R
+import com.jaino.analysis.databinding.FragmentResultBinding
+import com.jaino.analysis.result.ui.FeedMessage
 import com.jaino.common.extensions.showToast
 import com.jaino.model.analysis.AnalysisResult
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
@@ -28,14 +28,14 @@ import com.kakao.sdk.template.model.*
 import timber.log.Timber
 
 @AndroidEntryPoint
-class AnalyzeResultFragment : Fragment() {
+class ResultFragment : Fragment() {
 
-    private var _binding: FragmentAnalyzeResultBinding? = null
+    private var _binding: FragmentResultBinding? = null
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
-    private val viewModel: AnalysisResultViewModel by viewModels()
-    private val args: AnalyzeResultFragmentArgs by navArgs()
+    private val viewModel: ResultViewModel by viewModels()
+    private val args: ResultFragmentArgs by navArgs()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -43,7 +43,7 @@ class AnalyzeResultFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding =
-            DataBindingUtil.inflate(inflater, R.layout.fragment_analyze_result, container, false)
+            DataBindingUtil.inflate(inflater, R.layout.fragment_result, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
@@ -58,8 +58,8 @@ class AnalyzeResultFragment : Fragment() {
 
     private fun initViews() {
         binding.resultHomeButton.setOnClickListener {
-            val direction = AnalyzeResultFragmentDirections
-                .actionAnalyzeResultFragmentToAnalyzeHomeFragment()
+            val direction = ResultFragmentDirections
+                .actionResultFragmentToHomeFragment()
             findNavController().navigate(direction)
         }
 
@@ -77,7 +77,7 @@ class AnalyzeResultFragment : Fragment() {
         viewModel.analysisResultUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when (it) {
-                    is AnalysisResultViewModel.UiEvent.Failure -> {
+                    is ResultViewModel.UiEvent.Failure -> {
                         if (it.message != null) {
                             requireContext().showToast(it.message)
                         }
