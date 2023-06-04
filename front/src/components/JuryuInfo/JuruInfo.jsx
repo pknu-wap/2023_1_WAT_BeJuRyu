@@ -224,7 +224,7 @@ function JuryuInfo() {
         data: {
           userId: localStorage.getItem("user-id"),
           comment: inputValue,
-          score: labelKey * 2,
+          score: labelKey,
           date: currentDate,
         },
       });
@@ -341,7 +341,7 @@ function JuryuInfo() {
           </S.ReviewBox>
         </S.WhiteBox>
         <S.ButtonContainer>
-          <S.ReButton onClick={dictionary}>다른 주류 둘러보기</S.ReButton>
+          <S.ReButton onClick={dictionary}>주류 사전</S.ReButton>
           <S.ReButton onClick={ranking}>BE주류 랭킹</S.ReButton>
         </S.ButtonContainer>
       </S.Wrapper>
