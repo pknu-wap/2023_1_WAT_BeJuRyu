@@ -53,10 +53,13 @@ public class DrinkApiController {
     }
 
     @GetMapping("/rankings/rating")
-    public ResponseEntity<DrinkResponses> findTop10ByRating() {
+    public ResponseEntity<DrinkRankingResponse> findTop10ByRating() {
         final List<DrinkResponse> drinks = getDrinksByRating();
+        final List<DrinkWithRatingResponse> ranking = drinks.subList(0,10).stream()
+                .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating()))
+                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new DrinkResponses(drinks.subList(0, 10)));
+        return ResponseEntity.ok(new DrinkRankingResponse(ranking));
     }
 
     private List<DrinkResponse> getDrinksByRating() {
