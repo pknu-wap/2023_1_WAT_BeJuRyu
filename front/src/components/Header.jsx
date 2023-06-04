@@ -97,9 +97,7 @@ export default function Header() {
   const userName = useSelector((state) => state.name.name);
   const dispatch = useDispatch();
   const [dictionaryData, setDictionaryData] = useState(null);
-
-  const token = settingCookie("get-access");
-  console.log(token);
+  // 로그인 상태 관리
 
   return (
     <>
@@ -113,14 +111,15 @@ export default function Header() {
             BeJuRyu
           </CustomLink>
         </Navbarlogo>
-        {token ? (
+        {userName === "" ? (
+          ""
+        ) : (
           <Navbarmenu>
             <div>
               <li>
                 <Link
                   to={{
                     pathname: "/Dictionary",
-                    state: { dictionaryData: dictionaryData }, // 데이터를 props로 전달
                   }}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
@@ -145,9 +144,8 @@ export default function Header() {
               </Link>
             </li>
           </Navbarmenu>
-        ) : (
-          ""
         )}
+
         {userName === "" ? (
           <Navbarlink>
             <div></div>

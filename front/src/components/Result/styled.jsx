@@ -121,6 +121,27 @@ const Text = styled.p`
   font-family: "BejuryuFont";
 `;
 
+const FormBox = styled.div`
+  border-radius: 1rem;
+  width: 25rem;
+  height: 28rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+  font-family: "BejuryuFont";
+  background: #f7cefc;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+`;
+
+const CenteredFormBox = styled(FormBox)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -133,6 +154,8 @@ const S = {
   BtnList,
   Image,
   Text,
+  FormBox,
+  CenteredFormBox,
 };
 
 export default S;

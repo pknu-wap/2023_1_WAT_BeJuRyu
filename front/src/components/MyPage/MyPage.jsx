@@ -49,7 +49,7 @@ function MyPage() {
           url: `/drinks/rankings/review`,
         });
         if (response) {
-          setReviewRank(response.data.drinks);
+          setReviewRank(response.data.ranking);
           setIsLoading(false);
           console.log(response.data);
         }
@@ -65,8 +65,9 @@ function MyPage() {
           url: `/drinks/rankings/rating`,
         });
         if (response) {
-          setScoreRank(response.data.drinks);
-          console.log(response.data);
+          setScoreRank(response.data.ranking);
+
+          console.log("scoreRanking", response.data);
         }
       } catch (error) {
         console.error(error);
@@ -197,7 +198,12 @@ function MyPage() {
                           src={decodeBase64(drink.image)}
                           alt="주류이미지"
                         />
-                        <h5>{drink.name}</h5>
+                        <h5 style={{ width: "100%", height: "30px" }}>
+                          {drink.name}
+                        </h5>
+                        <p style={{ width: "100%", height: "20px" }}>
+                          ⭐{drink.rating.toFixed(1)}
+                        </p>
                       </S.ReviewBox>
                     ))}
                 </S.JuruBoxContainer>

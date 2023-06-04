@@ -6,11 +6,13 @@ import { useNavigate } from "react-router-dom";
 import s from "./styled";
 import { useDispatch } from "react-redux";
 
+import { GET_NAME } from "../../reducer/nameSlice";
+
 import settingCookie from "../../utils/settingCookie";
 const { Kakao } = window;
 
 function Logout() {
-  //const dispatch = useDispatch();
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
 
@@ -23,7 +25,7 @@ function Logout() {
   // logout 로컬 구현
   const logout = () => {
     settingCookie("remove");
-    //dispatch(GET_NAME(""));
+    dispatch(GET_NAME(""));
     navigate("/");
   };
 
@@ -58,8 +60,12 @@ function Logout() {
     // }
   }, []);
 
+  const handleLogout = () => {
+    logoutWithKakao();
+  };
+
   const logoutView = (
-    <s.LogoutButton onClick={logoutWithKakao}>로그아웃</s.LogoutButton>
+    <s.LogoutButton onClick={handleLogout}>로그아웃</s.LogoutButton>
   );
 
   return <div className="Logout">{logoutView}</div>;

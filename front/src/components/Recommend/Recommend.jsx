@@ -46,6 +46,7 @@ function Recommend() {
           if (res) {
             console.log(res.data);
           }
+          navigate("/result", { data: res.data });
           // 서버 응답 처리
         } catch (error) {
           if (error.response) {

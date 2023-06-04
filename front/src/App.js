@@ -1,3 +1,4 @@
+import { Router, Route, Routes } from "react-router-dom";
 import Header from "./components/Header";
 import styled from "styled-components";
 import Footer from "./pages/Footer/Footer";
@@ -11,8 +12,8 @@ import HistoryPage from "./pages/HistoryPage";
 import NickChangePage from "./pages/NickChangePage";
 import JuryuInfoPage from "./pages/JuruInfoPage";
 import axios from "axios";
-import { useEffect } from "react";
-import { Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+
 import jwt_decode from "jwt-decode";
 import { useDispatch, useSelector } from "react-redux";
 import settingCookie from "./utils/settingCookie";
@@ -37,7 +38,8 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  const userName = localStorage.getItem("nickname");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const userName = useSelector((state) => state.name.name);
   //const userName = useSelector((state) => state.name.name);
 
   const isLogin = () => {
@@ -45,7 +47,8 @@ function App() {
     // 로그인이 되어있다면
     if (token !== undefined) {
       const decode = jwt_decode(token);
-      dispatch(GET_NAME(decode.name));
+      dispatch(GET_NAME(localStorage.getItem("nickname")));
+      // setIsLoggedIn(true);
     }
   };
 
@@ -62,7 +65,8 @@ function App() {
     isLogin();
   }, []);
 
-  const token = settingCookie("get-access");
+  // const token = settingCookie("get-access");
+  // const isLoggedIn = token !== undefined;
 
   return (
     <AllWrapper>
@@ -70,7 +74,11 @@ function App() {
       <ContentWrapper>
         <Header />
         <Routes>
-          <Route path="/" element={token ? <MyPage /> : <LoginPage />} />
+          {userName === "" ? (
+            <Route path="/" element={<LoginPage />} />
+          ) : (
+            <Route path="/" element={<MyPage />} />
+          )}
           {/* <Route path="/MyPage" element={<MyPage />} /> */}
 
           {/* <Route path="/login" element={<LoginPage />} /> */}
