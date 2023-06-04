@@ -57,6 +57,7 @@ public class DrinkApiController {
         final List<DrinkResponse> drinks = getDrinksByRating();
         final List<DrinkWithRatingResponse> ranking = drinks.subList(0,10).stream()
                 .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating()))
+                .filter(d-> !Double.isNaN(d.getRating()))
                 .collect(Collectors.toList());
 
         return ResponseEntity.ok(new DrinkRankingResponse(ranking));
