@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import Logout from "./Logout";
 import authClient from "../../apis/authClient";
 import noAuthClient from "../../apis/noAuthClient";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useSelector } from "react-redux";
 
@@ -163,7 +164,16 @@ function MyPage() {
           {userName} 님 오늘의 기분은 어떠신가요? Be주류 TOP10을 확인할 수
           있어요!
           {isLoading ? (
-            <div>Loading....</div>
+            <S.juruBox
+              style={{
+                paddingTop: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </S.juruBox>
           ) : (
             <>
               <S.ButtonContainer>
