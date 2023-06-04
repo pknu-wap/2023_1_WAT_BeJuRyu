@@ -4,10 +4,15 @@ const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
   height: 38rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  border: 2px solid #be12e1;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
 `;
 
 const Wrapper = styled.div`

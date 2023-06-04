@@ -4,10 +4,10 @@ const Container = styled.div`
   width: 90rem;
   //max-width: 45rem;
   height: 40rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  //border: 5px solid #e11299;
+  border: 2px solid #be12e1;
 
   //display: flex;
   justify-content: center;
@@ -23,10 +23,10 @@ const Container2 = styled.div`
   width: 40rem;
   max-width: 45rem;
   height: 20rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  border: 2px solid #be12e1;
 
   //display: flex;
   justify-content: center;
@@ -123,10 +123,10 @@ const Input = styled.input`
   padding: 10px;
   //margin-top: 8px;
   border: 1px solid #e2e8c0;
-  width: 100%;
+  width: 80%;
   height: 50px;
   font-family: "BejuryuFont";
-
+  margin: 0 auto; /* 수정된 부분: 가운데 정렬 */
   & + & {
     margin-top: 1rem;
   }

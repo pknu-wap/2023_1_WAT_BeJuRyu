@@ -30,12 +30,6 @@ function Recommend() {
         const base64Data = String(reader.result.split(",")[1]);
 
         try {
-          const dataToSend = {
-            textExpression: inputValue,
-            facialExpression: base64Data,
-            date: currentDate,
-          };
-          console.log(dataToSend); // 데이터 확인용
           const res = await authClient({
             method: "post",
             url: "/analyze/sources",
@@ -44,6 +38,9 @@ function Recommend() {
               date: currentDate,
               facialExpression: base64Data,
               textExpression: inputValue,
+            },
+            headers: {
+              "Content-Type": "text/plain",
             },
           });
           if (res) {
@@ -63,8 +60,6 @@ function Recommend() {
       reader.readAsDataURL(selectedFile);
       // const userId = localStorage.getItem("user-id");
       // console.log(typeof parseInt(userId, 10));
-    } else {
-      console.log("엄ㅅ므");
     }
   };
 

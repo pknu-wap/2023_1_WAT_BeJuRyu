@@ -24,7 +24,7 @@ function Logout() {
   const logout = () => {
     settingCookie("remove");
     //dispatch(GET_NAME(""));
-    navigate("/login");
+    navigate("/");
   };
 
   const logoutWithKakao = async () => {

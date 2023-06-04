@@ -4,13 +4,14 @@ import logo from "../image/logo2.png";
 import { Link } from "react-router-dom";
 // 사용자 닉네임 불러올 떄
 import { useSelector, useDispatch } from "react-redux";
+import settingCookie from "../utils/settingCookie";
 import noAuthClient from "../apis/noAuthClient";
 
 const Navbar = styled.nav`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #9a208c;
+  background-color: #9932cc;
   padding: 0.5rem;
   @media only screen and (max-width: 768px) {
     flex-direction: column;
@@ -52,7 +53,7 @@ const Navbarmenu = styled.ul`
     font-family: "BejuryuFont", Arial, Helvetica, sans-serif; /* 글씨체 변경 */
   }
   li:hover {
-    background-color: #e11299;
+    background-color: #9444df;
   }
 
   @media only screen and (max-width: 576px) {
@@ -97,54 +98,8 @@ export default function Header() {
   const dispatch = useDispatch();
   const [dictionaryData, setDictionaryData] = useState(null);
 
-  // const handleDictionaryButtonClick = async () => {
-  //   try {
-  //     const response = await noAuthClient({
-  //       method: "get",
-  //       url: "/drinks",
-  //     });
-  //     if (response.status === 200) {
-  //       const data = response.data;
-  //       // setDictionaryData(data); // 데이터를 상태에 저장
-  //       //localStorage.setItem("data", data.drinks);
-  //       console.log(data);
-  //       //dispatch({ type: "SET_DICTIONARY_DATA", payload: data }); // 가져온 데이터를 Redux 스토어에 저장
-  //       console.log("데이터를 가져왔습니다.");
-  //     } else {
-  //       console.log("데이터를 가져오는데 실패하였습니다.");
-  //     }
-  //   } catch (error) {
-  //     console.log("오류가 발생하였습니다.", error);
-  //   }
-  // };
-
-  // useEffect(() => {
-  //   const dictionaryButton = document.querySelector('li a[href="/Dictionary"]');
-  //   if (dictionaryButton) {
-  //     dictionaryButton.addEventListener("click", handleDictionaryButtonClick);
-  //   }
-
-  //   return () => {
-  //     if (dictionaryButton) {
-  //       dictionaryButton.removeEventListener(
-  //         "click",
-  //         handleDictionaryButtonClick
-  //       );
-  //     }
-  //   };
-  // }, []);
-
-  // const dictionaryData = useSelector((state) => state.dictionaryData); // Redux 스토어에서 필요한 데이터 선택
-  //console.log(dictionaryData); // 데이터 콘솔 출력
-
-  // return () => {
-  //   if (dictionaryButton) {
-  //     dictionaryButton.removeEventListener(
-  //       "click",
-  //       handleDictionaryButtonClick
-  //     );
-  //   }
-  // };
+  const token = settingCookie("get-access");
+  console.log(token);
 
   return (
     <>
@@ -152,15 +107,13 @@ export default function Header() {
         <Navbarlogo>
           <NavbarlogoImage src={logo} alt="BeJuRyu Logo" />
           <CustomLink
-            // to="/MyPage"
+            to="/"
             style={{ textDecoration: "none", color: "inherit" }}
           >
             BeJuRyu
           </CustomLink>
         </Navbarlogo>
-        {userName === "" ? (
-          ""
-        ) : (
+        {token ? (
           <Navbarmenu>
             <div>
               <li>
@@ -192,6 +145,8 @@ export default function Header() {
               </Link>
             </li>
           </Navbarmenu>
+        ) : (
+          ""
         )}
         {userName === "" ? (
           <Navbarlink>

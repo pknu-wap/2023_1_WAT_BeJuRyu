@@ -20,7 +20,8 @@ import settingCookie from "./utils/settingCookie";
 import { GET_NAME } from "./reducer/nameSlice";
 import React from "react";
 import NickChange from "./components/MyPage/Nickchange";
-import Login from "./components/Login/Login";
+// import Login from "./components/Login/Login";
+import isLogin from "./utils/isLogin";
 
 const AllWrapper = styled.div`
   display: flex;
@@ -61,19 +62,18 @@ function App() {
     isLogin();
   }, []);
 
+  const token = settingCookie("get-access");
+
   return (
     <AllWrapper>
       <GlobalStyle />
       <ContentWrapper>
         <Header />
         <Routes>
-          <Route
-            path="/"
-            element={userName ? <navigate to="/MyPage" /> : <LoginPage />}
-          />
-          <Route path="/" element={<MyPage />} />
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/" element={token ? <MyPage /> : <LoginPage />} />
+          {/* <Route path="/MyPage" element={<MyPage />} /> */}
 
+          {/* <Route path="/login" element={<LoginPage />} /> */}
           {/* <Route path="/" element={<LoginPage />} /> */}
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/recommend" element={<RecommendPage />} />

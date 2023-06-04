@@ -121,6 +121,7 @@ function MyPage() {
       }
     }
 
+    // 닉네임 조회
     try {
       const response = await authClient({
         method: "get",

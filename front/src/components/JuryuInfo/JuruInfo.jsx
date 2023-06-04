@@ -5,6 +5,7 @@
 */
 import React from "react";
 import S from "./styled";
+import styled from "styled-components";
 import { useNavigate, useLocation } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
@@ -14,8 +15,36 @@ import StarIcon from "@mui/icons-material/Star";
 import Box from "@mui/material/Box";
 import authClient from "../../apis/authClient";
 import Container from "@mui/material/Container";
+import { List, ListItem, ListItemText } from "@mui/material";
 import axios from "axios";
 import noAuthClient from "../../apis/noAuthClient";
+
+const StyledList = styled(List)`
+  display: flex;
+  //flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  //justify-content: space-between;
+  //border: 1px solid #ccc;
+  padding: 10px;
+  font-family: "BejuryuFont";
+`;
+
+const StyledListItem = styled.li`
+  border-bottom: 1px solid #ccc;
+  padding: 10px;
+  flex: 1 0 48%;
+
+  & span {
+    font-family: "BejuryuFont";
+  }
+`;
+
+const StyledImage = styled.img`
+  width: 100px;
+  height: 200px;
+  object-fit: cover;
+`;
 
 function JuryuInfo() {
   const location = useLocation();
@@ -84,7 +113,7 @@ function JuryuInfo() {
       try {
         const response = await noAuthClient({
           method: "get",
-          url: `/drinks/${juryuId}`,
+          url: `drinks/${juryuId}`,
         });
         //const { name, image, dosu, price } = response.data;
         //const decodedImage = decodeBase64(image)'
@@ -103,13 +132,13 @@ function JuryuInfo() {
       try {
         const response = await noAuthClient({
           method: "get",
-          url: `/drinks/${juryuId}/rating`,
+          url: `drinks/${juryuId}/rating`,
         });
         if (response) {
           console.log(response.data);
         }
       } catch (error) {
-        console.error(error);
+        console.log("juryuId error!", error.message);
       }
     };
     //console.log(drinkReviewList);
@@ -118,7 +147,7 @@ function JuryuInfo() {
       try {
         const response = await noAuthClient({
           method: "get",
-          url: `/drinks/${juryuId}/reviews`,
+          url: `drinks/${juryuId}/reviews`,
         });
 
         if (response) {
@@ -141,16 +170,16 @@ function JuryuInfo() {
   const navigate = useNavigate();
 
   const labels = {
-    1: "Useless",
-    2: "Useless+",
-    3: "Poor",
-    4: "Poor+",
-    5: "Ok",
-    6: "Ok+",
-    7: "Good",
-    8: "Good+",
-    9: "Excellent",
-    10: "Excellent+",
+    0.5: "형편없어",
+    1: "맛없는 척",
+    1.5: "그냥 그래",
+    2: "조금 괜찮음",
+    2.5: "맛있는 편",
+    3: "꽤 괜찮을수도?",
+    3.5: "정말 맛있음",
+    4: "맛있는 최고봉",
+    4.5: "감동적인 맛 🤤",
+    5: "개쩐다❤️",
   };
 
   const dictionary = () => {
@@ -187,14 +216,15 @@ function JuryuInfo() {
     //navigate("/dictionary");
 
     const labelKey = parseInt(value);
+
     try {
       const res = await authClient({
         method: "post",
-        url: `/drinks/${juryuId}/reviews`,
+        url: `drinks/${juryuId}/reviews`,
         data: {
           userId: localStorage.getItem("user-id"),
           comment: inputValue,
-          score: labelKey,
+          score: labelKey * 2,
           date: currentDate,
         },
       });
@@ -218,20 +248,27 @@ function JuryuInfo() {
     <S.Container>
       <S.Wrapper>
         <S.WhiteBox>
-          <S.FormBox>
-            <S.Title>주류정보</S.Title>
-            <Container>
-              <img
-                src={drinkInfo && decodeBase64(drinkInfo.image)}
-                width="200"
-                height="300"
-                alt="주류 이미지"
-              />
-              <p>{drinkInfo?.name}</p>
-              <p>{drinkInfo?.dosu}</p>
-              {drinkInfo?.price}
-            </Container>
-          </S.FormBox>
+          <S.CenteredFormBox>
+            <S.Title>🍺주류정보🍺</S.Title>
+            <StyledImage
+              src={drinkInfo && decodeBase64(drinkInfo.image)}
+              alt="주류 이미지"
+            />
+            <StyledList>
+              <StyledListItem>
+                <ListItemText primary={drinkInfo?.name} secondary="주류 이름" />
+              </StyledListItem>
+              <StyledListItem>
+                <ListItemText primary={drinkInfo?.dosu} secondary="도수" />
+              </StyledListItem>
+              <StyledListItem>
+                <ListItemText primary={drinkInfo?.price} secondary="가격" />
+              </StyledListItem>
+              <StyledListItem>
+                <ListItemText primary={drinkInfo?.type} secondary="종류" />
+              </StyledListItem>
+            </StyledList>
+          </S.CenteredFormBox>
           <S.FormBox>
             <S.Title>Be주류 사용자들의 한줄 리뷰</S.Title>
 
@@ -243,16 +280,19 @@ function JuryuInfo() {
                 </p>
               </p>
             ))}
+            <S.ButtonContainer>
+              {/* 이전 페이지로 돌아가기 버튼 */}
+              {page > 1 && (
+                <S.PageButton onClick={goToPreviousPage}>
+                  이전 페이지
+                </S.PageButton>
+              )}
 
-            {/* 이전 페이지로 돌아가기 버튼 */}
-            {page > 1 && (
-              <button onClick={goToPreviousPage}>이전 페이지</button>
-            )}
-
-            {/* 더 보기 버튼 */}
-            {page < totalPages && (
-              <button onClick={goToNextPage}>다음 페이지</button>
-            )}
+              {/* 더 보기 버튼 */}
+              {page < totalPages && (
+                <S.PageButton onClick={goToNextPage}>다음 페이지</S.PageButton>
+              )}
+            </S.ButtonContainer>
           </S.FormBox>
 
           <S.ReviewBox>
@@ -277,11 +317,11 @@ function JuryuInfo() {
                 }}
                 emptyIcon={
                   <StarIcon
-                    style={{ opacity: 0.55 }}
+                    style={{ opacity: 0.55, color: "action" }}
                     fontSize="inherit"
-                    // sx={{
-                    //   color: "yellow",
-                    // }}
+                    sx={{
+                      color: "yellow",
+                    }}
                   />
                 }
               />

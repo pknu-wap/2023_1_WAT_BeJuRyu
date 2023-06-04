@@ -58,20 +58,20 @@ const Form = styled.div`
 
 const WhiteBox = styled.div`
   width: 75rem;
-  height: 30rem;
+  height: 29.5rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
-
+  border-radius: 1rem;
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
   cursor: text;
 
-  &:hover {
+  /* &:hover {
     box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
+  } */
   display: flex;
   justify-content: space-between;
 `;
@@ -94,23 +94,31 @@ const WhiteBox2 = styled.div`
 `;
 
 const FormBox = styled.div`
+  border-radius: 1rem;
   width: 25rem;
   height: 28rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
   font-family: "BejuryuFont";
-  background: pink;
+  background: #f7cefc;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
 `;
 
 const ReviewBox = styled.div`
+  border-radius: 1rem;
   width: 20rem;
   height: 28rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
   font-family: "BejuryuFont";
-  background: pink;
+  background: #f7cefc;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
 `;
 
 const Title = styled.div`
@@ -129,6 +137,7 @@ const textInput = styled.textarea`
   font-family: "BejuryuFont";
   resize: none;
   border: 1px solid purple;
+  background-color: #f3f2f2;
   color: black;
   &:focus {
     outline: none;
@@ -138,6 +147,26 @@ const textInput = styled.textarea`
 const ButtonContainer = styled.div`
   display: flex;
   justify-content: center;
+`;
+
+const CenteredFormBox = styled(FormBox)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+`;
+
+const PageButton = styled.button`
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #9932cc;
+  color: #f7f7f7;
+  margin: 10px auto 0;
+  display: block;
+  cursor: pointer;
+  font-family: "BejuryuFont";
 `;
 
 const S = {
@@ -154,6 +183,8 @@ const S = {
   ReviewBox,
   WhiteBox2,
   ButtonContainer,
+  CenteredFormBox,
+  PageButton,
 };
 
 export default S;

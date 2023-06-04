@@ -6,7 +6,7 @@ const FooterDiv = styled.footer`
   left: 0;
   width: 100%;
   text-align: center;
-  background-color: #9a208c;
+  background-color: #9932cc;
   font-size: 1rem;
   line-height: 2rem;
   height: 2rem; //calc(var(--vh, 1vh) * 100 + 66px);

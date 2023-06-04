@@ -40,7 +40,7 @@ function Login() {
       console.log("login하면서 decode한 것.", decode.nickname);
 
       // redux에 nickname 저장
-      dispatch(GET_NAME(res.data.memberResponse.nickname));
+      //dispatch(GET_NAME(res.data.memberResponse.nickname));
       localStorage.setItem("user-id", res.data.memberResponse.id);
       localStorage.setItem("nickname", res.data.memberResponse.nickname);
 
