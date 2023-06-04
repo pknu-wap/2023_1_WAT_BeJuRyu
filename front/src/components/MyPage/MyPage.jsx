@@ -11,6 +11,7 @@ import { useDispatch } from "react-redux";
 import Logout from "./Logout";
 import authClient from "../../apis/authClient";
 import noAuthClient from "../../apis/noAuthClient";
+import CircularProgress from "@mui/material/CircularProgress";
 
 import { useSelector } from "react-redux";
 
@@ -26,6 +27,17 @@ function MyPage() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
   const userId = parseInt(localStorage.getItem("user-id"));
+
+  // 이미지 디코딩 함수
+  const decodeBase64 = (base64) => {
+    const binaryString = window.atob(base64);
+    const bytes = new Uint8Array(binaryString.length);
+    for (let i = 0; i < binaryString.length; i++) {
+      bytes[i] = binaryString.charCodeAt(i);
+    }
+    return URL.createObjectURL(new Blob([bytes.buffer], { type: "image/png" }));
+  };
+
   //console.log(typeof userId);
 
   // 주류 랭킹 보여주기 위해 api 요청
@@ -65,6 +77,29 @@ function MyPage() {
     getReviewRanking();
     getScoreRanking();
   }, []);
+
+  // 각 주류 상세 페이지로 이동
+  const checkJuryuInfo = async (e, juryuId) => {
+    e.preventDefault();
+    navigate("/juryuInfo", { state: { juryuId } });
+
+    try {
+      const res = await noAuthClient({
+        method: "get",
+        url: `/drinks/${juryuId}`,
+      });
+      if (res) {
+        console.log(res);
+      } else {
+        console.log("res엄썽");
+      }
+    } catch (error) {
+      if (error.response) {
+        const err = error.response.data;
+        console.log(err);
+      }
+    }
+  };
 
   const checkHistory = async (e) => {
     e.preventDefault();
@@ -126,10 +161,19 @@ function MyPage() {
       </S.Info>
       <S.Wrapper>
         <S.Form>
-          {userName} 님 오늘의 기분은 어떠신가요? Be주류 랭킹을 확인할 수
+          {userName} 님 오늘의 기분은 어떠신가요? Be주류 TOP10을 확인할 수
           있어요!
           {isLoading ? (
-            <div>Loading....</div>
+            <S.juruBox
+              style={{
+                paddingTop: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </S.juruBox>
           ) : (
             <>
               <S.ButtonContainer>
@@ -144,11 +188,15 @@ function MyPage() {
                 <S.JuruBoxContainer>
                   {selectedData &&
                     selectedData.map((drink, index) => (
-                      <S.ReviewBox key={index}>
-                        <div>
-                          <h3>{drink.name}</h3>
-                          <p>평점: {drink.score}</p>
-                        </div>
+                      <S.ReviewBox
+                        key={index}
+                        onClick={(e) => checkJuryuInfo(e, drink.id)}
+                      >
+                        <S.Image
+                          src={decodeBase64(drink.image)}
+                          alt="주류이미지"
+                        />
+                        <h5>{drink.name}</h5>
                       </S.ReviewBox>
                     ))}
                 </S.JuruBoxContainer>

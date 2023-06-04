@@ -13,9 +13,8 @@ import NativeSelect from "@mui/material/NativeSelect";
 import FormControl from "@mui/material/FormControl";
 import SearchIcon from "@mui/icons-material/Search";
 import IconButton from "@mui/material/IconButton";
+import CircularProgress from "@mui/material/CircularProgress";
 import noAuthClient from "../../apis/noAuthClient";
-
-import logo from "../../image/bejuryu.png";
 
 function Dictionary() {
   const navigate = useNavigate();
@@ -33,6 +32,7 @@ function Dictionary() {
   // 주류 정보 상태
   const [drinkInfo, setDrinkInfo] = useState(null);
   const [drinkInfoList, setDrinkInfoList] = useState([]);
+  const [isLoading, setIsLoading] = useState(false); // Add isLoading state
 
   // 이미지 디코딩 함수
   const decodeBase64 = (base64) => {
@@ -65,6 +65,7 @@ function Dictionary() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
+    setIsLoading(true);
 
     try {
       if (searchTerm !== "") {
@@ -101,6 +102,8 @@ function Dictionary() {
         const err = error.response.data;
         console.log(err);
       }
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -201,32 +204,44 @@ function Dictionary() {
             </Box>
           </S.searchBox>
         </S.Info>
-        {/* <S.Title>주류를 검색해 보세요!</S.Title> */}
-        <S.juruBox style={{ paddingTop: "20px" }}>
-          {dividedDrinkInfoList.map((line, index) => (
-            <div
-              key={index}
-              style={{
-                display: "flex",
-                alignitems: "center",
-                marginLeft: "10px",
-              }}
-            >
-              {line.map((drinkInfo) => (
-                <S.WhiteBox
-                  key={drinkInfo.id}
-                  onClick={(e) => checkJuryuInfo(e, drinkInfo.id)}
-                >
-                  <S.Image
-                    src={decodeBase64(drinkInfo.image)}
-                    alt="주류 이미지"
-                  />
-                  <S.Text>{drinkInfo.name}</S.Text>
-                </S.WhiteBox>
-              ))}
-            </div>
-          ))}
-        </S.juruBox>
+        {isLoading ? (
+          <S.juruBox
+            style={{
+              paddingTop: "20px",
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+            }}
+          >
+            <CircularProgress />
+          </S.juruBox>
+        ) : (
+          <S.juruBox style={{ paddingTop: "20px" }}>
+            {dividedDrinkInfoList.map((line, index) => (
+              <div
+                key={index}
+                style={{
+                  display: "flex",
+                  alignitems: "center",
+                  marginLeft: "10px",
+                }}
+              >
+                {line.map((drinkInfo) => (
+                  <S.WhiteBox
+                    key={drinkInfo.id}
+                    onClick={(e) => checkJuryuInfo(e, drinkInfo.id)}
+                  >
+                    <S.Image
+                      src={decodeBase64(drinkInfo.image)}
+                      alt="주류 이미지"
+                    />
+                    <S.Text>{drinkInfo.name}</S.Text>
+                  </S.WhiteBox>
+                ))}
+              </div>
+            ))}
+          </S.juruBox>
+        )}
       </S.Wrapper>
     </S.Container>
   );
