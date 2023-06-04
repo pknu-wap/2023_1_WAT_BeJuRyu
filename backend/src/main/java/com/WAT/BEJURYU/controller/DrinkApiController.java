@@ -11,6 +11,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -57,6 +59,7 @@ public class DrinkApiController {
     @GetMapping("/rankings/rating")
     public ResponseEntity<DrinkRankingResponse> findTop10ByRating() {
         final List<DrinkResponse> drinks = getDrinksByRating();
+        Collections.reverse(drinks);
         final List<DrinkWithRatingResponse> ranking = drinks.subList(0,10).stream()
                 .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating()))
                 .filter(d-> !Double.isNaN(d.getRating()))
@@ -71,6 +74,7 @@ public class DrinkApiController {
                 .sorted((drink1, drink2) -> (int) (reviewService.getAverageScore(drink2.getId()).getRating() - reviewService.getAverageScore(drink1.getId()).getRating()))
                 .collect(Collectors.toList());
     }*/
+
     private List<DrinkResponse> getDrinksByRating() {
         final DrinkResponses drinks = drinkService.getAllDrinks();
         return drinks.getDrinks().stream()

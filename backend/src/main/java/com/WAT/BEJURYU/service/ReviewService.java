@@ -40,8 +40,9 @@ public class ReviewService {
         double sum = reviews.stream()
                 .mapToDouble(Review::getScore)
                 .sum();
+        double result = Math.round((sum / (double)reviews.size()) * 100) / 100.0;
 
-        return new DrinkRatingResponse(drinkId, sum / (double)reviews.size());
+        return new DrinkRatingResponse(drinkId,result);
     }
 
     @Transactional
