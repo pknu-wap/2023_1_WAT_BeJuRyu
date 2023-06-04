@@ -1,9 +1,9 @@
-package com.jaino.analyze.input_image
+package com.jaino.analysis.image_input
 
 import android.content.Context
 import android.os.Bundle
 import com.google.android.material.bottomsheet.BottomSheetDialog
-import com.jaino.analyze.databinding.DialogChooseToolsBinding
+import com.jaino.analysis.databinding.DialogChooseToolsBinding
 
 class ChooseToolsDialog(
     context : Context,

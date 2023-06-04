@@ -1,4 +1,4 @@
-package com.jaino.analyze.camera
+package com.jaino.analysis.camera
 
 import android.content.ContentValues
 import android.graphics.Color
@@ -20,8 +20,8 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import com.google.common.util.concurrent.ListenableFuture
-import com.jaino.analyze.R
-import com.jaino.analyze.databinding.FragmentCameraBinding
+import com.jaino.analysis.R
+import com.jaino.analysis.databinding.FragmentCameraBinding
 import com.jaino.common.extensions.getCurrentFileName
 import kotlinx.coroutines.launch
 import timber.log.Timber
@@ -162,7 +162,7 @@ class CameraFragment : Fragment() {
         lifecycleScope.launch{
             lifecycle.repeatOnLifecycle(Lifecycle.State.STARTED){
                 findNavController().navigate(
-                    CameraFragmentDirections.actionCameraFragmentToAnalyzeImageFragment(
+                    CameraFragmentDirections.actionCameraFragmentToImageInputFragment(
                         uri, ""
                     )
                 )

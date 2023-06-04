@@ -1,11 +1,11 @@
-package com.jaino.analyze.home.adapter
+package com.jaino.analysis.home.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.jaino.analyze.databinding.ItemRankBinding
+import com.jaino.analysis.databinding.ItemRankBinding
 import com.jaino.model.dictionary.Drink
 
 class HomeRankAdapter(

@@ -1,4 +1,4 @@
-package com.jaino.analyze.result.ui
+package com.jaino.analysis.result.ui
 
 import com.kakao.sdk.template.model.Button
 import com.kakao.sdk.template.model.Content
