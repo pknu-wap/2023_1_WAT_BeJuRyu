@@ -1,6 +1,7 @@
 package com.WAT.BEJURYU.controller;
 
 import com.WAT.BEJURYU.dto.*;
+import com.WAT.BEJURYU.entity.Drink;
 import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.service.DrinkService;
 import com.WAT.BEJURYU.service.ReviewService;
@@ -10,6 +11,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -63,10 +65,16 @@ public class DrinkApiController {
         return ResponseEntity.ok(new DrinkRankingResponse(ranking));
     }
 
-    private List<DrinkResponse> getDrinksByRating() {
+    /*private List<DrinkResponse> getDrinksByRating() {
         final DrinkResponses drinks = drinkService.getAllDrinks();
         return drinks.getDrinks().stream()
                 .sorted((drink1, drink2) -> (int) (reviewService.getAverageScore(drink2.getId()).getRating() - reviewService.getAverageScore(drink1.getId()).getRating()))
+                .collect(Collectors.toList());
+    }*/
+    private List<DrinkResponse> getDrinksByRating() {
+        final DrinkResponses drinks = drinkService.getAllDrinks();
+        return drinks.getDrinks().stream()
+                .sorted(Comparator.comparing(d -> reviewService.getAverageScore(d.getId()).getRating()))
                 .collect(Collectors.toList());
     }
 
