@@ -1,9 +1,8 @@
-package com.jaino.analyze.input_image
+package com.jaino.analysis.image_input
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaino.data.repository.analysis.AnalysisRepository
-import com.jaino.data.repository.user.LocalUserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,7 +12,7 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AnalyzeImageViewModel @Inject constructor(
+class ImageInputViewModel @Inject constructor(
     private val analysisRepository: AnalysisRepository
 ): ViewModel(){
 

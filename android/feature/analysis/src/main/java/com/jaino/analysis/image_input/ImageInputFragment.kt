@@ -1,4 +1,4 @@
-package com.jaino.analyze.input_image
+package com.jaino.analysis.image_input
 
 import android.content.Context
 import android.net.Uri
@@ -18,8 +18,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.jaino.analyze.R
-import com.jaino.analyze.databinding.FragmentAnalyzeImageBinding
+import com.jaino.analysis.R
+import com.jaino.analysis.databinding.FragmentImageInputBinding
 import com.jaino.common.extensions.showToast
 import com.jaino.common.extensions.toDateTime
 import com.jaino.common.utils.PickPhotoContract
@@ -30,16 +30,16 @@ import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class AnalyzeImageFragment : Fragment() {
+class ImageInputFragment : Fragment() {
 
     private lateinit var singlePhotoPickerLauncher : ActivityResultLauncher<Void?>
 
-    private var _binding: FragmentAnalyzeImageBinding? = null
+    private var _binding: FragmentImageInputBinding? = null
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
-    private val viewModel : AnalyzeImageViewModel by viewModels()
-    private val args : AnalyzeImageFragmentArgs by navArgs()
+    private val viewModel : ImageInputViewModel by viewModels()
+    private val args : ImageInputFragmentArgs by navArgs()
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
@@ -58,7 +58,7 @@ class AnalyzeImageFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_analyze_image, container, false)
+            inflater, R.layout.fragment_image_input, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
@@ -119,7 +119,7 @@ class AnalyzeImageFragment : Fragment() {
         viewModel.analysisUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is AnalyzeImageViewModel.UiEvent.Failure -> {
+                    is ImageInputViewModel.UiEvent.Failure -> {
                         if(it.message != null){
                             requireContext().showToast(it.message)
                         }
@@ -157,19 +157,19 @@ class AnalyzeImageFragment : Fragment() {
 
     private fun navigateToPermission(){
         findNavController().navigate(
-            AnalyzeImageFragmentDirections.actionAnalyzeImageFragmentToPermissionsFragment()
+            ImageInputFragmentDirections.actionImageInputFragmentToPermissionsFragment()
         )
     }
 
     private fun navigateToResult(analysisId: Long){
         findNavController().navigate(
-            AnalyzeImageFragmentDirections.actionAnalyzeImageFragmentToAnalyzeResultFragment(
+            ImageInputFragmentDirections.actionImageInputFragmentToResultFragment(
                 analysisId
             )
         )
     }
 
     private fun navigateToText(){
-        findNavController().popBackStack(R.id.analyzeTextFragment, false)
+        findNavController().popBackStack(R.id.textInputFragment, false)
     }
 }

@@ -5,7 +5,7 @@
     <data>
         <variable
             name="viewModel"
-            type="com.jaino.analyze.input_image.AnalyzeImageViewModel" />
+            type="com.jaino.analysis.image_input.ImageInputViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

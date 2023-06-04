@@ -1,4 +1,4 @@
-package com.jaino.analyze.input_text
+package com.jaino.analysis.text_input
 
 import android.annotation.SuppressLint
 import android.os.Bundle
@@ -11,15 +11,15 @@ import android.widget.Toast
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.jaino.analyze.R
-import com.jaino.analyze.databinding.FragmentAnalyzeTextBinding
+import com.jaino.analysis.R
+import com.jaino.analysis.databinding.FragmentTextInputBinding
 import usecase.validate.ValidateTextExpression
 
-class AnalyzeTextFragment : Fragment() {
+class TextInputFragment : Fragment() {
 
     private val expressionUseCase by lazy{ ValidateTextExpression() }
 
-    private var _binding: FragmentAnalyzeTextBinding? = null
+    private var _binding: FragmentTextInputBinding? = null
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
@@ -29,7 +29,7 @@ class AnalyzeTextFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = DataBindingUtil.inflate(
-            inflater, R.layout.fragment_analyze_text, container, false)
+            inflater, R.layout.fragment_text_input, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         return binding.root
     }
@@ -58,7 +58,6 @@ class AnalyzeTextFragment : Fragment() {
 
     @SuppressLint("SetTextI18n")
     private fun initViews(){
-
         binding.analyzeTextExpression.addTextChangedListener(object : TextWatcher{
             override fun afterTextChanged(p0: Editable?) {}
 
@@ -73,13 +72,13 @@ class AnalyzeTextFragment : Fragment() {
 
     private fun navigateToHome(){
         findNavController().navigate(
-            AnalyzeTextFragmentDirections.actionAnalyzeTextFragmentToAnalyzeHomeFragment()
+            TextInputFragmentDirections.actionTextInputFragmentToHomeFragment()
         )
     }
 
     private fun navigateToImage(analyzeText: String){
         findNavController().navigate(
-            AnalyzeTextFragmentDirections.actionAnalyzeTextFragmentToAnalyzeImageFragment(
+            TextInputFragmentDirections.actionTextInputFragmentToImageInputFragment(
                 "", analyzeText
             )
         )
