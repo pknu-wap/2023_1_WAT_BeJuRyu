@@ -41,7 +41,7 @@ public class ReviewService {
                 .mapToDouble(Review::getScore)
                 .sum();
 
-        return new DrinkRatingResponse(drinkId, sum / reviews.size());
+        return new DrinkRatingResponse(drinkId, sum / (double)reviews.size());
     }
 
     @Transactional

@@ -81,7 +81,7 @@ public class DrinkApiController {
     }
 
     @GetMapping("/{drink_id}/rating")
-    public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable Long id) {
+    public ResponseEntity<DrinkRatingResponse> findRating(@PathVariable(value = "drink_id") Long id) {
         final DrinkRatingResponse rating = reviewService.getAverageScore(id);
         return ResponseEntity.ok(rating);
     }

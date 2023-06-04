@@ -23,7 +23,7 @@ import java.util.stream.Collectors;
 public class MemberApiController {
     private final MemberService memberService;
     @PutMapping("/nickname")
-    public ResponseEntity<MemberResponse> updateNickname(@RequestBody MemberChangeNicknameRequest memberChangeNicknameRequest) {
+    public ResponseEntity<MemberResponse> updateNickname(@AuthParam UserId userId, @RequestBody MemberChangeNicknameRequest memberChangeNicknameRequest) {
         final MemberResponse member = memberService.updateNickname(memberChangeNicknameRequest);
 
         return ResponseEntity.ok(member);
