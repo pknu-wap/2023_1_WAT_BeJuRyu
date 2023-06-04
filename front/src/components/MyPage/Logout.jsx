@@ -6,84 +6,56 @@ import { useNavigate } from "react-router-dom";
 import s from "./styled";
 import { useDispatch } from "react-redux";
 
-import { GET_NAME } from "../../reducer/nameSlice";
 import settingCookie from "../../utils/settingCookie";
 const { Kakao } = window;
 
 function Logout() {
-  const dispatch = useDispatch();
-  const navigate = useNavigate;
+  //const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(false);
 
-  function deleteAllCookies() {
-    const cookies = document.cookie.split(";");
-
-    for (let i = 0; i < cookies.length; i++) {
-      const cookie = cookies[i];
-      const eqPos = cookie.indexOf("=");
-      const name = eqPos > -1 ? cookie.substr(0, eqPos) : cookie;
-      document.cookie =
-        name + "=;expires=Thu, 01 Jan 1970 00:00:00 GMT;path=/;";
-    }
+  function deleteCookie() {
+    document.cookie =
+      "authorize-access-token=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
+    document.cookie = "_kahai=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;";
   }
 
   // logout 로컬 구현
   const logout = () => {
     settingCookie("remove");
-    dispatch(GET_NAME(""));
-    navigate("/");
-    localStorage.clear();
+    //dispatch(GET_NAME(""));
+    navigate("/login");
   };
 
   const logoutWithKakao = async () => {
-    Kakao.API.request({
-      url: "/v1/user/unlink",
-    })
-      .then(function (response) {
-        alert(response);
-      })
-      .catch(function (error) {
-        alert(error);
-      });
-    if (Kakao.Auth.getAccessToken()) {
-      console.log(
-        "카카오 인증 액세스 토큰이 존재합니다.",
-        Kakao.Auth.getAccessToken()
-      );
-      try {
-        await Kakao.Auth.logout();
-        alert("로그아웃 되었습니다.", Kakao.Auth.getAccessToken());
-        setIsLogin(false);
-        localStorage.clear();
+    //logout();
+    // Kakao.API.request({
+    //   url: "/v1/user/unlink",
+    // })
+    //   .then(function (response) {
+    //     alert(response);
+    //   })
+    //   .catch(function (error) {
+    //     alert(error);
+    //   });
 
-        window.location.href = "/";
-        //navigate("/");
-        Kakao.Auth.setAccessToken(null); // 카카오 SDK의 자동 로그인 초기화
+    try {
+      await Kakao.Auth.logout();
+      logout();
 
-        // 카카오 API에서 사용하는 쿠키 삭제
-        const kakaoCookies = [
-          "_kahai",
-          "_karmt",
-          "_karmtea",
-          "_kawlt",
-          "_kawltea",
-        ];
-        kakaoCookies.forEach((cookie) => {
-          document.cookie =
-            cookie + "=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
-        });
-
-        logout(); // 비주류 서비스 로그아웃
-      } catch (error) {
-        alert(error);
-      }
+      console.log("logout ok\naccess token -> " + Kakao.Auth.getAccessToken());
+      deleteCookie();
+      setIsLogin(false);
+      localStorage.clear();
+    } catch (error) {
+      alert(error.message);
     }
   };
 
   useEffect(() => {
-    if (Kakao.Auth.getAccessToken()) {
-      setIsLogin(false);
-    }
+    // if (Kakao.Auth.getAccessToken()) {
+    setIsLogin(false);
+    // }
   }, []);
 
   const logoutView = (

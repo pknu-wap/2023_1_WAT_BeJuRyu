@@ -148,13 +148,13 @@ const NickCheck = styled.button`
 `;
 
 const ReviewBox = styled.div`
-  width: 8rem;
+  width: 7.5rem;
   height: 11rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 1rem;
 
-  background: gray;
+  background: #f5f1f1;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
 
@@ -167,7 +167,7 @@ const ReviewBox = styled.div`
 `;
 
 const juruBox = styled.div`
-  width: 80rem;
+  width: 86rem;
   //max-width: 45rem;
   height: 15rem;
   //background-color: #e11299;
@@ -192,6 +192,11 @@ const JuruBoxContainer = styled.div`
   align-items: center;
 `;
 
+const Image = styled.img`
+  width: 80%;
+  height: 60%;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -208,6 +213,7 @@ const S = {
   juruBox,
   ButtonContainer,
   JuruBoxContainer,
+  Image,
 };
 
 export default S;
