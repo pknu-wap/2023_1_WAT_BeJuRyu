@@ -123,7 +123,7 @@ export default function Header() {
                   }}
                   style={{ textDecoration: "none", color: "inherit" }}
                 >
-                  주류사전메뉴
+                  주류사전
                 </Link>
               </li>
             </div>
@@ -132,7 +132,7 @@ export default function Header() {
                 to="/Recommend"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
-                주류추천메뉴
+                주류추천
               </Link>
             </li>
             <li>

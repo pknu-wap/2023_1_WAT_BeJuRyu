@@ -202,7 +202,7 @@ function MyPage() {
                           {drink.name}
                         </h5>
                         <p style={{ width: "100%", height: "20px" }}>
-                          ⭐{drink.rating.toFixed(1)}
+                          ⭐{drink.rating.toFixed(1)} ({drink.reviewCount})
                         </p>
                       </S.ReviewBox>
                     ))}
