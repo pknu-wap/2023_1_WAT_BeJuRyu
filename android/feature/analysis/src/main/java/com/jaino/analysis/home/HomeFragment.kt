@@ -1,4 +1,4 @@
-package com.jaino.analyze.home
+package com.jaino.analysis.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,18 +12,18 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jaino.analyze.R
-import com.jaino.analyze.databinding.FragmentAnalyzeHomeBinding
-import com.jaino.analyze.home.adapter.HomeRankAdapter
+import com.jaino.analysis.R
+import com.jaino.analysis.databinding.FragmentHomeBinding
+import com.jaino.analysis.home.adapter.HomeRankAdapter
 import com.jaino.common.extensions.showToast
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 
 @AndroidEntryPoint
-class AnalyzeHomeFragment : Fragment() {
+class HomeFragment : Fragment() {
 
-    private var _binding: FragmentAnalyzeHomeBinding? = null
+    private var _binding: FragmentHomeBinding? = null
     private val binding
         get() = requireNotNull(_binding) { "binding object is not initialized" }
 
@@ -36,7 +36,7 @@ class AnalyzeHomeFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_analyze_home, container, false)
+        _binding = DataBindingUtil.inflate(inflater, R.layout.fragment_home, container, false)
         binding.lifecycleOwner = viewLifecycleOwner
         binding.viewModel = viewModel
         return binding.root
@@ -100,7 +100,7 @@ class AnalyzeHomeFragment : Fragment() {
 
     private fun initViews(){
         binding.goToAnalyzeButton.setOnClickListener{
-            navigateToAnalyzeText()
+            navigateToTextInput()
         }
 
         binding.goToSearchButton.setOnClickListener{
@@ -112,9 +112,9 @@ class AnalyzeHomeFragment : Fragment() {
         }
     }
 
-    private fun navigateToAnalyzeText(){
+    private fun navigateToTextInput(){
         findNavController().navigate(
-            AnalyzeHomeFragmentDirections.actionAnalyzeHomeFragmentToAnalyzeTextFragment()
+            HomeFragmentDirections.actionHomeFragmentToTextInputFragment()
         )
     }
 

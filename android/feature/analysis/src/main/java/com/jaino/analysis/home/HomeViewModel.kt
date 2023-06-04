@@ -1,4 +1,4 @@
-package com.jaino.analyze.home
+package com.jaino.analysis.home
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
