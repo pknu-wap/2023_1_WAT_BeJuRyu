@@ -42,6 +42,7 @@ class ProfileViewModel @Inject constructor(
             repository.editNickname(localRepository.getUserId(), _nickNameState.value)
                 .onSuccess { profile ->
                     _nickNameState.value = profile.nickname
+                    localRepository.setNickname(nickname)
                 }
                 .onFailure {
                     _profileUiEvent.emit(UiEvent.Failure(it.message))

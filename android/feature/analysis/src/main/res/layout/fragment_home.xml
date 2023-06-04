@@ -1,0 +1,187 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="viewModel"
+            type="com.jaino.analysis.home.HomeViewModel" />
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:theme="@style/Theme.BeJuRyu"
+        android:background="@color/purple">
+
+        <TextView
+            android:id="@+id/home_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:text="@string/analyze_title"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_title" />
+
+        <androidx.appcompat.widget.AppCompatImageButton
+            android:id="@+id/goToSettingButton"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:background="@color/transparent"
+            android:scaleType="fitXY"
+            android:layout_margin="16dp"
+            android:tint="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/baseline_person_24" />
+
+        <TextView
+            android:id="@+id/home_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:text="@string/home_title"
+            android:fontFamily="@font/cookierun_bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            app:cardCornerRadius="20dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/goToSearchButton">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <androidx.appcompat.widget.AppCompatButton
+                    android:id="@+id/goToAnalyzeButton"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="16dp"
+                    android:background="@drawable/rounded_button_background"
+                    android:text="@string/goToAnalyze_text"
+                    android:textColor="@color/white"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rank_recyclerView" />
+
+                <TextView
+                    android:id="@+id/rank_content"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/rank_content"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rank_title" />
+
+                <TextView
+                    android:id="@+id/rank_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="32dp"
+                    android:text="@string/rank_title"
+                    android:textColor="@color/black"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rank_recyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_marginHorizontal="16dp"
+                    app:layout_constraintBottom_toTopOf="@+id/goToAnalyzeButton"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/home_rank_chipGroup" />
+
+                <com.google.android.material.chip.ChipGroup
+                    android:id="@+id/home_rank_chipGroup"
+                    android:layout_marginStart="16dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:singleSelection="true"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rank_content">
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/most_reviewed_chip"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:text="@string/most_reviewed"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@drawable/chip_ripple_color"
+                        android:onClick="@{() -> viewModel.getMostReviewedList()}"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/icon2"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@drawable/chip_ripple_color"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp"/>
+
+                    <com.google.android.material.chip.Chip
+                        android:id="@+id/highest_rated_chip"
+                        style="@style/Widget.MaterialComponents.Chip.Filter"
+                        android:text="@string/highest_rated"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@drawable/chip_ripple_color"
+                        android:onClick="@{() -> viewModel.getHighestRatedList()}"
+                        app:checkedIconEnabled="false"
+                        app:chipBackgroundColor="@color/white"
+                        app:chipIcon="@drawable/icon3"
+                        app:chipIconVisible="true"
+                        app:chipStrokeColor="@drawable/chip_ripple_color"
+                        app:chipStrokeWidth="1dp"
+                        app:iconStartPadding="8dp"/>
+                </com.google.android.material.chip.ChipGroup>
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="16dp"
+            app:layout_constraintStart_toEndOf="@+id/home_title"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/img" />
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/goToSearchButton"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="16dp"
+            android:padding="12dp"
+            android:textSize="14sp"
+            android:background="@drawable/rounded_edit_text_background"
+            android:drawableRight="@drawable/baseline_search_24"
+            android:hint="@string/dict_search"
+            android:focusable="false"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/home_content" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
