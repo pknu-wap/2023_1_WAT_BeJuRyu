@@ -5,7 +5,7 @@ plugins {
 }
 
 android {
-    namespace = "com.jaino.analyze"
+    namespace = "com.jaino.analysis"
 
     defaultConfig {
         consumerProguardFiles("consumer-rules.pro")

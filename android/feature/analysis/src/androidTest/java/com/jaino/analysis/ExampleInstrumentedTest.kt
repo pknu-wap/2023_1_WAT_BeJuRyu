@@ -1,4 +1,4 @@
-package com.jaino.analyze
+package com.jaino.analysis
 
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.test.ext.junit.runners.AndroidJUnit4

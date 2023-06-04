@@ -39,7 +39,7 @@ dependencies {
 
     implementation(project(":feature:auth"))
     implementation(project(":feature:setting"))
-    implementation(project(":feature:analyze"))
+    implementation(project(":feature:analysis"))
     implementation(project(":feature:dictionary"))
     implementation(project(":feature:review"))
     implementation(project(":feature:account"))

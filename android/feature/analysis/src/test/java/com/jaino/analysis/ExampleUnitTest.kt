@@ -1,4 +1,4 @@
-package com.jaino.analyze
+package com.jaino.analysis
 
 import org.junit.Test
 
