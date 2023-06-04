@@ -4,10 +4,14 @@ const Container = styled.div`
   width: 40rem;
   max-width: 85rem;
   height: 40rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  border: 2px solid #be12e1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
 `;
 
 const Wrapper = styled.div`
@@ -17,7 +21,7 @@ const Wrapper = styled.div`
 const ReButton = styled.button`
   height: 3rem;
   width: 10rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -79,7 +83,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1.5rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: black;
 `;
 const S = {

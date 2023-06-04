@@ -10,10 +10,10 @@ const KakaoButton = styled.button`
 const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
-  background-color: #f5c6ec;
+  background-color: #eac5f3;
   border-radius: 2rem;
   color: #f7f7f7;
-  border: 5px solid #e11299;
+  border: 2px solid #e11299;
 
   position: absolute;
   top: 50%;
@@ -24,6 +24,7 @@ const Container = styled.div`
 const explainBox = styled.div`
   width: 28rem;
   font-weight: 500;
+  font-family: "BejuryuFont";
   //background-color: white;
   color: #9a208c;
   text-align: center;
@@ -40,7 +41,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1.5rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: black;
 `;
 
@@ -49,7 +50,7 @@ const Form = styled.div`
   //height: 20rem;
   margin: 0 auto;
   text-align: center;
-  background-color: #f5c6ec;
+  background-color: #eac5f3;
 `;
 
 const bejuryuImg = styled.img`

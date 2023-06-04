@@ -37,10 +37,11 @@ function Login() {
       cookie.set("refreshToken", res.data.token.refresh);
 
       const decode = jwt_decode(res.data.token.access);
-      console.log("login하면서 decode한 것.", decode.nickname);
+      console.log("login하면서 decode한 것.", decode);
 
       // redux에 nickname 저장
       dispatch(GET_NAME(res.data.memberResponse.nickname));
+
       localStorage.setItem("user-id", res.data.memberResponse.id);
       localStorage.setItem("nickname", res.data.memberResponse.nickname);
 
@@ -80,13 +81,13 @@ function Login() {
 
             // snsLogin 함수 호출
             await snsLogin(access_token);
+            navigate("/");
 
             // test 요청 보내기
             // await sendTestRequest();
 
             // setIsLogin(true);
             //console.log(res);
-            navigate("/");
           },
           fail: (err) => {
             console.error(err);

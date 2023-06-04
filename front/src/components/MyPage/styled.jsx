@@ -4,10 +4,10 @@ const Container = styled.div`
   width: 90rem;
   //max-width: 45rem;
   height: 40rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  //border: 5px solid #e11299;
+  border: 2px solid #be12e1;
 
   //display: flex;
   justify-content: center;
@@ -23,10 +23,10 @@ const Container2 = styled.div`
   width: 40rem;
   max-width: 45rem;
   height: 20rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  border: 2px solid #be12e1;
 
   //display: flex;
   justify-content: center;
@@ -45,7 +45,7 @@ const Wrapper = styled.div`
 const SubmitButton = styled.button`
   height: 3rem;
   width: 10rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -67,7 +67,7 @@ const LogoutButton = styled.button`
   border: none;
   font-weight: 700;
   float: right;
-  //font-family: SCDream5;
+  font-family: "BejuryuFont";
   background-color: #9932cc;
   border-radius: 64px;
   color: white;
@@ -95,6 +95,7 @@ const Main = styled.div`
 `;
 
 const Form = styled.div`
+  font-family: "BejuryuFont";
   width: 100%;
   height: 30rem;
   margin: 0 auto;
@@ -122,9 +123,10 @@ const Input = styled.input`
   padding: 10px;
   //margin-top: 8px;
   border: 1px solid #e2e8c0;
-  width: 100%;
+  width: 80%;
   height: 50px;
-
+  font-family: "BejuryuFont";
+  margin: 0 auto; /* 수정된 부분: 가운데 정렬 */
   & + & {
     margin-top: 1rem;
   }
@@ -143,7 +145,7 @@ const NickCheck = styled.button`
   margin-bottom: 16px;
 
   text-align: center;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   cursor: pointer;
 `;
 
@@ -153,7 +155,7 @@ const ReviewBox = styled.div`
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 1rem;
-
+  font-family: "BejuryuFont";
   background: #f5f1f1;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);

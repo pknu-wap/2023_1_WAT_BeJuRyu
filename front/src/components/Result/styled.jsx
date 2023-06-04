@@ -4,10 +4,14 @@ const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
   height: 40rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  border: 2px solid #be12e1;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
 `;
 
 const Wrapper = styled.div`
@@ -17,7 +21,7 @@ const Wrapper = styled.div`
 const SubmitButton = styled.button`
   height: 3rem;
   width: 8rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -32,7 +36,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: #262626;
 `;
 
@@ -114,6 +118,28 @@ const Image = styled.img`
 const Text = styled.p`
   text-align: center;
   margin-top: 1rem;
+  font-family: "BejuryuFont";
+`;
+
+const FormBox = styled.div`
+  border-radius: 1rem;
+  width: 25rem;
+  height: 28rem;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  padding: 0.5rem;
+  font-family: "BejuryuFont";
+  background: #f7cefc;
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+`;
+
+const CenteredFormBox = styled(FormBox)`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
 `;
 
 const S = {
@@ -128,6 +154,8 @@ const S = {
   BtnList,
   Image,
   Text,
+  FormBox,
+  CenteredFormBox,
 };
 
 export default S;

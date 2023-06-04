@@ -4,10 +4,15 @@ const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
   height: 38rem;
-  background-color: #f5c6ec;
+  background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
-  border: 5px solid #e11299;
+  border: 2px solid #be12e1;
+
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -45%);
 `;
 
 const Wrapper = styled.div`
@@ -17,7 +22,7 @@ const Wrapper = styled.div`
 const SubmitButton = styled.button`
   height: 3rem;
   width: 8rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -32,7 +37,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: #262626;
 `;
 
@@ -76,13 +81,14 @@ const MyState = styled.div`
   opacity: 1;
   transition: opacity 0.2s ease-in-out;
   color: #9a208c;
-
+  font-family: "BejuryuFont";
   &:hover {
     opacity: 0;
   }
 `;
 
 const textInput = styled.textarea`
+  font-family: "BejuryuFont";
   width: 100%;
   height: 100px;
   font-weight: 400;
@@ -114,6 +120,12 @@ const uploader_wrapper = styled.div`
   }
 `;
 
+const Text = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+  font-family: "BejuryuFont";
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -124,6 +136,7 @@ const S = {
   textInput,
   ImageBox,
   uploader_wrapper,
+  Text,
 };
 
 export default S;

@@ -1,6 +1,12 @@
 import { createGlobalStyle } from "styled-components";
 
 const GlobalStyle = createGlobalStyle`
+@font-face {
+    font-family: 'BejuryuFont';
+    src: url('/fonts/BejuryuFont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+  }
   *, *::before, *::after {
     box-sizing: border-box;
     color: #212A3E;
