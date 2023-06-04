@@ -61,7 +61,7 @@ public class DrinkApiController {
         final List<DrinkResponse> drinks = getDrinksByRating();
         Collections.reverse(drinks);
         final List<DrinkWithRatingResponse> ranking = drinks.subList(0,10).stream()
-                .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating()))
+                .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating(),reviewService.getReviewSize(d.getId())))
                 .filter(d-> !Double.isNaN(d.getRating()))
                 .collect(Collectors.toList());
 
@@ -86,7 +86,7 @@ public class DrinkApiController {
     public ResponseEntity<DrinkRankingResponse> findTop10ByReviews() {
         final List<DrinkResponse> drinks = getDrinksByReviews();
         final List<DrinkWithRatingResponse> ranking = drinks.subList(0,10).stream()
-                .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating()))
+                .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating(),reviewService.getReviewSize(d.getId())))
                 .filter(d-> reviewService.getReviewSize(d.getId())>0)
                 .collect(Collectors.toList());
 
