@@ -71,10 +71,14 @@ public class DrinkApiController {
     }
 
     @GetMapping("/rankings/review")
-    public ResponseEntity<DrinkResponses> findTop10ByReviews() {
+    public ResponseEntity<DrinkRankingResponse> findTop10ByReviews() {
         final List<DrinkResponse> drinks = getDrinksByReviews();
+        final List<DrinkWithRatingResponse> ranking = drinks.subList(0,10).stream()
+                .map(d -> DrinkWithRatingResponse.from(d,reviewService.getAverageScore(d.getId()).getRating()))
+                .filter(d-> !Double.isNaN(d.getRating()))
+                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(new DrinkResponses(drinks.subList(0, 10)));
+        return ResponseEntity.ok(new DrinkRankingResponse(ranking));
     }
 
     private List<DrinkResponse> getDrinksByReviews() {
