@@ -86,7 +86,7 @@ function Login() {
 
             // setIsLogin(true);
             //console.log(res);
-            navigate("/");
+            navigate("/MyPage");
           },
           fail: (err) => {
             console.error(err);

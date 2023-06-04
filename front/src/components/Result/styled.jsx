@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const SubmitButton = styled.button`
   height: 3rem;
   width: 8rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -32,7 +32,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: #262626;
 `;
 
@@ -114,6 +114,7 @@ const Image = styled.img`
 const Text = styled.p`
   text-align: center;
   margin-top: 1rem;
+  font-family: "BejuryuFont";
 `;
 
 const S = {

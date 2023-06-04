@@ -36,8 +36,8 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  //const userName = localStorage.getItem("nickname");
-  const userName = useSelector((state) => state.name.name);
+  const userName = localStorage.getItem("nickname");
+  //const userName = useSelector((state) => state.name.name);
 
   const isLogin = () => {
     const token = settingCookie("get-access");
@@ -67,11 +67,13 @@ function App() {
       <ContentWrapper>
         <Header />
         <Routes>
-          {userName === "" ? (
-            <Route path="/" element={<LoginPage />} />
-          ) : (
-            <Route path="/" element={<MyPage />} />
-          )}
+          <Route
+            path="/"
+            element={userName ? <navigate to="/MyPage" /> : <LoginPage />}
+          />
+          <Route path="/" element={<MyPage />} />
+          <Route path="/login" element={<LoginPage />} />
+
           {/* <Route path="/" element={<LoginPage />} /> */}
           <Route path="/mypage" element={<MyPage />} />
           <Route path="/recommend" element={<RecommendPage />} />

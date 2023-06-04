@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const ReButton = styled.button`
   height: 3rem;
   width: 10rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -79,7 +79,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1.5rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: black;
 `;
 const S = {

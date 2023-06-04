@@ -49,7 +49,7 @@ const Navbarmenu = styled.ul`
   li {
     padding: 12px 24px;
     color: white; /* 글씨 색상 변경 */
-    font-family: Arial, Helvetica, sans-serif; /* 글씨체 변경 */
+    font-family: "BejuryuFont", Arial, Helvetica, sans-serif; /* 글씨체 변경 */
   }
   li:hover {
     background-color: #e11299;
@@ -74,6 +74,20 @@ const Navbarlink = styled.div`
   }
   > li {
     list-style: none;
+  }
+`;
+
+const CustomLink = styled(Link)`
+  text-decoration: none;
+  color: inherit;
+  font-family: "BejuryuFont";
+`;
+
+const CustomNavbarlink = styled(Navbarlink)`
+  li {
+    color: white;
+    font-size: 18px;
+    font-family: "BejuryuFont";
   }
 `;
 
@@ -137,9 +151,12 @@ export default function Header() {
       <Navbar>
         <Navbarlogo>
           <NavbarlogoImage src={logo} alt="BeJuRyu Logo" />
-          <Link to="/" style={{ textDecoration: "none", color: "inherit" }}>
+          <CustomLink
+            // to="/MyPage"
+            style={{ textDecoration: "none", color: "inherit" }}
+          >
             BeJuRyu
-          </Link>
+          </CustomLink>
         </Navbarlogo>
         {userName === "" ? (
           ""
@@ -181,9 +198,9 @@ export default function Header() {
             <div></div>
           </Navbarlink>
         ) : (
-          <Navbarlink>
-            <li style={{ color: "white", fontSize: "18px" }}>{nickname} 님</li>
-          </Navbarlink>
+          <CustomNavbarlink>
+            <li>{nickname} 님</li>
+          </CustomNavbarlink>
         )}
       </Navbar>
     </>

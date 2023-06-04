@@ -1,7 +1,10 @@
 import styled from "styled-components";
 
 const FooterDiv = styled.footer`
-  //position: absolute;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
   text-align: center;
   background-color: #9a208c;
   font-size: 1rem;
@@ -10,6 +13,7 @@ const FooterDiv = styled.footer`
   color: white;
   display: flex;
   justify-content: space-between;
+  font-family: "BejuryuFont";
 
   @media screen and (max-height: 600px) {
     height: 5rem;

@@ -33,14 +33,14 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1.5rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: black;
 `;
 
 const SubmitButton = styled.button`
   height: 3rem;
   width: 10rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #e11299;
@@ -56,7 +56,7 @@ const LogoutButton = styled.button`
   border: none;
   font-weight: 700;
   float: right;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   background-color: #9a208c;
   border-radius: 64px;
   color: white;
@@ -101,7 +101,7 @@ const WhiteBox = styled.div`
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 1rem;
-
+  font-family: "BejuryuFont";
   background: white;
   box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
   transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);

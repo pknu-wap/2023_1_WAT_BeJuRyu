@@ -157,6 +157,9 @@ function JuryuInfo() {
     navigate("/dictionary");
   };
 
+  const ranking = () => {
+    navigate("/MyPage");
+  };
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
   }
@@ -297,7 +300,10 @@ function JuryuInfo() {
             {/* <S.ReButton>리뷰 보러가기</S.ReButton> */}
           </S.ReviewBox>
         </S.WhiteBox>
-        <S.ReButton onClick={dictionary}>다른 주류 둘러보기</S.ReButton>
+        <S.ButtonContainer>
+          <S.ReButton onClick={dictionary}>다른 주류 둘러보기</S.ReButton>
+          <S.ReButton onClick={ranking}>BE주류 랭킹</S.ReButton>
+        </S.ButtonContainer>
       </S.Wrapper>
     </S.Container>
   );

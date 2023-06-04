@@ -17,7 +17,7 @@ const Wrapper = styled.div`
 const ReButton = styled.button`
   height: 3rem;
   width: 10rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   border-radius: 1rem;
   border: none;
   background-color: #9932cc;
@@ -57,8 +57,8 @@ const Form = styled.div`
 `;
 
 const WhiteBox = styled.div`
-  width: 80rem;
-  height: 35rem;
+  width: 75rem;
+  height: 30rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
@@ -95,21 +95,21 @@ const WhiteBox2 = styled.div`
 
 const FormBox = styled.div`
   width: 25rem;
-  height: 34rem;
+  height: 28rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
-
+  font-family: "BejuryuFont";
   background: pink;
 `;
 
 const ReviewBox = styled.div`
   width: 20rem;
-  height: 34rem;
+  height: 28rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
-
+  font-family: "BejuryuFont";
   background: pink;
 `;
 
@@ -118,7 +118,7 @@ const Title = styled.div`
   font-weight: 600;
   text-align: center;
   font-size: 1.2rem;
-  font-family: SCDream5;
+  font-family: "BejuryuFont";
   color: black;
 `;
 
@@ -126,6 +126,7 @@ const textInput = styled.textarea`
   width: 100%;
   height: 100px;
   font-size: 1rem;
+  font-family: "BejuryuFont";
   resize: none;
   border: 1px solid purple;
   color: black;
@@ -133,6 +134,12 @@ const textInput = styled.textarea`
     outline: none;
   }
 `;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -146,6 +153,7 @@ const S = {
   FormBox,
   ReviewBox,
   WhiteBox2,
+  ButtonContainer,
 };
 
 export default S;
