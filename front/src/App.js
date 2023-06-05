@@ -12,6 +12,7 @@ import HistoryPage from "./pages/HistoryPage";
 import NickChangePage from "./pages/NickChangePage";
 import JuryuInfoPage from "./pages/JuruInfoPage";
 import MainPage from "./pages/MainPage";
+import HistoryInfoPage from "./pages/HistoryInfoPage";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -91,6 +92,7 @@ function App() {
           <Route path="/history" element={<HistoryPage />} />
           <Route path="/nickchange" element={<NickChange />} />
           <Route path="/juryuInfo" element={<JuryuInfoPage />} />
+          <Route path="/historyInfo" element={<HistoryInfoPage />} />
         </Routes>
       </ContentWrapper>
       <Footer />
