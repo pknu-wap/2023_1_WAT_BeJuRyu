@@ -24,6 +24,7 @@ public class Analysis {
 
     @Column(name = "date")
     private LocalDateTime date;
+    @Enumerated(value = EnumType.STRING)
     private Sentiment sentiment;
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "drink_id")
