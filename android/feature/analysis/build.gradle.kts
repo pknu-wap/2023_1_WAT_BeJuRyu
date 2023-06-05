@@ -26,6 +26,7 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.material)
     implementation(libs.progressView)
+    implementation(libs.lottie)
     implementation(libs.kakao.share)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)

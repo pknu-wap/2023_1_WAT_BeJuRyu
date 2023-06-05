@@ -17,6 +17,8 @@ import com.jaino.analysis.R
 import com.jaino.analysis.databinding.FragmentResultBinding
 import com.jaino.analysis.result.ui.FeedMessage
 import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.model.analysis.AnalysisResult
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.share.ShareClient
@@ -77,11 +79,10 @@ class ResultFragment : Fragment() {
         viewModel.analysisResultUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when (it) {
-                    is ResultViewModel.UiEvent.Failure -> {
-                        if (it.message != null) {
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
                     }
+                    is UiEvent.Success -> {}
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
 
@@ -126,6 +127,16 @@ class ResultFragment : Fragment() {
                 context.showToast("연결 가능한 브라우저가 없습니다.")
             }
         }
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                viewModel.getAnalysisResult(args.analysisId)
+            }
+        ).show()
     }
 
     override fun onDestroy() {

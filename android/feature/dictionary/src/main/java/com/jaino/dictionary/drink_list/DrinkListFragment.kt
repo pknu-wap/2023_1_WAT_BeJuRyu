@@ -12,7 +12,9 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.GridLayoutManager
-import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
+import com.jaino.common.model.UiState
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.dictionary.R
 import com.jaino.dictionary.databinding.FragmentDrinkListBinding
 import com.jaino.dictionary.drink_list.adapter.DrinkDataAdapter
@@ -46,7 +48,8 @@ class DrinkListFragment : Fragment(){
         super.onViewCreated(view, savedInstanceState)
         initAdapter()
         observeData()
-        initView()
+        initViews()
+        initViewModelStates()
     }
 
     private fun initAdapter(){
@@ -60,32 +63,41 @@ class DrinkListFragment : Fragment(){
     }
 
     private fun observeData(){
-        viewModel.dictUiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+        viewModel.drinkListUiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is DrinkListViewModel.UiState.Init -> { }
-
-                    is DrinkListViewModel.UiState.Success -> {
-                        adapter.submitList(it.list)
+                    is UiState.Success -> {
+                        adapter.submitList(it.data)
                     }
 
-                    is DrinkListViewModel.UiState.Failure -> {
-                        if(it.message != null){
-                            requireContext().showToast(it.message)
-                        }
+                    is UiState.Init -> {}
+
+                    is UiState.Failure -> {}
+                }
+            }.launchIn(viewLifecycleOwner.lifecycleScope)
+
+        viewModel.drinkListUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
+            .onEach {
+                when(it){
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
                     }
+
+                    is UiEvent.Success -> {}
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun initView(){
+    private fun initViewModelStates(){
         if(args.type.isNotBlank()){
             viewModel.getDrinkListByType(args.type)
         }
         else if(args.word.isNotBlank()){
             viewModel.getDrinkListByWord(args.word)
         }
+    }
 
+    private fun initViews(){
         binding.backToListButton.setOnClickListener{
             val direction = DrinkListFragmentDirections
                 .actionDrinkListFragmentToDrinkSearchFragment()
@@ -98,6 +110,15 @@ class DrinkListFragment : Fragment(){
         findNavController().navigate(direction)
     }
 
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                initViewModelStates()
+            }
+        ).show()
+    }
 
     override fun onDestroy() {
         _binding = null

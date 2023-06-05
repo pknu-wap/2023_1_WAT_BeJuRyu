@@ -15,7 +15,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.jaino.analysis.R
 import com.jaino.analysis.databinding.FragmentHomeBinding
 import com.jaino.analysis.home.adapter.HomeRankAdapter
-import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
+import com.jaino.common.widget.ErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -76,10 +77,11 @@ class HomeFragment : Fragment() {
         viewModel.homeUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is HomeViewModel.UiEvent.Failure -> {
-                        if(it.message != null) {
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
+                    }
+                    is UiEvent.Success -> {
+
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -111,6 +113,17 @@ class HomeFragment : Fragment() {
             navigateToSetting()
         }
     }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                viewModel.getRankingList()
+            }
+        ).show()
+    }
+
 
     private fun navigateToTextInput(){
         findNavController().navigate(

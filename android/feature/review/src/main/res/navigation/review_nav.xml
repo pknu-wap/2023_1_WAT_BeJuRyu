@@ -14,22 +14,22 @@
         <deepLink
             app:uri="BeJuRyu://feature/review/list?drinkId={drinkId}" />
         <action
-            android:id="@+id/action_reviewListFragment_to_writeReviewFragment"
-            app:destination="@id/writeReviewFragment" >
+            android:id="@+id/action_reviewListFragment_to_reviewInputFragment"
+            app:destination="@id/reviewInputFragment" >
             <argument
                 android:name="drinkId"
                 app:argType="long" />
         </action>
     </fragment>
     <fragment
-        android:id="@+id/writeReviewFragment"
-        android:name="com.jaino.review.write_review.WriteReviewFragment"
-        android:label="WriteReviewFragment" >
+        android:id="@+id/reviewInputFragment"
+        android:name="com.jaino.review.review_input.ReviewInputFragment"
+        android:label="ReviewInputFragment" >
         <argument
             android:name="drinkId"
             app:argType="long" />
         <action
-            android:id="@+id/action_writeReviewFragment_to_reviewListFragment"
+            android:id="@+id/action_reviewInputFragment_to_reviewListFragment"
             app:destination="@id/reviewListFragment" >
             <argument
                 android:name="drinkId"

@@ -12,7 +12,8 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
-import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.dictionary.R
 import com.jaino.dictionary.databinding.FragmentDrinkInfoBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -71,13 +72,23 @@ class DrinkInfoFragment : Fragment() {
         viewModel.drinkInfoEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when (it) {
-                    is DrinkInfoViewModel.UiEvent.Failure -> {
-                        if (it.message != null) {
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
                     }
+
+                    is UiEvent.Success -> {}
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                viewModel.getDrinkData(args.drinkId)
+            }
+        ).show()
     }
 
     override fun onDestroy() {
