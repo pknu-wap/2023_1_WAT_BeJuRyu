@@ -10,7 +10,8 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.setting.R
 import com.jaino.setting.databinding.FragmentProfileBinding
 import dagger.hilt.android.AndroidEntryPoint
@@ -66,13 +67,25 @@ class ProfileFragment  : Fragment(){
         viewModel.profileUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is ProfileViewModel.UiEvent.Failure -> {
-                        if(it.message != null) {
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
+                    }
+
+                    is UiEvent.Success -> {
+
                     }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                viewModel.getNickName()
+            }
+        ).show()
     }
 
     private fun navigateToSetting(){
