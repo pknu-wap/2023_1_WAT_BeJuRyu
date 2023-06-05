@@ -2,6 +2,7 @@ package com.WAT.BEJURYU.dto;
 
 import com.WAT.BEJURYU.entity.Drink;
 import com.WAT.BEJURYU.entity.DrinkType;
+import com.WAT.BEJURYU.entity.Sentiment;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
@@ -18,6 +19,7 @@ public class DrinkResponse {
     private final int volume;
     private final byte[] image;
     private final DrinkType type;
+    private final Sentiment sentiment;
 
     public static DrinkResponse from(final Drink drink) {
         return new DrinkResponse(drink.getId(),
@@ -27,7 +29,8 @@ public class DrinkResponse {
                 drink.getPrice(),
                 drink.getVolume(),
                 drink.getImage(),
-                drink.getType());
+                drink.getType(),
+                drink.getSentiment());
     }
 
     public String toEncodedImage() {
