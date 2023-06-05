@@ -2,6 +2,10 @@ package com.jaino.setting.profile
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jaino.common.flow.EventFlow
+import com.jaino.common.flow.MutableEventFlow
+import com.jaino.common.flow.asEventFlow
+import com.jaino.common.model.UiEvent
 import com.jaino.data.repository.setting.ProfileRepository
 import com.jaino.data.repository.user.LocalUserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -21,8 +25,8 @@ class ProfileViewModel @Inject constructor(
     private val _nickNameState : MutableStateFlow<String> = MutableStateFlow<String>("")
     val nickNameState : StateFlow<String> get() = _nickNameState
 
-    private val _profileUiEvent : MutableSharedFlow<UiEvent> = MutableSharedFlow<UiEvent>()
-    val profileUiEvent : SharedFlow<UiEvent> get() = _profileUiEvent
+    private val _profileUiEvent : MutableEventFlow<UiEvent<Unit>> =  MutableEventFlow<UiEvent<Unit>>()
+    val profileUiEvent : EventFlow<UiEvent<Unit>> get() = _profileUiEvent.asEventFlow()
 
     fun getNickName(){
         viewModelScope.launch {
@@ -31,7 +35,7 @@ class ProfileViewModel @Inject constructor(
                     _nickNameState.value = profile.nickname
                 }
                 .onFailure {
-                    _profileUiEvent.emit(UiEvent.Failure(it.message))
+                    _profileUiEvent.emit(UiEvent.Failure(it))
                 }
         }
     }
@@ -45,12 +49,8 @@ class ProfileViewModel @Inject constructor(
                     localRepository.setNickname(nickname)
                 }
                 .onFailure {
-                    _profileUiEvent.emit(UiEvent.Failure(it.message))
+                    _profileUiEvent.emit(UiEvent.Failure(it))
                 }
         }
-    }
-
-    sealed class UiEvent{
-        data class Failure(val message: String?): UiEvent()
     }
 }
