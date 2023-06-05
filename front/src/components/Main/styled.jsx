@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 45rem;
+  width: 90rem;
   //max-width: 45rem;
-  height: 30rem;
+  height: 40rem;
   background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
@@ -96,8 +96,8 @@ const Main = styled.div`
 
 const Form = styled.div`
   font-family: "BejuryuFont";
-  width: 80%;
-  height: 17rem;
+  width: 100%;
+  height: 30rem;
   margin: 0 auto;
   padding: 2rem;
   text-align: center;

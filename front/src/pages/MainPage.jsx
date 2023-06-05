@@ -1,5 +1,5 @@
 import React from "react";
-import HistoryInfo from "../components/HistoryInfo/HistoryInfo";
+import MainP from "../components/Main/Main";
 import styled from "styled-components";
 
 const Main = styled.div`
@@ -11,14 +11,14 @@ const Main = styled.div`
 `;
 
 const Content = styled.div``;
-const HistoryInfoPage = () => {
+const MainPage = () => {
   return (
     <Main>
       <Content>
-        <HistoryInfo />
+        <MainP />
       </Content>
     </Main>
   );
 };
 
-export default HistoryInfoPage;
+export default MainPage;
