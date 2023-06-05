@@ -20,13 +20,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.jaino.analysis.R
 import com.jaino.analysis.databinding.FragmentImageInputBinding
-import com.jaino.common.extensions.showToast
 import com.jaino.common.extensions.toDateTime
 import com.jaino.common.model.UiEvent
 import com.jaino.common.utils.PickPhotoContract
 import com.jaino.common.widget.ConfirmDialog
 import com.jaino.common.widget.ErrorDialog
-import com.jaino.common.widget.LoadingDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -114,6 +112,7 @@ class ImageInputFragment : Fragment() {
         viewModel.analysisId.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach { id ->
                 if (id != -1L) {
+                    hideLoadingView()
                     navigateToResult(id)
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
@@ -122,6 +121,7 @@ class ImageInputFragment : Fragment() {
             .onEach {
                 when(it){
                     is UiEvent.Failure -> {
+                        hideLoadingView()
                         showErrorDialog(it.error)
                     }
                     is UiEvent.Success -> { }
@@ -145,13 +145,17 @@ class ImageInputFragment : Fragment() {
             "제출 하시겠습니까?",
             onDoneButtonClick = {
                 submitSource()
+                showLoadingView()
             }
         ).show()
     }
 
-    private fun showLoadingDialog(){
-        val dialog = LoadingDialog(requireContext())
-        dialog.show()
+    private fun showLoadingView(){
+        binding.loadingView.visibility = View.VISIBLE
+    }
+
+    private fun hideLoadingView(){
+        binding.loadingView.visibility = View.GONE
     }
 
     private fun showErrorDialog(error: Throwable){
@@ -161,12 +165,11 @@ class ImageInputFragment : Fragment() {
             onRetryButtonClick = {
                 submitSource()
             }
-        )
+        ).show()
     }
 
     private fun submitSource(){
         viewModel.postAnalysisSource(System.currentTimeMillis().toDateTime(), args.analyzeText)
-        showLoadingDialog()
     }
 
     private fun navigateToPermission(){
