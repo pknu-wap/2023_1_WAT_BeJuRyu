@@ -135,14 +135,14 @@ export default function Header() {
                 주류추천
               </Link>
             </li>
-            <li>
+            {/* <li>
               <Link
                 to="/MyPage"
                 style={{ textDecoration: "none", color: "inherit" }}
               >
                 마이페이지
               </Link>
-            </li>
+            </li> */}
           </Navbarmenu>
         )}
 
@@ -151,8 +151,10 @@ export default function Header() {
             <div></div>
           </Navbarlink>
         ) : (
-          <CustomNavbarlink>
-            <li>{nickname} 님</li>
+          <CustomNavbarlink to="/">
+            <li>
+              <CustomLink to="/">{nickname} 님</CustomLink>
+            </li>
           </CustomNavbarlink>
         )}
       </Navbar>
