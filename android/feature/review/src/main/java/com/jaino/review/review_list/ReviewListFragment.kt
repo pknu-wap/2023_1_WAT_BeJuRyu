@@ -14,6 +14,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
+import com.jaino.common.model.UiState
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.review.R
 import com.jaino.review.databinding.FragmentReviewListBinding
 import com.jaino.review.review_list.adapter.ReviewAdapter
@@ -48,12 +51,12 @@ class ReviewListFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         observeData()
-        initUiStates()
+        initViewModelStates()
         initViews()
         initAdapter()
     }
 
-    private fun initUiStates(){
+    private fun initViewModelStates(){
         viewModel.getReviewList(args.drinkId)
         viewModel.getDrinkInfo(args.drinkId)
     }
@@ -61,7 +64,7 @@ class ReviewListFragment : Fragment() {
     private fun initViews(){
         binding.writeReviewButton.setOnClickListener {
             val direction = ReviewListFragmentDirections
-                .actionReviewListFragmentToWriteReviewFragment(args.drinkId)
+                .actionReviewListFragmentToReviewInputFragment(args.drinkId)
             findNavController().navigate(direction)
         }
 
@@ -82,18 +85,33 @@ class ReviewListFragment : Fragment() {
         viewModel.reviewEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is ReviewListViewModel.UiEvent.Failure -> {
-                        if(it.message != null){
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
                     }
+                    is UiEvent.Success -> { }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.reviewItem.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
-                adapter.submitList(it)
+                when(it){
+                    is UiState.Init -> { }
+                    is UiState.Success -> {
+                        adapter.submitList(it.data)
+                    }
+                    is UiState.Failure -> { }
+                }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                initViewModelStates()
+            }
+        )
     }
 
 

@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
@@ -13,6 +12,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.jaino.common.model.UiEvent
+import com.jaino.common.model.UiState
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.setting.R
 import com.jaino.setting.databinding.FragmentHistoryBinding
 import com.jaino.setting.history.adapter.AnalysisHistoryAdapter
@@ -73,18 +75,37 @@ class HistoryFragment: Fragment() {
         viewModel.historyUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is HistoryViewModel.UiEvent.Failure -> {
-                        Toast.makeText(requireContext(), it.message, Toast.LENGTH_SHORT).show()
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
                     }
+                    is UiEvent.Success -> {}
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
 
         viewModel.historyListState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
-                if(it.isNotEmpty()){
-                    analysisHistoryAdapter.submitList(it)
+                when(it){
+                    is UiState.Init -> {}
+
+                    is UiState.Success -> {
+                        if(it.data.isNotEmpty()){
+                            analysisHistoryAdapter.submitList(it.data)
+                        }
+                    }
+
+                    is UiState.Failure -> {}
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                viewModel.getAnalyzeList()
+            }
+        )
     }
 
     private fun navigateToSetting(){

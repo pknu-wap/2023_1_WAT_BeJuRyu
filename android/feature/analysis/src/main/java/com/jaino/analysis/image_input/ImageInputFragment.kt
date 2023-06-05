@@ -22,8 +22,10 @@ import com.jaino.analysis.R
 import com.jaino.analysis.databinding.FragmentImageInputBinding
 import com.jaino.common.extensions.showToast
 import com.jaino.common.extensions.toDateTime
+import com.jaino.common.model.UiEvent
 import com.jaino.common.utils.PickPhotoContract
 import com.jaino.common.widget.ConfirmDialog
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.common.widget.LoadingDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -119,11 +121,10 @@ class ImageInputFragment : Fragment() {
         viewModel.analysisUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is ImageInputViewModel.UiEvent.Failure -> {
-                        if(it.message != null){
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure -> {
+                        showErrorDialog(it.error)
                     }
+                    is UiEvent.Success -> { }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
@@ -143,16 +144,29 @@ class ImageInputFragment : Fragment() {
             requireContext(),
             "제출 하시겠습니까?",
             onDoneButtonClick = {
-                viewModel.postAnalysisSource(System.currentTimeMillis().toDateTime(), args.analyzeText)
-                showLoadingDialog()
+                submitSource()
             }
         ).show()
     }
 
     private fun showLoadingDialog(){
         val dialog = LoadingDialog(requireContext())
-        dialog.setCancelable(false)
         dialog.show()
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                submitSource()
+            }
+        )
+    }
+
+    private fun submitSource(){
+        viewModel.postAnalysisSource(System.currentTimeMillis().toDateTime(), args.analyzeText)
+        showLoadingDialog()
     }
 
     private fun navigateToPermission(){

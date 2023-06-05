@@ -16,7 +16,9 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import com.jaino.common.extensions.showToast
+import com.jaino.common.model.UiEvent
 import com.jaino.common.navigation.AppNavigator
+import com.jaino.common.widget.ErrorDialog
 import com.jaino.setting.databinding.FragmentSettingBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
@@ -90,11 +92,10 @@ class SettingFragment : Fragment() {
         viewModel.settingUiEvent.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
                 when(it){
-                    is SettingViewModel.UiEvent.Failure ->{
-                        if(it.message != null){
-                            requireContext().showToast(it.message)
-                        }
+                    is UiEvent.Failure ->{
+                        showErrorDialog(it.error)
                     }
+                    is UiEvent.Success -> { }
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
 
@@ -104,6 +105,16 @@ class SettingFragment : Fragment() {
                     initNicknameColor()
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
+    }
+
+    private fun showErrorDialog(error: Throwable){
+        ErrorDialog(
+            requireContext(),
+            error = error,
+            onRetryButtonClick = {
+                viewModel.getNickname()
+            }
+        )
     }
 
     private fun navigateToAnalyze(){
