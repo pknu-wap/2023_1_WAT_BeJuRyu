@@ -2,11 +2,13 @@ package com.jaino.analysis.image_input
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jaino.common.flow.EventFlow
+import com.jaino.common.flow.MutableEventFlow
+import com.jaino.common.flow.asEventFlow
+import com.jaino.common.model.UiEvent
 import com.jaino.data.repository.analysis.AnalysisRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -24,8 +26,8 @@ class ImageInputViewModel @Inject constructor(
     private val _analysisId = MutableStateFlow<Long>(-1L)
     val analysisId : StateFlow<Long> get() = _analysisId
 
-    private val _analysisUiEvent = MutableSharedFlow<UiEvent>()
-    val analysisUiEvent : SharedFlow<UiEvent> get() = _analysisUiEvent
+    private val _analysisUiEvent : MutableEventFlow<UiEvent<Unit>> = MutableEventFlow()
+    val analysisUiEvent : EventFlow<UiEvent<Unit>> get() = _analysisUiEvent.asEventFlow()
 
     fun setImageUri(imageUri: String){
         _imageUri.value = imageUri
@@ -43,11 +45,8 @@ class ImageInputViewModel @Inject constructor(
             ).onSuccess {
                 _analysisId.value = it.analysisId
             }.onFailure {
-                _analysisUiEvent.emit(UiEvent.Failure(it.message))
+                _analysisUiEvent.emit(UiEvent.Failure(it))
             }
         }
-    }
-    sealed class UiEvent{
-        data class Failure(val message: String?) : UiEvent()
     }
 }

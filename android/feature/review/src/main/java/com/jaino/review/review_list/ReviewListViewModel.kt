@@ -2,13 +2,16 @@ package com.jaino.review.review_list
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jaino.common.flow.EventFlow
+import com.jaino.common.flow.MutableEventFlow
+import com.jaino.common.flow.asEventFlow
+import com.jaino.common.model.UiEvent
+import com.jaino.common.model.UiState
 import com.jaino.data.repository.dictionary.DrinksRepository
 import com.jaino.model.dictionary.Drink
 import model.review.ReviewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import usecase.review.GetReviewList
@@ -20,11 +23,11 @@ class ReviewListViewModel @Inject constructor(
     private val drinksRepository: DrinksRepository
 ): ViewModel() {
 
-    private val _reviewEvent = MutableSharedFlow<UiEvent>()
-    val reviewEvent : SharedFlow<UiEvent> get() = _reviewEvent
+    private val _reviewEvent = MutableEventFlow<UiEvent<Unit>>()
+    val reviewEvent : EventFlow<UiEvent<Unit>> get() = _reviewEvent.asEventFlow()
 
-    private val _reviewItem = MutableStateFlow<List<ReviewModel>>(emptyList())
-    val reviewItem : SharedFlow<List<ReviewModel>> get() = _reviewItem
+    private val _reviewItem = MutableStateFlow<UiState<List<ReviewModel>>>(UiState.Init)
+    val reviewItem : StateFlow<UiState<List<ReviewModel>>> get() = _reviewItem
     private val _reviewState = MutableStateFlow<Drink>(Drink())
     val reviewState : StateFlow<Drink> get() =  _reviewState
 
@@ -33,10 +36,10 @@ class ReviewListViewModel @Inject constructor(
         viewModelScope.launch {
             getReviewListUseCase(drinkId)
                 .onSuccess {
-                    _reviewItem.value = it
+                    _reviewItem.value = UiState.Success(it)
                 }
                 .onFailure {
-                    _reviewEvent.emit(UiEvent.Failure(it.message))
+                    _reviewEvent.emit(UiEvent.Failure(it))
                 }
         }
     }
@@ -48,12 +51,8 @@ class ReviewListViewModel @Inject constructor(
                     _reviewState.value = drinkData
                 }
                 .onFailure {
-                    _reviewEvent.emit(UiEvent.Failure("주류 정보를 불러오는데 실패하였습니다."))
+                    _reviewEvent.emit(UiEvent.Failure(it))
                 }
         }
-    }
-
-    sealed class UiEvent{
-        data class Failure(val message: String?) : UiEvent()
     }
 }

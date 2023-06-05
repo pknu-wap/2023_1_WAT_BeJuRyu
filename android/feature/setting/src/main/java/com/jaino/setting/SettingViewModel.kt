@@ -2,11 +2,13 @@ package com.jaino.setting
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.jaino.common.flow.EventFlow
+import com.jaino.common.flow.MutableEventFlow
+import com.jaino.common.flow.asEventFlow
+import com.jaino.common.model.UiEvent
 import com.jaino.data.repository.setting.ProfileRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -16,11 +18,11 @@ class SettingViewModel @Inject constructor(
     private val repository: ProfileRepository
 ): ViewModel() {
 
+    private val _settingUiEvent : MutableEventFlow<UiEvent<Unit>> = MutableEventFlow<UiEvent<Unit>>()
+    val settingUiEvent : EventFlow<UiEvent<Unit>> get() = _settingUiEvent.asEventFlow()
+
     private val _nicknameState : MutableStateFlow<String> = MutableStateFlow<String>("")
     val nicknameState : StateFlow<String> get() = _nicknameState
-
-    private val _settingUiEvent : MutableSharedFlow<UiEvent> = MutableSharedFlow<UiEvent>()
-    val settingUiEvent : SharedFlow<UiEvent> get() = _settingUiEvent
 
     fun getNickname(){
         viewModelScope.launch {
@@ -29,12 +31,8 @@ class SettingViewModel @Inject constructor(
                     _nicknameState.value = profile.nickname
                 }
                 .onFailure {
-                    _settingUiEvent.emit(UiEvent.Failure(it.message))
+                    _settingUiEvent.emit(UiEvent.Failure(it))
                 }
         }
-    }
-
-    sealed class UiEvent{
-        data class Failure(val message: String?): UiEvent()
     }
 }
