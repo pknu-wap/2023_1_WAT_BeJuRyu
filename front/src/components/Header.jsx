@@ -151,9 +151,9 @@ export default function Header() {
             <div></div>
           </Navbarlink>
         ) : (
-          <CustomNavbarlink to="/">
+          <CustomNavbarlink to="/mypage">
             <li>
-              <CustomLink to="/">{nickname} 님</CustomLink>
+              <CustomLink to="/mypage">{nickname} 님</CustomLink>
             </li>
           </CustomNavbarlink>
         )}

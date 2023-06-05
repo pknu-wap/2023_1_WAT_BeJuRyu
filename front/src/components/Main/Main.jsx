@@ -1,21 +1,15 @@
-/* TODO
-  1. [o] 닉네임 변경 기능 추가 
-  2. [o]리뷰많은 순 랭킹 조회
-  3. [o]평점순 랭킹 조회 */
-
 import S from "./styled";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import settingCookie from "../../utils/settingCookie";
 import { useDispatch } from "react-redux";
-import Logout from "./Logout";
 import authClient from "../../apis/authClient";
 import noAuthClient from "../../apis/noAuthClient";
 import CircularProgress from "@mui/material/CircularProgress";
 
 import { useSelector } from "react-redux";
 
-function MyPage() {
+function MainPage() {
   // 리뷰순 랭킹
   const [reviewRank, setReviewRank] = useState([]);
   // 평점순 랭킹
@@ -25,7 +19,7 @@ function MyPage() {
   const [selectedData, setSelectedData] = useState(null);
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
+
   const userId = parseInt(localStorage.getItem("user-id"));
 
   // 이미지 디코딩 함수
@@ -138,10 +132,6 @@ function MyPage() {
     }
   };
 
-  const changeNick = () => {
-    navigate("/nickChange");
-  };
-
   const userName = localStorage.getItem("nickname");
 
   const handleReviewData = () => {
@@ -151,21 +141,63 @@ function MyPage() {
   const handleScoreData = () => {
     setSelectedData(scoreRank);
   };
-  const MyPageView = (
+  const MainPageView = (
     <S.Container>
-      <S.Info>
-        <S.LogoutButton onClick={checkHistory}>히스토리 확인</S.LogoutButton>
-
-        <S.LogoutButton type="button" onClick={changeNick}>
-          닉네임 변경
-        </S.LogoutButton>
-        <Logout />
-      </S.Info>
-      <S.Wrapper></S.Wrapper>
+      <S.Wrapper>
+        <S.Form>
+          {userName} 님 오늘의 기분은 어떠신가요? Be주류 TOP10을 확인할 수
+          있어요!
+          {isLoading ? (
+            <S.juruBox
+              style={{
+                paddingTop: "20px",
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+              }}
+            >
+              <CircularProgress />
+            </S.juruBox>
+          ) : (
+            <>
+              <S.ButtonContainer>
+                <S.SubmitButton onClick={handleReviewData}>
+                  리뷰많은순
+                </S.SubmitButton>
+                <S.SubmitButton onClick={handleScoreData}>
+                  평점순
+                </S.SubmitButton>
+              </S.ButtonContainer>
+              <S.juruBox>
+                <S.JuruBoxContainer>
+                  {selectedData &&
+                    selectedData.map((drink, index) => (
+                      <S.ReviewBox
+                        key={index}
+                        onClick={(e) => checkJuryuInfo(e, drink.id)}
+                      >
+                        <S.Image
+                          src={decodeBase64(drink.image)}
+                          alt="주류이미지"
+                        />
+                        <h5 style={{ width: "100%", height: "30px" }}>
+                          {drink.name}
+                        </h5>
+                        <p style={{ width: "100%", height: "20px" }}>
+                          ⭐{drink.rating.toFixed(1)} ({drink.reviewCount})
+                        </p>
+                      </S.ReviewBox>
+                    ))}
+                </S.JuruBoxContainer>
+              </S.juruBox>
+            </>
+          )}
+        </S.Form>
+      </S.Wrapper>
     </S.Container>
   );
 
-  return MyPageView;
+  return MainPageView;
 }
 
-export default MyPage;
+export default MainPage;

@@ -11,6 +11,7 @@ import DictionaryPage from "./pages/DictionaryPage";
 import HistoryPage from "./pages/HistoryPage";
 import NickChangePage from "./pages/NickChangePage";
 import JuryuInfoPage from "./pages/JuruInfoPage";
+import MainPage from "./pages/MainPage";
 import axios from "axios";
 import { useEffect, useState } from "react";
 
@@ -77,7 +78,7 @@ function App() {
           {userName === "" ? (
             <Route path="/" element={<LoginPage />} />
           ) : (
-            <Route path="/" element={<MyPage />} />
+            <Route path="/" element={<MainPage />} />
           )}
           {/* <Route path="/MyPage" element={<MyPage />} /> */}
 
