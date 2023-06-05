@@ -15,7 +15,6 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
-import com.jaino.common.extensions.showToast
 import com.jaino.common.model.UiEvent
 import com.jaino.common.navigation.AppNavigator
 import com.jaino.common.widget.ErrorDialog
@@ -114,7 +113,7 @@ class SettingFragment : Fragment() {
             onRetryButtonClick = {
                 viewModel.getNickname()
             }
-        )
+        ).show()
     }
 
     private fun navigateToAnalyze(){

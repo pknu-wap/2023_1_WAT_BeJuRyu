@@ -13,7 +13,6 @@ import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jaino.common.extensions.showToast
 import com.jaino.common.model.UiEvent
 import com.jaino.common.model.UiState
 import com.jaino.common.widget.ErrorDialog
@@ -111,7 +110,7 @@ class ReviewListFragment : Fragment() {
             onRetryButtonClick = {
                 initViewModelStates()
             }
-        )
+        ).show()
     }
 
 

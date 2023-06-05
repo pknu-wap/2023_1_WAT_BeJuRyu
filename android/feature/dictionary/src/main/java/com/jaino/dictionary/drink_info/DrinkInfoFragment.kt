@@ -88,7 +88,7 @@ class DrinkInfoFragment : Fragment() {
             onRetryButtonClick = {
                 viewModel.getDrinkData(args.drinkId)
             }
-        )
+        ).show()
     }
 
     override fun onDestroy() {

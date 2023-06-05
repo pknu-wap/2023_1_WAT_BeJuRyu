@@ -105,7 +105,7 @@ class HistoryFragment: Fragment() {
             onRetryButtonClick = {
                 viewModel.getAnalyzeList()
             }
-        )
+        ).show()
     }
 
     private fun navigateToSetting(){
