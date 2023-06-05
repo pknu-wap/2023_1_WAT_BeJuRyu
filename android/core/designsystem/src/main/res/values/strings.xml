@@ -79,4 +79,6 @@
     <string name="most_reviewed">리뷰 많은 순</string>
     <string name="highest_rated">평점 높은 순</string>
     <string name="setting_nickname">%1$s님\n오늘의 기분은 어떠신가요?</string>
+    <string name="retry">다시 시도하기.</string>
+    <string name="loading_text">조금만 기다려주세요. \n오늘의 기분에 알맞는 술을 추천해드릴게요!</string>
 </resources>
