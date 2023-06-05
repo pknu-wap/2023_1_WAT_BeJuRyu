@@ -32,7 +32,7 @@ const SubmitButton = styled.button`
 `;
 
 const Title = styled.div`
-  margin: 2rem 0;
+  margin: 1rem 0;
   font-weight: 600;
   text-align: center;
   font-size: 1rem;
@@ -86,18 +86,6 @@ const MyState = styled.div`
   }
 `;
 
-const textInput = styled.textarea`
-  width: 100%;
-  height: 50%;
-  font-size: 1.2rem;
-  resize: none;
-  border: none;
-  color: #e11299;
-  &:focus {
-    outline: none;
-  }
-`;
-
 const BtnList = styled.div`
   text-align: center;
   display: flex;
@@ -108,8 +96,8 @@ const BtnList = styled.div`
 `;
 
 const Image = styled.img`
-  width: 50%;
-  height: 50%;
+  width: 100px;
+  height: 100px;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -119,6 +107,7 @@ const Text = styled.p`
   text-align: center;
   margin-top: 1rem;
   font-family: "BejuryuFont";
+  font-size: 0.7rem;
 `;
 
 const FormBox = styled.div`
@@ -129,10 +118,7 @@ const FormBox = styled.div`
   margin-bottom: 20px;
   padding: 0.5rem;
   font-family: "BejuryuFont";
-  background: #f7cefc;
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
+  //background: #f7cefc;
 `;
 
 const CenteredFormBox = styled(FormBox)`
@@ -149,7 +135,6 @@ const S = {
   WhiteBox,
   Title,
   MyState,
-  textInput,
   ImageBox,
   BtnList,
   Image,

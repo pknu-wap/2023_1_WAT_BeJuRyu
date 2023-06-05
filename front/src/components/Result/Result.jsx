@@ -91,10 +91,6 @@ function Result() {
   const handleFormSubmit = (e) => {
     e.preventDefault();
 
-    const formData = new FormData();
-    formData.append("image", selectedFile);
-    //formData.append("mood", inputValue);
-
     navigate("/result");
   };
 
@@ -109,30 +105,51 @@ function Result() {
     navigate("/recommend");
   };
 
+  // 주류 추천결과 멘트
+
+  const SAD_CONTENT =
+    "힘들 하루와 슬픔을 느끼고 있는 당신에게,\n술 한 잔하며, 슬픔이 시들어간 마음을 다시 활기차게 만들어 보는 것은 어떨까요?";
+  const HAPPY_CONTENT =
+    "일상 속에서 행복을 만끽하고 있는 당신에게, \n술 한 잔하며, 지금 이 순간에 즐거움을 더해보는 것은 어떨까요?";
+  const NEUTRAL_CONTENT =
+    "일상에서 조화와 안정을 느끼고 있는 당신에게,\n 술 한 잔하며, 가끔은 풀어내고 즐거움을 더해보는 것은 어떨까요?";
+
+  // api 요청 성공적으로 되면 그때 sentiment 추가할 것임.
+  // resultData.sentiment;
+
   return (
     <S.Container>
       <S.Wrapper>
-        <S.Title>현재 감정은{resultData.sentiment}입니다.</S.Title>
+        <S.Title>현재 감정은 기쁨!입니다.</S.Title>
         <S.WhiteBox>
-          <S.CenteredFormBox>
-            <S.Title>🍺주류정보🍺</S.Title>
-            <StyledImage src={logo} alt="주류 이미지" />
-            <StyledList>
-              <StyledListItem>
-                <ListItemText primary={drinkInfo?.name} secondary="주류 이름" />
-              </StyledListItem>
-              <StyledListItem>
-                <ListItemText primary={drinkInfo?.dosu} secondary="도수" />
-              </StyledListItem>
-              <StyledListItem>
-                <ListItemText primary={drinkInfo?.price} secondary="가격" />
-              </StyledListItem>
-              <StyledListItem>
-                <ListItemText primary={drinkInfo?.type} secondary="종류" />
-              </StyledListItem>
-            </StyledList>
-          </S.CenteredFormBox>
+          <S.Title>🤗분석결과🤗</S.Title>
+          <StyledImage
+            src={logo}
+            alt="주류 이미지"
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+            }}
+          />
+          <StyledList>
+            <StyledListItem>
+              <ListItemText primary={drinkInfo?.name} secondary="주류 이름" />
+            </StyledListItem>
+            <StyledListItem>
+              <ListItemText primary={drinkInfo?.dosu} secondary="도수" />
+            </StyledListItem>
+            <StyledListItem>
+              <ListItemText primary={drinkInfo?.price} secondary="가격" />
+            </StyledListItem>
+            <StyledListItem>
+              <ListItemText primary={drinkInfo?.type} secondary="종류" />
+            </StyledListItem>
+          </StyledList>
+
+          <S.Text>BeJuryu의 comment: {SAD_CONTENT}</S.Text>
         </S.WhiteBox>
+
         <S.BtnList>
           <S.SubmitButton onClick={handleFormSubmit}>
             결과 공유하기
