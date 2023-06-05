@@ -28,80 +28,6 @@ function MyPage() {
   const dispatch = useDispatch();
   const userId = parseInt(localStorage.getItem("user-id"));
 
-  // 이미지 디코딩 함수
-  const decodeBase64 = (base64) => {
-    const binaryString = window.atob(base64);
-    const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
-    }
-    return URL.createObjectURL(new Blob([bytes.buffer], { type: "image/png" }));
-  };
-
-  //console.log(typeof userId);
-
-  // 주류 랭킹 보여주기 위해 api 요청
-  useEffect(() => {
-    const getReviewRanking = async () => {
-      try {
-        const response = await noAuthClient({
-          method: "get",
-          url: `/drinks/rankings/review`,
-        });
-        if (response) {
-          setReviewRank(response.data.ranking);
-          setIsLoading(false);
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    const getScoreRanking = async () => {
-      try {
-        const response = await noAuthClient({
-          method: "get",
-          url: `/drinks/rankings/rating`,
-        });
-        if (response) {
-          setScoreRank(response.data.ranking);
-
-          console.log("scoreRanking", response.data);
-        }
-      } catch (error) {
-        console.error(error);
-      }
-    };
-
-    // API 요청 함수 호출
-    getReviewRanking();
-    getScoreRanking();
-  }, []);
-
-  // 각 주류 상세 페이지로 이동
-  const checkJuryuInfo = async (e, juryuId) => {
-    e.preventDefault();
-    navigate("/juryuInfo", { state: { juryuId } });
-
-    try {
-      const res = await noAuthClient({
-        method: "get",
-        url: `/drinks/${juryuId}`,
-      });
-      if (res) {
-        console.log(res);
-      } else {
-        console.log("res엄썽");
-      }
-    } catch (error) {
-      if (error.response) {
-        const err = error.response.data;
-        console.log(err);
-      }
-    }
-  };
-
   const checkHistory = async (e) => {
     e.preventDefault();
     navigate("/history");
@@ -144,13 +70,6 @@ function MyPage() {
 
   const userName = localStorage.getItem("nickname");
 
-  const handleReviewData = () => {
-    setSelectedData(reviewRank);
-  };
-
-  const handleScoreData = () => {
-    setSelectedData(scoreRank);
-  };
   const MyPageView = (
     <S.Container>
       <S.Info>
@@ -161,7 +80,15 @@ function MyPage() {
         </S.LogoutButton>
         <Logout />
       </S.Info>
-      <S.Wrapper></S.Wrapper>
+      {/* 약관 추가 */}
+      <S.Wrapper>
+        <S.Form>
+          BeJuRyu 서비스의 약관
+          <br />
+          <br />
+          우리가 다 지켜줄게여 ~
+        </S.Form>
+      </S.Wrapper>
     </S.Container>
   );
 
