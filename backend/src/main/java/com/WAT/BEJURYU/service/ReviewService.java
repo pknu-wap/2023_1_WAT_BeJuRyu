@@ -1,6 +1,5 @@
 package com.WAT.BEJURYU.service;
 
-import com.WAT.BEJURYU.dto.DrinkRatingResponse;
 import com.WAT.BEJURYU.dto.ReviewResponse;
 import com.WAT.BEJURYU.dto.ReviewResponses;
 import com.WAT.BEJURYU.dto.WriteReviewRequest;
@@ -35,14 +34,12 @@ public class ReviewService {
         return reviewRepository.countByDrinkId(drinkId);
     }
 
-    public DrinkRatingResponse getAverageScore(long drinkId) {
+    public double getAverageScore(long drinkId) {
         final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
         double sum = reviews.stream()
                 .mapToDouble(Review::getScore)
                 .sum();
-        double result = Math.round((sum / (double)reviews.size()) * 100) / 100.0;
-
-        return new DrinkRatingResponse(drinkId,result);
+        return Math.round(sum / (double) reviews.size() * 100) / 100.0;
     }
 
     @Transactional

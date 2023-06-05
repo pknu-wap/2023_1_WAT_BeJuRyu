@@ -7,8 +7,9 @@ import com.WAT.BEJURYU.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 @Service
-@Transactional
+@Transactional(readOnly = true)
 @RequiredArgsConstructor
 public class MemberService {
     private final MemberRepository memberRepository;
@@ -17,6 +18,7 @@ public class MemberService {
         return memberRepository.findById(id)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저 정보입니다."));
     }
+
     public boolean notExistById(final Long id) {
         return !memberRepository.existsById(id);
     }
@@ -26,10 +28,12 @@ public class MemberService {
 
         return MemberResponse.from(member);
     }
+
     @Transactional
-    public Member save(final Member member) {
-        return memberRepository.save(member);
+    public void save(final Member member) {
+        memberRepository.save(member);
     }
+
     @Transactional
     public MemberResponse updateNickname(MemberChangeNicknameRequest request) {
         final Member member = memberRepository.findById(request.getUserId())
