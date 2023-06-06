@@ -17,6 +17,6 @@ interface ReviewService {
     suspend fun postReview(
         @Path("drink-id") drink_id : Long,
         @Body writeDrinkReviewRequest : WriteDrinkReviewRequest
-    ): EmptyResponse
+    )
 
 }
