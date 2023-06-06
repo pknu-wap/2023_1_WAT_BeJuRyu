@@ -1,6 +1,8 @@
 package com.WAT.BEJURYU.dto;
 
 import java.time.LocalDateTime;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,6 +16,7 @@ public class AnalysisSourceRequest {
     private String textExpression;
     private String facialExpression;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+9")
     private LocalDateTime date;
 
     public AnalysisSourceRequest( final String textExpression,

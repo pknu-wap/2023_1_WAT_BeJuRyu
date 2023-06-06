@@ -33,7 +33,7 @@ public class DrinkResponse {
                 drink.getVolume(),
                 drink.getImage(),
                 drink.getType(),
-                drink.getSentiment(),
+                null,
                 rating,
                 reviewCount);
     }
