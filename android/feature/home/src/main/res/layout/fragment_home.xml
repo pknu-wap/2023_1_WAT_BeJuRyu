@@ -236,15 +236,14 @@
                         android:padding="16dp">
 
                         <TextView
-                            android:id="@+id/home_content"
+                            android:id="@+id/home_analysis_content"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
                             android:text="@string/analyze_title"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
                             android:textStyle="bold"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
+                            app:layout_constraintTop_toBottomOf="@+id/home_analysis_title" />
 
                         <ImageView
                             android:id="@+id/imageView2"
@@ -273,7 +272,7 @@
                             app:iconStartPadding="8dp"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/home_content" />
+                            app:layout_constraintTop_toBottomOf="@+id/home_analysis_content" />
 
                         <ImageView
                             android:id="@+id/imageView4"
@@ -293,6 +292,17 @@
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/imageView4"
                             app:srcCompat="@drawable/sad" />
+
+                        <TextView
+                            android:id="@+id/home_analysis_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textSize="16sp"
+                            android:textColor="@color/black"
+                            android:textStyle="bold"
+                            android:text="@string/home_analysis_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
