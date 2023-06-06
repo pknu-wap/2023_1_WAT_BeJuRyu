@@ -19,7 +19,7 @@ public final class ViewController {
 
     @GetMapping("/")
     public String allDrinks(final Model model) {
-        final List<DrinkResponse> drinks = drinkService.getAllDrinks().getDrinks();
+        final List<DrinkResponse> drinks = drinkService.getAllDrinks();
         model.addAttribute("drinks", drinks);
 
         return "drinks";

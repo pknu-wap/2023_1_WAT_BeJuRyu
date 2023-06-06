@@ -17,7 +17,7 @@ public class DrinkWithRatingResponse {
     private final int reviewCount;
     private final byte[] image;
 
-    public static DrinkWithRatingResponse from(final DrinkResponse drink,final double rating,final int reviewCount) {
+    public static DrinkWithRatingResponse from(final DrinkResponse drink, final double rating, final int reviewCount) {
         return new DrinkWithRatingResponse(drink.getId(),
                 drink.getName(),
                 drink.getType(),
@@ -26,5 +26,16 @@ public class DrinkWithRatingResponse {
                 drink.getImage());
     }
 
-    public String toEncodedImage() {return Base64.getEncoder().encodeToString(image);}
+    public static DrinkWithRatingResponse from(final Drink drink, final double rating, final int reviewCount) {
+        return new DrinkWithRatingResponse(drink.getId(),
+                drink.getName(),
+                drink.getType(),
+                rating,
+                reviewCount,
+                drink.getImage());
+    }
+
+    public String toEncodedImage() {
+        return Base64.getEncoder().encodeToString(image);
+    }
 }

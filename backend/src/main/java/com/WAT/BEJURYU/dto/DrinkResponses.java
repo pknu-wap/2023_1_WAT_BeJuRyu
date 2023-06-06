@@ -10,12 +10,4 @@ import java.util.List;
 @Getter
 public final class DrinkResponses {
     private final List<DrinkResponse> drinks;
-
-    public static DrinkResponses of(final List<Drink> drinks) {
-        final List<DrinkResponse> result = drinks.stream()
-                .map(DrinkResponse::from)
-                .toList();
-
-        return new DrinkResponses(result);
-    }
 }

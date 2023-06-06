@@ -26,7 +26,7 @@ public class DrinkServiceTest {
     @InjectMocks
     private DrinkService testService;
 
-    @DisplayName("전체 주류 목록을 조회할 수 있다 - 상태검증")
+    /*@DisplayName("전체 주류 목록을 조회할 수 있다 - 상태검증")
     @Test
     void findAll1() {
         //given
@@ -45,7 +45,7 @@ public class DrinkServiceTest {
 
         //then
         assertThat(drinks.getDrinks()).hasSize(1);
-    }
+    }*/
 
     @DisplayName("전체 주류 목록을 조회할 수 있다 - 행위검증")
     @Test

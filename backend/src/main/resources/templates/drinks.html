@@ -22,6 +22,7 @@
             <th>sweetness</th>
             <th>type</th>
             <th>volume</th>
+            <th>sentiment</th>
             <th>image</th>
         </tr>
         </thead>
@@ -35,6 +36,7 @@
             <td th:text="${drink.sweetness}"/>
             <td th:text="${drink.type}"/>
             <td th:text="${drink.volume}"/>
+            <td th:text="${drink.sentiment}"/>
             <td><img th:src="${'data:image/jpg;base64,' + drink.toEncodedImage()}" alt="" width="150" height="150"></td>
         </tr>
         </tbody>

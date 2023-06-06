@@ -35,7 +35,7 @@ class DrinkApiControllerTest {
     @Test
     void findByName() {
         given().log().all()
-                .get("/drinks/{name}", "참이슬")
+                .get("/drinks/name/{name}", "참이슬")
                 .then().log().all()
                 .statusCode(HttpStatus.OK.value())
                 .body("name", blankOrNullString());
