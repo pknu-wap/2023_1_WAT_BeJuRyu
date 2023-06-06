@@ -62,17 +62,19 @@ class ReviewListFragment : Fragment() {
 
     private fun initViews(){
         binding.writeReviewButton.setOnClickListener {
-            val direction = ReviewListFragmentDirections
-                .actionReviewListFragmentToReviewInputFragment(args.drinkId)
-            findNavController().navigate(direction)
+            navigateToInputReview()
         }
 
         binding.backButton.setOnClickListener {
-            navigatToDrinkInfo()
+            navigateToDrinkInfo()
         }
 
         binding.goToHomeButton.setOnClickListener {
             navigateToHome()
+        }
+
+        binding.emptyReviewButton.setOnClickListener{
+            navigateToInputReview()
         }
     }
 
@@ -98,7 +100,12 @@ class ReviewListFragment : Fragment() {
                 when(it){
                     is UiState.Init -> { }
                     is UiState.Success -> {
-                        adapter.submitList(it.data)
+                        if(it.data.isNotEmpty()) {
+                            adapter.submitList(it.data)
+                        }
+                        else{
+                            binding.emptyReviewCard.visibility = View.VISIBLE
+                        }
                     }
                     is UiState.Failure -> { }
                 }
@@ -115,10 +122,16 @@ class ReviewListFragment : Fragment() {
         ).show()
     }
 
-    private fun navigatToDrinkInfo(){
+    private fun navigateToDrinkInfo(){
         findNavController().navigate(
             "BeJuRyu://feature/dictionary/info?drinkId=${args.drinkId}".toUri()
         )
+    }
+
+    private fun navigateToInputReview(){
+        val direction = ReviewListFragmentDirections
+            .actionReviewListFragmentToReviewInputFragment(args.drinkId)
+        findNavController().navigate(direction)
     }
 
     private fun navigateToHome(){

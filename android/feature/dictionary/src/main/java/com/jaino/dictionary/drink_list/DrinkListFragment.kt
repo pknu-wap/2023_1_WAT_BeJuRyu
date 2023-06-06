@@ -68,7 +68,12 @@ class DrinkListFragment : Fragment(){
             .onEach {
                 when(it){
                     is UiState.Success -> {
-                        adapter.submitList(it.data)
+                        if(it.data.isNotEmpty()) {
+                            adapter.submitList(it.data)
+                        }
+                        else{
+                            binding.emptyListCard.visibility = View.VISIBLE
+                        }
                     }
 
                     is UiState.Init -> {}
@@ -99,7 +104,11 @@ class DrinkListFragment : Fragment(){
     }
 
     private fun initViews(){
-        binding.backToListButton.setOnClickListener{
+        binding.backToSearchButton.setOnClickListener{
+            navigateToSearch()
+        }
+
+        binding.emptyListButton.setOnClickListener {
             navigateToSearch()
         }
     }
