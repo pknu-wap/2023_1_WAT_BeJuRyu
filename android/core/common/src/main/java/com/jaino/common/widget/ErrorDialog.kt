@@ -41,6 +41,7 @@ class ErrorDialog(
         }
         binding.retryButton.setOnClickListener{
             onRetryButtonClick()
+            dismiss()
         }
     }
 }
