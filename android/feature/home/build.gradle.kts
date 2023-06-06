@@ -22,4 +22,5 @@ dependencies {
     implementation(libs.bundles.navigation)
     implementation(libs.material)
     implementation(libs.timber)
+    implementation(libs.systemUiController)
 }
