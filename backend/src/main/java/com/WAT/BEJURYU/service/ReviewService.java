@@ -32,11 +32,14 @@ public class ReviewService {
 
     public ReviewResponses getReviews(long drinkId) {
         final String name = drinkRepository.findById(drinkId).get().getName();
-        final List<Review> reviews = reviewRepository.findByDrinkName(name).stream()
+
+        return ReviewResponses.of(getReviewsByDrinkName(name));
+    }
+
+    public List<Review> getReviewsByDrinkName(final String name) {
+        return reviewRepository.findByDrinkName(name).stream()
                 .sorted(comparing(Review::getDate).reversed())
                 .collect(Collectors.toList());
-
-        return ReviewResponses.of(reviews);
     }
 
     public int getReviewSize(long drinkId) {

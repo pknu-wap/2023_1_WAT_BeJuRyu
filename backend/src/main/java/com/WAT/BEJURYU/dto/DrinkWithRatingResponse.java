@@ -2,11 +2,11 @@ package com.WAT.BEJURYU.dto;
 
 import com.WAT.BEJURYU.entity.Drink;
 import com.WAT.BEJURYU.entity.DrinkType;
+import com.WAT.BEJURYU.entity.Review;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
-import java.util.Base64;
-import java.util.Objects;
+import java.util.List;
 
 @Getter
 @RequiredArgsConstructor
@@ -18,37 +18,22 @@ public class DrinkWithRatingResponse {
     private final int reviewCount;
     private final byte[] image;
 
-    public static DrinkWithRatingResponse from(final DrinkResponse drink, final double rating, final int reviewCount) {
+    public static DrinkWithRatingResponse from(final List<Review> reviews) {
+        final Drink drink = reviews.get(0).getDrink();
+
         return new DrinkWithRatingResponse(drink.getId(),
                 drink.getName(),
                 drink.getType(),
-                rating,
-                reviewCount,
+                calculateRating(reviews),
+                reviews.size(),
                 drink.getImage());
     }
 
-    public static DrinkWithRatingResponse from(final Drink drink, final double rating, final int reviewCount) {
-        return new DrinkWithRatingResponse(drink.getId(),
-                drink.getName(),
-                drink.getType(),
-                rating,
-                reviewCount,
-                drink.getImage());
-    }
+    private static double calculateRating(final List<Review> reviews) {
+        final double sum = reviews.stream()
+                .mapToDouble(Review::getScore)
+                .sum();
 
-    public String toEncodedImage() {
-        return Base64.getEncoder().encodeToString(image);
-    }
-
-    @Override
-    public boolean equals(final Object o) {
-        if (this == o) return true;
-        if (!(o instanceof final DrinkWithRatingResponse that)) return false;
-        return Objects.equals(name, that.name);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(name);
+        return Math.round(sum / (double) reviews.size() * 100) / 100.0;
     }
 }

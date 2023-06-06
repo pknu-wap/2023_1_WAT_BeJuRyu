@@ -10,10 +10,11 @@ import com.WAT.BEJURYU.repository.DrinkRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Comparator;
 import java.util.List;
-import java.util.Map;
 import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparingDouble;
+import static java.util.Comparator.comparingInt;
 
 @Service
 @Transactional(readOnly = true)
@@ -48,7 +49,7 @@ public class DrinkService {
     public List<DrinkResponse> getDrinksByName(String name) {
         final List<Drink> drinks = drinkRepository.findAll().stream()
                 .filter(drink -> drink.getName().contains(name))
-                .collect(Collectors.toList());
+                .toList();
 
         return drinks.stream()
                 .map(drink -> DrinkResponse.from(drink,
@@ -64,7 +65,7 @@ public class DrinkService {
                 .map(drink -> DrinkResponse.from(drink,
                         reviewService.getAverageScore(drink.getId()),
                         reviewService.getReviewSize(drink.getId())))
-                .collect(Collectors.toList());
+                .toList();
     }
 
     @Transactional
@@ -85,29 +86,18 @@ public class DrinkService {
 
         return drinks.stream()
                 .filter(drink -> drink.getRating() != 0)
-                .sorted(Comparator.comparingDouble(DrinkWithRatingResponse::getRating).reversed())
+                .sorted(comparingDouble(DrinkWithRatingResponse::getRating).reversed())
                 .limit(10)
-                .collect(Collectors.toList());
+                .toList();
     }
 
     private List<DrinkWithRatingResponse> getDrinkWithRatingResponses() {
-        final List<Drink> drinks = drinkRepository.findAll();
-
-        final Map<String, List<DrinkWithRatingResponse>> collected = drinks.stream()
-                .map(drink -> DrinkWithRatingResponse.from(drink,
-                        reviewService.getAverageScore(drink.getId()),
-                        reviewService.getReviewSize(drink.getId())))
-                .collect(Collectors.groupingBy(DrinkWithRatingResponse::getName));
-
-        return collected.values().stream()
-                .map(list -> {
-                    final int reviewCount = list.stream().mapToInt(DrinkWithRatingResponse::getReviewCount).sum();
-                    final double rating = list.stream().mapToDouble(DrinkWithRatingResponse::getRating).sum() / list.size();
-
-                    final DrinkWithRatingResponse drink = list.get(0);
-                    return new DrinkWithRatingResponse(drink.getId(), drink.getName(), drink.getType(), rating, reviewCount, drink.getImage());
-                })
-                .collect(Collectors.toList());
+        return drinkRepository.findAll().stream()
+                .map(Drink::getName)
+                .distinct()
+                .map(reviewService::getReviewsByDrinkName)
+                .map(DrinkWithRatingResponse::from)
+                .toList();
     }
 
     public List<DrinkWithRatingResponse> findTop10ByReviews() {
@@ -115,9 +105,9 @@ public class DrinkService {
 
         return drinks.stream()
                 .filter(drink -> drink.getReviewCount() != 0)
-                .sorted(Comparator.comparingInt(DrinkWithRatingResponse::getReviewCount).reversed())
+                .sorted(comparingInt(DrinkWithRatingResponse::getReviewCount).reversed())
                 .limit(10)
-                .collect(Collectors.toList());
+                .toList();
     }
 
 }
