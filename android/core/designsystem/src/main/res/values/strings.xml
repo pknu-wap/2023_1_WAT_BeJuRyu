@@ -85,4 +85,8 @@
     <string name="home_dictionary_content">궁금한 주류의 리뷰를 확인해보세요!</string>
     <string name="item_rank_rating">%.1f (%d)</string>
     <string name="review_rating_content">별점 등록</string>
+    <string name="empty_list_content">검색결과가 없습니다!\n다른 키워드를 입력해주세요.</string>
+    <string name="empty_list_button">다시 검색하기</string>
+    <string name="empty_review_button">리뷰 작성하기</string>
+    <string name="empty_review_content">등록된 리뷰가 없습니다.\n가장 먼저 리뷰를 작성해보세요!</string>
 </resources>
