@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 
 @Service
@@ -92,11 +93,20 @@ public class DrinkService {
     private List<DrinkWithRatingResponse> getDrinkWithRatingResponses() {
         final List<Drink> drinks = drinkRepository.findAll();
 
-        return drinks.stream()
+        final Map<String, List<DrinkWithRatingResponse>> collected = drinks.stream()
                 .map(drink -> DrinkWithRatingResponse.from(drink,
                         reviewService.getAverageScore(drink.getId()),
                         reviewService.getReviewSize(drink.getId())))
-                .distinct()
+                .collect(Collectors.groupingBy(DrinkWithRatingResponse::getName));
+
+        return collected.values().stream()
+                .map(list -> {
+                    final int reviewCount = list.stream().mapToInt(DrinkWithRatingResponse::getReviewCount).sum();
+                    final double rating = list.stream().mapToDouble(DrinkWithRatingResponse::getRating).sum() / list.size();
+
+                    final DrinkWithRatingResponse drink = list.get(0);
+                    return new DrinkWithRatingResponse(drink.getId(), drink.getName(), drink.getType(), rating, reviewCount, drink.getImage());
+                })
                 .collect(Collectors.toList());
     }
 
