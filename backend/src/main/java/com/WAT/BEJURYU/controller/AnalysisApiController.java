@@ -5,7 +5,6 @@ import com.WAT.BEJURYU.auth.dto.UserId;
 import com.WAT.BEJURYU.dto.AnalysisResponse;
 import com.WAT.BEJURYU.dto.AnalysisResponses;
 import com.WAT.BEJURYU.dto.AnalysisSourceRequest;
-import com.WAT.BEJURYU.entity.Member;
 import com.WAT.BEJURYU.service.AnalysisService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +24,7 @@ public class AnalysisApiController {
 
     @GetMapping("/{analysis_id}")
     public ResponseEntity<AnalysisResponse> findAnalysis(
-        @PathVariable(value = "analysis_id") Long analysisId) {
+            @PathVariable(value = "analysis_id") Long analysisId) {
         final AnalysisResponse analysis = analysisService.getAnalysis(analysisId);
 
         return ResponseEntity.ok(analysis);
@@ -39,12 +38,12 @@ public class AnalysisApiController {
     }
 
     @PostMapping("/sources")
-    public ResponseEntity<AnalysisResponse> createAnalysisSource(@AuthParam UserId userId,
-        @RequestBody AnalysisSourceRequest sourceRequest) {
+    public ResponseEntity<Long> createAnalysisSource(@AuthParam UserId userId,
+                                                     @RequestBody AnalysisSourceRequest sourceRequest) {
         validate(sourceRequest);
 
         final AnalysisResponse analysis = analysisService.postAnalysis(userId.get(), sourceRequest);
-        return ResponseEntity.ok(analysis);
+        return ResponseEntity.ok(analysis.getId());
     }
 
     private void validate(AnalysisSourceRequest sourceRequest) {
