@@ -19,7 +19,8 @@ public class Analysis {
     private Long id;
     @Column(name = "text_expresstion")
     private String textExpression;
-    @Column(name = "facial_expression")
+    @Lob
+    @Column(name = "facial_expression", columnDefinition = "LONGBLOB")
     private byte[] facialExpression;
 
     @Column(name = "date")
