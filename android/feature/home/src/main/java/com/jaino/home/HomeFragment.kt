@@ -8,6 +8,7 @@ import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.core.content.ContextCompat.getColor
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
@@ -19,6 +20,7 @@ import com.jaino.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import land.sungbin.systemuicontroller.setStatusBarColor
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -111,6 +113,7 @@ class HomeFragment : Fragment() {
         binding.goToSettingButton.setOnClickListener{
             navigateToSetting()
         }
+        setStatusBarColor(getColor(requireContext(), com.jaino.designsystem.R.color.purple))
     }
 
     private fun showErrorDialog(error: Throwable){
