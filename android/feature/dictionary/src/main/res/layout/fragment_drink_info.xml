@@ -121,93 +121,6 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/drink_review_cardView"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@id/drink_info_card">
-
-                    <androidx.constraintlayout.widget.ConstraintLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:padding="16dp">
-
-                        <RatingBar
-                            android:id="@+id/review_rating_bar"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:enabled="false"
-                            android:isIndicator="true"
-                            android:progressTint="@color/yellow"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/review_title2" />
-
-
-                        <TextView
-                            android:id="@+id/reiview_title"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:text="@string/review_title"
-                            android:textColor="@color/black"
-                            android:textSize="18sp"
-                            android:textStyle="bold"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent" />
-
-                        <TextView
-                            android:id="@+id/review_title2"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginTop="8dp"
-                            android:text="@string/review_score_title"
-                            android:textColor="@color/black"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/reiview_title" />
-
-                        <TextView
-                            android:id="@+id/review_rating_score_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:fontFamily="@font/cookierun_bold"
-                            android:textColor="@color/yellow"
-                            android:text="4.6"
-                            app:layout_constraintBottom_toTopOf="@+id/goToReviewButton"
-                            app:layout_constraintEnd_toEndOf="@+id/review_rating_bar"
-                            app:layout_constraintStart_toStartOf="@+id/review_rating_bar"
-                            app:layout_constraintTop_toBottomOf="@+id/review_rating_bar" />
-
-                        <TextView
-                            android:id="@+id/review_max_rating_text"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginBottom="16dp"
-                            android:fontFamily="@font/cookierun_bold"
-                            android:text="@string/max_rating"
-                            app:layout_constraintBottom_toTopOf="@+id/goToReviewButton"
-                            app:layout_constraintStart_toEndOf="@+id/review_rating_score_text"
-                            app:layout_constraintTop_toBottomOf="@+id/review_rating_bar" />
-
-                        <androidx.appcompat.widget.AppCompatButton
-                            android:id="@+id/goToReviewButton"
-                            android:layout_width="0dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginVertical="16dp"
-                            android:background="@drawable/rounded_button_background"
-                            android:text="@string/write_review"
-                            android:textColor="@color/white"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent" />
-                    </androidx.constraintlayout.widget.ConstraintLayout>
-
-                </androidx.cardview.widget.CardView>
-
-                <androidx.cardview.widget.CardView
                     android:id="@+id/drink_info_card"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -369,6 +282,78 @@
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/drink_review_cardView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/drink_info_card">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:padding="16dp">
+
+                        <RatingBar
+                            android:id="@+id/review_rating_bar"
+                            style="@style/Widget.AppCompat.RatingBar.Indicator"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:enabled="false"
+                            android:isIndicator="true"
+                            android:progressTint="@color/yellow"
+                            android:rating="4.6"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/reiview_title" />
+
+
+                        <TextView
+                            android:id="@+id/reiview_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/review_title"
+                            android:textColor="@color/black"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <TextView
+                            android:id="@+id/review_rating_score_text"
+                            android:layout_width="wrap_content"
+                            android:layout_height="0dp"
+                            android:layout_marginStart="4dp"
+                            android:text="4.6점"
+                            app:layout_constraintBottom_toBottomOf="@+id/review_rating_bar"
+                            app:layout_constraintStart_toEndOf="@+id/review_rating_bar" />
+
+                        <TextView
+                            android:id="@+id/textView"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:text="24개의 리뷰"
+                            app:layout_constraintBottom_toBottomOf="@+id/reiview_title"
+                            app:layout_constraintStart_toEndOf="@+id/reiview_title" />
+
+                        <ImageView
+                            android:id="@+id/goToReviewButton"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="parent"
+                            app:srcCompat="@drawable/baseline_forward_24" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
                 </androidx.cardview.widget.CardView>
 
             </androidx.constraintlayout.widget.ConstraintLayout>
