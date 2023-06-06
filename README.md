@@ -38,7 +38,9 @@
  ┣ 📂feature
  ┃ ┣ 📂auth
  ┃ ┣ 📂setting
- ┃ ┣ 📂analyze
+ ┃ ┣ 📂analysis
+ ┃ ┣ 📂review
+ ┃ ┣ 📂account
  ┗ ┗ 📂dictionary
 ```
 
@@ -67,6 +69,8 @@
     - Material Components
     - Timber
     - ProcessPhoenix
+    - Lottie
+    - Skydoves ProgressView
 - [verison_catalog](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/develop_android/android/gradle/libs.version.toml)
 </br>
 
