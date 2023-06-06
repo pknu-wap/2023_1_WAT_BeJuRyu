@@ -23,8 +23,7 @@ public class DrinkResponse {
     private final double rating;
     private final int reviewCount;
 
-
-    public static DrinkResponse from(final Drink drink,final double rating, final int reviewCount) {
+    public static DrinkResponse from(final Drink drink, final double rating, final int reviewCount) {
         return new DrinkResponse(drink.getId(),
                 drink.getName(),
                 drink.getDosu(),

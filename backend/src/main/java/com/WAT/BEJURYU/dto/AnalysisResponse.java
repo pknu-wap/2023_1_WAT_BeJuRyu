@@ -1,18 +1,16 @@
 package com.WAT.BEJURYU.dto;
 
 import com.WAT.BEJURYU.entity.Analysis;
-import java.time.LocalDateTime;
-
-import com.WAT.BEJURYU.entity.Drink;
-import com.WAT.BEJURYU.entity.DrinkType;
 import com.WAT.BEJURYU.entity.Sentiment;
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
+import java.time.LocalDateTime;
+
 @Getter
 @RequiredArgsConstructor
-public class AnalysisResponse {
+public final class AnalysisResponse {
 
     private final Long id;
     private final String textExpression;
@@ -30,11 +28,11 @@ public class AnalysisResponse {
 
     public static AnalysisResponse from(final Analysis analysis) {
         return new AnalysisResponse(analysis.getId(),
-            analysis.getTextExpression(),
-            analysis.getFacialExpression(),
-            analysis.getDate(),
-            analysis.getSentiment(),
-            analysis.getRecommendDrink().getId(),
+                analysis.getTextExpression(),
+                analysis.getFacialExpression(),
+                analysis.getDate(),
+                analysis.getSentiment(),
+                analysis.getRecommendDrink().getId(),
                 analysis.getRecommendDrink().getName(),
                 analysis.getRecommendDrink().getDosu(),
                 analysis.getRecommendDrink().getPrice(),

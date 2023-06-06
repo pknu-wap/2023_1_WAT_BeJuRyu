@@ -13,16 +13,18 @@ public class ReviewResponse {
     private final int score;
     private final String date;
     private final String nickname;
-    private final long drink_id;
+    private final long drinkId;
+    private final int drinkVolume;
 
     public static ReviewResponse from(final Review review) {
         return new ReviewResponse(review.getId(),
-            review.getComment(),
-            review.getScore(),
-            review.getDate(),
-            review.getUser().getNickname(),
-            review.getDrink().getId()
-            );
+                review.getComment(),
+                review.getScore(),
+                review.getDate(),
+                review.getUser().getNickname(),
+                review.getDrink().getId(),
+                review.getDrink().getVolume()
+        );
     }
 
 }

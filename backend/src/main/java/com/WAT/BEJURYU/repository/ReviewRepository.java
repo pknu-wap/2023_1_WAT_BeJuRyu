@@ -10,5 +10,7 @@ import java.util.List;
 public interface ReviewRepository extends JpaRepository<Review, Long> {
     List<Review> findByDrinkId(Long drinkId);
 
+    List<Review> findByDrinkName(String drinkName);
+
     int countByDrinkId(Long drinkId);
 }

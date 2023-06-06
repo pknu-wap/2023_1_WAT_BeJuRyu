@@ -6,6 +6,7 @@ import com.WAT.BEJURYU.dto.WriteReviewRequest;
 import com.WAT.BEJURYU.entity.Drink;
 import com.WAT.BEJURYU.entity.Member;
 import com.WAT.BEJURYU.entity.Review;
+import com.WAT.BEJURYU.repository.DrinkRepository;
 import com.WAT.BEJURYU.repository.MemberRepository;
 import com.WAT.BEJURYU.repository.ReviewRepository;
 import org.springframework.stereotype.Service;
@@ -18,14 +19,17 @@ public class ReviewService {
 
     private final ReviewRepository reviewRepository;
     private final MemberRepository memberRepository;
+    private final DrinkRepository drinkRepository;
 
-    public ReviewService(ReviewRepository reviewRepository, final MemberRepository memberRepository) {
+    public ReviewService(ReviewRepository reviewRepository, final MemberRepository memberRepository, final DrinkRepository drinkRepository) {
         this.reviewRepository = reviewRepository;
         this.memberRepository = memberRepository;
+        this.drinkRepository = drinkRepository;
     }
 
     public ReviewResponses getReviews(long drinkId) {
-        final List<Review> reviews = reviewRepository.findByDrinkId(drinkId);
+        final String name = drinkRepository.findById(drinkId).get().getName();
+        final List<Review> reviews = reviewRepository.findByDrinkName(name);
 
         return ReviewResponses.of(reviews);
     }
