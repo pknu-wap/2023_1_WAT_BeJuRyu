@@ -1,12 +1,12 @@
 package com.WAT.BEJURYU.dto;
 
-import java.time.LocalDateTime;
-
 import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
+
+import java.time.LocalDateTime;
 
 @NoArgsConstructor
 @Getter
@@ -19,11 +19,11 @@ public class AnalysisSourceRequest {
     @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+9")
     private LocalDateTime date;
 
-    public AnalysisSourceRequest( final String textExpression,
-        final String facialExpression, final LocalDateTime date) {
+    public AnalysisSourceRequest(final String textExpression,
+                                 final String facialExpression, final LocalDateTime date) {
         this.textExpression = textExpression;
         this.facialExpression = facialExpression;
-        this.date = date;
+        this.date = LocalDateTime.now();
     }
 
     public boolean isNotExistExpressions() {
