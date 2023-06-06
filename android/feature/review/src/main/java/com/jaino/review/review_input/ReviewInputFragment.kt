@@ -50,6 +50,7 @@ class ReviewInputFragment : Fragment(){
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initViews()
+        initViewModelStates()
         observeData()
     }
 
@@ -84,6 +85,10 @@ class ReviewInputFragment : Fragment(){
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
+    private fun initViewModelStates(){
+        viewModel.getDrinkInfo(args.drinkId)
+    }
+
     private fun showConfirmDialog(){
         ConfirmDialog(
             requireContext(),
@@ -98,9 +103,7 @@ class ReviewInputFragment : Fragment(){
         ErrorDialog(
             requireContext(),
             error = error,
-            onRetryButtonClick = {
-                viewModel.postReview(args.drinkId)
-            }
+            onRetryButtonClick = { } // post, get 두가지 call이 존재,
         ).show()
     }
 

@@ -51,7 +51,7 @@
     <string name="review_title">구매후기</string>
     <string name="review_title_name">%1$s 리뷰</string>
     <string name="review_score_title">평점</string>
-    <string name="write_review_title">주류후기 작성</string>
+    <string name="write_review_title">주류 후기 작성</string>
     <string name="review_drink_name">주류 | %1$s</string>
     <string name="content">내용</string>
     <string name="write_review_content_hint">주류에 대한 후기를 작성해 주세요.</string>
@@ -89,4 +89,14 @@
     <string name="empty_list_button">다시 검색하기</string>
     <string name="empty_review_button">리뷰 작성하기</string>
     <string name="empty_review_content">등록된 리뷰가 없습니다.\n가장 먼저 리뷰를 작성해보세요!</string>
+    <string name="text_input_tip_content">"1. 명확하고 감정이 표현된 단어를 활용하기\n- “기쁘다”, “슬프다”, “화나다”와 같은 명확한 감정 표현을 사용하면 더 좋아요!\n\n2. 간결하고 명확한 문장을 구성하기\n- 짧고 간결한 문장을 사용하면 더 좋아요!\n\n3. 대화체나 감정을 강조하는 어구 사용하기\n- 직접 다른 사람에게 말하는 것처럼 작성하면 더 좋아요!"
+    </string>
+    <string name="text_input_tip_title">감정 작성 Tip</string>
+    <string name="text_input_tip_subTitle">이렇게 작성할 수록 인공지능이 더 잘 이해해요!</string>
+    <string name="image_input_title">감정 분석 사진 입력</string>
+    <string name="image_input_tip_content">"1. 이목구비가 다 들어난 사진\n- 각 부위의 모양과 위치를 보고 감정을 판단하기 때문에, 다 들어난 사진이 더 좋아요!\n\n2. 자세와 동작이 표현된 사진\n- 자세와 동작도 감정을 전달할 수 있기 때문에, 표현된 사진이 더 좋아요!\n\n3. 감정을 나타내는 배경이 들어난 사진\n- 얼굴이 표현된 사진이 어려우면, 배경 사진도 괜찮아요!"
+    </string>
+    <string name="home_analysis_title">감정 분석</string>
+    <string name="image_input_tip_title">사진 입력 Tip</string>
+    <string name="image_input_tip_subTitle">이런 사진일 수록 인공지능이 더 잘 이해해요!</string>
 </resources>
