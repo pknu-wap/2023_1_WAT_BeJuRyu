@@ -23,6 +23,7 @@ public final class AnalysisResponse {
     private final double dosu;
     private final int price;
     private final int volume;
+    private final int sweetness;
     private final byte[] drinkImage;
     private final String type;
 
@@ -37,6 +38,7 @@ public final class AnalysisResponse {
                 analysis.getRecommendDrink().getDosu(),
                 analysis.getRecommendDrink().getPrice(),
                 analysis.getRecommendDrink().getVolume(),
+                analysis.getRecommendDrink().getSweetness(),
                 analysis.getRecommendDrink().getImage(),
                 analysis.getRecommendDrink().getType().getLabel());
     }

@@ -45,7 +45,7 @@ class DrinkApiControllerTest {
     @Test
     void findReviewsById() {
         given().log().all()
-                .get("/drinks/{drink_id}/reviews", 1L)
+                .get("/drinks/{drink_id}/reviews", 1)
                 .then().log().all()
                 .statusCode(HttpStatus.OK.value());
     }
