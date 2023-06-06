@@ -2,6 +2,7 @@ package com.WAT.BEJURYU.controller;
 
 import com.WAT.BEJURYU.auth.config.AuthParam;
 import com.WAT.BEJURYU.auth.dto.UserId;
+import com.WAT.BEJURYU.dto.AnalysisHistory;
 import com.WAT.BEJURYU.dto.AnalysisResponse;
 import com.WAT.BEJURYU.dto.AnalysisResponses;
 import com.WAT.BEJURYU.dto.AnalysisSourceRequest;
@@ -14,6 +15,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Controller
 @RequiredArgsConstructor
@@ -31,10 +35,13 @@ public class AnalysisApiController {
     }
 
     @GetMapping
-    public ResponseEntity<AnalysisResponses> findAnalyzeByUserId(@AuthParam UserId userId) {
+    public ResponseEntity<List<AnalysisHistory>> findAnalyzeByUserId(@AuthParam UserId userId) {
         final AnalysisResponses analyze = analysisService.getAnalyze(userId.get());
+        final List<AnalysisHistory> result = analyze.getAnalyze().stream()
+                .map(AnalysisHistory::from)
+                .collect(Collectors.toList());
 
-        return ResponseEntity.ok(analyze);
+        return ResponseEntity.ok(result);
     }
 
     @PostMapping("/sources")
