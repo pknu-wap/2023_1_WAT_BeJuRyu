@@ -96,6 +96,7 @@ public class DrinkService {
                 .map(Drink::getName)
                 .distinct()
                 .map(reviewService::getReviewsByDrinkName)
+                .filter(list -> !list.isEmpty())
                 .map(DrinkWithRatingResponse::from)
                 .toList();
     }
