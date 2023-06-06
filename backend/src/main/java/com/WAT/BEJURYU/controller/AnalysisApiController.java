@@ -2,6 +2,7 @@ package com.WAT.BEJURYU.controller;
 
 import com.WAT.BEJURYU.auth.config.AuthParam;
 import com.WAT.BEJURYU.auth.dto.UserId;
+import com.WAT.BEJURYU.dto.AnalysisCreatedResponse;
 import com.WAT.BEJURYU.dto.AnalysisHistory;
 import com.WAT.BEJURYU.dto.AnalysisResponse;
 import com.WAT.BEJURYU.dto.AnalysisResponses;
@@ -45,12 +46,12 @@ public class AnalysisApiController {
     }
 
     @PostMapping("/sources")
-    public ResponseEntity<Long> createAnalysisSource(@AuthParam UserId userId,
-                                                     @RequestBody AnalysisSourceRequest sourceRequest) {
+    public ResponseEntity<AnalysisCreatedResponse> createAnalysisSource(@AuthParam UserId userId,
+                                                                        @RequestBody AnalysisSourceRequest sourceRequest) {
         validate(sourceRequest);
 
         final AnalysisResponse analysis = analysisService.postAnalysis(userId.get(), sourceRequest);
-        return ResponseEntity.ok(analysis.getId());
+        return ResponseEntity.ok(new AnalysisCreatedResponse(analysis.getId()));
     }
 
     private void validate(AnalysisSourceRequest sourceRequest) {
