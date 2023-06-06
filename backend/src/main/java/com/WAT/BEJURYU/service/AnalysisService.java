@@ -10,12 +10,12 @@ import com.WAT.BEJURYU.entity.Sentiment;
 import com.WAT.BEJURYU.repository.AnalysisRepository;
 import com.WAT.BEJURYU.repository.DrinkRepository;
 import com.WAT.BEJURYU.repository.MemberRepository;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Base64;
 import java.util.Collections;
 import java.util.List;
-import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class AnalysisService {
@@ -42,14 +42,15 @@ public class AnalysisService {
 
     public AnalysisResponse getAnalysis(long Id) {
         final Analysis analysis = analysisRepository.findById(Id)
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 정보입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 정보입니다."));
 
         return AnalysisResponse.from(analysis);
     }
+
     @Transactional
     public AnalysisResponse postAnalysis(final Long userId, final AnalysisSourceRequest sourceRequest) {
         final Member member = memberRepository.findById(userId)
-            .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
 
         final Analysis analysis = getAnalysis(sourceRequest, member);
         Analysis persistedAnalysis = analysisRepository.save(analysis);
@@ -62,7 +63,9 @@ public class AnalysisService {
         final List<Drink> drinks = drinkRepository.findBySentiment(sentiment);
         Collections.shuffle(drinks);
         final Drink recommended = drinks.get(0);
-        byte[] decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFacialExpression());
+        byte[] decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFacialExpression()
+                .replace('-', '+')
+                .replace('_', '/'));
 
         return Analysis.builder()
                 .sentiment(sentiment)
