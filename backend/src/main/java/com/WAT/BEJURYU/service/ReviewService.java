@@ -13,6 +13,9 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.stream.Collectors;
+
+import static java.util.Comparator.comparing;
 
 @Service
 public class ReviewService {
@@ -29,7 +32,9 @@ public class ReviewService {
 
     public ReviewResponses getReviews(long drinkId) {
         final String name = drinkRepository.findById(drinkId).get().getName();
-        final List<Review> reviews = reviewRepository.findByDrinkName(name);
+        final List<Review> reviews = reviewRepository.findByDrinkName(name).stream()
+                .sorted(comparing(Review::getDate).reversed())
+                .collect(Collectors.toList());
 
         return ReviewResponses.of(reviews);
     }
