@@ -63,9 +63,8 @@ public class AnalysisService {
         final List<Drink> drinks = drinkRepository.findBySentiment(sentiment);
         Collections.shuffle(drinks);
         final Drink recommended = drinks.get(0);
-        byte[] decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFacialExpression()
-                .replace('-', '+')
-                .replace('_', '/'));
+
+        byte[] decodedFacialExpression = extractFacial(sourceRequest);
 
         return Analysis.builder()
                 .sentiment(sentiment)
@@ -75,5 +74,16 @@ public class AnalysisService {
                 .textExpression(sourceRequest.getTextExpression())
                 .recommendDrink(recommended)
                 .build();
+    }
+
+    private byte[] extractFacial(final AnalysisSourceRequest sourceRequest) {
+        byte[] decodedFacialExpression = new byte[]{};
+        if (sourceRequest.isImageExist()) {
+            decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFacialExpression()
+                    .replace('-', '+')
+                    .replace('_', '/'));
+        }
+
+        return decodedFacialExpression;
     }
 }
