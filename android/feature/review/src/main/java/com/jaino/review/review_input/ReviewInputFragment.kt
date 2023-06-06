@@ -58,10 +58,6 @@ class ReviewInputFragment : Fragment(){
             navigateToList()
         }
 
-        binding.goToHomeButton.setOnClickListener {
-            navigateToDictionary()
-        }
-
         binding.reviewPostButton.setOnClickListener {
             showConfirmDialog()
         }
@@ -106,10 +102,6 @@ class ReviewInputFragment : Fragment(){
                 viewModel.postReview(args.drinkId)
             }
         ).show()
-    }
-
-    private fun navigateToDictionary(){
-        findNavController().navigate("BeJuRyu://feature/dictionary".toUri())
     }
 
     private fun navigateToList(){

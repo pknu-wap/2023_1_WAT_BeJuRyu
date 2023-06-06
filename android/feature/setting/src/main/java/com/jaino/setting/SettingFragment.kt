@@ -60,7 +60,7 @@ class SettingFragment : Fragment() {
 
     private fun initButtons(){
         binding.settingBackButton.setOnClickListener {
-            navigateToAnalyze()
+            navigateToHome()
         }
 
         binding.settingAccountCardView.setOnClickListener {
@@ -116,8 +116,8 @@ class SettingFragment : Fragment() {
         ).show()
     }
 
-    private fun navigateToAnalyze(){
-        findNavController().navigate("BeJuRyu://feature/analyze".toUri())
+    private fun navigateToHome(){
+        findNavController().navigate("BeJuRyu://feature/home".toUri())
     }
 
     private fun navigateToAccount(){

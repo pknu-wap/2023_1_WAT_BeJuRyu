@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.net.toUri
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -99,14 +100,18 @@ class DrinkListFragment : Fragment(){
 
     private fun initViews(){
         binding.backToListButton.setOnClickListener{
-            val direction = DrinkListFragmentDirections
-                .actionDrinkListFragmentToDrinkSearchFragment()
-            findNavController().navigate(direction)
+            navigateToSearch()
         }
     }
 
     private fun navigateToInfo(id : Long){
         val direction = DrinkListFragmentDirections.actionDrinkListFragmentToDrinkInfoFragment(id)
+        findNavController().navigate(direction)
+    }
+
+    private fun navigateToSearch(){
+        val direction = DrinkListFragmentDirections
+            .actionDrinkListFragmentToDrinkSearchFragment()
         findNavController().navigate(direction)
     }
 

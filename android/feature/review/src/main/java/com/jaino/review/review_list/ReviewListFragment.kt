@@ -68,9 +68,11 @@ class ReviewListFragment : Fragment() {
         }
 
         binding.backButton.setOnClickListener {
-            findNavController().navigate(
-                "BeJuRyu://feature/dictionary/info?drinkId=${args.drinkId}".toUri()
-            )
+            navigatToDrinkInfo()
+        }
+
+        binding.goToHomeButton.setOnClickListener {
+            navigateToHome()
         }
     }
 
@@ -113,6 +115,15 @@ class ReviewListFragment : Fragment() {
         ).show()
     }
 
+    private fun navigatToDrinkInfo(){
+        findNavController().navigate(
+            "BeJuRyu://feature/dictionary/info?drinkId=${args.drinkId}".toUri()
+        )
+    }
+
+    private fun navigateToHome(){
+        findNavController().navigate("BeJuRyu://feature/home".toUri())
+    }
 
     override fun onDestroy() {
         _binding = null
