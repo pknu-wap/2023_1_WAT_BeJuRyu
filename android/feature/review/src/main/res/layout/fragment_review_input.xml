@@ -38,7 +38,7 @@
 
                 <TextView
                     android:id="@+id/write_review_title"
-                    android:layout_width="0dp"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="16dp"
                     android:gravity="center"
@@ -47,7 +47,8 @@
                     android:textSize="18sp"
                     android:textStyle="bold"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/back_button"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:layout_constraintVertical_bias="1.0"
                     tools:text="주류 후기 작성" />
@@ -114,7 +115,7 @@
                             android:id="@+id/review_text_counter"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:textColor="@color/gray"
+                            android:textColor="@color/purple"
                             android:hint="@string/text_count_hint"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
@@ -135,19 +136,29 @@
                         android:layout_height="match_parent"
                         android:padding="16dp">
 
+                        <ImageView
+                            android:id="@+id/review_input_image"
+                            android:layout_width="wrap_content"
+                            android:layout_height="100dp"
+                            app:encodedImage="@{viewModel.drinkUiState.image}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/write_review_rating_title"
+                            tools:src="@drawable/whiskey" />
+
                         <RatingBar
                             android:id="@+id/write_review_rating_bar"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:layout_marginTop="8dp"
                             android:background="@color/white"
                             android:progressBackgroundTint="@color/gray"
                             android:progressTint="@color/yellow"
                             android:rating="@={viewModel.ratingCount}"
                             android:stepSize="1"
-                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/write_review_rating_title" />
+                            app:layout_constraintTop_toBottomOf="@+id/review_drink_name" />
 
                         <TextView
                             android:id="@+id/write_review_rating_title"
@@ -165,9 +176,23 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:text="@{@string/rating_score_text(viewModel.ratingCount)}"
+                            android:textColor="@color/purple"
+                            app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="@+id/write_review_rating_bar"
                             app:layout_constraintStart_toStartOf="@+id/write_review_rating_bar"
-                            app:layout_constraintTop_toBottomOf="@+id/write_review_rating_bar" />
+                            app:layout_constraintTop_toBottomOf="@+id/write_review_rating_bar"
+                            tools:text="4.0/5.0" />
+
+                        <TextView
+                            android:id="@+id/review_drink_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@{viewModel.drinkUiState.name}"
+                            android:textColor="@color/black"
+                            tools:text="위스키"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/review_input_image" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
                 </androidx.cardview.widget.CardView>
@@ -188,7 +213,7 @@
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:padding="32dp">
+                android:padding="16dp">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/review_post_button"
