@@ -1,10 +1,10 @@
 package com.jaino.network.datasource.rank
 
-import com.jaino.network.model.response.dictionary.DrinkListResponse
+import com.jaino.network.model.response.rank.RankListResponse
 
 interface RankDataSource {
 
-    suspend fun getHighestRatedList(): Result<DrinkListResponse>
+    suspend fun getHighestRatedList(): Result<RankListResponse>
 
-    suspend fun getMostReviewedList(): Result<DrinkListResponse>
+    suspend fun getMostReviewedList(): Result<RankListResponse>
 }

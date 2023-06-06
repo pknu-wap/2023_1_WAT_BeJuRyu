@@ -6,7 +6,7 @@ import com.jaino.common.flow.EventFlow
 import com.jaino.common.flow.MutableEventFlow
 import com.jaino.common.model.UiEvent
 import com.jaino.data.repository.rank.RankRepository
-import com.jaino.model.dictionary.Drink
+import com.jaino.model.rank.Rank
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -20,8 +20,8 @@ class HomeViewModel @Inject constructor(
     private val _homeUiEvent : MutableEventFlow<UiEvent<Unit>> = MutableEventFlow<UiEvent<Unit>>()
     val homeUiEvent : EventFlow<UiEvent<Unit>> get() = _homeUiEvent
 
-    private val _homeUiState : MutableStateFlow<List<Drink>> = MutableStateFlow(emptyList())
-    val homeUiState : StateFlow<List<Drink>> get() = _homeUiState
+    private val _homeUiState : MutableStateFlow<List<Rank>> = MutableStateFlow(emptyList())
+    val homeUiState : StateFlow<List<Rank>> get() = _homeUiState
 
     private val _rankingTag : MutableStateFlow<String> = MutableStateFlow(MOST_REVIEWED)
     val rankingTag: StateFlow<String> get() = _rankingTag.asStateFlow()
