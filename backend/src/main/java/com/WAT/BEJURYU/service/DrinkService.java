@@ -1,7 +1,6 @@
 package com.WAT.BEJURYU.service;
 
 import com.WAT.BEJURYU.dto.DrinkResponse;
-import com.WAT.BEJURYU.dto.DrinkResponses;
 import com.WAT.BEJURYU.dto.DrinkWithRatingResponse;
 import com.WAT.BEJURYU.dto.ReviewResponse;
 import com.WAT.BEJURYU.dto.WriteReviewRequest;
@@ -11,7 +10,6 @@ import com.WAT.BEJURYU.repository.DrinkRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -43,7 +41,7 @@ public class DrinkService {
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 주류 정보입니다."));
 
 
-        return DrinkResponse.from(drink,reviewService.getAverageScore(id),reviewService.getReviewSize(id));
+        return DrinkResponse.from(drink, reviewService.getAverageScore(id), reviewService.getReviewSize(id));
     }
 
     public List<DrinkResponse> getDrinksByName(String name) {
@@ -98,6 +96,7 @@ public class DrinkService {
                 .map(drink -> DrinkWithRatingResponse.from(drink,
                         reviewService.getAverageScore(drink.getId()),
                         reviewService.getReviewSize(drink.getId())))
+                .distinct()
                 .collect(Collectors.toList());
     }
 

@@ -6,6 +6,7 @@ import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.Base64;
+import java.util.Objects;
 
 @Getter
 @RequiredArgsConstructor
@@ -37,5 +38,17 @@ public class DrinkWithRatingResponse {
 
     public String toEncodedImage() {
         return Base64.getEncoder().encodeToString(image);
+    }
+
+    @Override
+    public boolean equals(final Object o) {
+        if (this == o) return true;
+        if (!(o instanceof final DrinkWithRatingResponse that)) return false;
+        return Objects.equals(name, that.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name);
     }
 }
