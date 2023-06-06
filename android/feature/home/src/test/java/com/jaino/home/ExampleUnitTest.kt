@@ -1,4 +1,4 @@
-package com.jaino.database
+package com.jaino.home
 
 import org.junit.Test
 
