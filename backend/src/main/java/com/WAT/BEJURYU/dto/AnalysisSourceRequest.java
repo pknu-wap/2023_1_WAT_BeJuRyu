@@ -16,15 +16,8 @@ public class AnalysisSourceRequest {
     private String textExpression;
     private String facialExpression;
     @DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
-    @JsonFormat(pattern = "yyyy-MM-dd HH:mm", timezone = "GMT+9")
-    private LocalDateTime date;
-
-    public AnalysisSourceRequest(final String textExpression,
-                                 final String facialExpression, final LocalDateTime date) {
-        this.textExpression = textExpression;
-        this.facialExpression = facialExpression;
-        this.date = LocalDateTime.now();
-    }
+    @JsonFormat(pattern = "yyyy-MM-dd HH:mm")
+    private LocalDateTime date = LocalDateTime.now();
 
     public boolean isNotExistExpressions() {
         return textExpression == null && facialExpression == null;
