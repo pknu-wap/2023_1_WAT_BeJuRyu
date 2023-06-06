@@ -41,7 +41,8 @@ const PhotoUpload = ({
       ) : (
         <div>
           <input type="file" accept="image/*" onChange={handleImageChange} />
-          <S.Text>분석하고 싶은 사진을 업로드해주세요!</S.Text>
+          <S.Text>분석받고싶은 사진을 첨부해주세요!</S.Text>
+          <S.ContentText></S.ContentText>
         </div>
       )}
     </S.ImageBox>

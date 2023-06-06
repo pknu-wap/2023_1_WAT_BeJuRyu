@@ -1,6 +1,8 @@
 /* TODO
-1. [] 주류 히스토리 페이지 대략적으로 어떻게 구현할 건지 UI
+1. [o] 주류 히스토리 페이지 대략적으로 어떻게 구현할 건지 UI
 2. [] 감정 분석 내역 리스트 형태로 => 반환 값이 id, date*/
+
+// 리스트 형식으로 들어가고 onclick 시키게끔 깔끔하게 고
 import S from "./styled";
 import { useNavigate, useEffect } from "react-router-dom";
 import { useDispatch } from "react-redux";

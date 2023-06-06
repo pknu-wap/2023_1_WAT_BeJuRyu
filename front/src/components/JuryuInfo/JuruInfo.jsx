@@ -187,7 +187,7 @@ function JuryuInfo() {
   };
 
   const ranking = () => {
-    navigate("/MyPage");
+    navigate("/");
   };
   function getLabelText(value) {
     return `${value} Star${value !== 1 ? "s" : ""}, ${labels[value]}`;
@@ -215,7 +215,8 @@ function JuryuInfo() {
     //alert("리뷰 등록이 완료되었습니다!");
     //navigate("/dictionary");
 
-    const labelKey = parseInt(value);
+    const labelKey = parseFloat(value);
+    console.log(labelKey);
 
     try {
       const res = await authClient({
@@ -319,9 +320,6 @@ function JuryuInfo() {
                   <StarIcon
                     style={{ opacity: 0.55, color: "action" }}
                     fontSize="inherit"
-                    sx={{
-                      color: "yellow",
-                    }}
                   />
                 }
               />
