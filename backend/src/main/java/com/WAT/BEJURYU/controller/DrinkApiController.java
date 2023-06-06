@@ -68,7 +68,8 @@ public class DrinkApiController {
         return ResponseEntity.ok(new DrinkRankingResponse(ranking));
     }
 
-    /*private List<DrinkResponse> getDrinksByRating() {
+    /* double인 rating이라서 그런지 ㅠㅠ sort가 안되는 이슈.....ㅠ....
+    private List<DrinkResponse> getDrinksByRating() {
         final DrinkResponses drinks = drinkService.getAllDrinks();
         return drinks.getDrinks().stream()
                 .sorted((drink1, drink2) -> (int) (reviewService.getAverageScore(drink2.getId()).getRating() - reviewService.getAverageScore(drink1.getId()).getRating()))
