@@ -101,13 +101,13 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="match_parent"
+                android:padding="16dp">
 
                 <androidx.appcompat.widget.AppCompatButton
                     android:id="@+id/write_review_button"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_margin="32dp"
                     android:background="@drawable/rounded_button_background"
                     android:text="@string/write_review"
                     android:textColor="@color/white"
