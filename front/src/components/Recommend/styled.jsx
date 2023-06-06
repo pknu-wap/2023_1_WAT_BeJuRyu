@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 30rem;
   max-width: 45rem;
-  height: 38rem;
+  height: 40rem;
   background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
@@ -61,7 +61,7 @@ const WhiteBox = styled.div`
 
 const ImageBox = styled.div`
   width: 25rem;
-  height: 15rem;
+  height: 17rem;
   margin-top: 20px;
   margin: 0 auto;
   padding: 2rem;
@@ -121,9 +121,23 @@ const uploader_wrapper = styled.div`
 `;
 
 const Text = styled.p`
+  color: #9a208c;
   text-align: center;
-  margin-top: 1rem;
+  //margin-top: 1rem;
   font-family: "BejuryuFont";
+`;
+
+const ContentText = styled.p`
+  color: #9a208c;
+  text-align: center;
+  font-size: 0.9rem;
+  //margin-top: 0.5rem;
+  font-family: "BejuryuFont";
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
 `;
 
 const S = {
@@ -137,6 +151,8 @@ const S = {
   ImageBox,
   uploader_wrapper,
   Text,
+  ContentText,
+  ButtonContainer,
 };
 
 export default S;

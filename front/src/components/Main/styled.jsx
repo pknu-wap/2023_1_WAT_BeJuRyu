@@ -3,7 +3,7 @@ import styled from "styled-components";
 const Container = styled.div`
   width: 90rem;
   //max-width: 45rem;
-  height: 40rem;
+  height: 34rem;
   background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
