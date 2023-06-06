@@ -53,7 +53,7 @@ class DrinkInfoFragment : Fragment() {
         }
 
         binding.goToHomeButton.setOnClickListener {
-            findNavController().navigate("BeJuRyu://feature/analyze".toUri())
+            navigateToHome()
         }
 
         binding.goToSearchButton.setOnClickListener {
@@ -89,6 +89,10 @@ class DrinkInfoFragment : Fragment() {
                 viewModel.getDrinkData(args.drinkId)
             }
         ).show()
+    }
+
+    private fun navigateToHome(){
+        findNavController().navigate("BeJuRyu://feature/home".toUri())
     }
 
     override fun onDestroy() {

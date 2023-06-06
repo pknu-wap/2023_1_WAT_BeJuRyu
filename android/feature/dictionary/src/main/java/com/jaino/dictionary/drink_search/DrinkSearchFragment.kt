@@ -42,7 +42,7 @@ class DrinkSearchFragment : Fragment() {
 
     private fun initView(){
         binding.backToAnalyzeButton.setOnClickListener{
-            findNavController().navigate("BeJuRyu://feature/analyze".toUri())
+            navigateToHome()
         }
 
         binding.searchEditTextView.setOnEditorActionListener { textView, actionId, _ ->
@@ -70,6 +70,10 @@ class DrinkSearchFragment : Fragment() {
         val direction = DrinkSearchFragmentDirections
             .actionDrinkSearchFragmentToDrinkListFragment(word, type)
         findNavController().navigate(direction)
+    }
+
+    private fun navigateToHome(){
+        findNavController().navigate("BeJuRyu://feature/home".toUri())
     }
 
     override fun onDestroy() {
