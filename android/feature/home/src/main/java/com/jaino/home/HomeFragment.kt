@@ -1,4 +1,4 @@
-package com.jaino.analysis.home
+package com.jaino.home
 
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -12,11 +12,10 @@ import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.jaino.analysis.R
-import com.jaino.analysis.databinding.FragmentHomeBinding
-import com.jaino.analysis.home.adapter.HomeRankAdapter
+import com.jaino.home.adapter.HomeRankAdapter
 import com.jaino.common.model.UiEvent
 import com.jaino.common.widget.ErrorDialog
+import com.jaino.home.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
@@ -126,9 +125,7 @@ class HomeFragment : Fragment() {
 
 
     private fun navigateToTextInput(){
-        findNavController().navigate(
-            HomeFragmentDirections.actionHomeFragmentToTextInputFragment()
-        )
+        findNavController().navigate("BeJuRyu://feature/analysis/text".toUri())
     }
 
     private fun navigateToSetting(){
