@@ -49,7 +49,10 @@ class DrinkInfoFragment : Fragment() {
 
     private fun initViews(){
         binding.backButton.setOnClickListener {
-            findNavController().popBackStack(R.id.drinkListFragment, false)
+            val navigation = findNavController().popBackStack(R.id.drinkListFragment, false)
+            if(!navigation){ // backstack에 drinkList가 없는 경우, 홈으로 이동
+                navigateToHome()
+            }
         }
 
         binding.goToHomeButton.setOnClickListener {
@@ -57,14 +60,11 @@ class DrinkInfoFragment : Fragment() {
         }
 
         binding.goToSearchButton.setOnClickListener {
-            val direction = DrinkInfoFragmentDirections
-                .actionDrinkInfoFragmentToDrinkSearchFragment()
-            findNavController().navigate(direction)
+            navigateToSearch()
         }
 
-        binding.goToReviewButton.setOnClickListener{
-            findNavController()
-                .navigate("BeJuRyu://feature/review/list?drinkId=${args.drinkId}".toUri())
+        binding.drinkReviewCardView.setOnClickListener{
+            navigateToReview()
         }
     }
 
@@ -93,6 +93,17 @@ class DrinkInfoFragment : Fragment() {
 
     private fun navigateToHome(){
         findNavController().navigate("BeJuRyu://feature/home".toUri())
+    }
+
+    private fun navigateToSearch(){
+        val direction = DrinkInfoFragmentDirections
+            .actionDrinkInfoFragmentToDrinkSearchFragment()
+        findNavController().navigate(direction)
+    }
+
+    private fun navigateToReview(){
+        findNavController()
+            .navigate("BeJuRyu://feature/review/list?drinkId=${args.drinkId}".toUri())
     }
 
     override fun onDestroy() {
