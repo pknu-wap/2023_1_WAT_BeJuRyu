@@ -96,6 +96,7 @@
     <string name="image_input_title">감정 분석 사진 입력</string>
     <string name="image_input_tip_content">"1. 이목구비가 다 들어난 사진\n- 각 부위의 모양과 위치를 보고 감정을 판단하기 때문에, 다 들어난 사진이 더 좋아요!\n\n2. 자세와 동작이 표현된 사진\n- 자세와 동작도 감정을 전달할 수 있기 때문에, 표현된 사진이 더 좋아요!\n\n3. 감정을 나타내는 배경이 들어난 사진\n- 얼굴이 표현된 사진이 어려우면, 배경 사진도 괜찮아요!"
     </string>
+    <string name="home_analysis_title">감정 분석</string>
     <string name="image_input_tip_title">사진 입력 Tip</string>
     <string name="image_input_tip_subTitle">이런 사진일 수록 인공지능이 더 잘 이해해요!</string>
 </resources>
