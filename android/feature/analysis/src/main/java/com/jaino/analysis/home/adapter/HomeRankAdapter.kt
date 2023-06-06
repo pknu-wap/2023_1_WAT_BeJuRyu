@@ -6,19 +6,19 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.jaino.analysis.databinding.ItemRankBinding
-import com.jaino.model.dictionary.Drink
+import com.jaino.model.rank.Rank
 
 class HomeRankAdapter(
     private val itemClick : (Long) -> Unit
-) : ListAdapter<Drink, HomeRankAdapter.RankViewHolder>(callback) {
+) : ListAdapter<Rank, HomeRankAdapter.RankViewHolder>(callback) {
 
     companion object{
-        val callback = object : DiffUtil.ItemCallback<Drink>(){
-            override fun areItemsTheSame(oldItem: Drink, newItem: Drink): Boolean {
+        val callback = object : DiffUtil.ItemCallback<Rank>(){
+            override fun areItemsTheSame(oldItem: Rank, newItem: Rank): Boolean {
                 return oldItem == newItem
             }
 
-            override fun areContentsTheSame(oldItem: Drink, newItem: Drink): Boolean {
+            override fun areContentsTheSame(oldItem: Rank, newItem: Rank): Boolean {
                 return oldItem.name == newItem.name
             }
         }
@@ -35,7 +35,7 @@ class HomeRankAdapter(
 
     inner class RankViewHolder(private val binding: ItemRankBinding)
         : RecyclerView.ViewHolder(binding.root){
-        fun bind(item : Drink){
+        fun bind(item : Rank){
             binding.item = item
             binding.root.setOnClickListener {
                 itemClick(item.id)

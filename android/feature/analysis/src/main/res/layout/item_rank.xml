@@ -5,7 +5,7 @@
     <data>
         <variable
             name="item"
-            type="com.jaino.model.dictionary.Drink" />
+            type="com.jaino.model.rank.Rank" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +43,7 @@
                     android:textColor="@color/black"
                     app:layout_constraintStart_toEndOf="@+id/imageView3"
                     app:layout_constraintTop_toBottomOf="@+id/item_rank_name"
-                    android:text="4.0 (32)" />
+                    android:text="@{@string/item_rank_rating(item.rating, item.reviewCount)}" />
 
                 <TextView
                     android:id="@+id/item_rank_name"
