@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/analyze_nav"
+    app:startDestination="@id/textInputFragment">
+    <deepLink app:uri="BeJuRyu://feature/analyze" />
+
+    <fragment
+        android:id="@+id/resultFragment"
+        android:name="com.jaino.analysis.result.ResultFragment"
+        android:label="ResultFragment"
+        tools:layout="@layout/fragment_result">
+        <argument
+            android:name="analysisId"
+            app:argType="long" />
+        <deepLink app:uri="BeJuRyu://feature/analyze/result?analysisId={analysisId}"/>
+    </fragment>
+    <fragment
+        android:id="@+id/cameraFragment"
+        android:name="com.jaino.analysis.camera.CameraFragment"
+        android:label="CameraFragment"
+        tools:layout="@layout/fragment_camera">
+        <action
+            android:id="@+id/action_cameraFragment_to_imageInputFragment"
+            app:destination="@id/imageInputFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/textInputFragment"
+        android:name="com.jaino.analysis.text_input.TextInputFragment"
+        android:label="TextInputFragment"
+        tools:layout="@layout/fragment_text_input">
+        <deepLink app:uri="BeJuRyu://feature/analysis/text" />
+        <action
+            android:id="@+id/action_textInputFragment_to_imageInputFragment"
+            app:destination="@id/imageInputFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/permissionsFragment"
+        android:name="com.jaino.analysis.camera.PermissionsFragment"
+        android:label="PermissionsFragment"
+        tools:layout="@layout/dialog_choose_tools">
+        <action
+            android:id="@+id/action_permissionsFragment_to_cameraFragment"
+            app:destination="@id/cameraFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/imageInputFragment"
+        android:name="com.jaino.analysis.image_input.ImageInputFragment"
+        android:label="ImageInputFragment"
+        tools:layout="@layout/fragment_image_input">
+        <action
+            android:id="@+id/action_imageInputFragment_to_permissionsFragment"
+            app:destination="@id/permissionsFragment" />
+        <action
+            android:id="@+id/action_imageInputFragment_to_resultFragment"
+            app:destination="@id/resultFragment" >
+            <argument
+                android:name="analysisId"
+                app:argType="long" />
+        </action>
+        <argument
+            android:name="imageUri"
+            app:argType="string" />
+        <argument
+            android:name="analyzeText"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_imageInputFragment_to_textInputFragment"
+            app:destination="@id/textInputFragment" />
+    </fragment>
+</navigation>

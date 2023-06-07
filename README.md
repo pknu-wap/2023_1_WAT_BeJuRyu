@@ -20,6 +20,60 @@
 	</h3>	
 </p>
 
+## Android Modules 📁 
+
+```
+ 📁android
+ ┣ 📂app
+ ┣ 📂core
+ ┃ ┣ 📂data
+ ┃ ┣ 📂domain
+ ┃ ┣ 📂designsystem
+ ┃ ┣ 📂model
+ ┃ ┣ 📂network
+ ┃ ┣ 📂common
+ ┃ ┗ 📂datastore
+ ┣ 📂build-logic
+ ┃ ┗ 📂convention
+ ┣ 📂feature
+ ┃ ┣ 📂auth
+ ┃ ┣ 📂setting
+ ┃ ┣ 📂analysis
+ ┃ ┣ 📂review
+ ┃ ┣ 📂account
+ ┃ ┣ 📂home
+ ┗ ┗ 📂dictionary
+```
+
+
+## Android Tech Stack
+
+- Minumum SDK 26 & Target SDK 33
+- Kotlin
+    - Kotlin 1.8.10v
+    - Coroutines & Flow 
+- Dependency Injection
+    - Dagger Hilt
+- Android Jetpack
+    - CameraX & PhotoPicker
+    - Navigation Component
+    - DataBinding & ViewBinding
+- Local 
+    - Encrypted SharedPreference
+- Remote
+    - Retrofit2 & OkHttp3
+    - Kotlinx Serialization
+- Firebase
+    - Analytics & Crashlytics
+- Third Party
+    - Glide
+    - Material Components
+    - Timber
+    - ProcessPhoenix
+    - Lottie
+    - Skydoves ProgressView
+- [verison_catalog](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/develop_android/android/gradle/libs.version.toml)
+</br>
 
 ## 🍷 Contributors 🍷
 

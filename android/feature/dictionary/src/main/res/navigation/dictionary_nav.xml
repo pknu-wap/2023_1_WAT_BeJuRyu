@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/dictionary_nav"
+    app:startDestination="@id/drinkSearchFragment">
+    <deepLink app:uri="BeJuRyu://feature/dictionary" />
+    <fragment
+        android:id="@+id/drinkSearchFragment"
+        android:name="com.jaino.dictionary.drink_search.DrinkSearchFragment"
+        android:label="DrinkSearchFragment" >
+        <action
+            android:id="@+id/action_drinkSearchFragment_to_drinkListFragment"
+            app:destination="@id/drinkListFragment" >
+            <argument
+                android:name="word"
+                app:argType="string"/>
+            <argument
+                android:name="type"
+                app:argType="string" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/drinkListFragment"
+        android:name="com.jaino.dictionary.drink_list.DrinkListFragment"
+        android:label="DrinkListFragment" >
+        <argument
+            android:name="word"
+            app:argType="string"/>
+        <argument
+            android:name="type"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_drinkListFragment_to_drinkSearchFragment"
+            app:destination="@id/drinkSearchFragment" />
+        <action
+            android:id="@+id/action_drinkListFragment_to_drinkInfoFragment"
+            app:destination="@id/drinkInfoFragment">
+            <argument
+                android:name="drinkId"
+                app:argType="long" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/drinkInfoFragment"
+        android:name="com.jaino.dictionary.drink_info.DrinkInfoFragment"
+        android:label="DrinkInfoFragment" >
+        <argument
+            android:name="drinkId"
+            android:defaultValue="0L" />
+        <deepLink app:uri="BeJuRyu://feature/dictionary/info?drinkId={drinkId}" />
+        <action
+            android:id="@+id/action_drinkInfoFragment_to_drinkSearchFragment"
+            app:destination="@id/drinkSearchFragment" />
+        <action
+            android:id="@+id/action_drinkInfoFragment_to_drinkListFragment"
+            app:destination="@id/drinkListFragment" >
+            <argument
+                android:name="word"
+                app:argType="string"/>
+            <argument
+                android:name="type"
+                app:argType="string" />
+        </action>
+    </fragment>
+</navigation>

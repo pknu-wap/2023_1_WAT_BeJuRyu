@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="32dp"
+    android:theme="@style/Theme.BeJuRyu">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/camera_picture_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:background="@drawable/rounded_button_background"
+        android:text="@string/dialog_camera_text"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/album_picture_button"
+        app:layout_constraintTop_toTopOf="@+id/album_picture_button"
+        tools:text="카메라로 찍기" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/album_picture_button"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/border_button"
+        android:textColor="@color/purple"
+        tools:text="앨범에서 가져오기"
+        android:text="@string/dialog_album_text"
+        android:layout_marginEnd="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/camera_picture_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dialog_choose_tools_title" />
+
+    <TextView
+        android:id="@+id/dialog_choose_tools_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="감정 분석에 사용할 사진을 선택해주세요."
+        android:textColor="@color/black"
+        android:textSize="18sp"
+        android:text="@string/dialog_choose_tools_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/review_nav"
+    app:startDestination="@id/reviewListFragment">
+    <deepLink app:uri="BeJuRyu://feature/review" />
+    <fragment
+        android:id="@+id/reviewListFragment"
+        android:name="com.jaino.review.review_list.ReviewListFragment"
+        android:label="ReviewListFragment">
+        <argument
+            android:name="drinkId"
+            android:defaultValue="0L"/>
+        <deepLink
+            app:uri="BeJuRyu://feature/review/list?drinkId={drinkId}" />
+        <action
+            android:id="@+id/action_reviewListFragment_to_reviewInputFragment"
+            app:destination="@id/reviewInputFragment" >
+            <argument
+                android:name="drinkId"
+                app:argType="long" />
+        </action>
+    </fragment>
+    <fragment
+        android:id="@+id/reviewInputFragment"
+        android:name="com.jaino.review.review_input.ReviewInputFragment"
+        android:label="ReviewInputFragment" >
+        <argument
+            android:name="drinkId"
+            app:argType="long" />
+        <action
+            android:id="@+id/action_reviewInputFragment_to_reviewListFragment"
+            app:destination="@id/reviewListFragment" >
+            <argument
+                android:name="drinkId"
+                app:argType="long" />
+        </action>
+    </fragment>
+</navigation>
