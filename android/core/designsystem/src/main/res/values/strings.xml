@@ -74,8 +74,8 @@
     <string name="drink_category_title">카테고리</string>
     <string name="max_rating">/5</string>
     <string name="text_count_hint">0/10자 이상</string>
-    <string name="history_date">일시 | %1$s</string>
-    <string name="history_sentiment">결과 | %1$s</string>
+    <string name="history_date">%1$s</string>
+    <string name="history_sentiment">분석 감정 : %1$s</string>
     <string name="most_reviewed">리뷰 많은 순</string>
     <string name="highest_rated">평점 높은 순</string>
     <string name="setting_nickname">%1$s님\n오늘의 기분은 어떠신가요?</string>
@@ -99,4 +99,8 @@
     <string name="home_analysis_title">감정 분석</string>
     <string name="image_input_tip_title">사진 입력 Tip</string>
     <string name="image_input_tip_subTitle">이런 사진일 수록 인공지능이 더 잘 이해해요!</string>
+    <string name="drink_name_volume">%s(%dml)</string>
+    <string name="reviewCount">%d개의 리뷰</string>
+    <string name="result_input_title">입력 정보</string>
+    <string name="analysis_result_title">주류 추천 결과"</string>
 </resources>
