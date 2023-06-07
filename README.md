@@ -21,7 +21,8 @@
 </p>
 
 ## Module Dependency
-![BE주류 Module Dependency](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/assets/77484719/a11eb5d3-52d9-43b9-980d-15aee9942afe)
+![BE주류 Module Dependency](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/assets/77484719/8728ac34-7cac-4cf1-9eef-6bd29875eee0)
+
 
 ## Android Tech Stack
 
