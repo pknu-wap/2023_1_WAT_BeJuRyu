@@ -39,6 +39,9 @@ dependencies {
 
     //thymeleaf
     implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
+
+    //JSON
+    implementation 'org.json:json:20230227'
 }
 
 tasks.named('test') {

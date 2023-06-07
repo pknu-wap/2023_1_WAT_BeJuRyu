@@ -1,5 +1,6 @@
 package com.WAT.BEJURYU.dto;
 
+import com.WAT.BEJURYU.entity.Analysis;
 import com.WAT.BEJURYU.entity.Sentiment;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
@@ -17,4 +18,7 @@ public final class AnalysisHistory {
         return new AnalysisHistory(analysis.getId(), analysis.getDate(), analysis.getSentiment());
     }
 
+    public static AnalysisHistory from(final Analysis analysis) {
+        return new AnalysisHistory(analysis.getId(), analysis.getDate(), analysis.getSentiment());
+    }
 }

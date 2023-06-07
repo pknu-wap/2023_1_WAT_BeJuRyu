@@ -1,7 +1,7 @@
 package com.WAT.BEJURYU.service;
 
+import com.WAT.BEJURYU.dto.AnalysisHistory;
 import com.WAT.BEJURYU.dto.AnalysisResponse;
-import com.WAT.BEJURYU.dto.AnalysisResponses;
 import com.WAT.BEJURYU.dto.AnalysisSourceRequest;
 import com.WAT.BEJURYU.entity.Analysis;
 import com.WAT.BEJURYU.entity.Drink;
@@ -13,9 +13,10 @@ import com.WAT.BEJURYU.repository.MemberRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.Base64;
+import java.io.IOException;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class AnalysisService {
@@ -34,56 +35,55 @@ public class AnalysisService {
         this.analysisProvider = analysisProvider;
     }
 
-    public AnalysisResponses getAnalyze(long userId) {
-        final List<Analysis> analyze = analysisRepository.findByMemberId(userId);
-
-        return AnalysisResponses.of(analyze);
+    public List<AnalysisHistory> findHistoriesByUserId(long userId) {
+        return analysisRepository.findByMemberId(userId).stream()
+                .map(AnalysisHistory::from)
+                .collect(Collectors.toList());
     }
 
-    public AnalysisResponse getAnalysis(long Id) {
+    public AnalysisResponse findAnalysisById(long Id) {
         final Analysis analysis = analysisRepository.findById(Id)
-                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 정보입니다."));
+                .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 감정 분석 결과입니다."));
 
         return AnalysisResponse.from(analysis);
     }
 
     @Transactional
-    public AnalysisResponse postAnalysis(final Long userId, final AnalysisSourceRequest sourceRequest) {
+    public AnalysisResponse postAnalysis(final Long userId, final AnalysisSourceRequest sourceRequest) throws IOException {
         final Member member = memberRepository.findById(userId)
                 .orElseThrow(() -> new IllegalArgumentException("존재하지 않는 유저입니다."));
+        if (sourceRequest.isNotExistExpressions()) {
+            throw new IllegalArgumentException("텍스트, 사진 모두 필요합니다.");
+        }
 
-        final Analysis analysis = getAnalysis(sourceRequest, member);
-        Analysis persistedAnalysis = analysisRepository.save(analysis);
+        try {
+            final Analysis analysis = analyze(sourceRequest, member);
+            Analysis persistedAnalysis = analysisRepository.save(analysis);
 
-        return AnalysisResponse.from(persistedAnalysis);
+            return AnalysisResponse.from(persistedAnalysis);
+        } catch (final IOException e) {
+            throw new IllegalArgumentException("분석 요청 중 문제가 발생했습니다.");
+        }
     }
 
-    private Analysis getAnalysis(AnalysisSourceRequest sourceRequest, Member member) {
+    private Analysis analyze(AnalysisSourceRequest sourceRequest, Member member) throws IOException {
         final Sentiment sentiment = analysisProvider.analyze(sourceRequest);
-        final List<Drink> drinks = drinkRepository.findBySentiment(sentiment);
-        Collections.shuffle(drinks);
-        final Drink recommended = drinks.get(0);
-
-        byte[] decodedFacialExpression = extractFacial(sourceRequest);
+        final Drink drink = getRecommendedDrink(sentiment);
 
         return Analysis.builder()
                 .sentiment(sentiment)
                 .date(sourceRequest.getDate())
                 .member(member)
-                .facialExpression(decodedFacialExpression)
+                .facialExpression(sourceRequest.getFacialExpression())
                 .textExpression(sourceRequest.getTextExpression())
-                .recommendDrink(recommended)
+                .recommendDrink(drink)
                 .build();
     }
 
-    private byte[] extractFacial(final AnalysisSourceRequest sourceRequest) {
-        byte[] decodedFacialExpression = new byte[]{};
-        if (sourceRequest.isImageExist()) {
-            decodedFacialExpression = Base64.getDecoder().decode(sourceRequest.getFacialExpression()
-                    .replace('-', '+')
-                    .replace('_', '/'));
-        }
+    private Drink getRecommendedDrink(final Sentiment sentiment) {
+        final List<Drink> drinks = drinkRepository.findBySentiment(sentiment);
+        Collections.shuffle(drinks);
 
-        return decodedFacialExpression;
+        return drinks.get(0);
     }
 }

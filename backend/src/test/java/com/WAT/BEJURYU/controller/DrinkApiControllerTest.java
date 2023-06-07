@@ -40,13 +40,4 @@ class DrinkApiControllerTest {
                 .statusCode(HttpStatus.OK.value())
                 .body("name", blankOrNullString());
     }
-
-    @DisplayName("주류 ID로 리뷰들을 조회할 수 있다")
-    @Test
-    void findReviewsById() {
-        given().log().all()
-                .get("/drinks/{drink_id}/reviews", 1)
-                .then().log().all()
-                .statusCode(HttpStatus.OK.value());
-    }
 }

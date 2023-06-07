@@ -7,6 +7,7 @@ import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDateTime;
+import java.util.Base64;
 
 @NoArgsConstructor
 @Getter
@@ -20,14 +21,12 @@ public class AnalysisSourceRequest {
     private LocalDateTime date = LocalDateTime.now();
 
     public boolean isNotExistExpressions() {
-        return textExpression == null && facialExpression == null;
+        return textExpression == null || facialExpression == null;
     }
 
-    public boolean isTextExist() {
-        return textExpression != null;
-    }
-
-    public boolean isImageExist() {
-        return facialExpression != null;
+    public byte[] getFacialExpression() {
+        return Base64.getDecoder().decode(facialExpression
+                .replace('-', '+')
+                .replace('_', '/'));
     }
 }
