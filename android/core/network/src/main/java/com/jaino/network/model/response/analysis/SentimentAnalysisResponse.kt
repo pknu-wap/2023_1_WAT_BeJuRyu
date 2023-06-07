@@ -1,65 +1,39 @@
 package com.jaino.network.model.response.analysis
 
-import com.jaino.model.analysis.AnalysisDrink
-import com.jaino.model.analysis.AnalysisResult
-import com.jaino.model.analysis.AnalysisSource
 import com.jaino.model.analysis.SentimentAnalysis
-import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 
 @Serializable
-@SerialName("UserSentimentAnalysisResponse")
 data class SentimentAnalysisResponse(
-    val source : AnalysisSourceResponse,
-    val result : AnalysisResultResponse
-){
-    fun toSentimentAnalysis() : SentimentAnalysis = SentimentAnalysis(
-        source = source.toAnalysisSource(),
-        result = result.toAnalysisResult()
-    )
-}
-
-@Serializable
-data class AnalysisSourceResponse(
-    @SerialName("text_expression") val textExpression: String,
-    @SerialName("facial_expression") val facialExpression: String
-){
-    fun toAnalysisSource() : AnalysisSource = AnalysisSource(
-        textExpression = textExpression,
-        facialExpression = facialExpression
-    )
-}
-
-@Serializable
-data class AnalysisResultResponse(
-    val sentiment: String,
-    val drink: AnalysisDrinkResponse
-){
-    fun toAnalysisResult(): AnalysisResult = AnalysisResult(
-        sentiment = sentiment.slice(0 until 2),
-        level = sentiment[2].digitToInt(),
-        drink = drink.toAnalysisDrink()
-    )
-}
-
-@Serializable
-data class AnalysisDrinkResponse(
     val id: Long,
+    val textExpression: String,
+    val facialExpression: String,
+    val sentiment: String,
+    val date : String,
+    val drinkId : Long,
     val name : String,
     val dosu : Double,
-    val volume : Int,
     val price : Int,
+    val volume : Int,
+    val drinkImage: String,
     val type : String,
-    @SerialName("bottle-color") val bottle_color : String
+    val sweetness : Int
 ){
-    fun toAnalysisDrink() : AnalysisDrink = AnalysisDrink(
+    fun toSentimentAnalysis() : SentimentAnalysis = SentimentAnalysis(
         id = id,
+        textExpression = textExpression,
+        facialExpression = facialExpression,
+        sentiment = sentiment.filter { it.isLetter() },
+        level = sentiment.filter { it.isDigit() }.toFloat(),
+        date = date,
+        drinkId = drinkId,
         name = name,
         dosu = dosu,
-        volume = volume,
         price = price,
+        volume = volume,
+        drinkImage = drinkImage,
         type = type,
-        bottle_color = bottle_color
+        sweetness = sweetness
     )
 }
