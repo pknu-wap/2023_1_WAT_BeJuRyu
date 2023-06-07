@@ -3,6 +3,7 @@ package com.jaino.analysis.result
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.jaino.common.constant.*
+import com.jaino.common.extensions.toSentimentKor
 import com.jaino.common.flow.EventFlow
 import com.jaino.common.flow.MutableEventFlow
 import com.jaino.common.flow.asEventFlow
@@ -49,21 +50,22 @@ class ResultViewModel @Inject constructor(
         viewModelScope.launch {
             repository.getSentimentAnalysis(analysisId = analysisId)
                 .onSuccess {
-                    when (it.result.sentiment) {
+                    val result = it.copy(sentiment = it.sentiment.toSentimentKor())
+                    when (result.sentiment) {
                         SAD -> {
                             _sentimentIconState.value = SAD_ICON // icon
                             _sentimentContentState.value = SAD_CONTENT // content
-                            _analysisResultUiState.value = it
+                            _analysisResultUiState.value = result
                         }
                         HAPPY -> {
                             _sentimentIconState.value = HAPPY_ICON
                             _sentimentContentState.value = HAPPY_CONTENT
-                            _analysisResultUiState.value = it
+                            _analysisResultUiState.value = result
                         }
-                        NEUTRAL -> {
-                            _sentimentIconState.value = NEUTRAL_ICON
-                            _sentimentContentState.value = NEUTRAL_CONTENT
-                            _analysisResultUiState.value = it
+                        MEDIAN -> {
+                            _sentimentIconState.value = MEDIAN_ICON
+                            _sentimentContentState.value = MEDIAN_CONTENT
+                            _analysisResultUiState.value = result
                         }
                     }
                 }.onFailure {
@@ -75,6 +77,6 @@ class ResultViewModel @Inject constructor(
     companion object{
         val SAD_ICON = com.jaino.designsystem.R.drawable.sad
         val HAPPY_ICON = com.jaino.designsystem.R.drawable.smile
-        val NEUTRAL_ICON = com.jaino.designsystem.R.drawable.neutral
+        val MEDIAN_ICON = com.jaino.designsystem.R.drawable.neutral
     }
 }

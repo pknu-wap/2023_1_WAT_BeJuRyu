@@ -7,6 +7,10 @@ import androidx.core.content.ContextCompat.getDrawable
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import com.jaino.common.constant.HAPPY
+import com.jaino.common.constant.MEDIAN
+import com.jaino.common.constant.SAD
+import com.jaino.common.extensions.toSentimentKor
 import com.jaino.model.analysis.AnalysisHistory
 import com.jaino.setting.databinding.ItemUserAnalyzeBinding
 
@@ -29,13 +33,18 @@ class AnalysisHistoryAdapter(
     inner class UserAnalyzeViewHolder(private val binding : ItemUserAnalyzeBinding)
         : RecyclerView.ViewHolder(binding.root) {
         fun bind(item : AnalysisHistory) {
-            binding.item = item
-            val sentiment = item.sentiment.slice(0 .. 1)
-            if(sentiment == SAD){
-                binding.imageView6.setImageDrawable(getDrawable(context, SAD_ICON))
-            }
-            else if(sentiment == HAPPY){
-                binding.imageView6.setImageDrawable(getDrawable(context, HAPPY_ICON))
+            val sentiment = item.sentiment.filter { it.isLetter() }.toSentimentKor()
+            binding.item = item.copy(sentiment = sentiment)
+            when(item.sentiment){
+                SAD -> {
+                    binding.imageView6.setImageDrawable(getDrawable(context, SAD_ICON))
+                }
+                HAPPY -> {
+                    binding.imageView6.setImageDrawable(getDrawable(context, HAPPY_ICON))
+                }
+                MEDIAN -> {
+                    binding.imageView6.setImageDrawable(getDrawable(context, MEDIAN_ICON))
+                }
             }
             binding.root.setOnClickListener {
                 onItemClick(item.id)
@@ -59,7 +68,6 @@ class AnalysisHistoryAdapter(
         }
         val SAD_ICON = com.jaino.designsystem.R.drawable.sad
         val HAPPY_ICON = com.jaino.designsystem.R.drawable.smile
-        const val SAD = "슬픔"
-        const val HAPPY = "기쁨"
+        val MEDIAN_ICON = com.jaino.designsystem.R.drawable.neutral
     }
 }
