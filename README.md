@@ -20,31 +20,8 @@
 	</h3>	
 </p>
 
-## Android Modules 📁 
-
-```
- 📁android
- ┣ 📂app
- ┣ 📂core
- ┃ ┣ 📂data
- ┃ ┣ 📂domain
- ┃ ┣ 📂designsystem
- ┃ ┣ 📂model
- ┃ ┣ 📂network
- ┃ ┣ 📂common
- ┃ ┗ 📂datastore
- ┣ 📂build-logic
- ┃ ┗ 📂convention
- ┣ 📂feature
- ┃ ┣ 📂auth
- ┃ ┣ 📂setting
- ┃ ┣ 📂analysis
- ┃ ┣ 📂review
- ┃ ┣ 📂account
- ┃ ┣ 📂home
- ┗ ┗ 📂dictionary
-```
-
+## Module Dependency
+![BE주류 Module Dependency](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/assets/77484719/a11eb5d3-52d9-43b9-980d-15aee9942afe)
 
 ## Android Tech Stack
 
@@ -71,7 +48,6 @@
     - Timber
     - ProcessPhoenix
     - Lottie
-    - Skydoves ProgressView
 - [verison_catalog](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/develop_android/android/gradle/libs.version.toml)
 </br>
 
