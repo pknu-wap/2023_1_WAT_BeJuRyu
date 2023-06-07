@@ -26,27 +26,26 @@
                 android:padding="16dp">
 
                 <ImageButton
-                    android:id="@+id/result_home_button"
+                    android:id="@+id/result_back_button"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:background="@color/transparent"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:srcCompat="@drawable/home_24" />
+                    app:srcCompat="@drawable/baseline_back_32" />
 
                 <TextView
                     android:id="@+id/analyze_text_title"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/cookierun_bold"
-                    android:text="@string/analyze_text_title"
+                    android:text="@string/analysis_result_title"
                     android:textColor="@color/black"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    tools:text="주류 추천 결과" />
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <ImageButton
                     android:id="@+id/result_share_button"
@@ -74,6 +73,60 @@
                 android:layout_height="wrap_content">
 
                 <androidx.cardview.widget.CardView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="6dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/cardView4" >
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent">
+
+                        <TextView
+                            android:id="@+id/input_title"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="16dp"
+                            android:textColor="@color/black"
+                            android:textSize="16sp"
+                            android:textStyle="bold"
+                            android:text="@string/result_input_title"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/result_facial_expression"
+                            android:layout_width="100dp"
+                            android:layout_height="100dp"
+                            android:layout_margin="16dp"
+                            app:encodedImage="@{viewModel.analysisResultUiState.facialExpression}"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toBottomOf="@+id/input_title"
+                            tools:srcCompat="@drawable/neutral" />
+
+                        <TextView
+                            android:id="@+id/result_text_expression"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="16dp"
+                            android:background="@drawable/rounded_edit_text_background"
+                            android:padding="8dp"
+                            android:text="@{viewModel.analysisResultUiState.textExpression}"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintStart_toEndOf="@+id/result_facial_expression"
+                            app:layout_constraintTop_toTopOf="@+id/result_facial_expression"
+                            tools:text="TextView" />
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <androidx.cardview.widget.CardView
                     android:id="@+id/cardView2"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -93,6 +146,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:textStyle="bold"
+                            android:textSize="16sp"
                             android:text="@string/drink_result_title"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -102,6 +156,7 @@
                             android:id="@+id/drink_result_content"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
+                            android:textColor="@color/black"
                             android:text="@{viewModel.sentimentContentState}"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/drink_result_title"
@@ -112,6 +167,7 @@
                             android:layout_width="100dp"
                             android:layout_height="100dp"
                             android:layout_marginTop="16dp"
+                            app:encodedImage="@{viewModel.analysisResultUiState.drinkImage}"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/drink_result_content"
@@ -124,7 +180,7 @@
                             android:layout_marginTop="16dp"
                             android:textColor="@color/black"
                             android:textSize="18sp"
-                            android:text="@{viewModel.analysisResultUiState.result.drink.name}"
+                            android:text="@{viewModel.analysisResultUiState.name}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
@@ -153,6 +209,7 @@
                             android:layout_height="wrap_content"
                             android:textColor="@color/black"
                             android:textStyle="bold"
+                            android:textSize="16sp"
                             android:text="@string/sentiment_result_title"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent"
@@ -163,7 +220,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginEnd="16dp"
-                            android:text="@{@string/sentiment_result_content(viewModel.nicknameState, viewModel.analysisResultUiState.result.sentiment)}"
+                            android:textColor="@color/black"
+                            android:text="@{@string/sentiment_result_content(viewModel.nicknameState, viewModel.analysisResultUiState.sentiment)}"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/sentiment_result_title"
                             tools:text="정자이노 님의 감정분석 결과는 '기쁨'입니다." />
@@ -201,11 +259,10 @@
                 </androidx.cardview.widget.CardView>
 
                 <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView4"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:layout_marginBottom="16dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/cardView2">
@@ -219,9 +276,10 @@
                             android:id="@+id/drink_info_title"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
+                            android:text="@string/product_info"
                             android:textColor="@color/black"
                             android:textStyle="bold"
-                            android:text="@string/product_info"
+                            android:textSize="16sp"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
 
@@ -255,9 +313,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    app:typeName="@{viewModel.analysisResultUiState.result.drink.type}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
+                                    android:text="@{viewModel.analysisResultUiState.type}"
                                     android:textColor="@color/black" />
                             </TableRow>
 
@@ -280,9 +338,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{@string/dosu_unit(viewModel.analysisResultUiState.result.drink.dosu)}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
+                                    android:text="@{@string/dosu_unit(viewModel.analysisResultUiState.dosu)}"
                                     android:textColor="@color/black" />
                             </TableRow>
 
@@ -305,9 +363,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{@string/volume_unit(viewModel.analysisResultUiState.result.drink.volume)}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
+                                    android:text="@{@string/volume_unit(viewModel.analysisResultUiState.volume)}"
                                     android:textColor="@color/black" />
                             </TableRow>
 
@@ -330,9 +388,9 @@
                                     android:layout_width="wrap_content"
                                     android:layout_height="wrap_content"
                                     android:layout_span="4"
-                                    android:text="@{@string/price_unit(viewModel.analysisResultUiState.result.drink.price)}"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
+                                    android:text="@{@string/price_unit(viewModel.analysisResultUiState.price)}"
                                     android:textColor="@color/black" />
                             </TableRow>
 
@@ -357,6 +415,7 @@
                                     android:layout_span="4"
                                     android:gravity="center"
                                     android:paddingVertical="16dp"
+                                    android:text="@{@string/sweetness_unit(viewModel.analysisResultUiState.sweetness)}"
                                     android:textColor="@color/black" />
                             </TableRow>
 

@@ -309,7 +309,7 @@
                             android:enabled="false"
                             android:isIndicator="true"
                             android:progressTint="@color/yellow"
-                            android:rating="4.6"
+                            android:rating="@{viewModel.drinkInfoUiState.rating}"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toBottomOf="@+id/reiview_title" />
@@ -331,7 +331,8 @@
                             android:layout_width="wrap_content"
                             android:layout_height="0dp"
                             android:layout_marginStart="4dp"
-                            android:text="4.6점"
+                            android:textColor="@color/black"
+                            android:text="@{String.valueOf(viewModel.drinkInfoUiState.rating)}"
                             app:layout_constraintBottom_toBottomOf="@+id/review_rating_bar"
                             app:layout_constraintStart_toEndOf="@+id/review_rating_bar" />
 
@@ -340,7 +341,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="8dp"
-                            android:text="24개의 리뷰"
+                            android:text="@{@string/reviewCount(viewModel.drinkInfoUiState.reviewCount)}"
                             app:layout_constraintBottom_toBottomOf="@+id/reiview_title"
                             app:layout_constraintStart_toEndOf="@+id/reiview_title" />
 
