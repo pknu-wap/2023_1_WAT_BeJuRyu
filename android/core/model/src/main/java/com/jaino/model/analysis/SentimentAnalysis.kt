@@ -1,34 +1,35 @@
 package com.jaino.model.analysis
 
 data class SentimentAnalysis(
-    val source : AnalysisSource,
-    val result : AnalysisResult
-){
-    constructor() : this(
-            AnalysisSource("", ""),
-            AnalysisResult("", 0, AnalysisDrink())
-    )
-}
-
-data class AnalysisSource(
-    val textExpression: String,
-    val facialExpression: String
-)
-
-data class AnalysisResult(
-    val sentiment: String,
-    val level : Int,
-    val drink: AnalysisDrink
-)
-
-data class AnalysisDrink(
     val id: Long,
+    val textExpression: String,
+    val facialExpression: String,
+    val sentiment: String,
+    val level : Float,
+    val date : String,
+    val drinkId : Long,
     val name : String,
     val dosu : Double,
-    val volume : Int,
     val price : Int,
+    val volume : Int,
+    val drinkImage: String,
     val type : String,
-    val bottle_color : String
+    val sweetness : Int
 ){
-    constructor() : this(0, "", 0.0, 0,0, "", "")
+    constructor() : this(
+        0,
+        "",
+        "",
+        "",
+        0f,
+        "",
+        0,
+        "",
+        0.0,
+        0,
+        0,
+        "",
+        "",
+        0
+    )
 }

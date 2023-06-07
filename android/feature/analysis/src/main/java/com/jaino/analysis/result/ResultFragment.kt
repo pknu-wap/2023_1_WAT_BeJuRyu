@@ -20,7 +20,6 @@ import com.jaino.analysis.result.ui.FeedMessage
 import com.jaino.common.extensions.showToast
 import com.jaino.common.model.UiEvent
 import com.jaino.common.widget.ErrorDialog
-import com.jaino.model.analysis.AnalysisResult
 import com.kakao.sdk.common.util.KakaoCustomTabsClient
 import com.kakao.sdk.share.ShareClient
 import com.kakao.sdk.share.WebSharerClient
@@ -60,8 +59,8 @@ class ResultFragment : Fragment() {
     }
 
     private fun initViews() {
-        binding.resultHomeButton.setOnClickListener {
-            navigateToHome()
+        binding.resultBackButton.setOnClickListener {
+            navigateToBack()
         }
 
         binding.resultShareButton.setOnClickListener {
@@ -87,17 +86,17 @@ class ResultFragment : Fragment() {
 
         viewModel.analysisResultUiState.flowWithLifecycle(viewLifecycleOwner.lifecycle)
             .onEach {
-                if (it.result.drink.name.isNotEmpty()) {
-                    setProgress(it.result)
+                if (it.sentiment != "") {
+                    setProgress(it.level, it.sentiment)
                 }
             }.launchIn(viewLifecycleOwner.lifecycleScope)
     }
 
-    private fun setProgress(result: AnalysisResult) {
-        binding.resultProgress.progress = result.level.toFloat()
+    private fun setProgress(level: Float, sentiment: String) {
+        binding.resultProgress.progress = level
         with(binding.resultProgress) {
-            this.progress = result.level.toFloat()
-            this.labelText = "${result.sentiment} ${result.level}단계"
+            this.progress = level
+            this.labelText = "$sentiment ${level.toInt()}단계"
         }
     }
 
@@ -138,7 +137,7 @@ class ResultFragment : Fragment() {
         ).show()
     }
 
-    private fun navigateToHome(){
+    private fun navigateToBack(){
         findNavController().navigate("BeJuRyu://feature/home".toUri())
     }
 

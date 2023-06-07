@@ -3,7 +3,6 @@ package com.jaino.analysis.image_input
 import android.content.Context
 import android.net.Uri
 import android.os.Bundle
-import android.util.Base64
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -28,6 +27,7 @@ import com.jaino.common.widget.ErrorDialog
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import java.util.*
 
 @AndroidEntryPoint
 class ImageInputFragment : Fragment() {
@@ -99,7 +99,7 @@ class ImageInputFragment : Fragment() {
         if(inputStream != null) {
             val bytes = ByteArray(inputStream.available())
             inputStream.read(bytes)
-            val encodedImage: String = Base64.encodeToString(bytes, Base64.DEFAULT)
+            val encodedImage: String = Base64.getUrlEncoder().encodeToString(bytes)
             viewModel.setImageSource(encodedImage)
         }else{
             Toast.makeText(requireContext(), "사진을 가져올 수 없습니다.", Toast.LENGTH_SHORT).show()

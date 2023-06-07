@@ -8,7 +8,9 @@ data class Drink(
     val price : Int,
     val volume : Int,
     val image : String,
-    val type : String
+    val type : String,
+    val rating : Float,
+    val reviewCount: Int
 ){
     constructor(): this(
         0,
@@ -18,6 +20,8 @@ data class Drink(
         0,
         0,
         "",
-        ""
+        "",
+        0.0f,
+        0
     )
 }

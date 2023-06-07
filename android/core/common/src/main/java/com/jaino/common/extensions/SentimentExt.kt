@@ -31,3 +31,12 @@ fun String.toTypedKor(): String{
         else -> ""
     }
 }
+
+fun String.toSentimentKor(): String{
+    return when(this){
+        "SAD" -> "슬픔"
+        "HAPPY" -> "기쁨"
+        "MEDIAN" -> "평온"
+        else -> ""
+    }
+}
