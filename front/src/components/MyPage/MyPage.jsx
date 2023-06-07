@@ -12,7 +12,7 @@ import Logout from "./Logout";
 import authClient from "../../apis/authClient";
 import noAuthClient from "../../apis/noAuthClient";
 import CircularProgress from "@mui/material/CircularProgress";
-
+import logo from "../../image/logo2.png";
 import { useSelector } from "react-redux";
 
 function MyPage() {
@@ -48,20 +48,20 @@ function MyPage() {
       }
     }
 
-    // 닉네임 조회
-    try {
-      const response = await authClient({
-        method: "get",
-        url: `/member`,
-      });
-      console.log("떵공");
-      console.log("member api response:", response);
-    } catch (error) {
-      if (error.response) {
-        const err = error.response.data;
-        console.log(err);
-      }
-    }
+    //   // 닉네임 조회
+    //   try {
+    //     const response = await authClient({
+    //       method: "get",
+    //       url: `/member`,
+    //     });
+    //     console.log("떵공");
+    //     console.log("member api response:", response);
+    //   } catch (error) {
+    //     if (error.response) {
+    //       const err = error.response.data;
+    //       console.log(err);
+    //     }
+    //   }
   };
 
   const changeNick = () => {
@@ -83,10 +83,7 @@ function MyPage() {
       {/* 약관 추가 */}
       <S.Wrapper>
         <S.Form>
-          BeJuRyu 서비스의 약관
-          <br />
-          <br />
-          우리가 다 지켜줄게여 ~
+          <img src={logo} />
         </S.Form>
       </S.Wrapper>
     </S.Container>

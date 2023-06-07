@@ -69,13 +69,23 @@ function Result() {
 
   // 이미지 디코딩 함수
   const decodeBase64 = (base64) => {
-    const binaryString = window.atob(base64);
-    const bytes = new Uint8Array(binaryString.length);
-    for (let i = 0; i < binaryString.length; i++) {
-      bytes[i] = binaryString.charCodeAt(i);
+    try {
+      const binaryString = window.atob(base64);
+
+      const bytes = new Uint8Array(binaryString.length);
+      for (let i = 0; i < binaryString.length; i++) {
+        bytes[i] = binaryString.charCodeAt(i);
+      }
+
+      return URL.createObjectURL(
+        new Blob([bytes.buffer], { type: "image/png" })
+      );
+    } catch (error) {
+      console.error(error);
+      return null;
     }
-    return URL.createObjectURL(new Blob([bytes.buffer], { type: "image/png" }));
   };
+
   // 주류 추천 결과 id
   const analysisId = location.state?.analysisId;
 
@@ -120,14 +130,10 @@ function Result() {
           method: "get",
           url: `/analyze/${analysisId}`,
         });
-        console.log(response);
-        const data = response.data;
-        console.log(data);
-        setResultData(data);
 
-        if (response) {
-          console.log(response.data);
-        }
+        const data = response.data;
+
+        setResultData(data);
       } catch (error) {
         console.error(error);
       }

@@ -73,34 +73,18 @@ function Dictionary() {
           method: "get",
           url: `/drinks/name/${searchTerm}`, // 작성한 주류 이름에 해당하는 API 요청
         });
-        console.log("Name response:", nameRes);
-        console.log(searchTerm);
-        console.log(nameRes.data.drinks.length);
 
         setDrinkInfoList(nameRes.data.drinks);
-
-        // 이미지 디코딩 및 설정
-        // const decodedImage = decodeBase64(nameRes.data.drinks[0].image);
-        // setDecodedImage(decodedImage);
       } else if (selectedCategory !== "ALL") {
         const typeRes = await noAuthClient({
           method: "get",
           url: `/drinks/type/${selectedCategory}`, // 선택한 카테고리에 해당하는 API 요청
         });
-
-        console.log("Name response:", typeRes);
-        //console.log(searchTerm);
-        //console.log(nameRes.data.drinks.length);
-
         setDrinkInfoList(typeRes.data.drinks);
-        //setDrinkInfo(typeRes.data.drinks[typeRes.data.drinks.length - 1]);
-        // const decodedImage = decodeBase64(typeRes.data.drinks[0].image);
-        // setDecodedImage(decodedImage);
       }
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
-        console.log(err);
       }
     } finally {
       setIsLoading(false);
@@ -116,11 +100,6 @@ function Dictionary() {
         method: "get",
         url: `/drinks/${juryuId}`,
       });
-      if (res) {
-        console.log(res);
-      } else {
-        console.log("res엄썽");
-      }
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
@@ -183,7 +162,7 @@ function Dictionary() {
               </FormControl>
               <TextField
                 id="standard-search"
-                label="찾고싶은 주류를 입력해주세요!"
+                label="찾고싶은 주류를 입력하시거나 카테고리를 선택해주세요!"
                 type="search"
                 variant="standard"
                 alignitems="center"
@@ -235,7 +214,9 @@ function Dictionary() {
                       src={decodeBase64(drinkInfo.image)}
                       alt="주류 이미지"
                     />
-                    <S.Text>{drinkInfo.name}</S.Text>
+                    <S.Text>
+                      {drinkInfo.name} {drinkInfo.type}
+                    </S.Text>
                   </S.WhiteBox>
                 ))}
               </div>

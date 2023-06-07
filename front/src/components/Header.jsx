@@ -135,14 +135,6 @@ export default function Header() {
                 주류추천
               </Link>
             </li>
-            {/* <li>
-              <Link
-                to="/MyPage"
-                style={{ textDecoration: "none", color: "inherit" }}
-              >
-                마이페이지
-              </Link>
-            </li> */}
           </Navbarmenu>
         )}
 

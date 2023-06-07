@@ -58,9 +58,7 @@ function JuryuInfo() {
   // 주류 리뷰 리스트
   const [drinkReviewList, setDrinkReviewList] = useState([]);
   // 리뷰 리스트 길이에 따라 pagination
-  // const [startIndex, setStartIndex] = useState(0); // 시작 인덱스 상태
-  // const [endIndex, setEndIndex] = useState(4); // 종료 인덱스 상태
-  // const [showMore, setShowMore] = useState(false); // 더보기 상태 추가
+
   const [page, setPage] = useState(1);
   const [perPage, setPerPage] = useState(4);
   const totalPages = Math.ceil(drinkReviewList.length / perPage);
@@ -94,10 +92,12 @@ function JuryuInfo() {
   const decodeBase64 = (base64) => {
     try {
       const binaryString = window.atob(base64);
+
       const bytes = new Uint8Array(binaryString.length);
       for (let i = 0; i < binaryString.length; i++) {
         bytes[i] = binaryString.charCodeAt(i);
       }
+
       return URL.createObjectURL(
         new Blob([bytes.buffer], { type: "image/png" })
       );
@@ -128,20 +128,20 @@ function JuryuInfo() {
       }
     };
 
-    const juryuScore = async () => {
-      try {
-        const response = await noAuthClient({
-          method: "get",
-          url: `drinks/${juryuId}/rating`,
-        });
-        if (response) {
-          console.log(response.data);
-        }
-      } catch (error) {
-        console.log("juryuId error!", error.message);
-      }
-    };
-    //console.log(drinkReviewList);
+    // const juryuScore = async () => {
+    //   try {
+    //     const response = await noAuthClient({
+    //       method: "get",
+    //       url: `drinks/${juryuId}/rating`,
+    //     });
+    //     if (response) {
+    //       console.log(response.data);
+    //     }
+    //   } catch (error) {
+    //     console.log("juryuId error!", error.message);
+    //   }
+    // };
+    // //console.log(drinkReviewList);
 
     const juryuReview = async () => {
       try {
@@ -159,7 +159,7 @@ function JuryuInfo() {
     };
 
     JuryuData();
-    juryuScore();
+    // juryuScore();
     juryuReview();
   }, [juryuId]);
 
@@ -235,7 +235,6 @@ function JuryuInfo() {
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
-        console.log(err);
         console.log(error.message);
       } else {
         console.log("ERROR:", error.message);
