@@ -16,7 +16,7 @@ data class DrinkReviewResponse (
     val date : String,
     val comment : String,
     val nickname : String,
-    @SerialName("drink_id") val drinkId : Long
+    @SerialName("drinkId") val drinkId : Long
     ){
     fun toDrinkReview(): Review = Review(
         reviewId = reviewId,

@@ -6,7 +6,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class AnalysisIdResponse(
-    @SerialName("analysis-id") val analysisId : Long
+    @SerialName("id") val analysisId : Long
 ){
     fun toAnalysisId(): AnalysisId = AnalysisId(analysisId)
 }

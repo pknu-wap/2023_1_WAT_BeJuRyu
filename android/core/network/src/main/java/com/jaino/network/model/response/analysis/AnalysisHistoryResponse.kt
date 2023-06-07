@@ -11,7 +11,7 @@ data class AnalysisHistoryResponse (
 ){
     fun toAnalyzeHistory() : AnalysisHistory = AnalysisHistory(
         id = id,
-        date = date,
+        date = date.replace("T", " ").slice(0 until date.length-3),
         sentiment = sentiment
     )
 }
