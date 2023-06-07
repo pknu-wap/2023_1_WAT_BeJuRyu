@@ -26,9 +26,9 @@ public class AnalysisProviderImpl implements AnalysisProvider {
     private static final String CLIENT_ID_HEADER = "X-NCP-APIGW-API-KEY-ID";
     private static final String CLIENT_SECRET_HEADER = "X-NCP-APIGW-API-KEY";
     @Value("${security.api.id}")
-    private static String CLIENT_ID;
+    private String CLIENT_ID;
     @Value("${security.api.key}")
-    private static String CLIENT_SECRET;
+    private String CLIENT_SECRET;
 
     private final RestTemplate restTemplate = new RestTemplate();
 
