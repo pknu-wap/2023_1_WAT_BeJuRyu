@@ -17,9 +17,15 @@ const PhotoUpload = ({
   const handleImageChange = (e) => {
     const file = e.target.files[0];
     if (file) {
-      const imageUrl = URL.createObjectURL(file);
-      setSelectedFile(file); // 변경점
-      setImagePreview(imageUrl);
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        const base64String = reader.result;
+        setSelectedFile(file); // 변경점
+        setImagePreview(base64String);
+        console.log(base64String);
+      };
+      //const imageUrl = URL.createObjectURL(file);
+      reader.readAsDataURL(file);
     }
   };
 

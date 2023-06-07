@@ -1,9 +1,9 @@
 import styled from "styled-components";
 
 const Container = styled.div`
-  width: 30rem;
-  max-width: 45rem;
-  height: 40rem;
+  width: 70rem;
+  //max-width: 60rem;
+  height: 45rem;
   background-color: #f7cefc;
   border-radius: 2rem;
   color: black;
@@ -11,7 +11,11 @@ const Container = styled.div`
   position: absolute;
   top: 50%;
   left: 50%;
+
   transform: translate(-50%, -45%);
+  display: flex;
+  //justify-content: space-between;
+  flex-direction: row;
 `;
 
 const Wrapper = styled.div`
@@ -35,14 +39,33 @@ const Title = styled.div`
   margin: 1rem 0;
   font-weight: 600;
   text-align: center;
-  font-size: 1rem;
+  font-size: 1.5rem;
   font-family: "BejuryuFont";
   color: #262626;
 `;
 
 const WhiteBox = styled.div`
-  width: 25rem;
-  height: 30rem;
+  width: 40rem;
+  height: 33rem;
+  margin: auto;
+  margin-bottom: 5px;
+  margin-left: 70px;
+  padding: 1rem;
+  color: #9a208c;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+
+  cursor: text;
+
+  &:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
+  }
+`;
+
+const WhiteBox2 = styled.div`
+  width: 20rem;
+  height: 33rem;
   margin: 0 auto;
   margin-bottom: 5px;
   padding: 1rem;
@@ -58,20 +81,10 @@ const WhiteBox = styled.div`
   }
 `;
 
-const ImageBox = styled.div`
-  width: 25rem;
-  height: 10rem;
-  margin-top: 20px;
-  margin: 0 auto;
-  padding: 2rem;
-  color: #9a208c;
-  background: white;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
-  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-
-  &:hover {
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.19), 0 6px 6px rgba(0, 0, 0, 0.23);
-  }
+const ImageContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
 `;
 
 const MyState = styled.div`
@@ -96,8 +109,8 @@ const BtnList = styled.div`
 `;
 
 const Image = styled.img`
-  width: 100px;
-  height: 100px;
+  width: 200px;
+  height: 200px;
   align-items: center;
   justify-content: center;
   display: flex;
@@ -107,7 +120,7 @@ const Text = styled.p`
   text-align: center;
   margin-top: 1rem;
   font-family: "BejuryuFont";
-  font-size: 0.7rem;
+  font-size: 1rem;
 `;
 
 const FormBox = styled.div`
@@ -133,9 +146,10 @@ const S = {
   Container,
   SubmitButton,
   WhiteBox,
+  WhiteBox2,
   Title,
   MyState,
-  ImageBox,
+  ImageContainer,
   BtnList,
   Image,
   Text,

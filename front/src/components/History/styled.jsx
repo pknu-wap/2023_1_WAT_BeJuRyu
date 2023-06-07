@@ -62,7 +62,7 @@ const Form = styled.div`
 
 const WhiteBox = styled.div`
   width: 35rem;
-  height: 25rem;
+  height: 28rem;
   margin: 0 auto;
   margin-bottom: 20px;
   padding: 0.5rem;
@@ -86,6 +86,38 @@ const Title = styled.div`
   font-family: "BejuryuFont";
   color: black;
 `;
+
+const PageButton = styled.button`
+  height: 2rem;
+  width: 5rem;
+  border-radius: 0.5rem;
+  border: none;
+  background-color: #9932cc;
+  color: #f7f7f7;
+  margin: 10px auto 0;
+  display: block;
+  cursor: pointer;
+  font-family: "BejuryuFont";
+`;
+
+const ButtonContainer = styled.div`
+  display: flex;
+  justify-content: center;
+`;
+
+const listStyle = styled.div`
+  font-size: 20px;
+  font-family: "BejuryuFont";
+
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin-bottom: 10px;
+`;
+
+const PageInfo = styled.span`
+  font-family: "BejuryuFont";
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -95,6 +127,10 @@ const S = {
   Main,
   Form,
   WhiteBox,
+  PageButton,
+  ButtonContainer,
+  listStyle,
+  PageInfo,
 };
 
 export default S;

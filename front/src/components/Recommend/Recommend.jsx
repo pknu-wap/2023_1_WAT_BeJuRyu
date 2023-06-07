@@ -30,51 +30,49 @@ function Recommend() {
   const closeModal = () => setIsModalOpen(false);
 
   const currentDate = getCurrentDateTime(); // 현재 시각 가져오기
+
   const handleFormSubmit = async (e) => {
     e.preventDefault();
-    navigate("/result");
     if (selectedFile) {
       const reader = new FileReader();
       // base64 encoding해서
       reader.onloadend = async () => {
-        // const arrayBuffer = reader.result;
-        // const byteArray = new Uint8Array(arrayBuffer);
-
         const base64Data = String(reader.result.split(",")[1]);
 
         try {
           const res = await authClient({
             method: "post",
             url: "/analyze/sources",
-
             data: {
               date: currentDate,
               facialExpression: base64Data,
               textExpression: inputValue,
             },
-            headers: {
-              "Content-Type": "text/plain",
-            },
           });
-          if (res) {
-            console.log(res.data);
+
+          // response값으로 받은 analysisId result.jsx 파일에서 사용
+          const analysisId = res.data.id;
+
+          if (analysisId) {
+            // analysisId가 정의된 경우 실행할 코드
+            console.log("recommend analysisId:", analysisId);
+          } else {
+            // analysisId가 정의되지 않은 경우 실행할 코드
+            console.log("recommend analysisId is undefined");
           }
-          console.log(res);
-          navigate("/result", { data: res.data });
+
+          navigate("/result", { state: { analysisId: res.data.id } });
           // 서버 응답 처리
         } catch (error) {
           if (error.response) {
             // 서버 응답 에러
             const err = error.response.data;
             console.log(err);
-            console.log(error.message);
           }
         }
       };
 
       reader.readAsDataURL(selectedFile);
-      // const userId = localStorage.getItem("user-id");
-      // console.log(typeof parseInt(userId, 10));
     }
   };
 
@@ -129,6 +127,7 @@ function Recommend() {
             </StyledTypography>
             <StyledTypography sx={{ fontStyle: "BejuryuFont" }}>
               이렇게 하면 인공지능이 더 잘 이해해요! <br />
+              <br />
               1. 명확하고 감정이 표현된 단어를 활용하기 - “기쁘다”, “슬프다”,
               “화나다”와 같은 명확한 감정 표현을 사용하면 더 좋아요! <br />
               2. 간결하고 명확한 문장을 구성하기 - 짧고 간결한 문장을 사용하면
@@ -169,8 +168,9 @@ function Recommend() {
             </StyledTypography>
             <StyledTypography sx={{ mt: 2 }}>
               이런 사진일 수록 인공지능이 더 잘 이해해요!
-              <br /> 1. 이목구비가 다 들어난 사진 - 각 부위의 모양과 위치를 보고
-              감정을 판단하기 때문에, 다 들어난 사진이 더 좋아요!
+              <br />
+              1. 이목구비가 다 들어난 사진 - 각 부위의 모양과 위치를 보고 감정을
+              판단하기 때문에, 다 들어난 사진이 더 좋아요!
               <br />
               2. 자세와 동작이 표현된 사진 - 자세와 동작도 감정을 전달할 수 있기
               때문에, 표현된 사진이 더 좋아요!
