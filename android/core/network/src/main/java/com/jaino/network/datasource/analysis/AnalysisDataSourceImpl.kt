@@ -14,28 +14,21 @@ class AnalysisDataSourceImpl @Inject constructor(
         analysisSourceRequest: AnalysisSourceRequest
     ): Result<AnalysisIdResponse> =
         runCatching {
-            service.postAnalysisSource(analysisSourceRequest).data
+            service.postAnalysisSource(analysisSourceRequest)
         }.onFailure { error ->
             Result.failure<AnalysisIdResponse>(error)
         }
 
     override suspend fun getAnalysisList(): Result<List<AnalysisHistoryResponse>> =
         runCatching {
-            // service.getAnalyzeList()
-            listOf(
-                AnalysisHistoryResponse(
-                    23,
-                    "2023.06.23",
-                    "기쁨"
-                )
-            )
+            service.getAnalyzeList()
         }.onFailure { error ->
             Result.failure<List<AnalysisHistoryResponse>>(error)
         }
 
     override suspend fun getSentimentAnalysis(analysisId: Long): Result<SentimentAnalysisResponse> =
         runCatching {
-            service.getSentimentAnalysis(analysisId).data
+            service.getSentimentAnalysis(analysisId)
         }.onFailure { error ->
             Result.failure<SentimentAnalysisResponse>(error)
         }
