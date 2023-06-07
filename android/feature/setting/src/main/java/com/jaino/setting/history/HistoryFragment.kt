@@ -115,7 +115,7 @@ class HistoryFragment: Fragment() {
 
     private fun navigateAnalysisResult(analysisId: Long){
         findNavController().navigate(
-            "BeJuRyu://feature/analyze/result?analysisId={$analysisId}".toUri()
+            "BeJuRyu://feature/analyze/result?analysisId=$analysisId".toUri()
         )
     }
 
