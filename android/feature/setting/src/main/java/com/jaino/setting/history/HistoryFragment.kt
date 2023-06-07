@@ -52,7 +52,6 @@ class HistoryFragment: Fragment() {
 
     private fun initAdapter(){
         analysisHistoryAdapter = AnalysisHistoryAdapter(
-            requireContext(),
             onItemClick = {
                 navigateAnalysisResult(it)
             }
