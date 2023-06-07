@@ -10,6 +10,7 @@ import com.WAT.BEJURYU.entity.Sentiment;
 import com.WAT.BEJURYU.repository.AnalysisRepository;
 import com.WAT.BEJURYU.repository.DrinkRepository;
 import com.WAT.BEJURYU.repository.MemberRepository;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +64,8 @@ public class AnalysisService {
             return AnalysisResponse.from(persistedAnalysis);
         } catch (final IOException e) {
             throw new IllegalArgumentException("분석 요청 중 문제가 발생했습니다.");
+        } catch (final JSONException e) {
+            throw new IllegalArgumentException("얼굴을 찾을 수 없습니다.");
         }
     }
 
