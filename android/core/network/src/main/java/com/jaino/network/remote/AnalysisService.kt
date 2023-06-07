@@ -12,13 +12,13 @@ interface AnalysisService {
     @POST("/analyze/sources")
     suspend fun postAnalysisSource(
         @Body analysisSourceRequest: AnalysisSourceRequest
-    ) : BaseResponse<AnalysisIdResponse>
+    ) : AnalysisIdResponse
 
     @GET("/analyze")
     suspend fun getAnalyzeList() : List<AnalysisHistoryResponse>
 
     @GET("/analyze/{analysis-id}")
     suspend fun getSentimentAnalysis(
-        @Path("analysisId") analysisId : Long
-    ) : BaseResponse<SentimentAnalysisResponse>
+        @Path("analysis-id") analysisId : Long
+    ) : SentimentAnalysisResponse
 }
