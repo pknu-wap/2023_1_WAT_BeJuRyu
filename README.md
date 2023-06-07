@@ -41,6 +41,7 @@
  ┃ ┣ 📂analysis
  ┃ ┣ 📂review
  ┃ ┣ 📂account
+ ┃ ┣ 📂home
  ┗ ┗ 📂dictionary
 ```
 
