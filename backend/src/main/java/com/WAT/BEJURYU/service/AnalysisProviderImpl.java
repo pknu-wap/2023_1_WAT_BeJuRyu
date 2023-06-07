@@ -95,10 +95,16 @@ public class AnalysisProviderImpl implements AnalysisProvider {
 
         public static AnalysisResult of(final String emotionString, final double confidence) {
             final AnalysisResult analysisResult = new AnalysisResult();
-            if (emotionString.equals("positive")) {
+            if (emotionString.equals("smile")) {
                 analysisResult.setPositive(confidence);
             }
             if (emotionString.equals("neutral")) {
+                analysisResult.setPositive(confidence / 2);
+            }
+            if (emotionString.equals("laugh")) {
+                analysisResult.setPositive(confidence);
+            }
+            if (emotionString.equals("talking")) {
                 analysisResult.setPositive(confidence / 2);
             }
 
