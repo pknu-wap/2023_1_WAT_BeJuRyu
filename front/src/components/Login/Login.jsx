@@ -30,14 +30,12 @@ function Login() {
         method: "get",
         url: `/auth/login?token=${kakaoToken}`,
       });
-      console.log("res: ", res);
 
       const cookie = new Cookies();
       cookie.set("accessToken", res.data.token.access);
       cookie.set("refreshToken", res.data.token.refresh);
 
-      const decode = jwt_decode(res.data.token.access);
-      console.log("login하면서 decode한 것.", decode);
+      // const decode = jwt_decode(res.data.token.access);
 
       // redux에 nickname 저장
       dispatch(GET_NAME(res.data.memberResponse.nickname));
@@ -57,10 +55,6 @@ function Login() {
         method: "get",
         url: "/test",
       });
-
-      console.log("Test Response:", res.data);
-      // console.log(res);
-      console.log(res.data.id);
     } catch (error) {
       console.error("Test Error:", error);
     }

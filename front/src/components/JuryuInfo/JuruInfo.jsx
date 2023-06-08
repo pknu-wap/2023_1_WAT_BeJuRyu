@@ -102,7 +102,6 @@ function JuryuInfo() {
         new Blob([bytes.buffer], { type: "image/png" })
       );
     } catch (error) {
-      console.error(error);
       return null;
     }
   };
@@ -119,29 +118,10 @@ function JuryuInfo() {
         //const decodedImage = decodeBase64(image)'
 
         setDrinkInfo(response.data);
-
-        if (response) {
-          console.log(response.data);
-        }
       } catch (error) {
         console.error(error);
       }
     };
-
-    // const juryuScore = async () => {
-    //   try {
-    //     const response = await noAuthClient({
-    //       method: "get",
-    //       url: `drinks/${juryuId}/rating`,
-    //     });
-    //     if (response) {
-    //       console.log(response.data);
-    //     }
-    //   } catch (error) {
-    //     console.log("juryuId error!", error.message);
-    //   }
-    // };
-    // //console.log(drinkReviewList);
 
     const juryuReview = async () => {
       try {
@@ -162,6 +142,35 @@ function JuryuInfo() {
     // juryuScore();
     juryuReview();
   }, [juryuId]);
+
+  // 주류 type값 한글로 변환
+  const getKoreanType = (type) => {
+    switch (type) {
+      case "BEER":
+        return "맥주";
+      case "WINE":
+        return "와인";
+      case "SOJU":
+        return "소주";
+      case "LIQUEUR":
+        return "리큐어";
+      case "WHISKEY":
+        return "위스키";
+      case "FRUIT":
+        return "과실주";
+      case "YAKJU":
+        return "약주";
+      case "BRANDY":
+        return "브랜디";
+      case "RICE_WINE":
+        return "청주";
+      case "MAKGEOLLI":
+        return "막걸리";
+
+      default:
+        return type;
+    }
+  };
 
   const handleInputChange = (e) => {
     setInputValue(e.target.value);
@@ -215,8 +224,7 @@ function JuryuInfo() {
     //alert("리뷰 등록이 완료되었습니다!");
     //navigate("/dictionary");
 
-    const labelKey = parseFloat(value);
-    console.log(labelKey);
+    const labelKey = value;
 
     try {
       const res = await authClient({
@@ -225,19 +233,13 @@ function JuryuInfo() {
         data: {
           userId: localStorage.getItem("user-id"),
           comment: inputValue,
-          score: labelKey,
+          score: value,
           date: currentDate,
         },
       });
-      if (res) {
-        console.log(res.data);
-      }
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
-        console.log(error.message);
-      } else {
-        console.log("ERROR:", error.message);
       }
     }
 
@@ -259,13 +261,22 @@ function JuryuInfo() {
                 <ListItemText primary={drinkInfo?.name} secondary="주류 이름" />
               </StyledListItem>
               <StyledListItem>
-                <ListItemText primary={drinkInfo?.dosu} secondary="도수" />
+                <ListItemText
+                  primary={`${drinkInfo?.dosu}%`}
+                  secondary="도수"
+                />
               </StyledListItem>
               <StyledListItem>
-                <ListItemText primary={drinkInfo?.price} secondary="가격" />
+                <ListItemText
+                  primary={`${drinkInfo?.price}원`}
+                  secondary="가격"
+                />
               </StyledListItem>
               <StyledListItem>
-                <ListItemText primary={drinkInfo?.type} secondary="종류" />
+                <ListItemText
+                  primary={getKoreanType(drinkInfo?.type)}
+                  secondary="종류"
+                />
               </StyledListItem>
             </StyledList>
           </S.CenteredFormBox>

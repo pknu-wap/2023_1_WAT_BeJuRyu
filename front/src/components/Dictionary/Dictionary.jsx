@@ -122,11 +122,39 @@ function Dictionary() {
     setSelectedCategory(e.target.value);
   };
 
-  //const dictionaryData = location.state?.dictionaryData;
+  // 주류 type값 한글로 변환
+  const getKoreanType = (type) => {
+    switch (type) {
+      case "BEER":
+        return "맥주";
+      case "WINE":
+        return "와인";
+      case "SOJU":
+        return "소주";
+      case "LIQUEUR":
+        return "리큐어";
+      case "WHISKEY":
+        return "위스키";
+      case "FRUIT":
+        return "과실주";
+      case "YAKJU":
+        return "약주";
+      case "BRANDY":
+        return "브랜디";
+      case "RICE_WINE":
+        return "청주";
+      case "MAKGEOLLI":
+        return "막걸리";
+
+      default:
+        return type;
+    }
+  };
 
   return (
     <S.Container>
       <S.Wrapper>
+        <S.Title>검색방법: 1. 주류 이름 검색 2. 카테고리 선택 </S.Title>
         <S.Info>
           <S.searchBox>
             <Box
@@ -160,6 +188,7 @@ function Dictionary() {
                   <option value={"MAKGEOLLI"}>막걸리</option>
                 </NativeSelect>
               </FormControl>
+
               <TextField
                 id="standard-search"
                 label="찾고싶은 주류를 입력하시거나 카테고리를 선택해주세요!"
@@ -214,8 +243,9 @@ function Dictionary() {
                       src={decodeBase64(drinkInfo.image)}
                       alt="주류 이미지"
                     />
+                    <S.SmallType>{getKoreanType(drinkInfo.type)}</S.SmallType>
                     <S.Text>
-                      {drinkInfo.name} {drinkInfo.type}
+                      {drinkInfo.name} ({drinkInfo.volume})ml{" "}
                     </S.Text>
                   </S.WhiteBox>
                 ))}

@@ -22,6 +22,7 @@ const FooterDiv = styled.footer`
 
 const Content = styled.div`
   margin: 0 auto;
+  color: white;
 `;
 
 const Footer = () => {
