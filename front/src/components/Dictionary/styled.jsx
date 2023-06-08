@@ -21,6 +21,7 @@ const Container = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: -60px;
 `;
 
 const Wrapper = styled.div`
@@ -30,9 +31,8 @@ const Wrapper = styled.div`
 
 const Title = styled.div`
   margin: 2rem 0;
-  font-weight: 600;
   text-align: center;
-  font-size: 1.5rem;
+  font-size: 1rem;
   font-family: "BejuryuFont";
   color: black;
 `;
@@ -130,13 +130,18 @@ const juruBox = styled.div`
 
 const Image = styled.img`
   width: 100%;
-  height: 70%;
+  height: 65%;
 `;
 
 const Text = styled.p`
   text-align: center;
-  margin-top: 1rem;
+  margin-top: 0rem;
   font-size: 13px;
+`;
+
+const SmallType = styled.span`
+  font-size: 12px;
+  color: gray;
 `;
 
 const S = {
@@ -153,6 +158,7 @@ const S = {
   juruBox,
   Image,
   Text,
+  SmallType,
 };
 
 export default S;

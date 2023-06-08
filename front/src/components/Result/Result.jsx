@@ -5,7 +5,7 @@ import S from "./styled";
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import { useNavigate, useLocation } from "react-router-dom";
-import logo from "../../image/bejuryu.png";
+import logo from "../../image/logo2.png";
 import authClient from "../../apis/authClient";
 import noAuthClient from "../../apis/noAuthClient";
 import { List, ListItem, ListItemText } from "@mui/material";
@@ -14,9 +14,7 @@ import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
 import Box from "@mui/material/Box";
 
-const StyledTypography = styled(Typography)`
-  font-family: "BejuryuFont";
-`;
+const { Kakao } = window;
 
 const StyledList = styled(List)`
   display: flex;
@@ -81,7 +79,6 @@ function Result() {
         new Blob([bytes.buffer], { type: "image/png" })
       );
     } catch (error) {
-      console.error(error);
       return null;
     }
   };
@@ -93,24 +90,44 @@ function Result() {
   const getSentence = (sentiment) => {
     switch (sentiment) {
       case "SAD_3":
+        return {
+          level: "슬픔 3단계😥",
+          comment:
+            "힘들 하루와 슬픔을 느끼고 있는 당신에게,\n술 한 잔하며, 슬픔이 시들어간 마음을 다시 활기차게 만들어 보는 것은 어떨까요?",
+        };
       case "SAD_2":
+        return {
+          level: "슬픔 2단계😥",
+          comment:
+            "힘들 하루와 슬픔을 느끼고 있는 당신에게,\n술 한 잔하며, 슬픔이 시들어간 마음을 다시 활기차게 만들어 보는 것은 어떨까요?",
+        };
       case "SAD_1":
         return {
-          level: "슬픔😥",
+          level: "슬픔 1단계😥",
           comment:
             "힘들 하루와 슬픔을 느끼고 있는 당신에게,\n술 한 잔하며, 슬픔이 시들어간 마음을 다시 활기차게 만들어 보는 것은 어떨까요?",
         };
       case "MEDIAN":
         return {
-          level: "중립",
+          level: "중립👼🏻",
           comment:
             "일상에서 조화와 안정을 느끼고 있는 당신에게,\n 술 한 잔하며, 가끔은 풀어내고 즐거움을 더해보는 것은 어떨까요?",
         };
       case "HAPPY_1":
+        return {
+          level: "기쁨 1단계😁",
+          comment:
+            "일상 속에서 행복을 만끽하고 있는 당신에게, \n술 한 잔하며, 지금 이 순간에 즐거움을 더해보는 것은 어떨까요?",
+        };
       case "HAPPY_2":
+        return {
+          level: "기쁨 2단계😁",
+          comment:
+            "일상 속에서 행복을 만끽하고 있는 당신에게, \n술 한 잔하며, 지금 이 순간에 즐거움을 더해보는 것은 어떨까요?",
+        };
       case "HAPPY_3":
         return {
-          level: "😄기쁨😁",
+          level: "기쁨 3단계😁",
           comment:
             "일상 속에서 행복을 만끽하고 있는 당신에게, \n술 한 잔하며, 지금 이 순간에 즐거움을 더해보는 것은 어떨까요?",
         };
@@ -120,6 +137,42 @@ function Result() {
           comment: "",
         };
     }
+  };
+
+  // 카카오톡 메시지 전송 함수
+  const sendKakaoTalkMessage = (message, appInstallLink) => {
+    Kakao.Link.sendDefault({
+      objectType: "feed",
+      content: {
+        title: "BeJuryu 앱 설치 링크",
+        description: message,
+        imageUrl: logo, // 앱 아이콘 또는 배너 이미지 등을 설정할 수 있습니다.
+        link: {
+          mobileWebUrl:
+            "https://drive.google.com/file/d/1rQJ-Gdo_MjpNNRj-q-q82xlrNo2VRcpF/view?usp=drive_link", // 모바일 웹에서 열리는 링크 주소입니다.
+          webUrl:
+            "https://drive.google.com/file/d/1rQJ-Gdo_MjpNNRj-q-q82xlrNo2VRcpF/view?usp=drive_link", // PC 웹에서 열리는 링크 주소입니다.
+        },
+      },
+      buttons: [
+        {
+          title: "앱 설치하기",
+          link: {
+            mobileWebUrl:
+              "http://bejuryu.s3-website-ap-southeast-2.amazonaws.com/", // 모바일 웹에서 열리는 링크 주소입니다.
+            webUrl: "http://bejuryu.s3-website-ap-southeast-2.amazonaws.com/", // PC 웹에서 열리는 링크 주소입니다.
+          },
+        },
+      ],
+    });
+  };
+
+  // 앱 설치링크 보내기
+  const sendAppLink = () => {
+    const appInstallLink = "앱 설치 링크를 여기에 입력하세요";
+    const message = "앱 설치를 위한 링크입니다. 설치하려면 클릭하세요!";
+
+    sendKakaoTalkMessage(message, appInstallLink);
   };
 
   useEffect(() => {
@@ -139,9 +192,7 @@ function Result() {
       }
     };
 
-    if (analysisId) {
-      getSentiment();
-    }
+    getSentiment();
   }, [analysisId]);
 
   const handleFormSubmit = (e) => {
@@ -221,18 +272,17 @@ function Result() {
             <S.Text>
               <br />
               <br />
-              {resultData.textExpression}
+              {resultData?.textExpression}
             </S.Text>
+            <S.BtnList>
+              <S.SubmitButton onClick={sendAppLink}>
+                앱에서도 사용하기
+              </S.SubmitButton>
+              <S.SubmitButton onClick={handleButtonClick}>
+                다시 추천받기
+              </S.SubmitButton>
+            </S.BtnList>
           </S.WhiteBox2>
-        </S.BtnList>
-
-        <S.BtnList>
-          <S.SubmitButton onClick={handleInputChange}>
-            결과 공유하기
-          </S.SubmitButton>
-          <S.SubmitButton onClick={handleButtonClick}>
-            다시 추천받기
-          </S.SubmitButton>
         </S.BtnList>
       </S.Wrapper>
     </S.Container>

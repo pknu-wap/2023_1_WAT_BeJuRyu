@@ -18,7 +18,6 @@ function NickChange() {
 
   // api 명세서 업데이트 되면 수정 예정
   const onchangeNick = async () => {
-    //dispatch(GET_NAME(nickname));
     navigate("/");
     alert("변경이 완료되었습니다.");
     try {
@@ -50,7 +49,7 @@ function NickChange() {
       </S.Info>
       <S.Wrapper>
         {/* 전역 상태관리 기능 추가 */}
-        {/* <S.Form> */}
+
         <S.Input
           type="text"
           value={nickname}

@@ -93,11 +93,9 @@ const CustomNavbarlink = styled(Navbarlink)`
 `;
 
 export default function Header() {
-  const nickname = localStorage.getItem("nickname");
   const userName = useSelector((state) => state.name.name);
   const dispatch = useDispatch();
   const [dictionaryData, setDictionaryData] = useState(null);
-  // 로그인 상태 관리
 
   return (
     <>
@@ -145,7 +143,7 @@ export default function Header() {
         ) : (
           <CustomNavbarlink to="/mypage">
             <li>
-              <CustomLink to="/mypage">{nickname} 님</CustomLink>
+              <CustomLink to="/mypage">마이페이지</CustomLink>
             </li>
           </CustomNavbarlink>
         )}

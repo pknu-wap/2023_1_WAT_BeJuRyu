@@ -24,7 +24,6 @@ import { GET_NAME } from "./reducer/nameSlice";
 import React from "react";
 import NickChange from "./components/MyPage/Nickchange";
 // import Login from "./components/Login/Login";
-import isLogin from "./utils/isLogin";
 
 const AllWrapper = styled.div`
   display: flex;
@@ -40,19 +39,18 @@ axios.defaults.withCredentials = true;
 
 function App() {
   const dispatch = useDispatch();
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
   const userName = useSelector((state) => state.name.name);
   //const userName = useSelector((state) => state.name.name);
 
-  const isLogin = () => {
-    const token = settingCookie("get-access");
-    // 로그인이 되어있다면
-    if (token !== undefined) {
-      const decode = jwt_decode(token);
-      dispatch(GET_NAME(localStorage.getItem("nickname")));
-      // setIsLoggedIn(true);
-    }
-  };
+  // const isLogin = () => {
+  //   const token = settingCookie("get-access");
+  //   // 로그인이 되어있다면
+  //   if (token !== undefined) {
+  //     const decode = jwt_decode(token);
+  //     dispatch(GET_NAME(localStorage.getItem("nickname")));
+  //     // setIsLoggedIn(true);
+  //   }
+  // };
 
   function setScreenSize() {
     let vh = window.innerHeight * 0.01;
@@ -63,9 +61,9 @@ function App() {
     setScreenSize();
   });
 
-  useEffect(() => {
-    isLogin();
-  }, []);
+  // useEffect(() => {
+  //   isLogin();
+  // }, []);
 
   // const token = settingCookie("get-access");
   // const isLoggedIn = token !== undefined;

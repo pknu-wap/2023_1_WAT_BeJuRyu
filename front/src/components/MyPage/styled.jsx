@@ -199,6 +199,13 @@ const Image = styled.img`
   height: 60%;
 `;
 
+const Text = styled.p`
+  text-align: center;
+  margin-top: 1rem;
+  font-family: "BejuryuFont";
+  font-size: 1rem;
+`;
+
 const S = {
   Wrapper,
   Container,
@@ -216,6 +223,7 @@ const S = {
   ButtonContainer,
   JuruBoxContainer,
   Image,
+  Text,
 };
 
 export default S;
