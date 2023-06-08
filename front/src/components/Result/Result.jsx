@@ -169,8 +169,10 @@ function Result() {
 
   // 앱 설치링크 보내기
   const sendAppLink = () => {
-    const appInstallLink = "앱 설치 링크를 여기에 입력하세요";
-    const message = "앱 설치를 위한 링크입니다. 설치하려면 클릭하세요!";
+    const appInstallLink =
+      "https://drive.google.com/file/d/1rQJ-Gdo_MjpNNRj-q-q82xlrNo2VRcpF/view?usp=drive_link";
+    const message =
+      "앱 설치를 위한 링크입니다. 예기치못한 에러 발생 시 웹사이트로 연결됩니다.";
 
     sendKakaoTalkMessage(message, appInstallLink);
   };

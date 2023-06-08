@@ -102,7 +102,6 @@ function JuryuInfo() {
         new Blob([bytes.buffer], { type: "image/png" })
       );
     } catch (error) {
-      console.error(error);
       return null;
     }
   };
@@ -119,10 +118,6 @@ function JuryuInfo() {
         //const decodedImage = decodeBase64(image)'
 
         setDrinkInfo(response.data);
-
-        if (response) {
-          console.log(response.data);
-        }
       } catch (error) {
         console.error(error);
       }
@@ -230,7 +225,6 @@ function JuryuInfo() {
     //navigate("/dictionary");
 
     const labelKey = value;
-    console.log(labelKey);
 
     try {
       const res = await authClient({
@@ -243,15 +237,9 @@ function JuryuInfo() {
           date: currentDate,
         },
       });
-      if (res) {
-        console.dir(res.data.score);
-      }
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
-        console.log(error.message);
-      } else {
-        console.log("ERROR:", error.message);
       }
     }
 

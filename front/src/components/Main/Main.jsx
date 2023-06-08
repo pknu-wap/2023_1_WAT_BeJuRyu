@@ -45,7 +45,6 @@ function MainPage() {
         if (response) {
           setReviewRank(response.data.ranking);
           setIsLoading(false);
-          console.log(response.data);
         }
       } catch (error) {
         console.error(error);
@@ -60,8 +59,6 @@ function MainPage() {
         });
         if (response) {
           setScoreRank(response.data.ranking);
-
-          console.log("scoreRanking", response.data);
         }
       } catch (error) {
         console.error(error);
@@ -83,11 +80,6 @@ function MainPage() {
         method: "get",
         url: `/drinks/${juryuId}`,
       });
-      if (res) {
-        console.log(res);
-      } else {
-        console.log("res엄썽");
-      }
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
@@ -110,9 +102,6 @@ function MainPage() {
       if (error.response) {
         const err = error.response.data;
         console.log(err);
-      } else {
-        // 네트워크 에러 또는 클라이언트 에러
-        console.log("Error:", error.message);
       }
     }
 
@@ -122,8 +111,6 @@ function MainPage() {
         method: "get",
         url: `/member`,
       });
-      console.log("떵공");
-      console.log("member api response:", response);
     } catch (error) {
       if (error.response) {
         const err = error.response.data;
