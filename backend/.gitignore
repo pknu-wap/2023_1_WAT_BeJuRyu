@@ -39,4 +39,5 @@ out/
 /docker/db
 .DS_Store
 
+src/main/resources/application.properties
 src/main/resources/drink_dummy.sql
