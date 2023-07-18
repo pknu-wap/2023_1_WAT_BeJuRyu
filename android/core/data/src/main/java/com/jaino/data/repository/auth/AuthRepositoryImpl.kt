@@ -1,20 +1,22 @@
 package com.jaino.data.repository.auth
 
-import com.jaino.datastore.BeJuRyuDatastore
+import com.jaino.datastore.TokenDataSource
+import com.jaino.datastore.UserPreferencesDataSource
 import com.jaino.network.datasource.auth.AuthDataSource
 import javax.inject.Inject
 
 class AuthRepositoryImpl @Inject constructor(
     private val source: AuthDataSource,
-    private val datastore: BeJuRyuDatastore
+    private val datastore: TokenDataSource,
+    private val userPreferencesDataSource: UserPreferencesDataSource
 ) : AuthRepository {
     override suspend fun signInService(token: String) : Result<Unit> {
-        runCatching { source.signIn(token).toSignIn() }
+        runCatching { source.signIn(token) }
             .onSuccess {
-                setAccessToken(it.accessToken)
-                setRefreshToken(it.refreshToken)
-                setUserId(it.userId)
-                setNickName(it.nickName)
+                setAccessToken(it.token.access)
+                setRefreshToken(it.token.refresh)
+                userPreferencesDataSource.setUserId(it.memberResponse.id)
+                userPreferencesDataSource.setNickname(it.memberResponse.nickname)
                 return Result.success(Unit)
             }
             .onFailure{
@@ -29,13 +31,5 @@ class AuthRepositoryImpl @Inject constructor(
 
     override fun setRefreshToken(token: String) {
         datastore.refreshToken = token
-    }
-
-    override fun setUserId(userId: Long) {
-        datastore.userId = userId
-    }
-
-    override fun setNickName(nickName: String) {
-        datastore.nickName = nickName
     }
 }
