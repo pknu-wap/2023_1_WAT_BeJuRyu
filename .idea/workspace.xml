@@ -5,6 +5,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="a2651a07-aa54-4cc9-9b55-834bf7491d97" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/android/app/release/app-release.apk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/app/release/output-metadata.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/feature/analysis/src/main/java/com/jaino/analysis/result/ResultFragment.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/feature/analysis/src/main/java/com/jaino/analysis/result/ResultFragment.kt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/android/feature/auth/build.gradle.kts" beforeDir="false" afterPath="$PROJECT_DIR$/android/feature/auth/build.gradle.kts" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/android/feature/auth/src/main/java/com/jaino/auth/AuthActivity.kt" beforeDir="false" afterPath="$PROJECT_DIR$/android/feature/auth/src/main/java/com/jaino/auth/AuthActivity.kt" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />

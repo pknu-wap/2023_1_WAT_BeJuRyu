@@ -17,10 +17,9 @@ dependencies {
     implementation(project(":core:model"))
     implementation(project(":core:common"))
     implementation(project(":core:designsystem"))
-    implementation(libs.timber)
-    implementation(libs.kotlin.datetime)
     implementation(libs.androidx.fragment)
     implementation(libs.bundles.androidx)
     implementation(libs.androidx.lifecycle.runtime)
-    implementation(libs.androidx.lifecycle.livedata)
+    implementation(libs.kakao.login)
+    implementation(libs.timber)
 }

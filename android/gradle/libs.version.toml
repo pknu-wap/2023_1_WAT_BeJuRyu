@@ -4,8 +4,6 @@ minSdk = "26"
 targetSdk = "33"
 appVersion = "1.0.0"
 versionCode = "10000"
-desugarJdk = "2.0.3"
-
 gradleplugin = "7.4.2"
 
 kotlin = "1.8.10"
@@ -21,12 +19,9 @@ androidx-fragment = "1.5.6"
 androidx-lifecycle = "2.6.1"
 androidx-contstraintlayout = "2.1.4"
 androidx-paging = "3.1.1"
-androidx-room = "2.5.0"
+androidx-datastore = "1.0.0"
 androidx-security = "1.0.0"
 androidx-splash = "1.0.0"
-androidx-work = "2.8.1"
-androidx-legacy = "1.0.0"
-androidx-hilt-work = "1.0.0"
 androidx-test-junit = "1.1.5"
 androidx-test-espresso = "3.5.1"
 
@@ -35,8 +30,10 @@ androidx-camerax = "1.2.1"
 
 google-services-plugin = "4.3.15"
 google-crashlytics-plguin = "2.9.4"
+google-protobuf-plugin = "0.9.3"
 google-firebase = "31.4.0"
 google-material = "1.8.0"
+google-protobuf = "3.23.0"
 square-javapoet = "1.13.0"
 
 retrofit = "2.9.0"
@@ -69,27 +66,18 @@ androidx-appcompat = { module = "androidx.appcompat:appcompat", version.ref = "a
 androidx-lifecycle-viewmodel = { module = "androidx.lifecycle:lifecycle-viewmodel-ktx", version.ref = "androidx-lifecycle" }
 androidx-security = { module = "androidx.security:security-crypto", version.ref = "androidx-security" }
 androidx-constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "androidx-contstraintlayout" }
-androidx-lifecycle-java = { module = "androidx.lifecycle:lifecycle-common-java8", version.ref = "androidx-lifecycle" }
 androidx-lifecycle-runtime = { module = "androidx.lifecycle:lifecycle-runtime-ktx", version.ref = "androidx-lifecycle" }
-androidx-lifecycle-livedata = { module = "androidx.lifecycle:lifecycle-livedata-ktx", version.ref = "androidx-lifecycle" }
 androidx-paging = { module = "androidx.paging:paging-runtime", version.ref = "androidx-paging" }
-androidx-room = { module = "androidx.room:room-runtime", version.ref = "androidx-room" }
-androidx-room-paging = { module = "androidx.room:room-paging", version.ref = "androidx-room" }
-androidx-room-compiler = { module = "androidx.room:room-compiler", version.ref = "androidx-room"}
-androidx-work = { module = "androidx.work:work-runtime-ktx", version.ref = "androidx-work" }
+androidx-datastore-preferences = { module = "androidx.datastore:datastore-preferences", version.ref = "androidx-datastore"}
+androidx-datastore = { module = "androidx.datastore:datastore", version.ref = "androidx-datastore"}
 androidx-fragment = { module = "androidx.fragment:fragment-ktx", version.ref = "androidx-fragment" }
 androidx-splash = { module = "androidx.core:core-splashscreen", version.ref = "androidx-splash" }
-androidx-legacy = { module = "androidx.legacy:legacy-support-v4", version.ref = "androidx-legacy" }
-androidx-hilt-work = { module = "androidx.hilt:hilt-work", version.ref = "androidx-hilt-work" }
-androidx-hilt-work-compiler = { module = "androidx.hilt:hilt-compiler", version.ref = "androidx-hilt-work" }
-desugarLibs = { module = "com.android.tools:desugar_jdk_libs", version.ref = "desugarJdk" }
-
-nav-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation"}
-nav-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation"}
-nav-feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="androidx-navigation"}
-camerax-view = { module = "androidx.camera:camera-view", version.ref="androidx-camerax"}
-camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref="androidx-camerax"}
-camerax-extensions = { module = "androidx.camera:camera-extensions", version.ref="androidx-camerax"}
+androidx-nav-fragment = { module = "androidx.navigation:navigation-fragment-ktx", version.ref = "androidx-navigation"}
+androidx-nav-ui = { module = "androidx.navigation:navigation-ui-ktx", version.ref = "androidx-navigation"}
+androidx-nav-feature = { module = "androidx.navigation:navigation-dynamic-features-fragment", version.ref="androidx-navigation"}
+androidx-camerax-view = { module = "androidx.camera:camera-view", version.ref="androidx-camerax"}
+androidx-camerax-lifecycle = { module = "androidx.camera:camera-lifecycle", version.ref="androidx-camerax"}
+androidx-camerax-extensions = { module = "androidx.camera:camera-extensions", version.ref="androidx-camerax"}
 
 material = { module = "com.google.android.material:material", version.ref = "google-material" }
 
@@ -106,7 +94,8 @@ firebase-analytics = { module = "com.google.firebase:firebase-analytics-ktx" }
 firebase-crashlytics = { module = "com.google.firebase:firebase-crashlytics-ktx" }
 retrofit = { module = "com.squareup.retrofit2:retrofit", version.ref = "retrofit" }
 retrofit-kotlin-serialization-converter = { group = "com.jakewharton.retrofit", name = "retrofit2-kotlinx-serialization-converter", version.ref = "kotlinx-serialization-converter" }
-
+protobuf-kotlin-lite = { group = "com.google.protobuf", name = "protobuf-kotlin-lite", version.ref = "google-protobuf" }
+protobuf-protoc = { group = "com.google.protobuf", name = "protoc", version.ref = "google-protobuf" }
 timber = { module = "com.jakewharton.timber:timber", version.ref = "timber" }
 
 hilt = { module = "com.google.dagger:hilt-android", version.ref = "hilt" }
@@ -130,18 +119,15 @@ androidx = [
     "androidx-constraintlayout",
     "androidx-core",
     "androidx-lifecycle-viewmodel",
-    "androidx-security",
-    "androidx-paging",
-    "androidx-lifecycle-java",
-    "androidx-work",
-    "androidx-legacy",
     "androidx-fragment",
     "androidx-lifecycle-runtime",
-    "androidx-lifecycle-livedata"
+    "androidx-nav-fragment",
+    "androidx-nav-ui",
+    "androidx-nav-fragment"
 ]
-room = ["androidx-room", "androidx-room-paging", "androidx-room-compiler"]
-navigation = ["nav_ui", "nav_fragment"]
-camerax = ["camerax-view", "camerax-lifecycle", "camerax-extensions"]
+
+datastore = ["androidx-datastore", "androidx-datastore-preferences", "protobuf-kotlin-lite"]
+camerax = ["androidx-camerax-view", "androidx-camerax-lifecycle", "androidx-camerax-extensions"]
 okhttp = ["okhttp", "okhttp-logging-interceptor"]
 retrofit = ["retrofit", "retrofit-kotlin-serialization-converter"]
 firebase = ["firebase", "firebase", "firebase-crashlytics", "firebase-analytics"]
@@ -152,6 +138,7 @@ android-library = { id = "com.android.library", version.ref = "gradleplugin" }
 androidx-navigation-safeargs= { id = "androidx.navigation.safeargs", version.ref = "androidx-navigation"}
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-kapt = { id = "org.jetbrains.kotlin.kapt", version.ref = "kotlin" }
+google-protobuf = { id = "com.google.protobuf", version.ref = "google-protobuf-plugin" }
 google-services = { id = "com.google.gms.google-services", version.ref = "google-services-plugin" }
 google-firebase-crashlytics = { id = "com.google.firebase.crashlytics", version.ref = "google-crashlytics-plguin" }
 dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "hilt" }

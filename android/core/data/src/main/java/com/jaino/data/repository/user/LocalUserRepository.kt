@@ -1,12 +1,12 @@
 package com.jaino.data.repository.user
 
+import kotlinx.coroutines.flow.Flow
+
 interface LocalUserRepository {
 
-    suspend fun setNickname(nickname: String)
+    fun getNickname() : Flow<String>
 
-    suspend fun getNickName() : String
-
-    suspend fun getUserId() : Long
+    fun getUserId() : Flow<Long>
 
     fun clear()
 }

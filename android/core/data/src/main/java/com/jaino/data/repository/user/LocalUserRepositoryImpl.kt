@@ -1,19 +1,21 @@
 package com.jaino.data.repository.user
 
-import com.jaino.datastore.BeJuRyuDatastore
+import com.jaino.datastore.TokenDataSource
+import com.jaino.datastore.UserPreferencesDataSource
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 
 class LocalUserRepositoryImpl @Inject constructor(
-    private val dataStore : BeJuRyuDatastore
+    private val tokenDataSource : TokenDataSource,
+    private val userPreferencesDataSource : UserPreferencesDataSource
 ) : LocalUserRepository{
 
-    override suspend fun setNickname(nickname: String){
-        dataStore.nickName = nickname
+    override fun getNickname(): Flow<String> = userPreferencesDataSource.userDataFlow.map{ it.nickname }
+
+    override fun getUserId(): Flow<Long> = userPreferencesDataSource.userDataFlow.map{ it.userId }
+
+    override fun clear(){
+        tokenDataSource.clearToken()
     }
-
-    override suspend fun getNickName(): String = dataStore.nickName
-
-    override suspend fun getUserId(): Long = dataStore.userId
-
-    override fun clear() = dataStore.clear()
 }

@@ -7,8 +7,4 @@ interface AuthRepository {
 
     fun setRefreshToken(token: String)
 
-    fun setNickName(nickName: String)
-
-    fun setUserId(userId: Long)
-
 }

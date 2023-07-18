@@ -9,10 +9,7 @@ import com.jaino.common.model.UiEvent
 import com.jaino.data.repository.setting.ProfileRepository
 import com.jaino.data.repository.user.LocalUserRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.MutableSharedFlow
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.SharedFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -43,10 +40,9 @@ class ProfileViewModel @Inject constructor(
     fun updateNickname(nickname: String){
         viewModelScope.launch {
             _nickNameState.value = nickname
-            repository.editNickname(localRepository.getUserId(), _nickNameState.value)
+            repository.editNickname(userId = localRepository.getUserId().first(), _nickNameState.value)
                 .onSuccess { profile ->
                     _nickNameState.value = profile.nickname
-                    localRepository.setNickname(nickname)
                 }
                 .onFailure {
                     _profileUiEvent.emit(UiEvent.Failure(it))

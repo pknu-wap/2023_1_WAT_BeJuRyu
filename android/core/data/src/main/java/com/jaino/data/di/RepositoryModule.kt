@@ -14,7 +14,8 @@ import com.jaino.data.repository.rank.RankRepository
 import com.jaino.data.repository.rank.RankRepositoryImpl
 import com.jaino.data.repository.setting.ProfileRepository
 import com.jaino.data.repository.setting.ProfileRepositoryImpl
-import com.jaino.datastore.BeJuRyuDatastore
+import com.jaino.datastore.TokenDataSource
+import com.jaino.datastore.UserPreferencesDataSource
 import com.jaino.network.datasource.analysis.AnalysisDataSource
 import com.jaino.network.datasource.auth.AuthDataSource
 import com.jaino.network.datasource.dictionary.DrinkDataSource
@@ -34,15 +35,17 @@ object RepositoryModule {
     @Singleton
     @Provides
     fun provideSocialAuthRepository(
-        dataSource: AuthDataSource,
-        dataStore : BeJuRyuDatastore
-    ) : AuthRepository = AuthRepositoryImpl(dataSource, dataStore)
+        authDataSource: AuthDataSource,
+        TokenDataSource : TokenDataSource,
+        userDataSource: UserPreferencesDataSource
+    ) : AuthRepository = AuthRepositoryImpl(authDataSource, TokenDataSource, userDataSource)
 
     @Singleton
     @Provides
     fun provideLocalUserRepository(
-        dataStore: BeJuRyuDatastore
-    ): LocalUserRepository = LocalUserRepositoryImpl(dataStore)
+        TokenDataSource : TokenDataSource,
+        userPreferencesDataSource: UserPreferencesDataSource
+    ): LocalUserRepository = LocalUserRepositoryImpl(TokenDataSource, userPreferencesDataSource)
 
     @Singleton
     @Provides
@@ -73,5 +76,6 @@ object RepositoryModule {
     @Provides
     fun provideProfileRepository(
         profileDataSource: ProfileDataSource,
-    ): ProfileRepository = ProfileRepositoryImpl(profileDataSource)
+        userPreferencesDataSource: UserPreferencesDataSource
+    ): ProfileRepository = ProfileRepositoryImpl(profileDataSource, userPreferencesDataSource)
 }
