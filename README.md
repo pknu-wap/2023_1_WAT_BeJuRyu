@@ -38,6 +38,7 @@
     - DataBinding & ViewBinding
 - Local 
     - Encrypted SharedPreference
+    - Proto DataStore
 - Remote
     - Retrofit2 & OkHttp3
     - Kotlinx Serialization
