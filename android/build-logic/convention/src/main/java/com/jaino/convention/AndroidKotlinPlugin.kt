@@ -27,7 +27,6 @@ class AndroidKotlinPlugin : Plugin<Project> {
             }
 
             compileOptions {
-                isCoreLibraryDesugaringEnabled = true
                 sourceCompatibility = JavaVersion.VERSION_11
                 targetCompatibility = JavaVersion.VERSION_11
             }
@@ -38,7 +37,6 @@ class AndroidKotlinPlugin : Plugin<Project> {
         }
 
         dependencies {
-            "coreLibraryDesugaring"(libs.findLibrary("desugarLibs").get())
             "implementation"(libs.findLibrary("kotlin").get())
             "implementation"(libs.findLibrary("kotlin.coroutines").get())
             "implementation"(libs.findLibrary("kotlin.datetime").get())
