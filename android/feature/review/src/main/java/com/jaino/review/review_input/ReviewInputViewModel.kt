@@ -15,6 +15,7 @@ import com.jaino.model.dictionary.Drink
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -39,8 +40,8 @@ class ReviewInputViewModel @Inject constructor(
             repository.postReview(
                 drinkId,
                 ReviewRequest(
-                    userRepository.getUserId(), reviewContent.value,
-                    ratingCount.value.toInt(), System.currentTimeMillis().toDateTime()
+                    userId = userRepository.getUserId().first(), comment = reviewContent.value,
+                    score = ratingCount.value.toInt(), date = System.currentTimeMillis().toDateTime()
                 )
             ).onSuccess {
                 _reviewInputEvent.emit(UiEvent.Success(it))
