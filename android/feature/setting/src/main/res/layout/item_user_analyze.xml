@@ -8,6 +8,9 @@
             name="item"
             type="com.jaino.model.analysis.AnalysisHistory"
             />
+        <variable
+            name="drawableId"
+            type="int" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -25,8 +28,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                >
+                android:layout_height="match_parent">
 
                 <TextView
                     android:id="@+id/review_item_nickname"
@@ -44,10 +46,11 @@
                     android:layout_width="40dp"
                     android:layout_height="40dp"
                     android:layout_margin="16dp"
+                    app:drawableId="@{drawableId}"
                     app:layout_constraintBottom_toBottomOf="@+id/review_item_nickname"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="@+id/textView"
-                    app:srcCompat="@drawable/smile" />
+                    tools:srcCompat="@drawable/smile" />
 
                 <TextView
                     android:id="@+id/textView"

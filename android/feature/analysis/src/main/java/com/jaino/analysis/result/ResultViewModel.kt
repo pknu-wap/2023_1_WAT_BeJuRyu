@@ -14,6 +14,8 @@ import com.jaino.model.analysis.SentimentAnalysis
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.collect
+import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -42,7 +44,9 @@ class ResultViewModel @Inject constructor(
 
     fun getNickname(){
         viewModelScope.launch {
-            _nicknameState.value = userRepository.getNickName()
+            userRepository.getNickname().collect{ value ->
+                _nicknameState.value = value
+            }
         }
     }
 

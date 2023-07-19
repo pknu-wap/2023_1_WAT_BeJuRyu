@@ -1,7 +1,7 @@
 package com.jaino.network.remote.interceptor
 
 import android.content.Context
-import com.jaino.datastore.BeJuRyuDatastore
+import com.jaino.datastore.TokenDataSource
 import com.jaino.network.BuildConfig
 import com.jaino.network.model.response.auth.AuthTokenResponse
 import com.jakewharton.processphoenix.ProcessPhoenix
@@ -14,7 +14,7 @@ import timber.log.Timber
 import javax.inject.Inject
 
 class AuthInterceptor @Inject constructor(
-    private val dataStore: BeJuRyuDatastore,
+    private val dataStore: TokenDataSource,
     private val json: Json,
     @ApplicationContext private val context: Context
 ): Interceptor {
