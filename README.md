@@ -20,30 +20,8 @@
 	</h3>	
 </p>
 
-## Android Modules 📁 
-
-```
- 📁android
- ┣ 📂app
- ┣ 📂core
- ┃ ┣ 📂data
- ┃ ┣ 📂domain
- ┃ ┣ 📂designsystem
- ┃ ┣ 📂model
- ┃ ┣ 📂network
- ┃ ┣ 📂common
- ┃ ┗ 📂datastore
- ┣ 📂build-logic
- ┃ ┗ 📂convention
- ┣ 📂feature
- ┃ ┣ 📂auth
- ┃ ┣ 📂setting
- ┃ ┣ 📂analysis
- ┃ ┣ 📂review
- ┃ ┣ 📂account
- ┃ ┣ 📂home
- ┗ ┗ 📂dictionary
-```
+## Module Dependency
+![BE주류 Module Dependency](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/assets/77484719/8728ac34-7cac-4cf1-9eef-6bd29875eee0)
 
 
 ## Android Tech Stack
@@ -60,6 +38,7 @@
     - DataBinding & ViewBinding
 - Local 
     - Encrypted SharedPreference
+    - Proto DataStore
 - Remote
     - Retrofit2 & OkHttp3
     - Kotlinx Serialization
@@ -71,7 +50,6 @@
     - Timber
     - ProcessPhoenix
     - Lottie
-    - Skydoves ProgressView
 - [verison_catalog](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/develop_android/android/gradle/libs.version.toml)
 </br>
 
