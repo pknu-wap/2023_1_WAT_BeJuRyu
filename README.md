@@ -26,11 +26,12 @@
 | `로그인` <br> `홈` <br> `설정` | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/splash.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/home.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/setting.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/history.png"/> |
 | `주류사전` | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/search.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/drink_list.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/drink_info.png"/> |                                                                                                                             |
 | `주류후기` | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/review.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/review_writing.png"/> |                                                                                                                             |                                                                                                                             |
-| `감정작성` <br> `추천주류 결과` | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/text_analysis.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/image_analysis.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/analysis_result1.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/analysis_result2.png"/> |
+| `감정작성`, `주류추천` | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/text_analysis.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/image_analysis.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/analysis_result1.png"/> | <img width="200px" src="https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/blob/main/image/analysis_result2.png"/> |
 <br>
 
 ## 🥂 Module Dependency 🥂
 ![BE주류 Module Dependency](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/assets/77484719/8728ac34-7cac-4cf1-9eef-6bd29875eee0)
+<br>
 
 
 ## 🍹 Android Tech Stack 🍹
