@@ -1,17 +1,17 @@
 <h1 align="center">2023 1학기 WAT팀 BeJuRyu</h1>
 <p align="center">
-	    <img src="./image/icon.png"/ width="50%">
+	<img src="./image/icon.png"/ width="50%">
 </p>	   
 
 <p align="center">
-    <img src="https://img.shields.io/badge/Kotlin-1.8.10-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"/>
-    <img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
-      <img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
-  <img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><br /> 
- <img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
- <img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
-<img src="https://img.shields.io/badge/amazon aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
-    <img src="https://img.shields.io/badge/all_contributors-5-orange.svg?style=for-the-badge"/>
+    	<img src="https://img.shields.io/badge/Kotlin-1.8.10-7F52FF?style=for-the-badge&logo=Kotlin&logoColor=white"/>
+	<img src="https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white"/>
+	<img src="https://img.shields.io/badge/javascript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black"> 
+	<img src="https://img.shields.io/badge/react-61DAFB?style=for-the-badge&logo=react&logoColor=black"><br /> 
+ 	<img src="https://img.shields.io/badge/java-007396?style=for-the-badge&logo=java&logoColor=white"> 
+ 	<img src="https://img.shields.io/badge/spring-6DB33F?style=for-the-badge&logo=spring&logoColor=white"> 
+	<img src="https://img.shields.io/badge/amazon aws-232F3E?style=for-the-badge&logo=amazonaws&logoColor=white">
+    	<img src="https://img.shields.io/badge/all_contributors-5-orange.svg?style=for-the-badge"/>
 </p>
 
 <p align="center">
@@ -20,11 +20,14 @@
 	</h3>	
 </p>
 
-## Module Dependency
+## 🍻 Feature 🍻
+
+
+## 🥂 Module Dependency 🥂
 ![BE주류 Module Dependency](https://github.com/pknu-wap/2023_1_WAT_BeJuRyu/assets/77484719/8728ac34-7cac-4cf1-9eef-6bd29875eee0)
 
 
-## Android Tech Stack
+## 🍹 Android Tech Stack 🍹
 
 - Minumum SDK 26 & Target SDK 33
 - Kotlin
